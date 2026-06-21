@@ -1,123 +1,164 @@
-# Time-Series Core Showcase
+# PeFe Oracle: Un-Killable Time-Series Infrastructure
 
-Backend data infrastructure, time-series validation and operational analytics.
+Real-time market-data infrastructure, source-trust validation, analytical UI
+and AI-assisted operator workflow.
 
 - **Author:** Fedor Gorbunov
-- **Focus:** Python backend · real-time streams · data quality · analytics workflows
-- **Location:** Antalya, Turkey · open to relocation
+- **Role:** systems/data infrastructure architect, backend builder, operator
+- **Focus:** real-time data, time-series integrity, analytics, monitoring,
+  automation and decision support
+- **Location:** Antalya, Turkey · open to relocation / project work
 
-This is a public portfolio repository. It does not publish the private
-production source code, trading logic, credentials or runtime internals. It
-shows the architecture, screenshots and technical documents that describe the
-work.
+This repository is a public showcase. It is meant to sell the engineering
+approach and business value, not to leak the private production repository.
+Private source code, trading logic, thresholds, credentials and account/runtime
+data are not published here.
 
-## What This Shows
+## The Business Problem
 
-The project uses market data as a noisy real-time testbed. The same engineering
-problems appear in fintech, risk systems, IoT, operations and monitoring:
+If a business depends on live time-series, the hard problem is not only getting
+data into a database. The hard problem is knowing whether the data can be
+trusted after restarts, stream drops, gaps, duplicates, recalculations and
+manual review.
 
-- unreliable streams;
-- gaps and duplicate events;
-- state drift between storage layers;
-- historical recovery;
-- data-quality gates before analytics;
-- dashboards and human review when automation is not enough.
+This matters in:
 
-The main point is backend reliability first: collect the signal, verify it,
-recover gaps, expose health, then build analysis and ML on top.
+- fintech and market-data systems;
+- risk and operational analytics;
+- IoT / telemetry / hardware monitoring;
+- property and maintenance operations;
+- AI-assisted internal tools where humans still need final control.
 
-## Core Backend Pipeline
+## What "Un-Killable" Means Here
 
-| Layer | What it demonstrates |
-|---|---|
-| Ingestion | WebSocket/REST market-data intake, reconnect/recovery model |
-| Buffering | Redis ZSET runtime buffers for recent time-series state |
-| Persistence | MongoDB state storage and Parquet snapshots |
-| Validation | source-trust checks, duplicate/gap detection, multi-layer validation |
-| Recovery | automated backfill/recalculation when history is incomplete |
-| Observability | Prometheus/Grafana/Loki style health, coverage and runtime reports |
-| Analytics output | validated state slices for review, reports and later ML experiments |
+Not magic and not bravado. It means the time-series contour is designed so that
+failures become visible and recoverable:
 
-Technical overview:
-[Real-Time Data Pipeline - Source Trust & Recovery](docs/Real-Time_Data_Pipeline_Source_Trust_and_Recovery_Overview.pdf)
+- data freshness is watched continuously;
+- gaps and duplicates are treated as system events, not ignored noise;
+- source-trust checks can block downstream analytics;
+- recovery/recalculation is part of the operating model;
+- storage coverage is visible before reports are trusted;
+- human review exists where automation is not enough.
 
-Public proof slice:
+The goal is a hard-to-break analytical system: if something goes wrong, it
+should be detected, isolated, repaired and explained.
 
-- `src/time_series_core/` - domain models, synthetic generator and validator;
-- `examples/validate_synthetic_series.py` - CLI report for clean/defective data;
-- `tests/test_validator.py` - minimal regression tests for trusted, gap and
-  duplicate cases.
+## What Is Built
 
-Run it:
+| Layer | Business value | Evidence in this repo |
+|---|---|---|
+| Real-time ingestion | Market state arrives continuously instead of by manual export | pipeline architecture PDF, validation screenshot |
+| Runtime buffer | Recent state survives operational processing and fast checks | Redis/runtime buffer described in pipeline PDF |
+| Storage layer | Base rows, calculated rows, ML-ready history and parquet snapshots are separated | history coverage matrix screenshot |
+| Source trust | Stored data is compared against an external source before analytics are trusted | surgical validation screenshot |
+| Recovery | Missing or inconsistent history creates recovery/recalculation work | pipeline/recovery documentation |
+| Analytical UI | Events can be inspected, classified and reviewed by a human | chart UI, modal drilldown, KPI audit screenshots |
+| Profit / PNL audit | Outcomes are measured and audited as a factual testbed result | KPI report and event drilldown screenshots |
+| AI symbiosis | Human + AI agent workflow is controlled through an operator cockpit | AI cockpit screenshots and PDF |
 
-```bash
-python3 examples/validate_synthetic_series.py
-python3 examples/validate_synthetic_series.py --gap-at 20 --duplicate-at 40
-PYTHONPATH=src python3 -m unittest discover -s tests
-```
+## Storage And Database Proof
 
-![Pipeline validation](assets/pipeline_validation_11_layers_passed.png)
+The public screenshots currently show the storage layer through operational
+proof surfaces, not through raw database admin screens.
+
+Current evidence:
+
+- **History Coverage Matrix** shows storage coverage across base, calculated,
+  ML-ready and parquet layers: retention, covered days, missing days, row
+  counts and status.
+- **Surgical Validation** shows source-trust validation before downstream use:
+  Binance/source check, stored row comparison, calculation state and validation
+  pass/fail context.
+- **Pipeline PDF** documents Redis runtime buffers, MongoDB base/calculated
+  collections, ML-ready mirror and parquet snapshots.
+
+Raw MongoDB/Redis/Parquet UI screenshots are intentionally not included yet.
+They should be added only after redaction approval, because database screens can
+easily expose collection names, paths, account details, symbols, timestamps or
+private runtime structure.
 
 ![History coverage matrix](assets/pipeline_history_coverage_matrix.png)
 
-## Analytics / Review Surface
+![Pipeline validation](assets/pipeline_validation_11_layers_passed.png)
 
-The UI layer is used to inspect validated time-series events, review state
-transitions and compare automated decisions with chart context. The screenshots
-are shown as evidence of workflow and data review, not as trading advice or an
-investment product.
+## Analytics And PNL Review
 
-Technical overview:
-[Analytics UI - Human-in-the-Loop Review Workflow](docs/Analytics_UI_Human_in_the_Loop_Review_Workflow.pdf)
+PNL/profit is not a dirty word here. It is part of the testbed: the system
+detects events, tracks outcomes, audits TP/SL states and shows whether the
+analytical loop produced useful measurable results.
 
-![Analytics UI](assets/pefe_oracle_chart_interface.png)
+The point is not to sell a public trading signal. The point is to demonstrate a
+system that can connect data, rules, outcomes, review and reporting.
 
 ![KPI audit snapshot](assets/kpi_report_net_13pct.png)
 
 ![Event drill-down](assets/trade_snapshot_tp_short.png)
 
-## AI-Assisted Engineering Layer
-
-The AI/operator cockpit is secondary in this repository. It is included because
-the same system was used to run long engineering sessions, keep runtime truth
-visible and preserve artifacts around implementation work.
+![Analytics UI](assets/pefe_oracle_chart_interface.png)
 
 Technical overview:
-[AI Agent Operator Cockpit](docs/AI_Agent_Operator_Cockpit_Technical_Overview.pdf)
+[Analytics UI - Human-in-the-Loop Review Workflow](docs/Analytics_UI_Human_in_the_Loop_Review_Workflow.pdf)
+
+## AI Symbiosis / Operator Cockpit
+
+The AI layer is not decoration. This is the operating model: human operator,
+long-running AI agent sessions, runtime truth, task plans, notes, logs,
+artifacts and recovery actions in one workspace.
+
+That is the practical symbiosis: AI accelerates work, but the operator keeps
+state, judgment and control.
 
 ![Agent cockpit](assets/agent_cockpit_dialog_board.png)
 
 ![Active work package](assets/agent_cockpit_active_work_package.png)
 
-## Tech Stack
+Technical overview:
+[AI Agent Operator Cockpit](docs/AI_Agent_Operator_Cockpit_Technical_Overview.pdf)
+
+## Technical Stack
 
 ```text
 Backend:       Python 3.12, FastAPI, asyncio
 Data:          MongoDB 7.0, Redis, Apache Parquet
-Streaming:     WebSocket, REST, ZeroMQ
-Validation:    NumPy vectorized checks, state fingerprints
+Streaming:     Binance WebSocket/REST, ZeroMQ
+Validation:    NumPy vectorized checks, state fingerprints, source-trust gates
 Observability: Prometheus, Grafana, Loki, custom health monitors
 Frontend:      React, TradingView Charting Library, custom reports
-AI tooling:    Codex CLI, operator cockpit, session artifacts
+AI workflow:   Codex CLI, operator cockpit, session artifacts
 ```
 
-## What Is Not Public Here
+## Why This Is Valuable
 
-- private repository source code;
-- strategy rules, thresholds and proprietary formulas;
-- API keys, credentials, account data or private runtime logs;
-- customer/private data;
-- complete production deployment details.
+For a business owner or technical decision maker, the value is not "there is
+code on GitHub". Code is cheap. The value is the operating contour:
 
-## Next Public Proof Slices
+- live data pipeline;
+- data-quality discipline;
+- visible storage coverage;
+- explainable analytics;
+- measurable outcomes;
+- human review;
+- AI-assisted execution without losing control.
 
-The next useful public additions should be small and verifiable:
+This is the kind of system thinking needed when a company has messy operations,
+untrusted data, manual reporting, blind automation or disconnected tools.
 
-1. FastAPI/asyncio service skeleton with health checks, source-trust status and
-   recovery-state model.
-2. CLI or notebook report for coverage, missing intervals and data-quality
-   metrics.
-3. ML-ready export example after the backend/time-series proof is solid.
+## What Is Not Public
 
-ML is intentionally not the headline yet. The current headline is reliable
-time-series infrastructure and analysis.
+- private source code;
+- customer/client/account data;
+- private runtime logs;
+- trading rules, thresholds and proprietary formulas;
+- API keys, credentials and infrastructure secrets;
+- raw database admin screenshots until redaction is approved.
+
+## Next Public Additions
+
+1. Redacted storage proof screenshots:
+   MongoDB collections/indexes, Redis buffer/key pattern, Parquet schema/files.
+2. Architecture page:
+   ingestion -> Redis -> MongoDB -> ML-ready/parquet -> validation -> UI.
+3. Data contract page:
+   candle/state/report fields, source-trust rules, recovery states.
+4. Only after that: public ML/analysis examples on synthetic or public data.
