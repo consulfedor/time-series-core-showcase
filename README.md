@@ -1,120 +1,123 @@
-# 🦅 PeFe Oracle: Autonomous Time-Series Infrastructure & AI Symbiosis
+# Time-Series Core Showcase
 
-**Status:** Production-Ready Core  
-**Architecture:** Zero-Gap Streaming · Vectorized Validation · Deep Human-AI Symbiosis  
-**Author:** Fedor Gorbunov — Systems Infrastructure Architect, Antalya, Turkey
+Backend data infrastructure, time-series validation and operational analytics.
 
----
+- **Author:** Fedor Gorbunov
+- **Focus:** Python backend · real-time streams · data quality · analytics workflows
+- **Location:** Antalya, Turkey · open to relocation
 
-## Executive Summary
+This is a public portfolio repository. It does not publish the private
+production source code, trading logic, credentials or runtime internals. It
+shows the architecture, screenshots and technical documents that describe the
+work.
 
-Everything in life and business is a time-series. Whether it's market volatility, industrial hardware telemetry, or supply chain cycles — all observable reality can be predictively analyzed.
+## What This Shows
 
-Over the last 2 years, I have solo-architected an **un-killable, 24/7 real-time market data infrastructure** and analytical pipeline. This is not a prototype; it is a battle-tested engine built for scale.
+The project uses market data as a noisy real-time testbed. The same engineering
+problems appear in fintech, risk systems, IoT, operations and monitoring:
 
----
+- unreliable streams;
+- gaps and duplicate events;
+- state drift between storage layers;
+- historical recovery;
+- data-quality gates before analytics;
+- dashboards and human review when automation is not enough.
 
-## 1. The Core Engine — Real-Time Data Pipeline
+The main point is backend reliability first: collect the signal, verify it,
+recover gaps, expose health, then build analysis and ML on top.
 
-A continuous minute-level data pipeline with strict source-trust guards, anti-duplicate safeguards, and automated historical gap recovery.
+## Core Backend Pipeline
 
-| Component | Detail |
+| Layer | What it demonstrates |
 |---|---|
-| **Ingestion** | WebSocket streaming → runtime Redis ZSET buffers |
-| **Persistence** | MongoDB 7.0 state + ML-ready Parquet snapshots |
-| **Validation** | NumPy SIMD vectorization — 10 layers of real-time checks |
-| **Performance** | ~365 µs per data slice (Python loop compressed) |
-| **Reliability** | Source-trust oracle · automated gap recovery · fail-closed startup gates |
+| Ingestion | WebSocket/REST market-data intake, reconnect/recovery model |
+| Buffering | Redis ZSET runtime buffers for recent time-series state |
+| Persistence | MongoDB state storage and Parquet snapshots |
+| Validation | source-trust checks, duplicate/gap detection, multi-layer validation |
+| Recovery | automated backfill/recalculation when history is incomplete |
+| Observability | Prometheus/Grafana/Loki style health, coverage and runtime reports |
+| Analytics output | validated state slices for review, reports and later ML experiments |
 
-**Zero-Gap Pipeline:** If stored base candles fail the oracle check, downstream processing is blocked and recovery/recalculation starts automatically. No silent corruption.
+Technical overview:
+[Real-Time Data Pipeline - Source Trust & Recovery](docs/Real-Time_Data_Pipeline_Source_Trust_and_Recovery_Overview.pdf)
 
-📄 **[Read Technical Overview (PDF)](docs/Real-Time_Data_Pipeline_Source_Trust_and_Recovery_Overview.pdf)**
+Public proof slice:
 
-**Surgical Validation — all 11 layers passed:**
+- `src/time_series_core/` - domain models, synthetic generator and validator;
+- `examples/validate_synthetic_series.py` - CLI report for clean/defective data;
+- `tests/test_validator.py` - minimal regression tests for trusted, gap and
+  duplicate cases.
 
-![Pipeline Surgical Validation — all 11 layers passed @ 2026-05-12](assets/pipeline_validation_11_layers_passed.png)
+Run it:
 
-**History Coverage Matrix — zero gaps across all storage layers:**
+```bash
+python3 examples/validate_synthetic_series.py
+python3 examples/validate_synthetic_series.py --gap-at 20 --duplicate-at 40
+PYTHONPATH=src python3 -m unittest discover -s tests
+```
 
-![Pipeline History Coverage Matrix — BASE/SCW/ML-ready/Parquet all OK](assets/pipeline_history_coverage_matrix.png)
+![Pipeline validation](assets/pipeline_validation_11_layers_passed.png)
 
----
+![History coverage matrix](assets/pipeline_history_coverage_matrix.png)
 
-## 2. Analytics UI & Proof of Work
+## Analytics / Review Surface
 
-A comprehensive Human-in-the-Loop workflow surface designed for deep analytical review, order auditing, and KPI tracking.
+The UI layer is used to inspect validated time-series events, review state
+transitions and compare automated decisions with chart context. The screenshots
+are shown as evidence of workflow and data review, not as trading advice or an
+investment product.
 
-My current base strategies show forward-tested PNLs ranging from **+11% to +32%** purely based on structural validation — no discretionary guesswork.
+Technical overview:
+[Analytics UI - Human-in-the-Loop Review Workflow](docs/Analytics_UI_Human_in_the_Loop_Review_Workflow.pdf)
 
-**KPI Report — net +13.00% · TP 52 / SL 26 · 408 orders audited:**
+![Analytics UI](assets/pefe_oracle_chart_interface.png)
 
-![KPI Report — net +13% across 408 audited orders](assets/kpi_report_net_13pct.png)
+![KPI audit snapshot](assets/kpi_report_net_13pct.png)
 
-**Trade Snapshot Drill-Down — TP · SHORT · Resistance 3d · PNL +0.50%:**
+![Event drill-down](assets/trade_snapshot_tp_short.png)
 
-![Trade Snapshot — TP SHORT Resistance 3d with full chart context](assets/trade_snapshot_tp_short.png)
+## AI-Assisted Engineering Layer
 
-**PeFe Oracle Chart Interface — TradingView-grade with custom analytical layers:**
+The AI/operator cockpit is secondary in this repository. It is included because
+the same system was used to run long engineering sessions, keep runtime truth
+visible and preserve artifacts around implementation work.
 
-![PeFe Oracle Chart Interface — multi-timeframe with zone/trigger overlays](assets/pefe_oracle_chart_interface.png)
+Technical overview:
+[AI Agent Operator Cockpit](docs/AI_Agent_Operator_Cockpit_Technical_Overview.pdf)
 
-📄 **[Read Analytics UI Architecture (PDF)](docs/Analytics_UI_Human_in_the_Loop_Review_Workflow.pdf)**
+![Agent cockpit](assets/agent_cockpit_dialog_board.png)
 
----
-
-## 3. AI Agent Operator Cockpit
-
-Built to orchestrate long-running autonomous developer agent sessions, maximizing LLM code generation efficiency without losing context or runtime truth.
-
-- **Human-AI Symbiosis:** Dialog-first control model — the operator sees what the agent is doing, where prompts are going, which session is active, what needs attention, and which artifacts were produced.
-- **Fail-Closed Status Model:** UI state reflects absolute runtime truth, resilient to network disconnects and agent restarts.
-- **Session-Bound Artifacts:** Plans, notes, docs, board snapshots, and logs stay connected to the live execution context.
-- **Runtime Registry:** Live/dead session tracking, bound terminals, and one-click recovery actions.
-
-**Cockpit — Dialog control surface with live architectural Session Board:**
-
-![Agent Cockpit — Dialog-first control surface with embedded Session Board diagram](assets/agent_cockpit_dialog_board.png)
-
-**Active Work Package — Codex CLI session with plan-driven execution:**
-
-![Agent Cockpit — CodexCLI Active Work Package with real-time task tracking](assets/agent_cockpit_active_work_package.png)
-
-📄 **[Read Cockpit Architecture (PDF)](docs/AI_Agent_Operator_Cockpit_Technical_Overview.pdf)**
-
----
-
-## 4. Business Application
-
-The core mathematical engine is highly adaptable and ready for commercial deployment across 3 verticals:
-
-1. **B2B Fintech / Quant Funds** — Eliminating data corruption that causes quantitative models to fail silently.
-2. **AI-Native DevTools** — Enterprise-grade management of autonomous agent orchestration at scale.
-3. **Industrial IoT** — High-frequency hardware telemetry (thermal gradients, power grids) for real-time anomaly detection.
-
----
+![Active work package](assets/agent_cockpit_active_work_package.png)
 
 ## Tech Stack
 
+```text
+Backend:       Python 3.12, FastAPI, asyncio
+Data:          MongoDB 7.0, Redis, Apache Parquet
+Streaming:     WebSocket, REST, ZeroMQ
+Validation:    NumPy vectorized checks, state fingerprints
+Observability: Prometheus, Grafana, Loki, custom health monitors
+Frontend:      React, TradingView Charting Library, custom reports
+AI tooling:    Codex CLI, operator cockpit, session artifacts
 ```
-Runtime:       Python 3.12 · FastAPI · asyncio
-Data Layer:    MongoDB 7.0 · Redis (ZSET buffers) · Apache Parquet
-Streaming:     Binance WebSocket/REST · ZeroMQ
-Validation:    NumPy (SIMD vectorized) · custom 65-dim State Fingerprints
-Observability: Prometheus · Grafana · Loki · custom Health Monitor SCW
-Frontend:      React · TradingView Charting Library · custom report engine
-Agent Layer:   Codex CLI · custom OZ session orchestration
-```
 
----
+## What Is Not Public Here
 
-## Author
+- private repository source code;
+- strategy rules, thresholds and proprietary formulas;
+- API keys, credentials, account data or private runtime logs;
+- customer/private data;
+- complete production deployment details.
 
-**Fedor Gorbunov**  
-Systems Infrastructure Architect · Founding CTO candidate  
-Location: Antalya, Turkey · Open to relocation  
+## Next Public Proof Slices
 
-> *"I specialize in making data infrastructure unbreakable — streams that survive outages, validation that catches corruption before it propagates, and analytics surfaces that make complex signals explainable."*
+The next useful public additions should be small and verifiable:
 
----
+1. FastAPI/asyncio service skeleton with health checks, source-trust status and
+   recovery-state model.
+2. CLI or notebook report for coverage, missing intervals and data-quality
+   metrics.
+3. ML-ready export example after the backend/time-series proof is solid.
 
-*This repository is a public portfolio showcase. Proprietary strategy logic, trading thresholds, API credentials, and private runtime internals are not disclosed.*
+ML is intentionally not the headline yet. The current headline is reliable
+time-series infrastructure and analysis.
