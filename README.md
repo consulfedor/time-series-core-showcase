@@ -59,11 +59,18 @@ should be detected, isolated, repaired and explained.
 
 ## Storage And Database Proof
 
-The public screenshots currently show the storage layer through operational
-proof surfaces, not through raw database admin screens.
+The public screenshots include both operational storage proof and raw database
+admin views.
 
 Current evidence:
 
+- **Health Monitor** shows Redis and MongoDB as live system components together
+  with REST, WebSocket, ZeroMQ and calculator services.
+- **Redis Commander** shows runtime buffer keys, a Sorted Set with 499 members,
+  BTCUSDT minute-state payloads and timestamp scores.
+- **MongoDB Compass** shows MongoDB collections for base candles, calculated
+  SCW rows and ML-ready rows, including document count, indexes and stored
+  time-series documents.
 - **History Coverage Matrix** shows storage coverage across base, calculated,
   ML-ready and parquet layers: retention, covered days, missing days, row
   counts and status.
@@ -73,10 +80,14 @@ Current evidence:
 - **Pipeline PDF** documents Redis runtime buffers, MongoDB base/calculated
   collections, ML-ready mirror and parquet snapshots.
 
-Raw MongoDB/Redis/Parquet UI screenshots are intentionally not included yet.
-They should be added only after redaction approval, because database screens can
-easily expose collection names, paths, account details, symbols, timestamps or
-private runtime structure.
+Parquet/file-system schema screenshots are not included yet. Add them only after
+redaction approval.
+
+![System health monitor](assets/system_health_monitor_components.png)
+
+![Redis Commander ZSET buffer](assets/redis_commander_zset_buffer.png)
+
+![MongoDB Compass ML collection](assets/mongodb_compass_ml_collection.png)
 
 ![History coverage matrix](assets/pipeline_history_coverage_matrix.png)
 
