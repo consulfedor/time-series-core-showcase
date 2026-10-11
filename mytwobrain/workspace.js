@@ -1,109 +1,61 @@
 "use strict";
 (() => {
-  const $ = (selector) => document.querySelector(selector);
-  const tabs = [...document.querySelectorAll("[data-tab]")];
-  const state = { plan: 120, actual: 96, revision: 1, checkedRevision: null, view: "document", file: "dossier.md", source: false,
-    events: ["Заявка и ведомость связаны с задачей: 120 и 96 комплектов.", "Подготовлен расчёт. Отправка поставщику не разрешена."] };
-  const checked = () => state.checkedRevision === state.revision;
-  const gap = () => state.plan - state.actual;
-  const percent = () => Math.round(gap() / state.plan * 100);
-  const escape = (text) => String(text).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-  const message = (text) => {
-    const article = document.createElement("article");
-    article.className = "message assistant generated";
-    article.innerHTML = '<header><span>Агент · демо</span><small>Изменение состояния</small></header><p></p>';
-    article.querySelector("p").textContent = text;
-    $("#messages").append(article);
-    $("#messages").scrollTop = $("#messages").scrollHeight;
+  const $ = (s) => document.querySelector(s);
+  const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const initialEvents = ['OZ связал задачу с отчётом качества и правилом проверки.', 'Инженеру назначено восстановление 62 записей; ревьюеру — независимая сверка.'];
+  const state = {view:'docs',file:'quality-report.md',source:false,explorer:true,revision:1,missing:62,checked:null,accepted:false,events:[...initialEvents],bookmarked:false};
+  const valid = () => state.checked === state.revision && state.missing === 0;
+  const status = () => state.accepted ? 'Принято в демо' : valid() ? 'Проверено · ждёт решения' : state.checked !== null && state.checked !== state.revision ? 'Проверка устарела' : state.missing ? 'Найдены пропуски' : 'Нужна проверка';
+  const captions = {
+    docs:'<strong>Документ рядом с разговором.</strong> Выберите файл в Explorer. Справа — читаемый Markdown; исходник открывается той же кнопкой. Контекст диалога сохраняется.',
+    agents:'<strong>Видно, кто за что отвечает.</strong> Откройте роль: у исполнителя есть задание, инструменты и результат. Оркестратор собирает работу; человек принимает итог.',
+    checks:'<strong>Проверка относится к определённой версии.</strong> Восполните пропуск → проверьте → примите результат. Затем измените входные данные: прежняя проверка перестанет быть актуальной.',
+    memory:'<strong>Контекст ведёт к источнику.</strong> Wiki объясняет правило, граф связывает материалы, заметки сохраняют опыт. Откройте основание и вернитесь к той же задаче.'
   };
-  const announce = (text) => { $("#feedback").textContent = text; };
-  function rawDocument() {
-    if (state.file === "receipt.csv") return `item,planned,received,revision\nКомплекты,${state.plan},${state.actual},${state.revision}`;
-    if (state.file === "decision.md") return `# Предложение по поставке\n\nНе хватает ${gap()} комплектов (${percent()}%).\n\n- Запросить срок допоставки.\n- Ответственный за согласование: руководитель закупок.\n- Статус: черновик, не отправлен.\n\nПроверка расчёта: ${checked() ? "актуальна" : "требуется"}, основание r${state.revision}.`;
-    return `# Сверка поставки\n\nОснование: заявка + приходная ведомость, r${state.revision}.\n\n| Показатель | Комплекты |\n| --- | ---: |\n| Заявлено | ${state.plan} |\n| Поступило | ${state.actual} |\n| Расхождение | ${gap()} |\n\n**${state.plan} − ${state.actual} = ${gap()} комплектов (${percent()}%).**\n\nПроверка: ${checked() ? "актуальна" : "требуется"}.\n\nПредложение: запросить срок допоставки. Внешняя отправка требует решения человека.`;
-  }
-  function documentView() {
-    const bar = `<div class="file-bar"><code>${state.file} · r${state.revision}</code><button id="toggle-source" aria-pressed="${state.source}">${state.source ? "Читать документ" : "Исходник"}</button></div>`;
-    if (state.source) return bar + `<pre>${escape(rawDocument())}</pre>`;
-    if (state.file === "receipt.csv") return bar + `<article class="markdown"><span class="eyebrow">Предпросмотр данных</span><h2>Приходная ведомость</h2><p>Одна строка исходных данных в читаемом виде.</p><table><thead><tr><th>Позиция</th><th>Заявлено</th><th>Поступило</th></tr></thead><tbody><tr><td>Комплекты</td><td>${state.plan}</td><td>${state.actual}</td></tr></tbody></table><p>Версия r${state.revision}. Именно эти числа использует расчёт — не значения из старого сообщения.</p></article>`;
-    if (state.file === "decision.md") return bar + `<article class="markdown"><span class="eyebrow">Markdown · читаемый документ</span><h2>Предложение по поставке</h2><p>Недопоставка: <strong>${gap()} комплектов (${percent()}%)</strong>.</p><div class="callout">Запросить у поставщика срок допоставки оставшихся ${gap()} комплектов.</div><h3>Кто принимает решение</h3><p>Руководитель закупок проверяет условия и согласует обращение. Агент не отправляет письмо и не изменяет заказ.</p><h3>Статус</h3><p>Черновик. Расчёт ${checked() ? "проверен" : "требует проверки"} по основанию r${state.revision}. Внешних действий нет.</p></article>`;
-    return bar + `<article class="markdown"><span class="eyebrow">Markdown · читаемый документ</span><h2>Сверка поставки</h2><p>Заявка и приходная ведомость связаны с одной задачей. Единица измерения — комплект.</p><table><thead><tr><th>Показатель</th><th>Количество</th></tr></thead><tbody><tr><td>Заявлено</td><td>${state.plan}</td></tr><tr><td>Поступило</td><td>${state.actual}</td></tr><tr><td>Расхождение</td><td>${gap()}</td></tr></tbody></table><div class="formula"><strong>${state.plan} − ${state.actual} = ${gap()}</strong><span>Недопоставка · ${percent()}% от заявки</span></div><h3>${checked() ? "Расчёт проверен" : "Нужна проверка расчёта"}</h3><p>${checked() ? `Сверены числа и формула для версии r${state.revision}. Подтверждение относится только к этому основанию.` : `Основание r${state.revision} ещё не имеет актуальной проверки. Нажмите «Проверить расчёт» слева.`}</p><div class="callout">Следующее решение: запросить срок допоставки. Ни согласование, ни отправка не выполнены автоматически.</div></article>`;
-  }
-  const views = {
-    document: () => documentView(),
-    explorer: () => `<span class="eyebrow">Файлы этой задачи</span><h2>Выбрать и прочитать</h2><p>Выбор файла меняет предпросмотр, но не закрывает диалог.</p><div class="file-list" aria-label="Файлы">${["dossier.md", "receipt.csv", "decision.md"].map(file => `<button data-file="${file}" aria-pressed="${state.file === file}">${file}</button>`).join("")}</div>${documentView()}`,
-    plan: () => `<span class="eyebrow">От вопроса к результату</span><h2>План работы</h2><ol class="steps"><li><div><b>Собрать основание · готово</b><span>Заявка и ведомость, версия r${state.revision}.</span></div></li><li><div><b>Вычислить расхождение · готово</b><span>${state.plan} − ${state.actual} = ${gap()} комплектов.</span></div></li><li><div><b>Проверить расчёт · ${checked() ? "готово" : "ожидает"}</b><span>${checked() ? `Квитанция проверки относится к r${state.revision}.` : "Нужна проверка текущей версии основания."}</span></div></li><li><div><b>Согласовать обращение · за человеком</b><span>Руководитель закупок определяет дальнейшее действие. Ничего не отправлено.</span></div></li></ol><button data-file-open="decision.md">Открыть предложение ↗</button>`,
-    agents: () => `<span class="eyebrow">Роли и границы действий · демо</span><h2>Кто делает следующий шаг</h2><p>Учебные состояния. Реальные фоновые процессы на этой странице не запускаются.</p><div class="agent-row"><header><b>Аналитик</b><span class="pill">Расчёт готов</span></header><p>Читает основание и считает расхождение. Не меняет заказ.</p></div><div class="agent-row"><header><b>Проверяющий</b><span class="pill">${checked() ? "Проверено" : "Ожидает запуска"}</span></header><p>Сверяет входные числа, арифметику и версию. Не подтверждает физическую приёмку товара.</p></div><div class="agent-row"><header><b>Человек</b><span class="pill">Принимает решение</span></header><p>Согласует предложение и разрешает внешнее действие. Здесь отправка недоступна.</p></div><h3>Маршрут модели</h3><p>${$("#model").selectedOptions[0].textContent}. Это выбор в макете, не проверка доступности модели или разрешение раскрывать данные.</p>`,
-    history: () => `<span class="eyebrow">Последовательность работы</span><h2>Что произошло</h2><p>Смена вкладки не начинает новую задачу. Здесь видны изменения основания и проверки.</p><ol class="timeline">${state.events.map((event, index) => `<li><small>Событие ${String(index + 1).padStart(2, "0")}</small>${escape(event)}</li>`).join("")}</ol>`,
-    links: () => `<span class="eyebrow">Связи одной задачи</span><h2>Откуда взялся результат</h2><p>Нажмите узел — откроется соответствующий контекст. Диалог слева останется на месте.</p><div class="flow"><button data-open="plan"><b>Постановка и план</b><span>Что требуется решить ↗</span></button><span class="arrow" aria-hidden="true">↓</span><button data-file-open="receipt.csv"><b>Основание · r${state.revision}</b><span>Заявка ${state.plan} / факт ${state.actual} ↗</span></button><span class="arrow" aria-hidden="true">↓</span><button data-file-open="dossier.md"><b>Расчёт и проверка</b><span>${gap()} комплектов · ${checked() ? "проверено" : "проверка нужна"} ↗</span></button><span class="arrow" aria-hidden="true">↓</span><button data-file-open="decision.md"><b>Предложение человеку</b><span>Черновик, не отправлен ↗</span></button></div><button data-open="history">История изменений ↗</button><div class="callout">Изменение основания отменяет актуальность проверки, а не историю. Решение должно опираться на текущие данные.</div>`
+  const docs = () => ({
+    'quality-report.md': {title:'Отчёт о качестве данных',kind:'Результат обследования',body:`<p>Суточная минутная выборка · основание r${state.revision}.</p><table><thead><tr><th>Показатель</th><th>Записей</th></tr></thead><tbody><tr><td>Ожидается</td><td>1 440</td></tr><tr><td>Получено</td><td>${1440-state.missing}</td></tr><tr><td>Пропущено</td><td class="${state.missing?'warn':'ok'}">${state.missing}</td></tr></tbody></table><h3>Вывод</h3><p>${state.missing?'Выборка неполная. Прежде чем использовать её в расчётах, нужно восполнить пропущенный диапазон.':'Пропуски в учебной выборке восполнены. Статус проверки и решение человека указаны ниже.'}</p><div class="callout">${status()}. Основание r${state.revision}.</div><button data-open="checks">Открыть проверку ↗</button>`,raw:`# Отчёт о качестве данных\n\nОснование r${state.revision}.\n\n| Показатель | Записей |\n| --- | ---: |\n| Ожидается | 1440 |\n| Получено | ${1440-state.missing} |\n| Пропущено | ${state.missing} |\n\nСтатус: ${status()}.`},
+    'acceptance.md': {title:'Условия приёмки',kind:'Договорённость по задаче',body:'<p>Для этого примера суточная выборка содержит 1 440 минутных интервалов.</p><ul><li>Все ожидаемые интервалы присутствуют.</li><li>Нет повторов временных отметок.</li><li>Числа отчёта соответствуют текущей версии данных.</li><li>Результат проверен и передан человеку.</li></ul><h3>Кто решает</h3><p>OZ организует работу и показывает результат. Человек принимает его после проверки.</p><button data-open="plan">Сопоставить с планом ↗</button>',raw:'# Условия приёмки\n\n- 1440 минутных интервалов.\n- Нет пропусков и дублей.\n- Проверка относится к текущей версии.\n- Приёмка — за человеком.'},
+    'recovery-note.md': {title:'Заметка о восстановлении',kind:'Опыт → применимое правило',body:'<p>Наличие записей в хранилище само по себе не подтверждает полноту истории.</p><h3>Что проверять</h3><p>Ожидаемый диапазон, уникальность временных отметок, свежесть и происхождение записи.</p><h3>Связи</h3><p>Правило приёмки → отчёт качества → проверка версии.</p><button data-file="acceptance.md">Открыть действующее правило ↗</button><div class="callout">Учебная заметка. В рабочей системе найденный прошлый опыт сначала проверяется на применимость.</div>',raw:'# Заметка о восстановлении\n\nПроверить диапазон, уникальность, свежесть и происхождение.\n\nСвязь: acceptance.md → quality-report.md → проверка версии.'}
+  });
+  function documentView(){const d=docs()[state.file];return `<div class="document"><div class="document-title">${state.file} · ${d.kind}</div>${state.source?`<pre>${escape(d.raw)}</pre>`:`<article class="markdown"><h2>${d.title}</h2>${d.body}</article>`}</div>`;}
+  function checksView(){return `<span class="overline">Инструменты → проверка → решение</span><h2>Принимается результат, а не сообщение «готово».</h2><div class="revision">Данные r${state.revision} · проверка ${state.checked===null?'ещё не запускалась':`r${state.checked}`} · ${status()}</div><div class="metrics"><div><strong>1 440</strong><span>ожидается</span></div><div><strong>${1440-state.missing}</strong><span>получено</span></div><div><strong>${state.missing}</strong><span>пропущено</span></div></div><div class="check-row"><span>Полнота диапазона</span><b class="${state.missing?'warn':'ok'}">${state.missing?'неполный':'полный'}</b></div><div class="check-row"><span>Уникальность отметок · учебные данные</span><b class="ok">без дублей</b></div><div class="check-row"><span>Проверка текущей версии</span><b class="${valid()?'ok':'warn'}">${valid()?'актуальна':'требуется'}</b></div><div class="actions"><button id="recover" ${!state.missing?'disabled':''}>1 · Восполнить пропуск</button><button id="verify" ${valid()?'disabled':''}>2 · Проверить</button><button id="accept" class="primary" ${!valid()||state.accepted?'disabled':''}>3 · Принять результат</button></div><p>Кнопки проигрывают локальный сценарий. Загрузки с биржи, запуска агентов и публикации здесь нет.</p><button id="revise">Изменить входные данные</button><h3>В рабочем Harness</h3><p>Agent-CI связывает тесты с версией кода. Здесь показан тот же принцип актуальности проверки на небольшом примере данных.</p>`;}
+  const views={
+    docs:()=>`<div class="toolbar"><button id="explorer-toggle" aria-pressed="${state.explorer}">Explorer</button><button id="source-toggle" aria-pressed="${state.source}">${state.source?'Показать документ':'Исходный MD'}</button><button data-open="translation">Перевод</button><button data-open="history">История</button></div><div class="path">project / data-quality / ${state.file}</div><div class="${state.explorer?'explorer':''}">${state.explorer?`<nav class="file-tree" aria-label="Файлы проекта"><small>Документы проекта</small>${Object.entries(docs()).map(([name,d])=>`<button data-file="${name}" aria-pressed="${state.file===name}">${name}<span>${d.kind}</span></button>`).join('')}</nav>`:''}${documentView()}</div>`,
+    agents:()=>`<span class="overline">Команда одной задачи</span><h2>Исполнители и их результаты</h2><p>Роли, поручения и состояние доступны без поиска по отдельным разговорам.</p><div class="agent-card"><header><b>OZ · оркестратор</b><span class="pill">собирает результат</span></header><p>Уточняет задачу, связывает документы и согласует работу исполнителей.</p><button data-open="plan">Общий план ↗</button></div><div class="agent-card"><header><b>Инженер</b><span class="pill">${state.missing?'готов к восстановлению':'результат подготовлен'}</span></header><p>Отвечает за полноту диапазона и отчёт качества.</p><button data-agent="engineer">Задание и инструменты ↗</button></div><div class="agent-card"><header><b>Ревьюер</b><span class="pill">${valid()?'проверка актуальна':'ожидает проверки'}</span></header><p>Проверяет число записей, дубли и версию основания.</p><button data-agent="reviewer">Открыть результат ↗</button></div><p><small>Имена и состояния в экскурсии учебные. В MyTwoBrain участники ведут собственные сессии и передают результаты адресными сообщениями.</small></p>`,
+    plan:()=>`<span class="overline">Цель и условия завершения</span><h2>Восстановить полный отчёт</h2><ol class="steps">${[['01','Найти основание','Отчёт качества и условия приёмки связаны с задачей.'],['02','Восполнить диапазон',state.missing?`Осталось ${state.missing} записей.`:'Учебный диапазон восполнен.'],['03','Проверить результат',valid()?`Проверена текущая версия r${state.revision}.`:'Нужна проверка текущей версии.'],['04','Предъявить человеку',state.accepted?'Человек принял результат в демо.':'Окончательная приёмка ещё не выполнена.']].map(([n,t,d])=>`<li><span class="step-no">${n}</span><div><b>${t}</b><small>${d}</small></div></li>`).join('')}</ol><div class="actions"><button data-open="checks">Перейти к выполнению ↗</button><button data-file="acceptance.md">Условия приёмки ↗</button></div>`,
+    checks:checksView,
+    memory:()=>`<span class="overline">Память, Wiki и связи</span><h2>Найти знание — и его источник</h2><p>Эти слои отвечают на разные вопросы. Откройте материал, чтобы увидеть его место в текущей работе.</p><div class="knowledge-list"><button data-file="acceptance.md"><b>Wiki / Ontology · что принято?</b><small>Термин, договорённость и владелец правила. Здесь: условия приёмки данных.</small></button><button data-open="board"><b>DOC Graph · что с чем связано?</b><small>Путь от правила к отчёту, проверке и решению.</small></button><button data-file="recovery-note.md"><b>Zettelkasten · какой опыт пригодится?</b><small>Связанная заметка о полноте истории; прошлый опыт требует проверки.</small></button><button data-open="context"><b>Контекст задачи · с чем продолжить?</b><small>Цель, документы, текущая версия и незакрытый шаг.</small></button></div><h3>AST-навигация</h3><p>При работе с кодом показывает символы, импорты и затронутые участки. Это маршрут к реализации; сами проверки выполняются отдельно.</p>`,
+    translation:()=>`<span class="overline">Оригинал и перевод рядом с диалогом</span><h2>Сверить смысл документа</h2><div class="translation-block"><span>EN · подготовленный пример</span><p>The daily sample is complete when all 1,440 minute intervals are present and timestamps are unique. Acceptance remains with the operator.</p></div><div class="translation-block"><span>RU · перевод</span><p>Суточная выборка полна, когда присутствуют все 1 440 минутных интервалов и временные отметки уникальны. Решение о приёмке остаётся за оператором.</p></div><h3>Термины</h3><table><tr><td>Coverage</td><td>Полнота диапазона</td></tr><tr><td>Acceptance</td><td>Приёмка результата</td></tr></table><p><small>Здесь показана заранее подготовленная пара текстов. Это не вызов переводчика.</small></p><button data-file="acceptance.md">Открыть документ ↗</button>`,
+    board:()=>`<span class="overline">Доска связей · учебная схема</span><h2>Одна задача, четыре основания решения</h2><p>Каждый блок открывает конкретный материал и следующий шаг проверки.</p><div class="board"><button data-file="acceptance.md"><b>01 · Правило</b><small>Ожидаемый диапазон и условия приёмки ↗</small></button><button data-file="quality-report.md"><b>02 · Факт</b><small>${1440-state.missing} из 1 440 записей · r${state.revision} ↗</small></button><button data-open="checks"><b>03 · Проверка</b><small>${valid()?'Текущая версия проверена':'Нужна проверка текущей версии'} ↗</small></button><button data-open="plan"><b>04 · Решение</b><small>${state.accepted?'Принято в учебном сценарии':'Ожидается приёмка человеком'} ↗</small></button></div><p><small>Доска в рабочей системе развивается как отдельный инструмент. Здесь показан один заранее подготовленный граф.</small></p>`,
+    context:()=>`<span class="overline">Состав текущей задачи</span><h2>Продолжить с известного места</h2><table><tr><td>Цель</td><td>Полный отчёт качества</td></tr><tr><td>Данные</td><td>r${state.revision}</td></tr><tr><td>Проверка</td><td>${valid()?'актуальна':'требуется'}</td></tr><tr><td>Решение человека</td><td>${state.accepted?'принято':'ожидается'}</td></tr></table><h3>Материалы</h3><div class="actions"><button data-file="quality-report.md">Отчёт ↗</button><button data-file="acceptance.md">Правило ↗</button></div><h3>Закладка</h3><p>${state.bookmarked?'Отчёт о качестве закреплён в этой экскурсии.':'Нажмите «В закладки» под диалогом, чтобы закрепить отчёт.'}</p><h3>Модель и инструменты</h3><p>Маршрут: ${escape($('#model').selectedOptions[0].textContent)}. Выбор модели не меняет документы и не выдаёт права на действия.</p>`,
+    history:()=>`<span class="overline">События текущей экскурсии</span><h2>Как получили этот результат</h2><ol class="history">${state.events.map(e=>`<li>${escape(e)}</li>`).join('')}</ol><p><small>Вкладки используют одну историю. В рабочем MyTwoBrain история хранится системой; этот публичный пример сбрасывается при перезагрузке.</small></p>`
   };
-  function render() {
-    tabs.forEach(tab => { const active = tab.dataset.tab === state.view; tab.setAttribute("aria-selected", String(active)); tab.tabIndex = active ? 0 : -1; });
-    $("#panel").setAttribute("aria-labelledby", `tab-${state.view}`);
-    $("#panel").innerHTML = views[state.view]();
-    $("#revision").textContent = `Основание r${state.revision}`;
-    $("#state-ref").textContent = `r${state.revision} · ${checked() ? "проверен" : "не проверен"}`;
-    $("#task-status").textContent = checked() ? "Расчёт проверен" : state.checkedRevision !== null ? "Проверка устарела" : "Ожидает проверки";
-    $("#task-status").classList.toggle("checked", checked());
-    $("#verify").disabled = checked();
-    $("#verify").textContent = checked() ? `Проверено · r${state.revision}` : "Проверить расчёт";
-    $("#revise").disabled = state.revision > 1;
-    $("#revise").textContent = state.revision > 1 ? "Факт обновлён до 108" : "Обновить факт до 108";
-  }
-  function open(view, focus = false) {
-    state.view = view; render();
-    if (focus) $("#panel").focus({ preventScroll: true });
-    announce(`Открыт раздел «${$(`#tab-${view}`).textContent}». Диалог и заметка сохранены в этой странице.`);
-  }
-  document.addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    if (!button) return;
-    if (button.dataset.tab) open(button.dataset.tab);
-    if (button.dataset.open) { state.file = "dossier.md"; state.source = false; open(button.dataset.open, true); }
-    if (button.dataset.file || button.dataset.fileOpen) {
-      state.file = button.dataset.file || button.dataset.fileOpen; state.source = false;
-      if (button.dataset.fileOpen) open("document", true); else render();
-      announce(`Предпросмотр ${state.file} открыт. Основание r${state.revision}.`);
-    }
-    if (button.id === "toggle-source") { state.source = !state.source; render(); $("#toggle-source").focus(); }
+  function render(){document.querySelectorAll('[data-tab]').forEach(b=>{const active=b.dataset.tab===state.view;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});$('#panel').setAttribute('aria-labelledby',`tab-${state.view}`);$('#panel').innerHTML=views[state.view]();$('#version').textContent=`Основание r${state.revision}`;$('#task-status').textContent=status();}
+  function announce(s){$('#feedback').textContent=s;}
+  function open(view){if(!views[view])return;state.view=view;render();$('#panel').scrollTop=0;}
+  function event(s){state.events.push(s);const n=document.createElement('article');n.className='message agent generated';const h=document.createElement('header');h.textContent='OZ · результат действия';const p=document.createElement('p');p.textContent=s;n.append(h,p);$('#messages').append(n);$('#messages').scrollTop=$('#messages').scrollHeight;render();announce(s);}
+  function tour(view){document.querySelectorAll('[data-tour]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tour===view)));$('#scene-caption').innerHTML=captions[view];open(view);}
+  function agentDetail(role){open(role==='reviewer'?'checks':'agents');if(role==='engineer'){$('#panel').innerHTML=`<span class="overline">Роль · инженер данных</span><h2>Ограниченное задание, явный результат</h2><p>Восполнить пропуск в текущем диапазоне, не менять правила расчёта.</p><h3>Инструменты</h3><table><tr><td>Проверка истории</td><td>чтение</td></tr><tr><td>Восстановление диапазона</td><td>по заданию</td></tr><tr><td>Торговые операции</td><td>вне задачи</td></tr></table><h3>Процедуры / skills</h3><p>Проверить основание → подготовить результат → передать ревьюеру. Выполнение процедуры не заменяет проверку результата.</p><div class="actions"><button data-open="checks">Результат и проверка ↗</button><button data-open="agents">К команде ↗</button></div>`;}announce('Открыто поручение исполнителя. Основной диалог сохранён.');}
+  document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.tour)tour(b.dataset.tour);
+    if(b.dataset.tab)open(b.dataset.tab);
+    if(b.dataset.open)open(b.dataset.open);
+    if(b.dataset.agent)agentDetail(b.dataset.agent);
+    if(b.dataset.file&&docs()[b.dataset.file]){state.file=b.dataset.file;state.source=false;open('docs');announce(`Открыт ${state.file}. Черновик и диалог сохранены.`);}
+    if(b.id==='source-toggle'){state.source=!state.source;render();$('#source-toggle').focus();}
+    if(b.id==='explorer-toggle'){state.explorer=!state.explorer;render();$('#explorer-toggle').focus();}
+    if(b.id==='recover'&&state.missing){state.missing=0;state.revision++;state.accepted=false;event(`В демо восполнен диапазон. Получено 1 440 записей. Основание r${state.revision}; нужна проверка.`);}
+    if(b.id==='verify'){state.checked=state.revision;event(state.missing?`Проверка r${state.revision} не пройдена: отсутствует ${state.missing} записей.`:`Проверка r${state.revision} пройдена: 1 440 записей, пропусков и дублей нет. Приёмка ожидается.`);}
+    if(b.id==='accept'&&valid()&&!state.accepted){state.accepted=true;event(`Человек принял результат r${state.revision} в учебном сценарии.`);}
+    if(b.id==='revise'){state.missing=12;state.revision++;state.accepted=false;event(`Изменено основание: r${state.revision}, пропущено 12 записей. Прежнюю проверку нельзя использовать для новой версии.`);}
+    if(b.id==='bookmark'){state.bookmarked=true;state.events.push('Отчёт о качестве добавлен в закладки.');announce('Отчёт закреплён. Откройте вкладку «Контекст».');if(['context','history'].includes(state.view))render();}
+    if(b.id==='sessions'){const show=$('#session-list').hidden;$('#session-list').hidden=!show;b.setAttribute('aria-expanded',String(show));}
+    if(b.id==='help-button'){const show=$('#help').hidden;$('#help').hidden=!show;b.setAttribute('aria-expanded',String(show));}
+    if(b.id==='reset'){Object.assign(state,{view:'docs',file:'quality-report.md',source:false,explorer:true,revision:1,missing:62,checked:null,accepted:false,events:[...initialEvents],bookmarked:false});document.querySelectorAll('.generated').forEach(n=>n.remove());$('#messages').scrollTop=0;$('#draft').value='';$('#draft-state').textContent='не отправляется';$('#model').value='codex';$('#effort').value='High';$('#session-list').hidden=true;$('#sessions').setAttribute('aria-expanded','false');tour('docs');announce('Экскурсия начата заново.');}
   });
-  tabs.forEach((tab, index) => tab.addEventListener("keydown", (event) => {
-    const keys = { ArrowRight: (index + 1) % tabs.length, ArrowLeft: (index + tabs.length - 1) % tabs.length, Home: 0, End: tabs.length - 1 };
-    if (!(event.key in keys)) return;
-    event.preventDefault(); const next = tabs[keys[event.key]]; open(next.dataset.tab); next.focus();
-  }));
-  $("#verify").addEventListener("click", () => {
-    if (checked()) return;
-    state.checkedRevision = state.revision;
-    const result = `Проверка r${state.revision}: ${state.plan} − ${state.actual} = ${gap()} комплектов (${percent()}%). Числа и версия совпадают. Обращение поставщику остаётся черновиком.`;
-    state.events.push(result); message(result); render(); announce(result);
-  });
-  $("#revise").addEventListener("click", () => {
-    if (state.revision > 1) return;
-    const wasChecked = checked(); state.actual = 108; state.revision = 2;
-    const result = `Получено новое основание r2: поступило 108 комплектов. Расхождение теперь 12 (10%). ${wasChecked ? "Проверка r1 больше не актуальна." : "Текущая версия ещё не проверена."} Нужна повторная сверка.`;
-    state.events.push(result); message(result); render(); announce(result);
-  });
-  $("#model").addEventListener("change", () => {
-    const choice = $("#model").selectedOptions[0].textContent;
-    state.events.push(`В макете выбран маршрут: ${choice}. Данные никуда не отправлены.`);
-    render(); announce("Маршрут изменён только в макете. Вызова модели нет.");
-  });
-  $("#help-button").addEventListener("click", () => {
-    const show = $("#help").hidden; $("#help").hidden = !show; $("#help-button").setAttribute("aria-expanded", String(show));
-  });
-  $("#reset").addEventListener("click", () => {
-    Object.assign(state, { actual: 96, revision: 1, checkedRevision: null, view: "document", file: "dossier.md", source: false,
-      events: ["Заявка и ведомость связаны с задачей: 120 и 96 комплектов.", "Подготовлен расчёт. Отправка поставщику не разрешена."] });
-    document.querySelectorAll(".generated").forEach(node => node.remove()); $("#draft").value = ""; $("#model").value = "local";
-    render(); announce("Учебный пример сброшен: план 120, факт 96. Локальная заметка очищена.");
-  });
-  if (new URLSearchParams(location.search).get("embed") === "1") {
-    document.body.classList.add("embedded");
-    new ResizeObserver(() => {
-      const targetOrigin = location.origin === "null" ? "*" : location.origin;
-      parent.postMessage({ type: "portfolio-workspace-height", height: document.body.scrollHeight }, targetOrigin);
-    }).observe(document.body);
-  }
-  render();
+  document.querySelectorAll('[role=tab]').forEach((b,i,all)=>b.addEventListener('keydown',e=>{const next={ArrowRight:(i+1)%all.length,ArrowLeft:(i+all.length-1)%all.length,Home:0,End:all.length-1}[e.key];if(next===undefined)return;e.preventDefault();open(all[next].dataset.tab);all[next].focus();}));
+  $('#draft').addEventListener('input',()=>{$('#draft-state').textContent=$('#draft').value?'сохранён в этой странице':'не отправляется';});
+  ['model','effort'].forEach(id=>$('#'+id).addEventListener('change',()=>{state.events.push(`Настройка ${id==='model'?'модели':'режима'}: ${$('#'+id).selectedOptions[0].textContent}. Внешнего вызова нет.`);render();announce('Настройка изменена в макете; диалог и черновик сохранены.');}));
+  if(new URLSearchParams(location.search).get('embed')==='1'){document.body.classList.add('embedded');new ResizeObserver(()=>parent.postMessage({type:'portfolio-workspace-height',height:document.body.scrollHeight},location.origin==='null'?'*':location.origin)).observe(document.body);}
+  tour('docs');
 })();

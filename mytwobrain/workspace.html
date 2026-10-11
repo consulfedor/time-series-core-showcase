@@ -1,78 +1,26 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Интерактивный пример MyTwoBrain: диалог, документы, агенты и проверка результата в одном рабочем месте.">
-  <title>MyTwoBrain · рабочее место человека и агентов</title>
-  <link rel="stylesheet" href="workspace.css">
-  <script src="workspace.js" defer></script>
-</head>
-<body id="embedded">
-  <header class="intro">
-    <a class="brand" href="../index.html">MYTWOBRAIN <span> / портфолио</span></a>
-    <span class="eyebrow">Интерактивный пример</span>
-    <h1>Одна задача.<br><span>Весь контекст рядом.</span></h1>
-    <p class="lead">Слева — разговор с агентом. Справа — его основания, план и результат.
-      Откройте документ, проверьте расчёт, затем измените факт: будет видно, почему прежней проверки уже недостаточно.</p>
-  </header>
-  <main>
-    <div class="demo-notice"><span class="demo-dot"></span><span>Учебный макет · данные вымышлены · без вызова моделей и внешних операций.
-      Состояние сохраняется при переключениях, но сбрасывается при перезагрузке.</span></div>
-    <section class="workspace" aria-label="Рабочее место MyTwoBrain">
-      <header class="workspace-head"><div><span class="eyebrow">Рабочая сессия</span><h2>Сверка поставки</h2></div>
-        <div class="head-actions"><span class="status" id="task-status">Ожидает проверки</span>
-          <button class="icon-button" id="help-button" aria-expanded="false" aria-controls="help" aria-label="Как пользоваться макетом">?</button></div>
-      </header>
-      <p id="help" class="help" hidden>Откройте «Explorer» и выберите файл: его содержимое появится справа. «Проверить» сверяет учебные числа и фиксирует версию.
-        «Обновить факт» меняет входные данные и отменяет актуальность проверки. Решение и отправка поставщику остаются за человеком.
-        Все вкладки читают один объект в памяти страницы; серверное API здесь не вызывается.</p>
-      <div class="panes">
-        <section class="conversation" aria-labelledby="dialog-title">
-          <div class="pane-heading"><h3 id="dialog-title">Диалог</h3><span>Задача остаётся перед глазами</span></div>
-          <div class="messages" id="messages">
-            <article class="message human"><header><span>Вы</span><small>Постановка задачи</small></header>
-              <p>По заявке нужно 120 комплектов. На склад поступило 96. Сверь документы и подготовь предложение, что делать с недопоставкой. Поставщику пока ничего не отправляй.</p></article>
-            <article class="message assistant"><header><span>Агент</span><small>Основание и расчёт</small></header>
-              <p>Связал заявку и приходную ведомость. Расхождение — <strong>24 комплекта, или 20% заявки</strong>. Справа можно прочитать основание и проверить результат.</p>
-              <div class="message-links"><button data-open="document">Открыть основание ↗</button><button data-open="plan">Посмотреть план ↗</button></div></article>
-            <article class="message assistant"><header><span>Агент</span><small>Граница полномочий</small></header>
-              <p>Предлагаю запросить срок допоставки. Проверка арифметики не подтверждает качество товара и не заменяет согласование с ответственным.</p></article>
-          </div>
-          <div class="operator-controls">
-            <label for="model">Маршрут модели <span>· демонстрация</span></label>
-            <select id="model"><option value="local">Локальная модель · рабочие данные</option><option value="frontier">Внешняя модель · обезличенная задача</option></select>
-            <p class="control-note" id="model-note">Выбор иллюстрирует маршрутизацию. Подключений и отправки данных нет.</p>
-            <div class="actions"><button class="primary" id="verify">Проверить расчёт</button><button id="revise" title="Учебное изменение: поступило 108 вместо 96. Прежняя проверка станет неактуальной.">Обновить факт до 108</button></div>
-            <label class="draft-label" for="draft">Ваша рабочая заметка <span>· остаётся при переключении вкладок</span></label>
-            <textarea id="draft" rows="2" placeholder="Например: уточнить срок допоставки у руководителя…"></textarea>
-            <div class="composer-foot"><span>Заметка не отправляется</span><button id="reset">Сбросить пример</button></div>
-          </div>
-        </section>
-        <section class="context" aria-label="Контекст этой же задачи">
-          <div class="pane-heading"><h3>Контекст</h3><span id="revision">Основание r1</span></div>
-          <nav class="tabs" role="tablist" aria-label="Разделы контекста">
-            <button id="tab-document" role="tab" aria-controls="panel" aria-selected="true" data-tab="document">Документ</button>
-            <button id="tab-explorer" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="explorer">Explorer</button>
-            <button id="tab-plan" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="plan">План</button>
-            <button id="tab-agents" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="agents">Агенты</button>
-            <button id="tab-history" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="history">История</button>
-            <button id="tab-links" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="links">Связи</button>
-          </nav>
-          <div id="panel" class="panel" role="tabpanel" tabindex="0" aria-labelledby="tab-document"></div>
-          <div class="shared-state"><span class="demo-dot"></span><span>Один объект для диалога, документа, плана и проверки</span><code id="state-ref">r1 · не проверен</code></div>
-        </section>
-      </div>
-      <div class="feedback" id="feedback" role="status" aria-live="polite">Начните с документа или выберите файл в Explorer.</div>
-    </section>
-    <section class="reading-key" aria-labelledby="reading-title">
-      <div><span class="eyebrow">Что показывает этот пример</span><h2 id="reading-title">Рабочее место<br>вокруг задачи.</h2></div>
-      <div><h3>Обсуждение не отрывается от основания</h3><p>Человек читает документ рядом с диалогом. Файл, план и история относятся к одной задаче: не нужно заново объяснять контекст при каждом переключении.</p>
-        <h3>У проверки есть версия и границы</h3><p>Изменился факт — прежний результат больше не актуален. Видны исходные числа, формула и шаг, который требует решения человека.</p>
-        <h3>Макет показывает взаимодействие, а не обещает автономность</h3><p>В рабочем харнесе за этим интерфейсом стоят инструменты, права доступа, сохранение истории и наблюдение за исполнением. Здесь представлен один локальный сценарий, без настоящих агентов, API и сохранения на сервере.</p></div>
-    </section>
-  </main>
-  <footer class="page-footer">MyTwoBrain · Фёдор Горбунов <a href="../index.html">К двум продуктам портфолио ↗</a></footer>
-  <noscript><p class="help">Для интерактивности нужен JavaScript. Сценарий: заявка 120, поступило 96, расхождение 24 (20%). После поступления 108 расхождение составляет 12 (10%) и требует новой проверки.</p></noscript>
-</body>
-</html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MyTwoBrain · экскурсия по рабочему месту</title><link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="workspace.css"><script src="workspace.js" defer></script></head>
+<body><header class="standalone"><a href="../index.html">← Портфолио</a><span>MyTwoBrain / Harness</span><a href="index.html">Технический обзор ↗</a></header>
+<main>
+<div class="tour"><div><span class="overline">MyTwoBrain · интерактивная экскурсия</span><h1>Диалог остаётся. Меняется нужный контекст.</h1></div><button id="help-button" aria-expanded="false" aria-controls="help" aria-label="О демонстрации">?</button></div>
+<p id="help" class="help" hidden>Интерфейс воспроизводит устройство собственного рабочего места: диалог слева, документы и инструменты справа. Данные и участники учебные. Все кнопки работают локально; обращения к моделям и частной системе нет. Черновик и история живут до перезагрузки страницы.</p>
+<nav class="tour-steps" aria-label="Маршрут знакомства"><button data-tour="docs" aria-pressed="true"><span>01</span>Открыть материал</button><button data-tour="agents" aria-pressed="false"><span>02</span>Увидеть команду</button><button data-tour="checks" aria-pressed="false"><span>03</span>Проверить результат</button><button data-tour="memory" aria-pressed="false"><span>04</span>Найти основание</button></nav>
+<div class="scene-caption" id="scene-caption" aria-live="polite"></div>
+<section class="cockpit" aria-label="Интерактивное рабочее место">
+<header class="cockpit-head"><div class="identity"><span class="status-dot"></span><b>OZ · инженерный ассистент</b><span class="project-label">Качество данных</span></div><div class="head-actions"><button id="sessions" aria-expanded="false" aria-controls="session-list">Сессии <span>3</span></button><button id="reset">Начать заново</button></div></header>
+<div id="session-list" class="session-list" hidden><b>Рабочие сессии · учебный пример</b><button data-open="docs">OZ / сводный отчёт <span>текущая</span></button><button data-agent="engineer">Инженер / восстановление <span>результат</span></button><button data-agent="reviewer">Ревьюер / проверка <span>контроль</span></button></div>
+<div class="work-grid">
+<section class="dialog" aria-label="Диалог с агентом"><div class="pane-label"><span>ДИАЛОГ</span><span>Одна задача · общая история</span></div>
+<div id="messages" class="messages" tabindex="0" aria-label="История диалога">
+<article class="message user"><header><b>ВЫ</b><span>Постановка задачи</span></header><p>В суточном отчёте не хватает данных. Найди пропуск, подготовь восстановление и проверь результат. Покажи основание рядом с диалогом.</p><button data-open="plan">Посмотреть план ↗</button></article>
+<article class="message agent"><header><b>OZ</b><span>Обследование</span></header><p>В учебной выборке ожидается <strong>1 440</strong> минутных записей, найдено <strong>1 378</strong>. Пропущено <strong>62</strong>. Подготовлены отчёт и задание инженеру.</p><div class="artifact"><span class="file-icon">MD</span><div><b>quality-report.md</b><small>Основание, расхождение, следующий шаг</small></div><button data-file="quality-report.md" aria-label="Открыть отчёт о качестве">Открыть ↗</button></div></article>
+<article class="message agent"><header><b>OZ</b><span>Организация работы</span></header><p>Инженер готовит недостающий диапазон. Ревьюер сверяет полноту, уникальность записей и версию отчёта. После проверки решение остаётся за человеком.</p><div class="inline-actions"><button data-open="agents">Команда ↗</button><button data-open="checks">Проверки ↗</button></div></article>
+</div>
+<div class="composer"><div class="modelbar"><label>Модель <select id="model"><option value="codex">Codex · демо</option><option value="claude">Claude · демо</option><option value="local">Локальная · демо</option></select></label><label>Режим <select id="effort"><option>High</option><option>Medium</option></select></label><button data-open="context" title="Состав контекста текущей задачи">Контекст</button></div><label class="draft-label" for="draft">Черновик сообщения <span id="draft-state">не отправляется</span></label><textarea id="draft" placeholder="Напишите заметку и переключайте вкладки — текст останется здесь." rows="3"></textarea><div class="composer-bottom"><button id="bookmark">В закладки</button><span>Содержимое никуда не отправляется</span></div></div></section>
+<section class="context" aria-label="Материалы и управление"><nav id="tabs" class="tabs" aria-label="Контекст задачи" role="tablist">
+<button role="tab" id="tab-docs" data-tab="docs" aria-controls="panel">Docs</button><button role="tab" id="tab-agents" data-tab="agents" aria-controls="panel">Агенты</button><button role="tab" id="tab-plan" data-tab="plan" aria-controls="panel">План</button><button role="tab" id="tab-checks" data-tab="checks" aria-controls="panel">Проверки</button><button role="tab" id="tab-memory" data-tab="memory" aria-controls="panel">Знания</button><button role="tab" id="tab-translation" data-tab="translation" aria-controls="panel">Перевод</button><button role="tab" id="tab-board" data-tab="board" aria-controls="panel">Доска</button><button role="tab" id="tab-context" data-tab="context" aria-controls="panel">Контекст</button><button role="tab" id="tab-history" data-tab="history" aria-controls="panel">История</button>
+</nav><div id="panel" role="tabpanel" tabindex="0"></div><div class="context-foot"><span id="version">Основание r1</span><span id="task-status">Найдены пропуски</span></div></section>
+</div></section>
+<div class="tour-footer"><p id="feedback" role="status" aria-live="polite">Нажимайте вкладки и ссылки на материалы. Диалог слева остаётся на месте.</p><span>Экскурсия по интерфейсу · примерные данные · без подключения к моделям</span></div>
+</main><noscript>Для экскурсии нужен JavaScript. Техническое описание доступно по ссылке вверху.</noscript></body></html>
