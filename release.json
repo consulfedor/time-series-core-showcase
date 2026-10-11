@@ -1,0 +1,19 @@
+{
+  "schema": "portfolio_projection_v1",
+  "products": [
+    "MyTwoBrain",
+    "Fact to Decision C1"
+  ],
+  "c1": {
+    "version": "1.5",
+    "kind": "construction_concept",
+    "html_sha256": "e5a5f7936b61290ae1142972fbf8abc72a0db88ce1600b04e6088de7bba138e1",
+    "markdown_sha256": "405c27c4240ab76b3eab487d3efc19dcfa9347e483861495ee05b37a41cee178"
+  },
+  "derived": {
+    "fact-to-decision/index.html": "e5a5f7936b61290ae1142972fbf8abc72a0db88ce1600b04e6088de7bba138e1",
+    "mytwobrain/index.html": "18030faf502e4a71574f98894543cc665176fb670f4e571810d09c7443873a0b",
+    "examples/analytics.html": "901a7574a7878b6708d2785186ae3d16e44b694deeacedbef40014dc9a0a7cfd",
+    "overview.html": "98266b1ce45b55fd42100193cbd244c3bb77f0055860815f73a6096701e90e39"
+  }
+}

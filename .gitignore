@@ -8,3 +8,14 @@ __pycache__/
 *.pyc
 
 _AST/
+
+# Never publish local work, credentials, caches, or evidence.
+.env
+.env.*
+*.pem
+*.key
+node_modules/
+_maintenance/
+_archive/
+qa/
+drafts/

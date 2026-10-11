@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Интерактивный пример MyTwoBrain: диалог, документы, агенты и проверка результата в одном рабочем месте.">
+  <title>MyTwoBrain · рабочее место человека и агентов</title>
+  <link rel="stylesheet" href="workspace.css">
+  <script src="workspace.js" defer></script>
+</head>
+<body id="embedded">
+  <header class="intro">
+    <a class="brand" href="../index.html">MYTWOBRAIN <span> / портфолио</span></a>
+    <span class="eyebrow">Интерактивный пример</span>
+    <h1>Одна задача.<br><span>Весь контекст рядом.</span></h1>
+    <p class="lead">Слева — разговор с агентом. Справа — его основания, план и результат.
+      Откройте документ, проверьте расчёт, затем измените факт: будет видно, почему прежней проверки уже недостаточно.</p>
+  </header>
+  <main>
+    <div class="demo-notice"><span class="demo-dot"></span><span>Учебный макет · данные вымышлены · без вызова моделей и внешних операций.
+      Состояние сохраняется при переключениях, но сбрасывается при перезагрузке.</span></div>
+    <section class="workspace" aria-label="Рабочее место MyTwoBrain">
+      <header class="workspace-head"><div><span class="eyebrow">Рабочая сессия</span><h2>Сверка поставки</h2></div>
+        <div class="head-actions"><span class="status" id="task-status">Ожидает проверки</span>
+          <button class="icon-button" id="help-button" aria-expanded="false" aria-controls="help" aria-label="Как пользоваться макетом">?</button></div>
+      </header>
+      <p id="help" class="help" hidden>Откройте «Explorer» и выберите файл: его содержимое появится справа. «Проверить» сверяет учебные числа и фиксирует версию.
+        «Обновить факт» меняет входные данные и отменяет актуальность проверки. Решение и отправка поставщику остаются за человеком.
+        Все вкладки читают один объект в памяти страницы; серверное API здесь не вызывается.</p>
+      <div class="panes">
+        <section class="conversation" aria-labelledby="dialog-title">
+          <div class="pane-heading"><h3 id="dialog-title">Диалог</h3><span>Задача остаётся перед глазами</span></div>
+          <div class="messages" id="messages">
+            <article class="message human"><header><span>Вы</span><small>Постановка задачи</small></header>
+              <p>По заявке нужно 120 комплектов. На склад поступило 96. Сверь документы и подготовь предложение, что делать с недопоставкой. Поставщику пока ничего не отправляй.</p></article>
+            <article class="message assistant"><header><span>Агент</span><small>Основание и расчёт</small></header>
+              <p>Связал заявку и приходную ведомость. Расхождение — <strong>24 комплекта, или 20% заявки</strong>. Справа можно прочитать основание и проверить результат.</p>
+              <div class="message-links"><button data-open="document">Открыть основание ↗</button><button data-open="plan">Посмотреть план ↗</button></div></article>
+            <article class="message assistant"><header><span>Агент</span><small>Граница полномочий</small></header>
+              <p>Предлагаю запросить срок допоставки. Проверка арифметики не подтверждает качество товара и не заменяет согласование с ответственным.</p></article>
+          </div>
+          <div class="operator-controls">
+            <label for="model">Маршрут модели <span>· демонстрация</span></label>
+            <select id="model"><option value="local">Локальная модель · рабочие данные</option><option value="frontier">Внешняя модель · обезличенная задача</option></select>
+            <p class="control-note" id="model-note">Выбор иллюстрирует маршрутизацию. Подключений и отправки данных нет.</p>
+            <div class="actions"><button class="primary" id="verify">Проверить расчёт</button><button id="revise" title="Учебное изменение: поступило 108 вместо 96. Прежняя проверка станет неактуальной.">Обновить факт до 108</button></div>
+            <label class="draft-label" for="draft">Ваша рабочая заметка <span>· остаётся при переключении вкладок</span></label>
+            <textarea id="draft" rows="2" placeholder="Например: уточнить срок допоставки у руководителя…"></textarea>
+            <div class="composer-foot"><span>Заметка не отправляется</span><button id="reset">Сбросить пример</button></div>
+          </div>
+        </section>
+        <section class="context" aria-label="Контекст этой же задачи">
+          <div class="pane-heading"><h3>Контекст</h3><span id="revision">Основание r1</span></div>
+          <nav class="tabs" role="tablist" aria-label="Разделы контекста">
+            <button id="tab-document" role="tab" aria-controls="panel" aria-selected="true" data-tab="document">Документ</button>
+            <button id="tab-explorer" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="explorer">Explorer</button>
+            <button id="tab-plan" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="plan">План</button>
+            <button id="tab-agents" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="agents">Агенты</button>
+            <button id="tab-history" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="history">История</button>
+            <button id="tab-links" role="tab" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="links">Связи</button>
+          </nav>
+          <div id="panel" class="panel" role="tabpanel" tabindex="0" aria-labelledby="tab-document"></div>
+          <div class="shared-state"><span class="demo-dot"></span><span>Один объект для диалога, документа, плана и проверки</span><code id="state-ref">r1 · не проверен</code></div>
+        </section>
+      </div>
+      <div class="feedback" id="feedback" role="status" aria-live="polite">Начните с документа или выберите файл в Explorer.</div>
+    </section>
+    <section class="reading-key" aria-labelledby="reading-title">
+      <div><span class="eyebrow">Что показывает этот пример</span><h2 id="reading-title">Рабочее место<br>вокруг задачи.</h2></div>
+      <div><h3>Обсуждение не отрывается от основания</h3><p>Человек читает документ рядом с диалогом. Файл, план и история относятся к одной задаче: не нужно заново объяснять контекст при каждом переключении.</p>
+        <h3>У проверки есть версия и границы</h3><p>Изменился факт — прежний результат больше не актуален. Видны исходные числа, формула и шаг, который требует решения человека.</p>
+        <h3>Макет показывает взаимодействие, а не обещает автономность</h3><p>В рабочем харнесе за этим интерфейсом стоят инструменты, права доступа, сохранение истории и наблюдение за исполнением. Здесь представлен один локальный сценарий, без настоящих агентов, API и сохранения на сервере.</p></div>
+    </section>
+  </main>
+  <footer class="page-footer">MyTwoBrain · Фёдор Горбунов <a href="../index.html">К двум продуктам портфолио ↗</a></footer>
+  <noscript><p class="help">Для интерактивности нужен JavaScript. Сценарий: заявка 120, поступило 96, расхождение 24 (20%). После поступления 108 расхождение составляет 12 (10%) и требует новой проверки.</p></noscript>
+</body>
+</html>

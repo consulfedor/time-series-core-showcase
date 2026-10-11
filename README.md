@@ -1,175 +1,74 @@
-# PeFe Oracle: Un-Killable Time-Series Infrastructure
+# Фёдор Горбунов · MyTwoBrain / Факт → Решение
 
-Real-time market-data infrastructure, source-trust validation, analytical UI
-and AI-assisted operator workflow.
+Агентская разработка, рабочие инструменты человека и ИИ, архитектура процессов и данных.
 
-- **Author:** Fedor Gorbunov
-- **Role:** systems/data infrastructure architect, backend builder, operator
-- **Focus:** real-time data, time-series integrity, analytics, monitoring,
-  automation and decision support
-- **Location:** Antalya, Turkey · open to relocation / project work
+## Два основных направления
 
-This repository is a public showcase. It is meant to sell the engineering
-approach and business value, not to leak the private production repository.
-Private source code, trading logic, thresholds, credentials and account/runtime
-data are not published here.
+### 01 · MyTwoBrain — рабочее место человека и ИИ
 
-## The Business Problem
+Диалог, документы, файлы, план, исполнители и проверки связаны одной задачей.
+Человек видит материал рядом с разговором, может проверить результат и
+продолжить работу с сохранённым контекстом.
 
-If a business depends on live time-series, the hard problem is not only getting
-data into a database. The hard problem is knowing whether the data can be
-trusted after restarts, stream drops, gaps, duplicates, recalculations and
-manual review.
+**[Открыть интерактивное портфолио](https://consulfedor.github.io/time-series-core-showcase/)** ·
+[Попробовать рабочее место](https://consulfedor.github.io/time-series-core-showcase/mytwobrain/workspace.html) ·
+[Технический обзор](mytwobrain/README.md)
 
-This matters in:
+MyTwoBrain — развиваемая частная система, используемая автором в собственной
+работе. Здесь опубликованы обзор и обезличенный учебный интерфейс, а не исходный
+код харнеса. Макет не обращается к моделям или частной инфраструктуре.
 
-- fintech and market-data systems;
-- risk and operational analytics;
-- IoT / telemetry / hardware monitoring;
-- property and maintenance operations;
-- AI-assisted internal tools where humans still need final control.
+### 02 · C1 «Факт → Решение» — внедрение ИИ в строительной компании
 
-## What "Un-Killable" Means Here
+От документа и чертежа — к проверяемому расчёту и обоснованному поручению.
+Один пример фундаментной плиты связывает 3D, DXF, график, план/факт объёмов,
+стоимость, поставки и изменения проектных оснований.
 
-Not magic and not bravado. It means the time-series contour is designed so that
-failures become visible and recoverable:
+**[Открыть строительный C1](https://consulfedor.github.io/time-series-core-showcase/fact-to-decision/)** ·
+[Скачать автономную HTML-презентацию](fact-to-decision/index.html)
 
-- data freshness is watched continuously;
-- gaps and duplicates are treated as system events, not ignored noise;
-- source-trust checks can block downstream analytics;
-- recovery/recalculation is part of the operating model;
-- storage coverage is visible before reports are trusted;
-- human review exists where automation is not enough.
+Это концепция внедрения и интерактивная демонстрация. Корпоративное внедрение,
+его сроки и измеренный экономический эффект не заявляются.
 
-The goal is a hard-to-break analytical system: if something goes wrong, it
-should be detected, isolated, repaired and explained.
+## Прикладные примеры
 
-## What Is Built
+| Пример | Что можно посмотреть |
+|---|---|
+| [Поток данных и восстановление](docs/Real-Time_Data_Pipeline_Source_Trust_and_Recovery_Overview.pdf) | Существующий технический материал: сбор временных рядов, проверка источника, восстановление истории |
+| [Аналитика с участием человека](examples/analytics.md) | Событие, расчёт, исследовательская версия и подтверждение результата |
+| [Invisible Rabbit Farm](https://consulfedor.github.io/invisible-rabbit-farm/) | Самостоятельный интерактивный прототип объяснимых оценок по косвенным сигналам; [исходники](https://github.com/consulfedor/invisible-rabbit-farm) |
 
-| Layer | Business value | Evidence in this repo |
-|---|---|---|
-| Real-time ingestion | Market state arrives continuously instead of by manual export | pipeline architecture PDF, validation screenshot |
-| Runtime buffer | Recent state survives operational processing and fast checks | Redis/runtime buffer described in pipeline PDF |
-| Storage layer | Base rows, calculated rows, ML-ready history and parquet snapshots are separated | history coverage matrix screenshot |
-| Source trust | Stored data is compared against an external source before analytics are trusted | surgical validation screenshot |
-| Recovery | Missing or inconsistent history creates recovery/recalculation work | pipeline/recovery documentation |
-| Analytical UI | Events can be inspected, classified and reviewed by a human | chart UI, modal drilldown, KPI audit screenshots |
-| Profit / PNL audit | Outcomes are measured and audited as a factual testbed result | KPI report and event drilldown screenshots |
-| AI symbiosis | Human + AI agent workflow is controlled through an operator cockpit | AI cockpit screenshots and PDF |
+## Что я делаю
 
-## Storage And Database Proof
+Перевожу рабочую задачу в требования и понятный сценарий, организую агентскую
+разработку, связываю данные и интерфейсы, проверяю результат. В портфолио показаны
+и рабочая среда, и способы применить этот опыт к процессам компании.
 
-The public screenshots include both operational storage proof and raw database
-admin views.
+Контакт: [consulfedor@gmail.com](mailto:consulfedor@gmail.com)
 
-Current evidence:
+## English summary
 
-- **Health Monitor** shows Redis and MongoDB as live system components together
-  with REST, WebSocket, ZeroMQ and calculator services.
-- **Redis Commander** shows runtime buffer keys, a Sorted Set with 499 members,
-  BTCUSDT minute-state payloads and timestamp scores.
-- **MongoDB Compass** shows MongoDB collections for base candles, calculated
-  SCW rows and ML-ready rows, including document count, indexes and stored
-  time-series documents.
-- **History Coverage Matrix** shows storage coverage across base, calculated,
-  ML-ready and parquet layers: retention, covered days, missing days, row
-  counts and status.
-- **Surgical Validation** shows source-trust validation before downstream use:
-  Binance/source check, stored row comparison, calculation state and validation
-  pass/fail context.
-- **Pipeline PDF** documents Redis runtime buffers, MongoDB base/calculated
-  collections, ML-ready mirror and parquet snapshots.
+**MyTwoBrain** is my private human–AI engineering workspace: a conversation next
+to documents, files, plans, agents and verification results. The public demo
+shows the interaction with fictional data; it does not connect to the private
+system or an LLM. See the [technical guide](mytwobrain/README.md).
 
-Parquet/file-system schema screenshots are not included yet. Add them only after
-redaction approval.
+**Fact → Decision** is a construction-company AI adoption concept. Its interactive
+foundation example connects a drawing, 3D model, quantities, schedule, cost,
+deliveries and an evidence-backed decision package. It is a proposal and demo,
+not a claim of a completed enterprise deployment.
 
-![System health monitor](assets/system_health_monitor_components.png)
+## Repository and local preview
 
-![Redis Commander ZSET buffer](assets/redis_commander_zset_buffer.png)
+This repository is the public portfolio surface, not a mirror of private
+implementation code. It contains the website, public explanations and approved
+demonstrations. No dependencies or build are required for the website:
 
-![MongoDB Compass ML collection](assets/mongodb_compass_ml_collection.png)
-
-![History coverage matrix](assets/pipeline_history_coverage_matrix.png)
-
-![Pipeline validation](assets/pipeline_validation_11_layers_passed.png)
-
-## Analytics And PNL Review
-
-PNL/profit is not a dirty word here. It is part of the testbed: the system
-detects events, tracks outcomes, audits TP/SL states and shows whether the
-analytical loop produced useful measurable results.
-
-The point is not to sell a public trading signal. The point is to demonstrate a
-system that can connect data, rules, outcomes, review and reporting.
-
-![KPI audit snapshot](assets/kpi_report_net_13pct.png)
-
-![Event drill-down](assets/trade_snapshot_tp_short.png)
-
-![Analytics UI](assets/pefe_oracle_chart_interface.png)
-
-Technical overview:
-[Analytics UI - Human-in-the-Loop Review Workflow](docs/Analytics_UI_Human_in_the_Loop_Review_Workflow.pdf)
-
-## AI Symbiosis / Operator Cockpit
-
-The AI layer is not decoration. This is the operating model: human operator,
-long-running AI agent sessions, runtime truth, task plans, notes, logs,
-artifacts and recovery actions in one workspace.
-
-That is the practical symbiosis: AI accelerates work, but the operator keeps
-state, judgment and control.
-
-![Agent cockpit](assets/agent_cockpit_dialog_board.png)
-
-![Active work package](assets/agent_cockpit_active_work_package.png)
-
-Technical overview:
-[AI Agent Operator Cockpit](docs/AI_Agent_Operator_Cockpit_Technical_Overview.pdf)
-
-## Technical Stack
-
-```text
-Backend:       Python 3.12, FastAPI, asyncio
-Data:          MongoDB 7.0, Redis, Apache Parquet
-Streaming:     Binance WebSocket/REST, ZeroMQ
-Validation:    NumPy vectorized checks, state fingerprints, source-trust gates
-Observability: Prometheus, Grafana, Loki, custom health monitors
-Frontend:      React, TradingView Charting Library, custom reports
-AI workflow:   Codex CLI, operator cockpit, session artifacts
+```sh
+python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
-## Why This Is Valuable
-
-For a business owner or technical decision maker, the value is not "there is
-code on GitHub". Code is cheap. The value is the operating contour:
-
-- live data pipeline;
-- data-quality discipline;
-- visible storage coverage;
-- explainable analytics;
-- measurable outcomes;
-- human review;
-- AI-assisted execution without losing control.
-
-This is the kind of system thinking needed when a company has messy operations,
-untrusted data, manual reporting, blind automation or disconnected tools.
-
-## What Is Not Public
-
-- private source code;
-- customer/client/account data;
-- private runtime logs;
-- trading rules, thresholds and proprietary formulas;
-- API keys, credentials and infrastructure secrets;
-- raw database admin screenshots until redaction is approved.
-
-## Next Public Additions
-
-1. Redacted storage proof screenshots:
-   MongoDB collections/indexes, Redis buffer/key pattern, Parquet schema/files.
-2. Architecture page:
-   ingestion -> Redis -> MongoDB -> ML-ready/parquet -> validation -> UI.
-3. Data contract page:
-   candle/state/report fields, source-trust rules, recovery states.
-4. Only after that: public ML/analysis examples on synthetic or public data.
+Open `http://127.0.0.1:8080/`. The workspace demo also opens as a local HTML file.
+The C1 presentation is a self-contained generated artifact; its provenance is
+recorded in [the release manifest](release.json). Research drafts, personal
+conversations and original screenshots stay outside this repository.
