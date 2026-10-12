@@ -1,8 +1,2239 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="MyTwoBrain: собственный Harness для работы человека и ИИ-агентов. Рабочее место, контекст, оркестрация и проверка результата. Строительный C1 Факт → Решение."><title>Фёдор Горбунов · MyTwoBrain и Факт → Решение</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="portfolio.css"><script src="portfolio.js" defer></script></head>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="MyTwoBrain: собственный Harness для работы человека и ИИ-агентов. Рабочее место, контекст, оркестрация и проверка результата. Строительный C1 Факт → Решение."><title>Фёдор Горбунов · MyTwoBrain и Факт → Решение</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="portfolio.css"><script src="portfolio.js" defer></script><style>@scope (.map-projection) { :scope {
+  color-scheme: dark;
+  --ds-bg-deep: #060708;
+  --ds-bg: #090b0e;
+  --ds-surface: #111419;
+  --ds-surface-raised: #171b20;
+  --ds-surface-soft: #0d1013;
+  --ds-text: #eef1f3;
+  --ds-muted: #9aa3ad;
+  --ds-faint: #69727d;
+  --ds-line: rgba(255, 255, 255, 0.105);
+  --ds-line-strong: rgba(255, 255, 255, 0.18);
+  --ds-gold: #d0aa54;
+  --ds-gold-bright: #f0cf78;
+  --ds-gold-rgb: 208, 170, 84;
+  --ds-green: #58b783;
+  --ds-green-bright: #79d8a2;
+  --ds-red: #cc6363;
+  --ds-red-bright: #f08a8a;
+  --ds-blue: #7497bc;
+  --ds-blue-bright: #a8c2dc;
+  --ds-radius: 18px;
+  --ds-radius-sm: 10px;
+  --ds-max: 1320px;
+  --ds-body-size: 16px;
+  --ds-line-height: 1.55;
+  --ds-context: var(--ds-gold);
+  --ds-context-rgb: var(--ds-gold-rgb);
+  --ds-diagram-stroke-default: 2.25;
+  --ds-diagram-stroke-related: 2.75;
+  --ds-diagram-stroke-focus: 3;
+  --text: var(--ds-text);
+  --muted: var(--ds-muted);
+  --border: var(--ds-line);
+  --accent-2: var(--ds-gold-bright);
+  --accent-2-rgb: 240, 207, 120;}
+.ds-button {
+  min-height: 39px;
+  padding: 8px 13px;
+  border: 1px solid var(--ds-line-strong);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--ds-text);
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease, translate 180ms ease;
+}
+
+.ds-button:hover:not(:disabled) {
+  border-color: rgba(var(--ds-gold-rgb), 0.56);
+  translate: 0 -1px;
+}
+
+.ds-button.is-primary { border-color: rgba(var(--ds-gold-rgb), 0.56); background: rgba(var(--ds-gold-rgb), 0.14); color: var(--ds-gold-bright); }
+.ds-button.is-success { border-color: rgba(88, 183, 131, 0.44); background: rgba(88, 183, 131, 0.11); color: var(--ds-green-bright); }
+.ds-button.is-danger { border-color: rgba(204, 99, 99, 0.44); background: rgba(204, 99, 99, 0.1); color: var(--ds-red-bright); }
+.ds-button:disabled { cursor: not-allowed; opacity: 0.4; }
+
+.ds-rule-inline {
+  margin-top: 18px;
+  padding-top: 13px;
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid var(--ds-line);
+  color: var(--ds-muted);
+  font-size: 0.82em;
+}
+
+.ds-rule-inline b {
+  color: var(--ds-gold-bright);
+}
+
+.ds-row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ds-help-wrap {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.ds-help {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  line-height: 0;
+  border: 1px solid rgba(var(--ds-gold-rgb), 0.4);
+  border-radius: 50%;
+  background: rgba(var(--ds-gold-rgb), 0.08);
+  color: var(--ds-gold-bright);
+  cursor: pointer;
+}
+
+.ds-help svg {
+  width: 15px;
+  height: 15px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ds-help svg circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.ds-help-popover {
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 9px);
+  right: 0;
+  width: min(320px, calc(100vw - 44px));
+  padding: 13px;
+  border: 1px solid rgba(var(--ds-gold-rgb), 0.36);
+  border-radius: 10px;
+  background: #111419;
+  color: #cdd2d7;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+}
+
+.ds-help-popover b {
+  color: var(--ds-gold-bright);
+}
+
+.ds-callout {
+  margin-top: 10px;
+  padding: 11px 13px;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 12px;
+  border-left: 3px solid var(--ds-blue);
+  background: rgba(116, 151, 188, 0.07);
+  color: #c7d3df;
+  font-size: 0.84em;
+}
+
+.ds-callout.is-risk {
+  border-left-color: var(--ds-red);
+  background: rgba(204, 99, 99, 0.07);
+  color: #d9c0c0;
+}
+
+.ds-field {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.ds-field span {
+  color: #d9dde1;
+  font-size: 0.83em;
+  font-weight: 650;
+}
+
+.ds-field input {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 11px;
+  border: 1px solid var(--ds-line-strong);
+  border-radius: 9px;
+  background: #0b0e12;
+  color: var(--ds-text);
+}
+
+.ds-field input:focus {
+  border-color: rgba(var(--ds-gold-rgb), 0.66);
+}
+
+.ds-context-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.ds-context-card {
+  min-height: 280px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 200ms ease, translate 200ms ease;
+}
+
+.ds-context-card:hover {
+  translate: 0 -2px;
+}
+
+.ds-context-card > span {
+  color: var(--context-color);
+  font-size: 0.7rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+}
+
+.ds-context-card h3 {
+  margin-top: 22px;
+  font-size: 1.35em;
+}
+
+.ds-context-card p {
+  color: var(--ds-muted);
+}
+
+.ds-context-card.is-product { --context-color: var(--ds-gold-bright); }
+.ds-context-card.is-workbench { --context-color: var(--ds-blue-bright); }
+.ds-context-card.is-mechanism { --context-color: var(--ds-green-bright); }
+
+html[data-context="product"] .ds-context-card.is-product,
+html[data-context="workbench"] .ds-context-card.is-workbench,
+html[data-context="mechanism"] .ds-context-card.is-mechanism {
+  border-color: color-mix(in srgb, var(--context-color) 56%, transparent);
+  box-shadow: 0 22px 62px rgba(0, 0, 0, 0.3), 0 0 30px color-mix(in srgb, var(--context-color) 7%, transparent);
+}
+
+.ds-context-line {
+  margin-top: auto;
+  padding-top: 17px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid var(--ds-line);
+  color: #d7dce0;
+  font-size: 0.78em;
+}
+
+.ds-context-line i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--context-color);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--context-color) 10%, transparent);
+}
+
+.ds-markdown-shell {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid var(--ds-line);
+  border-radius: var(--ds-radius);
+  background: rgba(13, 16, 19, 0.86);
+  font-size: var(--ds-body-size);
+  line-height: var(--ds-line-height);
+}
+
+.ds-markdown-shell .md-mermaid-block {
+  margin-top: 18px;
+}
+
+.ds-projection-section {
+  background:
+    radial-gradient(circle at 50% 38%, rgba(116, 151, 188, 0.055), transparent 34rem),
+    linear-gradient(180deg, transparent, rgba(var(--ds-gold-rgb), 0.025), transparent);
+}
+
+.ds-projection-lab {
+  overflow: hidden;
+  border: 1px solid var(--ds-line);
+  border-radius: var(--ds-radius);
+  background: rgba(10, 13, 16, 0.9);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+}
+
+.ds-projection-toolbar {
+  padding: 22px 24px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--ds-line);
+}
+
+.ds-projection-toolbar h3 {
+  margin: 7px 0 4px;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.ds-projection-toolbar p {
+  max-width: 78ch;
+  margin: 0;
+  color: var(--ds-muted);
+  font-size: 0.86em;
+}
+
+.ds-projection-actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 8px;
+}
+
+.ds-projection-metrics {
+  padding: 16px 24px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  border-bottom: 1px solid var(--ds-line);
+}
+
+.ds-projection-metric {
+  min-width: 0;
+  padding: 13px 14px;
+  border: 1px solid var(--ds-line);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.ds-projection-metric strong,
+.ds-projection-metric span {
+  display: block;
+}
+
+.ds-projection-metric strong {
+  color: var(--ds-gold-bright);
+  font-size: 1.28em;
+  line-height: 1.2;
+}
+
+.ds-projection-metric span {
+  margin-top: 3px;
+  overflow: hidden;
+  color: var(--ds-muted);
+  font-size: 0.72em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-projection-stage {
+  position: relative;
+  min-height: 390px;
+  padding: 42px 34px 78px;
+  overflow: hidden;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(circle at 48% 45%, rgba(var(--ds-gold-rgb), 0.045), transparent 24rem);
+  background-size: 28px 28px, 28px 28px, auto;
+}
+
+.ds-projection-ranks {
+  position: relative;
+  z-index: 2;
+  min-height: 270px;
+  display: grid;
+  grid-template-columns: repeat(var(--projection-ranks, 1), minmax(0, 1fr));
+  align-items: stretch;
+  gap: 68px;
+  pointer-events: none;
+}
+
+.ds-projection-rank {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.ds-projection-node {
+  position: relative;
+  min-width: 0;
+  min-height: 116px;
+  padding: 17px;
+  border: 1px solid color-mix(in srgb, var(--node-color, var(--ds-gold)) 42%, var(--ds-line-strong));
+  border-radius: 14px;
+  background: rgba(17, 20, 25, 0.96);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--node-color, var(--ds-gold)) 9%, transparent), 0 14px 38px rgba(0, 0, 0, 0.34);
+}
+
+.ds-projection-node::before {
+  content: "";
+  position: absolute;
+  inset: 13px auto 13px 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--node-color, var(--ds-gold));
+  box-shadow: 0 0 18px color-mix(in srgb, var(--node-color, var(--ds-gold)) 28%, transparent);
+}
+
+.ds-projection-node > span {
+  color: var(--node-color, var(--ds-gold-bright));
+  font-size: 0.62rem;
+  font-weight: 780;
+  letter-spacing: 0.11em;
+}
+
+.ds-projection-node > strong {
+  display: block;
+  margin-top: 12px;
+  color: var(--ds-text);
+  font-size: 1em;
+}
+
+.ds-projection-node > p {
+  margin: 5px 0 0;
+  color: var(--ds-muted);
+  font-size: 0.75em;
+  line-height: 1.45;
+}
+
+.ds-projection-node.is-fact { --node-color: var(--ds-gold-bright); }
+.ds-projection-node.is-derived { --node-color: var(--ds-blue-bright); }
+.ds-projection-node.is-gate { --node-color: var(--ds-red-bright); }
+.ds-projection-node.is-annotation { --node-color: var(--ds-blue); }
+.ds-projection-node.is-ready { --node-color: var(--ds-green-bright); }
+.ds-projection-node.is-risk { --node-color: var(--ds-red); }
+
+.ds-projection-edges {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.ds-projection-edge,
+.ds-projection-edge-halo {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ds-projection-edge-halo {
+  stroke: rgba(4, 6, 8, 0.96);
+  stroke-width: 6;
+}
+
+.ds-projection-edge {
+  --edge-color: var(--ds-gold-bright);
+  stroke: var(--edge-color);
+  stroke-width: var(--ds-diagram-stroke-default);
+}
+
+.ds-projection-edge.is-feedback {
+  stroke-width: 2;
+  stroke-dasharray: 7 6;
+}
+
+.ds-projection-edge.is-fact, .ds-projection-edge-label.is-fact, .ds-projection-marker.is-fact { --edge-color: var(--ds-gold-bright); }
+.ds-projection-edge.is-derived, .ds-projection-edge-label.is-derived, .ds-projection-marker.is-derived { --edge-color: var(--ds-blue-bright); }
+.ds-projection-edge.is-gate, .ds-projection-edge-label.is-gate, .ds-projection-marker.is-gate { --edge-color: var(--ds-red-bright); }
+.ds-projection-edge.is-annotation, .ds-projection-edge-label.is-annotation, .ds-projection-marker.is-annotation { --edge-color: var(--ds-blue); }
+.ds-projection-edge.is-ready, .ds-projection-edge-label.is-ready, .ds-projection-marker.is-ready { --edge-color: var(--ds-green-bright); }
+.ds-projection-edge.is-risk, .ds-projection-edge-label.is-risk, .ds-projection-marker.is-risk { --edge-color: var(--ds-red); }
+
+.ds-projection-marker path { fill: var(--edge-color); stroke: #050709; stroke-width: 0.8; paint-order: stroke; }
+
+.ds-projection-edge-label rect {
+  fill: rgba(8, 11, 14, 0.96);
+  stroke: var(--edge-color);
+  stroke-opacity: 0.48;
+  stroke-width: 1;
+}
+
+.ds-projection-edge-label text {
+  fill: color-mix(in srgb, var(--edge-color) 50%, #f4f6f8);
+  font: 700 10px Inter, ui-sans-serif, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.ds-projection-receipt {
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--ds-line);
+  border-bottom: 1px solid var(--ds-line);
+  background: rgba(255, 255, 255, 0.016);
+}
+
+.ds-projection-receipt > span {
+  min-height: 27px;
+  padding: 5px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--ds-line);
+  border-radius: 999px;
+  color: var(--ds-muted);
+  font-size: 0.68rem;
+}
+
+.ds-projection-receipt b {
+  color: #d8dde1;
+}
+
+.ds-projection-receipt i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ds-gold);
+}
+
+.ds-projection-receipt i[data-state="pass"] {
+  background: var(--ds-green);
+  box-shadow: 0 0 0 4px rgba(88, 183, 131, 0.1);
+}
+
+.ds-projection-receipt i[data-state="fail"] {
+  background: var(--ds-red);
+  box-shadow: 0 0 0 4px rgba(204, 99, 99, 0.1);
+}
+
+.ds-projection-source,
+.ds-projection-fallback {
+  margin: 16px;
+  border: 1px solid var(--ds-line);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.ds-projection-source summary {
+  padding: 12px 14px;
+  color: var(--ds-gold-bright);
+  font-size: 0.78em;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ds-projection-source pre {
+  max-height: 360px;
+  margin: 0;
+  padding: 16px;
+  overflow: auto;
+  border-top: 1px solid var(--ds-line);
+  color: #c6d5e4;
+  font-size: 0.72em;
+  line-height: 1.55;
+  white-space: pre;
+}
+
+.ds-projection-source p {
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 1px solid var(--ds-line);
+  color: var(--ds-muted);
+  font-size: 0.7em;
+}
+
+.ds-projection-fallback {
+  padding: 14px;
+  border-color: rgba(204, 99, 99, 0.4);
+  color: var(--ds-red-bright);
+}
+
+.ds-projection-fallback p {
+  margin: 4px 0 0;
+  color: #d7b9b9;
+}
+
+.ds-gate-section {
+  background: linear-gradient(180deg, transparent, rgba(var(--ds-gold-rgb), 0.035), transparent);
+}
+
+.ds-gate-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+}
+
+.ds-gate-list {
+  display: grid;
+  gap: 8px;
+}
+
+.ds-gate-list button {
+  min-height: 62px;
+  padding: 10px 14px;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--ds-line);
+  border-radius: 11px;
+  background: rgba(17, 20, 25, 0.78);
+  color: var(--ds-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.ds-gate-list button > span {
+  color: var(--ds-gold);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+}
+
+.ds-gate-list button > i {
+  width: 17px;
+  height: 17px;
+  border: 1px solid var(--ds-line-strong);
+  border-radius: 50%;
+}
+
+.ds-gate-list button[aria-pressed="true"] {
+  border-color: rgba(88, 183, 131, 0.42);
+  background: rgba(88, 183, 131, 0.07);
+}
+
+.ds-gate-list button[aria-pressed="true"] > i {
+  border-color: var(--ds-green);
+  background: var(--ds-green);
+  box-shadow: inset 0 0 0 4px #111419;
+}
+
+.ds-gate-summary {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-gate-summary strong {
+  margin: 22px 0 8px;
+  color: var(--ds-gold-bright);
+  font-size: clamp(48px, 7vw, 82px);
+  line-height: 1;
+}
+
+.ds-gate-summary p {
+  color: var(--ds-muted);
+}
+
+.ds-gate-summary .ds-button {
+  margin-top: auto;
+}
+
+.ds-canon-panel {
+  overflow: hidden;
+}
+
+.ds-canon-panel summary {
+  padding: 18px 22px;
+  color: var(--ds-gold-bright);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ds-canon-document {
+  padding: 20px 24px 30px;
+  border-top: 1px solid var(--ds-line);
+  font-size: var(--ds-body-size);
+  line-height: var(--ds-line-height);
+}
+
+.ds-footer {
+  min-height: 72px;
+  padding: 18px max(20px, calc((100vw - var(--ds-max)) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--ds-line);
+  color: var(--ds-muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 980px) {
+  .ds-hero-grid,
+  .ds-section-head,
+  .ds-type-grid,
+  .ds-gate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-hero-grid {
+    gap: 36px;
+  }
+
+  .ds-section-head {
+    gap: 20px;
+  }
+
+  .ds-swatches {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .ds-context-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-projection-ranks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 96px;
+    row-gap: 74px;
+  }
+}
+
+@media (max-width: 720px) {
+  .ds-wrap {
+    width: min(calc(100% - 20px), var(--ds-max));
+  }
+
+  .ds-topbar {
+    min-height: 58px;
+    padding-inline: 10px;
+    gap: 10px;
+  }
+
+  .ds-brand > span:last-child,
+  .ds-top-link {
+    display: none;
+  }
+
+  .ds-topbar nav {
+    margin-left: 0;
+  }
+
+  main > section {
+    padding: 62px 0;
+  }
+
+  .ds-hero {
+    min-height: auto;
+    padding-top: 72px;
+  }
+
+  h1 {
+    font-size: clamp(42px, 16vw, 70px);
+  }
+
+  .ds-swatches,
+  .ds-component-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-projection-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ds-projection-actions {
+    flex-wrap: wrap;
+  }
+
+  .ds-projection-actions .ds-button {
+    flex: 1 1 150px;
+  }
+
+  .ds-projection-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ds-projection-stage {
+    padding-inline: 20px;
+  }
+
+  .ds-swatch {
+    grid-template-columns: 68px 1fr;
+    align-items: center;
+  }
+
+  .ds-swatch > span {
+    height: 54px;
+    margin: 0;
+    grid-row: 1 / 4;
+  }
+
+  .ds-row-between {
+    align-items: flex-start;
+  }
+
+  .ds-help-popover {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    translate: 0 -50%;
+  }
+
+  .ds-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 559px) {
+  .ds-projection-toolbar,
+  .ds-projection-metrics {
+    padding-inline: 14px;
+  }
+
+  .ds-projection-ranks {
+    grid-template-columns: 1fr;
+    row-gap: 56px;
+  }
+
+  .ds-projection-node {
+    min-height: 108px;
+  }
+
+  .ds-projection-stage {
+    padding: 32px 24px 72px;
+  }
+
+  .ds-projection-receipt {
+    align-items: stretch;
+  }
+
+  .ds-projection-receipt > span {
+    justify-content: center;
+  }
+}
+
+/* Flow is chosen from measured card text and available stage width. */
+[data-projection-flow="horizontal"] .ds-projection-ranks {
+  grid-template-columns: repeat(var(--projection-ranks), minmax(0, 1fr));
+  gap: 112px;
+}
+
+[data-projection-flow="vertical"] .ds-projection-ranks {
+  grid-template-columns: 1fr;
+  gap: 76px;
+}
+
+[data-projection-flow="vertical"] .ds-projection-rank {
+  display: grid;
+  grid-template-columns: repeat(var(--projection-peer-columns, 1), minmax(0, 1fr));
+  gap: 44px;
+  align-items: stretch;
+}
+
+.ds-projection-node { pointer-events: auto; }
+.ds-projection-edge { pointer-events: stroke; }
+.ds-projection-edge-label { pointer-events: auto; }
+.ds-projection-edge-hit { fill: none; stroke: transparent; stroke-width: 14; pointer-events: stroke; }
+.ds-projection-node, .ds-projection-edge, .ds-projection-edge-label, .ds-projection-edge-halo {
+  transition: opacity 120ms ease, filter 120ms ease;
+}
+.ds-projection-node.is-muted, .ds-projection-edge.is-muted, .ds-projection-edge-label.is-muted,
+.ds-projection-edge-halo.is-muted { opacity: 0.22; }
+.ds-projection-node.is-active, .ds-projection-node:focus-visible {
+  outline: 2px solid var(--node-color, var(--ds-gold-bright));
+  outline-offset: 3px;
+}
+.ds-projection-node.is-related { border-color: var(--node-color); }
+.ds-projection-edge.is-related { stroke-width: var(--ds-diagram-stroke-related); }
+.ds-projection-edge:focus-visible { outline: none; stroke-width: var(--ds-diagram-stroke-focus); }
+.ds-projection-edge-label.is-related rect { stroke-opacity: 1; }
+.ds-projection-lab .ds-help {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  align-self: center;
+}
+.ds-projection-lab .ds-help[aria-expanded="true"] {
+  background: rgba(var(--ds-gold-rgb), 0.16);
+  border-color: var(--ds-gold-bright);
+}
+.ds-projection-lab :is(.ds-help, .ds-info-close):focus-visible {
+  outline: 2px solid var(--ds-gold-bright);
+  outline-offset: 3px;
+}
+.ds-info-popover {
+  position: fixed;
+  z-index: 1000;
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - 24px));
+  max-height: calc(100vh - 24px);
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid var(--ds-line-strong);
+  border-radius: 12px;
+  color: var(--ds-text, #eef1f3);
+  background: #14181e;
+  box-shadow: 0 12px 40px #0009;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ds-info-popover[hidden] { display: none; }
+.ds-info-popover > strong { display: block; padding-right: 28px; color: var(--ds-gold-bright); }
+.ds-info-popover p { margin: 10px 0 0; }
+.ds-info-close {
+  float: right;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--ds-line);
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-projection-node, .ds-projection-edge, .ds-projection-edge-label, .ds-projection-edge-halo { transition: none; }
+  html {
+    scroll-behavior: auto;
+  }
+
+  .ds-pointer-glow {
+    display: none;
+  }
+
+  .ds-button,
+  .ds-context-card {
+    transition: none;
+  }
+}
+
+}</style><script>(function () {
+  'use strict';
+
+  const installed = new WeakMap();
+  const graphSelector = '[data-projection-node], [data-projection-edge], [data-projection-edge-hit], [data-edge-label]';
+  const paintedSelector = `${graphSelector}, [data-edge-halo]`;
+  const helpSelector = '[data-ds-help]';
+
+  function install(root) {
+    if (!root || installed.has(root)) return;
+    const state = { hovered: null, focused: null, help: null, closeTimer: 0, restoringFocus: false };
+    installed.set(root, state);
+
+    const closest = (target, selector) => {
+      const element = target instanceof Element ? target.closest(selector) : null;
+      return element && root.contains(element) ? element : null;
+    };
+    const edgeId = (element) => element.dataset.projectionEdge || element.dataset.projectionEdgeHit || element.dataset.edgeLabel || element.dataset.edgeHalo;
+    const graphTarget = (target) => {
+      const element = closest(target, graphSelector);
+      if (!element) return null;
+      return element.hasAttribute('data-projection-node')
+        ? { kind: 'node', id: element.dataset.projectionNode }
+        : { kind: 'edge', id: edgeId(element) };
+    };
+    const paint = () => {
+      const active = state.hovered || state.focused;
+      const model = root._projectionModel;
+      const nodes = new Set();
+      const edges = new Set();
+      let valid = false;
+      if (active && model) {
+        valid = active.kind === 'node'
+          ? model.nodes.some((node) => node.id === active.id)
+          : model.edges.some((edge) => edge.id === active.id);
+        if (valid) {
+          if (active.kind === 'node') nodes.add(active.id);
+          model.edges.forEach((edge) => {
+            if (active.kind === 'edge' ? edge.id === active.id : edge.from === active.id || edge.to === active.id) {
+              edges.add(edge.id);
+              nodes.add(edge.from);
+              nodes.add(edge.to);
+            }
+          });
+        }
+      }
+      if (valid) root.dataset.projectionHighlight = active.kind;
+      else delete root.dataset.projectionHighlight;
+      root.querySelectorAll(paintedSelector).forEach((element) => {
+        const nodeId = element.dataset.projectionNode;
+        const id = nodeId || edgeId(element);
+        const related = valid && (nodeId ? nodes.has(id) : edges.has(id));
+        const selected = valid && active.id === id && active.kind === (nodeId ? 'node' : 'edge');
+        element.classList.toggle('is-related', Boolean(related));
+        element.classList.toggle('is-active', Boolean(selected));
+        element.classList.toggle('is-muted', Boolean(valid && !related));
+      });
+    };
+
+    const cancelClose = () => {
+      clearTimeout(state.closeTimer);
+      state.closeTimer = 0;
+    };
+    const closeHelp = (restoreFocus = false) => {
+      cancelClose();
+      const current = state.help;
+      state.help = null;
+      if (!current) return;
+      current.trigger.setAttribute('aria-expanded', 'false');
+      delete current.trigger.dataset.pinned;
+      delete current.popover.dataset.pinned;
+      current.popover.hidden = true;
+      if (restoreFocus && current.trigger.isConnected) {
+        state.restoringFocus = true;
+        current.trigger.focus({ preventScroll: true });
+        state.restoringFocus = false;
+      }
+    };
+    const helpPair = (trigger) => {
+      const id = trigger?.getAttribute('aria-controls');
+      if (!id) return null;
+      const popover = [...root.querySelectorAll('[data-ds-popover]')].find((element) => element.id === id);
+      return popover ? { trigger, popover, pinned: false } : null;
+    };
+    const positionHelp = () => {
+      if (!state.help) return;
+      const { trigger, popover } = state.help;
+      if (!trigger.isConnected || !popover.isConnected) { closeHelp(); return; }
+      const anchor = trigger.getBoundingClientRect();
+      const box = popover.getBoundingClientRect();
+      const viewportWidth = document.documentElement.clientWidth;
+      const viewportHeight = document.documentElement.clientHeight;
+      const below = anchor.bottom + 8;
+      const above = anchor.top - box.height - 8;
+      const preferredTop = below + box.height <= viewportHeight - 12 || above < 12 ? below : above;
+      const left = Math.max(12, Math.min(anchor.left, viewportWidth - box.width - 12));
+      const top = Math.max(12, Math.min(preferredTop, viewportHeight - box.height - 12));
+      popover.style.left = `${Math.round(left)}px`;
+      popover.style.top = `${Math.round(top)}px`;
+    };
+    const openHelp = (trigger, pinned = false) => {
+      if (!pinned && state.help?.pinned && state.help.trigger !== trigger) return;
+      cancelClose();
+      if (state.help?.trigger === trigger) {
+        if (pinned) state.help.pinned = true;
+      } else {
+        const pair = helpPair(trigger);
+        if (!pair) return;
+        closeHelp();
+        state.help = pair;
+        state.help.pinned = pinned;
+      }
+      const current = state.help;
+      current.popover.hidden = false;
+      current.popover.setAttribute('role', 'dialog');
+      current.popover.setAttribute('aria-modal', 'false');
+      current.trigger.setAttribute('aria-expanded', 'true');
+      current.trigger.dataset.pinned = String(current.pinned);
+      current.popover.dataset.pinned = String(current.pinned);
+      positionHelp();
+    };
+    const withinHelp = (target) => target instanceof Node && state.help &&
+      (state.help.trigger.contains(target) || state.help.popover.contains(target));
+    const scheduleClose = () => {
+      cancelClose();
+      if (state.help && !state.help.pinned) state.closeTimer = setTimeout(() => {
+        if (!withinHelp(document.activeElement)) closeHelp();
+      }, 150);
+    };
+
+    root.querySelectorAll(helpSelector).forEach((trigger) => {
+      const pair = helpPair(trigger);
+      if (!pair) return;
+      pair.popover.hidden = true;
+      delete pair.popover.dataset.pinned;
+      delete trigger.dataset.pinned;
+      trigger.removeAttribute('title');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('aria-haspopup', 'dialog');
+    });
+    window.addEventListener('resize', positionHelp);
+    document.addEventListener('scroll', positionHelp, true);
+
+    root.addEventListener('pointerover', (event) => {
+      state.hovered = graphTarget(event.target);
+      paint();
+      if (withinHelp(event.target)) cancelClose();
+      const trigger = closest(event.target, helpSelector);
+      if (trigger && !trigger.contains(event.relatedTarget)) openHelp(trigger);
+    });
+    root.addEventListener('pointerout', (event) => {
+      state.hovered = graphTarget(event.relatedTarget);
+      paint();
+      if (withinHelp(event.target) && !withinHelp(event.relatedTarget)) scheduleClose();
+    });
+    root.addEventListener('focusin', (event) => {
+      if (state.preservingFocus) return;
+      state.hovered = null;
+      state.focused = graphTarget(event.target);
+      paint();
+      if (withinHelp(event.target)) cancelClose();
+      const trigger = closest(event.target, helpSelector);
+      if (trigger && !state.restoringFocus) openHelp(trigger);
+    });
+    root.addEventListener('focusout', (event) => {
+      if (state.preservingFocus) return;
+      state.focused = graphTarget(event.relatedTarget);
+      paint();
+      if (withinHelp(event.target) && !withinHelp(event.relatedTarget)) scheduleClose();
+    });
+    root.addEventListener('click', (event) => {
+      const trigger = closest(event.target, helpSelector);
+      if (trigger) {
+        if (state.help?.trigger === trigger && state.help.pinned) closeHelp();
+        else openHelp(trigger, true);
+        return;
+      }
+      if (closest(event.target, '[data-ds-help-close]')) closeHelp(true);
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (state.help && !withinHelp(event.target)) closeHelp();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (!state.help && !state.hovered && !state.focused && !root.contains(event.target)) return;
+      const hadHelp = Boolean(state.help);
+      state.hovered = null;
+      state.focused = null;
+      paint();
+      closeHelp(true);
+      if (hadHelp) event.preventDefault();
+    });
+    state.reset = () => {
+      state.hovered = null;
+      state.focused = null;
+      closeHelp();
+      paint();
+    };
+    state.refresh = paint;
+  }
+
+  function reset(root) {
+    installed.get(root)?.reset();
+  }
+
+  function refresh(root) {
+    installed.get(root)?.refresh();
+  }
+
+  function preserveFocus(root, redraw) {
+    const state = installed.get(root);
+    if (!state) return redraw();
+    state.preservingFocus = true;
+    try { return redraw(); }
+    finally { state.preservingFocus = false; }
+  }
+
+  window.OzProjectionInteractions = Object.freeze({ install, reset, refresh, preserveFocus });
+})();
+</script><script>(function () {
+  'use strict';
+
+  const LIMITS = Object.freeze({
+    sourceBytes: 16 * 1024,
+    nodes: 12,
+    edges: 24,
+    metrics: 6,
+    labelCharacters: 120,
+  });
+  const ROLES = new Set(['fact', 'derived', 'gate', 'annotation', 'ready', 'risk']);
+  const ROLE_LABELS = Object.freeze({
+    fact: 'FACT · SSoT',
+    derived: 'DERIVED',
+    gate: 'GEOMETRY GATE',
+    annotation: 'ARTIFACT',
+    ready: 'HUMAN DECISION',
+    risk: 'RISK',
+  });
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  let instanceCounter = 0;
+
+  class ProjectionSourceError extends Error {
+    constructor(line, message) {
+      super(`Строка ${line}: ${message}`);
+      this.name = 'ProjectionSourceError';
+      this.line = line;
+    }
+  }
+
+  function utf8Bytes(value) {
+    return new TextEncoder().encode(String(value)).byteLength;
+  }
+
+  function sourceHash(source) {
+    let hash = 0xcbf29ce484222325n;
+    const prime = 0x100000001b3n;
+    new TextEncoder().encode(source).forEach((byte) => {
+      hash ^= BigInt(byte);
+      hash = BigInt.asUintN(64, hash * prime);
+    });
+    return `fnv1a64:${hash.toString(16).padStart(16, '0')}`;
+  }
+
+  function tokenize(line, lineNumber) {
+    const tokens = [];
+    let index = 0;
+    while (index < line.length) {
+      while (/\s/.test(line[index] || '')) index += 1;
+      if (index >= line.length || line[index] === '#') break;
+      if (line.slice(index, index + 2) === '->') {
+        tokens.push('->');
+        index += 2;
+        continue;
+      }
+      if (line[index] === '"') {
+        index += 1;
+        let value = '';
+        let closed = false;
+        while (index < line.length) {
+          const char = line[index];
+          if (char === '\\') {
+            const next = line[index + 1];
+            if (next !== '"' && next !== '\\') {
+              throw new ProjectionSourceError(lineNumber, 'разрешены только escape-последовательности \\" и \\\\.');
+            }
+            value += next;
+            index += 2;
+          } else if (char === '"') {
+            closed = true;
+            index += 1;
+            break;
+          } else {
+            value += char;
+            index += 1;
+          }
+        }
+        if (!closed) throw new ProjectionSourceError(lineNumber, 'не закрыта кавычка.');
+        tokens.push(value);
+        continue;
+      }
+      const start = index;
+      while (index < line.length && !/\s/.test(line[index])) {
+        if (line.slice(index, index + 2) === '->') break;
+        index += 1;
+      }
+      if (start === index) throw new ProjectionSourceError(lineNumber, `неожиданный символ ${line[index]}.`);
+      tokens.push(line.slice(start, index));
+    }
+    return tokens;
+  }
+
+  function requireLabel(value, line, field) {
+    const label = String(value || '').trim();
+    if (!label) throw new ProjectionSourceError(line, `${field} не может быть пустым.`);
+    if ([...label].length > LIMITS.labelCharacters) {
+      throw new ProjectionSourceError(line, `${field} длиннее ${LIMITS.labelCharacters} символов.`);
+    }
+    return label;
+  }
+
+  function requireId(value, line, field) {
+    const id = String(value || '');
+    if (!/^[a-z][a-z0-9_-]{0,39}$/.test(id)) {
+      throw new ProjectionSourceError(line, `${field} должен соответствовать [a-z][a-z0-9_-]{0,39}.`);
+    }
+    return id;
+  }
+
+  function assignRanks(model) {
+    const ranks = new Map(model.nodes.map((node) => [node.id, 0]));
+    const indegree = new Map(model.nodes.map((node) => [node.id, 0]));
+    const outgoing = new Map(model.nodes.map((node) => [node.id, []]));
+    model.edges.filter((edge) => !edge.feedback).forEach((edge) => {
+      indegree.set(edge.to, indegree.get(edge.to) + 1);
+      outgoing.get(edge.from).push(edge);
+    });
+    const queue = model.nodes.filter((node) => indegree.get(node.id) === 0).map((node) => node.id);
+    let visited = 0;
+    while (queue.length) {
+      const id = queue.shift();
+      visited += 1;
+      outgoing.get(id).forEach((edge) => {
+        ranks.set(edge.to, Math.max(ranks.get(edge.to), ranks.get(id) + 1));
+        indegree.set(edge.to, indegree.get(edge.to) - 1);
+        if (indegree.get(edge.to) === 0) queue.push(edge.to);
+      });
+    }
+    if (visited !== model.nodes.length) {
+      throw new ProjectionSourceError(1, 'обычные edges образуют цикл; обратную связь пометьте feedback.');
+    }
+    model.nodes.forEach((node) => { node.rank = ranks.get(node.id); });
+    model.rankCount = Math.max(...ranks.values()) + 1;
+    return model;
+  }
+
+  function parseProjection(source) {
+    const bytes = utf8Bytes(source);
+    if (bytes > LIMITS.sourceBytes) {
+      throw new ProjectionSourceError(1, `UTF-8 source занимает ${bytes} bytes; cap — ${LIMITS.sourceBytes}.`);
+    }
+    const model = { title: '', metrics: [], nodes: [], edges: [], sourceBytes: bytes };
+    const nodeIds = new Set();
+    const metricIds = new Set();
+    String(source).split(/\r?\n/).forEach((line, offset) => {
+      const lineNumber = offset + 1;
+      const tokens = tokenize(line, lineNumber);
+      if (!tokens.length) return;
+      const [kind, ...fields] = tokens;
+      if (kind === 'projection') {
+        if (fields.length !== 1) throw new ProjectionSourceError(lineNumber, 'ожидается projection "title".');
+        if (model.title) throw new ProjectionSourceError(lineNumber, 'projection уже объявлен.');
+        model.title = requireLabel(fields[0], lineNumber, 'title');
+      } else if (kind === 'metric') {
+        if (fields.length !== 3) throw new ProjectionSourceError(lineNumber, 'ожидается metric id "value" "label".');
+        const id = requireId(fields[0], lineNumber, 'metric id');
+        if (metricIds.has(id)) throw new ProjectionSourceError(lineNumber, `metric ${id} объявлен повторно.`);
+        metricIds.add(id);
+        model.metrics.push({ id, value: requireLabel(fields[1], lineNumber, 'metric value'), label: requireLabel(fields[2], lineNumber, 'metric label') });
+      } else if (kind === 'node') {
+        if (fields.length !== 4) throw new ProjectionSourceError(lineNumber, 'ожидается node id role "label" "detail".');
+        const id = requireId(fields[0], lineNumber, 'node id');
+        if (nodeIds.has(id)) throw new ProjectionSourceError(lineNumber, `node ${id} объявлен повторно.`);
+        if (!ROLES.has(fields[1])) throw new ProjectionSourceError(lineNumber, `неизвестная semantic role ${fields[1]}.`);
+        nodeIds.add(id);
+        model.nodes.push({ id, role: fields[1], label: requireLabel(fields[2], lineNumber, 'node label'), detail: requireLabel(fields[3], lineNumber, 'node detail') });
+      } else if (kind === 'edge') {
+        if (![4, 5].includes(fields.length) || fields[1] !== '->' || (fields[4] && fields[4] !== 'feedback')) {
+          throw new ProjectionSourceError(lineNumber, 'ожидается edge from -> to "label" [feedback].');
+        }
+        model.edges.push({ from: requireId(fields[0], lineNumber, 'edge source'), to: requireId(fields[2], lineNumber, 'edge target'), label: requireLabel(fields[3], lineNumber, 'edge label'), feedback: fields[4] === 'feedback', line: lineNumber });
+      } else {
+        throw new ProjectionSourceError(lineNumber, `неизвестная команда ${kind}.`);
+      }
+    });
+    if (!model.title) throw new ProjectionSourceError(1, 'projection title отсутствует.');
+    if (!model.nodes.length) throw new ProjectionSourceError(1, 'нужен хотя бы один node.');
+    if (model.nodes.length > LIMITS.nodes) throw new ProjectionSourceError(1, `nodes: ${model.nodes.length}; cap — ${LIMITS.nodes}.`);
+    if (model.edges.length > LIMITS.edges) throw new ProjectionSourceError(1, `edges: ${model.edges.length}; cap — ${LIMITS.edges}.`);
+    if (model.metrics.length > LIMITS.metrics) throw new ProjectionSourceError(1, `metrics: ${model.metrics.length}; cap — ${LIMITS.metrics}.`);
+    model.edges.forEach((edge) => {
+      if (!nodeIds.has(edge.from) || !nodeIds.has(edge.to)) {
+        throw new ProjectionSourceError(edge.line, `edge ${edge.from} -> ${edge.to} ссылается на неизвестный node.`);
+      }
+    });
+    model.edges.forEach((edge, index) => { edge.id = `${edge.from}-${edge.to}-${index + 1}`; });
+    model.sourceHash = sourceHash(source);
+    return assignRanks(model);
+  }
+
+  function svgElement(name, attributes = {}) {
+    const element = document.createElementNS(SVG_NS, name);
+    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, String(value)));
+    return element;
+  }
+
+  function relativeRect(element, containerRect) {
+    const rect = element.getBoundingClientRect();
+    return { left: rect.left - containerRect.left, top: rect.top - containerRect.top, right: rect.right - containerRect.left, bottom: rect.bottom - containerRect.top, width: rect.width, height: rect.height };
+  }
+
+  function pointKey(point, columns) {
+    return point.y * columns + point.x;
+  }
+
+  function shortestRoute(start, goal, obstacles, heat, width, height) {
+    // Exact ports and obstacle corridors form a sparse rectilinear visibility grid.
+    // No snapping means the first/last segment stays orthogonal to its port.
+    const axis = (size, first, last, low, high) => {
+      const values = [3, size - 3, first, last];
+      obstacles.forEach((rect) => values.push(rect[low] - 12, rect[high] + 12));
+      const sorted = [...new Set(values.filter((value) => value >= 3 && value <= size - 3))].sort((a, b) => a - b);
+      return [...new Set([...sorted, ...sorted.slice(1).map((value, index) => (value + sorted[index]) / 2)])].sort((a, b) => a - b);
+    };
+    const xs = axis(width, start.x, goal.x, 'left', 'right');
+    const ys = axis(height, start.y, goal.y, 'top', 'bottom');
+    const columns = xs.length;
+    const rows = ys.length;
+    const occupied = new Uint8Array(columns * rows);
+    for (let y = 0; y < rows; y += 1) {
+      for (let x = 0; x < columns; x += 1) {
+        const px = xs[x];
+        const py = ys[y];
+        if (obstacles.some((rect) => px >= rect.left - 7 && px <= rect.right + 7 && py >= rect.top - 7 && py <= rect.bottom + 7)) {
+          occupied[pointKey({ x, y }, columns)] = 1;
+        }
+      }
+    }
+    const snap = (point) => ({ x: xs.indexOf(point.x), y: ys.indexOf(point.y) });
+    const from = snap(start);
+    const to = snap(goal);
+    if (from.x < 0 || from.y < 0 || to.x < 0 || to.y < 0 || occupied[pointKey(from, columns)] || occupied[pointKey(to, columns)]) return [];
+    const stateCount = columns * rows * 5;
+    const costs = new Float64Array(stateCount);
+    costs.fill(Number.POSITIVE_INFINITY);
+    const previous = new Int32Array(stateCount);
+    previous.fill(-1);
+    const startState = pointKey(from, columns) * 5 + 4;
+    costs[startState] = 0;
+    const open = [{ state: startState, score: 0, cost: 0 }];
+    const directions = [[1, 0], [0, 1], [-1, 0], [0, -1]];
+    let finalState = -1;
+    while (open.length) {
+      open.sort((a, b) => a.score - b.score);
+      const current = open.shift();
+      if (current.cost !== costs[current.state]) continue;
+      const cellIndex = Math.floor(current.state / 5);
+      const direction = current.state % 5;
+      const cx = cellIndex % columns;
+      const cy = Math.floor(cellIndex / columns);
+      if (cx === to.x && cy === to.y) { finalState = current.state; break; }
+      directions.forEach(([dx, dy], nextDirection) => {
+        if (direction !== 4 && nextDirection === (direction + 2) % 4) return;
+        const nx = cx + dx;
+        const ny = cy + dy;
+        if (nx < 0 || nx >= columns || ny < 0 || ny >= rows) return;
+        const nextCell = pointKey({ x: nx, y: ny }, columns);
+        if (occupied[nextCell]) return;
+        const a = { x: xs[cx], y: ys[cy] };
+        const b = { x: xs[nx], y: ys[ny] };
+        if (obstacles.some((rect) => segmentIntersectsRect(a, b, rect, 7))) return;
+        const turnCost = direction === 4 || direction === nextDirection ? 0 : 32;
+        const congestion = [...heat.values()].reduce((sum, segments) => sum + segments.reduce((hits, segment) => hits + (segmentRelation(a, b, segment[0], segment[1]) ? 28 : 0), 0), 0);
+        const nextCost = costs[current.state] + Math.abs(b.x - a.x) + Math.abs(b.y - a.y) + turnCost + congestion;
+        const nextState = nextCell * 5 + nextDirection;
+        if (nextCost >= costs[nextState]) return;
+        costs[nextState] = nextCost;
+        previous[nextState] = current.state;
+        const heuristic = Math.abs(xs[nx] - goal.x) + Math.abs(ys[ny] - goal.y);
+        open.push({ state: nextState, score: nextCost + heuristic, cost: nextCost });
+      });
+    }
+    if (finalState < 0) return [];
+    const gridPoints = [];
+    for (let state = finalState; state >= 0; state = previous[state]) {
+      const cellIndex = Math.floor(state / 5);
+      gridPoints.push({ x: xs[cellIndex % columns], y: ys[Math.floor(cellIndex / columns)] });
+      if (state === startState) break;
+    }
+    gridPoints.reverse();
+    const points = [start, ...gridPoints, goal].filter((point, index, all) => !index || point.x !== all[index - 1].x || point.y !== all[index - 1].y);
+    const compressed = points.filter((point, index, all) => {
+      if (!index || index === all.length - 1) return true;
+      const before = all[index - 1];
+      const after = all[index + 1];
+      return !((before.x === point.x && point.x === after.x) || (before.y === point.y && point.y === after.y));
+    });
+    return compressed;
+  }
+
+  function edgeSides(source, target) {
+    const horizontalGap = Math.max(target.left - source.right, source.left - target.right, 0);
+    if (horizontalGap > 0) {
+      return target.left >= source.right
+        ? { source: 'right', target: 'left' }
+        : { source: 'left', target: 'right' };
+    }
+    return target.top >= source.bottom
+      ? { source: 'bottom', target: 'top' }
+      : { source: 'top', target: 'bottom' };
+  }
+
+  function pointOnSide(rect, side, slot, count) {
+    const ratio = (slot + 1) / (count + 1);
+    if (side === 'left' || side === 'right') {
+      return { x: side === 'left' ? rect.left : rect.right, y: rect.top + rect.height * ratio };
+    }
+    return { x: rect.left + rect.width * ratio, y: side === 'top' ? rect.top : rect.bottom };
+  }
+
+  function outsidePort(point, side, distance) {
+    if (side === 'left') return { x: point.x - distance, y: point.y };
+    if (side === 'right') return { x: point.x + distance, y: point.y };
+    if (side === 'top') return { x: point.x, y: point.y - distance };
+    return { x: point.x, y: point.y + distance };
+  }
+
+  function buildEdgePorts(model, cards, flow) {
+    const plans = new Map();
+    const groups = new Map();
+    const addEndpoint = (edge, index, endpoint, nodeId, side, opposite) => {
+      const key = `${nodeId}:${side}`;
+      let sortKey = side === 'left' || side === 'right' ? opposite.top + opposite.height / 2 : opposite.left + opposite.width / 2;
+      const plan = plans.get(edge.id);
+      if (plan.source.side === plan.target.side) sortKey = -sortKey;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push({ edgeId: edge.id, endpoint, index, nodeId, side, sortKey });
+    };
+    model.edges.forEach((edge, index) => {
+      const source = cards.get(edge.from);
+      const target = cards.get(edge.to);
+      const sourceCenter = source.top + source.height / 2;
+      const targetCenter = target.top + target.height / 2;
+      const crossesStackedCard = [...cards.entries()].some(([nodeId, rect]) => {
+        if (nodeId === edge.from || nodeId === edge.to) return false;
+        const center = rect.top + rect.height / 2;
+        const sharedLeft = Math.max(source.left, target.left);
+        const sharedRight = Math.min(source.right, target.right);
+        return sharedLeft < sharedRight && rect.left < sharedRight && rect.right > sharedLeft && center > Math.min(sourceCenter, targetCenter) && center < Math.max(sourceCenter, targetCenter);
+      });
+      const bypassSide = model.edges.filter((candidate) => candidate.from === edge.from && !candidate.feedback).length > 1 ? 'left' : 'right';
+      const sides = edge.feedback
+        ? (flow === 'vertical' ? { source: 'right', target: 'right' } : { source: 'bottom', target: 'bottom' })
+        : (crossesStackedCard ? { source: bypassSide, target: bypassSide } : edgeSides(source, target));
+      plans.set(edge.id, { source: { side: sides.source }, target: { side: sides.target } });
+      addEndpoint(edge, index, 'source', edge.from, sides.source, target);
+      addEndpoint(edge, index, 'target', edge.to, sides.target, source);
+    });
+    groups.forEach((entries) => {
+      entries.sort((a, b) => a.sortKey - b.sortKey || a.index - b.index);
+      entries.forEach((entry, slot) => {
+        plans.get(entry.edgeId)[entry.endpoint].point = pointOnSide(cards.get(entry.nodeId), entry.side, slot, entries.length);
+      });
+    });
+    // Match facing port coordinates when both side intervals have a free slot.
+    model.edges.filter((edge) => !edge.feedback).forEach((edge) => {
+      const plan = plans.get(edge.id);
+      const horizontal = plan.source.side === 'right' && plan.target.side === 'left';
+      const vertical = plan.source.side === 'bottom' && plan.target.side === 'top';
+      if (!horizontal && !vertical) return;
+      const axis = horizontal ? 'y' : 'x';
+      const low = horizontal ? 'top' : 'left';
+      const high = horizontal ? 'bottom' : 'right';
+      const source = cards.get(edge.from);
+      const target = cards.get(edge.to);
+      const min = Math.max(source[low], target[low]) + 14;
+      const max = Math.min(source[high], target[high]) - 14;
+      if (max < min) return;
+      const candidates = [plan.source.point[axis], plan.target.point[axis], (min + max) / 2];
+      const matched = candidates.find((value) => value >= min && value <= max &&
+        [['source', edge.from], ['target', edge.to]].every(([endpoint, nodeId]) =>
+          groups.get(`${nodeId}:${plan[endpoint].side}`).every((other) => other.edgeId === edge.id ||
+            Math.abs(plans.get(other.edgeId)[other.endpoint].point[axis] - value) >= 12)));
+      if (matched !== undefined) {
+        plan.source.point[axis] = matched;
+        plan.target.point[axis] = matched;
+        plan.matched = true;
+      }
+    });
+    return plans;
+  }
+
+  function orthogonalRoute(points) {
+    const expanded = [];
+    points.forEach((point) => {
+      const previous = expanded.at(-1);
+      if (previous && previous.x !== point.x && previous.y !== point.y) {
+        const incoming = expanded.at(-2);
+        expanded.push(incoming && incoming.x === previous.x ? { x: previous.x, y: point.y } : { x: point.x, y: previous.y });
+      }
+      expanded.push(point);
+    });
+    const clean = expanded.filter((point, index, all) => !index || point.x !== all[index - 1].x || point.y !== all[index - 1].y);
+    return clean.filter((point, index, all) => {
+      if (!index || index === all.length - 1) return true;
+      const before = all[index - 1];
+      const after = all[index + 1];
+      return !((before.x === point.x && point.x === after.x && (point.y - before.y) * (after.y - point.y) >= 0) || (before.y === point.y && point.y === after.y && (point.x - before.x) * (after.x - point.x) >= 0));
+    });
+  }
+
+  function roundedPath(points) {
+    const clean = points.filter((point, index, all) => !index || Math.hypot(point.x - all[index - 1].x, point.y - all[index - 1].y) > 0.01);
+    if (clean.length < 2) return '';
+    const parts = [`M ${clean[0].x.toFixed(1)} ${clean[0].y.toFixed(1)}`];
+    for (let index = 1; index < clean.length - 1; index += 1) {
+      const previous = clean[index - 1];
+      const current = clean[index];
+      const next = clean[index + 1];
+      const incoming = Math.hypot(current.x - previous.x, current.y - previous.y);
+      const outgoing = Math.hypot(next.x - current.x, next.y - current.y);
+      if (incoming < 0.01 || outgoing < 0.01) continue;
+      const radius = Math.min(7, incoming / 2, outgoing / 2);
+      const before = { x: current.x + (previous.x - current.x) / incoming * radius, y: current.y + (previous.y - current.y) / incoming * radius };
+      const after = { x: current.x + (next.x - current.x) / outgoing * radius, y: current.y + (next.y - current.y) / outgoing * radius };
+      parts.push(`L ${before.x.toFixed(1)} ${before.y.toFixed(1)} Q ${current.x.toFixed(1)} ${current.y.toFixed(1)} ${after.x.toFixed(1)} ${after.y.toFixed(1)}`);
+    }
+    const last = clean[clean.length - 1];
+    parts.push(`L ${last.x.toFixed(1)} ${last.y.toFixed(1)}`);
+    return parts.join(' ');
+  }
+
+  function intersects(rectA, rectB, padding = 0) {
+    return rectA.left < rectB.right + padding && rectA.right > rectB.left - padding && rectA.top < rectB.bottom + padding && rectA.bottom > rectB.top - padding;
+  }
+
+  function segmentIntersectsRect(start, end, rect, padding = 0) {
+    const test = { left: rect.left - padding, right: rect.right + padding, top: rect.top - padding, bottom: rect.bottom + padding };
+    if (start.x === end.x) return start.x >= test.left && start.x <= test.right && Math.max(start.y, end.y) >= test.top && Math.min(start.y, end.y) <= test.bottom;
+    if (start.y === end.y) return start.y >= test.top && start.y <= test.bottom && Math.max(start.x, end.x) >= test.left && Math.min(start.x, end.x) <= test.right;
+    return false;
+  }
+
+  function segmentRelation(a, b, c, d) {
+    const horizontal = a.y === b.y;
+    const otherHorizontal = c.y === d.y;
+    if (horizontal === otherHorizontal) {
+      const axis = horizontal ? 'x' : 'y';
+      const fixed = horizontal ? 'y' : 'x';
+      return a[fixed] === c[fixed] && Math.min(Math.max(a[axis], b[axis]), Math.max(c[axis], d[axis])) > Math.max(Math.min(a[axis], b[axis]), Math.min(c[axis], d[axis])) + 0.1 ? 'overlap' : null;
+    }
+    const h = horizontal ? [a, b] : [c, d];
+    const v = horizontal ? [c, d] : [a, b];
+    return v[0].x >= Math.min(h[0].x, h[1].x) - 0.1 && v[0].x <= Math.max(h[0].x, h[1].x) + 0.1 && h[0].y >= Math.min(v[0].y, v[1].y) - 0.1 && h[0].y <= Math.max(v[0].y, v[1].y) + 0.1 ? 'crossing' : null;
+  }
+
+  function buildFanoutBundles(model, cards, plans, distance) {
+    const groups = new Map();
+    model.edges.filter((edge) => !edge.feedback).forEach((edge) => {
+      const plan = plans.get(edge.id);
+      if (!((plan.source.side === 'right' && plan.target.side === 'left') || (plan.source.side === 'bottom' && plan.target.side === 'top'))) return;
+      const key = `${edge.from}:${plan.source.side}`;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(edge);
+    });
+    const bundled = new Map();
+    groups.forEach((edges, id) => {
+      if (edges.length < 2 || new Set(edges.map((edge) => edge.to)).size !== edges.length) return;
+      const first = plans.get(edges[0].id);
+      const horizontal = first.source.side === 'right';
+      const axis = horizontal ? 'x' : 'y';
+      const cross = horizontal ? 'y' : 'x';
+      const start = { ...first.source.point };
+      const targets = edges.map((edge) => plans.get(edge.id).target.point);
+      const gap = Math.min(...targets.map((point) => point[axis])) - start[axis];
+      if (gap < distance * 3) return;
+      const trunk = start[axis] + gap / 2;
+      const candidates = edges.map((edge, index) => ({ edge, points: orthogonalRoute([start, { ...start, [axis]: trunk }, { ...targets[index], [axis]: trunk }, targets[index]]) }));
+      // Only one source role/tone can enter this bundle; every target keeps its port.
+      const clear = candidates.every(({ edge, points }) => points.slice(0, -1).every((point, index) => [...cards.entries()].every(([nodeId, rect]) => {
+        if (nodeId === edge.from && index === 0) return true;
+        if (nodeId === edge.to && index === points.length - 2) return true;
+        return !segmentIntersectsRect(point, points[index + 1], rect, 7);
+      })));
+      if (!clear || targets.every((point) => point[cross] === targets[0][cross])) return;
+      candidates.forEach(({ edge, points }) => {
+        plans.get(edge.id).source.point = { ...start };
+        plans.get(edge.id).bundleId = id;
+        plans.get(edge.id).matched = start[cross] === plans.get(edge.id).target.point[cross];
+        bundled.set(edge.id, points);
+      });
+    });
+    return bundled;
+  }
+
+  function createEdgeLabel(svg, edge, tone, route, cardRects, foreignRoutes, bounds) {
+    const group = svgElement('g', { class: `ds-projection-edge-label is-${tone}${edge.feedback ? ' is-feedback' : ''}`, 'data-edge-label': edge.id, 'data-edge-tone': tone });
+    const background = svgElement('rect', { rx: 7 });
+    const text = svgElement('text', { 'text-anchor': 'middle', 'dominant-baseline': 'central' });
+    text.textContent = edge.label;
+    group.append(background, text);
+    svg.append(group);
+    const measured = text.getBBox();
+    background.setAttribute('x', String(measured.x - 6));
+    background.setAttribute('y', String(measured.y - 4));
+    background.setAttribute('width', String(measured.width + 12));
+    background.setAttribute('height', String(measured.height + 8));
+    const segments = route.slice(0, -1).map((point, index) => ({ index, start: point, end: route[index + 1], shared: foreignRoutes.some((other) => other.points.slice(0, -1).some((p, i) => segmentRelation(point, route[index + 1], p, other.points[i + 1]) === 'overlap')), horizontal: point.y === route[index + 1].y, length: Math.hypot(route[index + 1].x - point.x, route[index + 1].y - point.y) })).sort((a, b) => {
+      if (a.shared !== b.shared) return a.shared ? 1 : -1;
+      if (!edge.feedback && (a.index === 0) !== (b.index === 0)) return a.index === 0 ? -1 : 1;
+      if (edge.feedback && a.horizontal !== b.horizontal) return a.horizontal ? -1 : 1;
+      return b.length - a.length;
+    });
+    let accepted = null;
+    for (const segment of segments) {
+      const horizontal = segment.start.y === segment.end.y;
+      const axis = horizontal ? 'x' : 'y';
+      const span = segment.end[axis] - segment.start[axis];
+      const corridorRatios = [...cardRects.values()].flatMap((rect) => horizontal ? [rect.left - 24, rect.right + 24] : [rect.top - 24, rect.bottom + 24]).map((value) => (value - segment.start[axis]) / span).filter((ratio) => ratio > 0.02 && ratio < 0.98);
+      for (const ratio of [0.5, 0.35, 0.65, 0.3, 0.7, 0.2, 0.8, 0.1, 0.9, ...corridorRatios]) {
+        const anchor = {
+          x: segment.start.x + (segment.end.x - segment.start.x) * ratio,
+          y: segment.start.y + (segment.end.y - segment.start.y) * ratio,
+        };
+        for (const offset of horizontal ? [-16, 16, -30, 30, -42, 42] : [20, -20, 32, -32, 44, -44]) {
+          const x = anchor.x + (horizontal ? 0 : offset);
+          const y = anchor.y + (horizontal ? offset : 0);
+          const candidate = { left: x + measured.x - 7, right: x + measured.x + measured.width + 7, top: y + measured.y - 5, bottom: y + measured.y + measured.height + 5 };
+          const hitsCard = [...cardRects.values()].some((rect) => intersects(candidate, rect, 2));
+          const hitsPath = foreignRoutes.some((other) => other.points.slice(0, -1).some((point, index) => segmentIntersectsRect(point, other.points[index + 1], candidate, 2)));
+          const hitsLabel = [...svg.querySelectorAll('[data-edge-label]')].some((other) => other !== group && other._labelRect && intersects(candidate, other._labelRect, 3));
+          const escapes = candidate.left < 3 || candidate.right > bounds.width - 3 || candidate.top < 3 || candidate.bottom > bounds.height - 3;
+          if (!hitsCard && !hitsPath && !hitsLabel && !escapes) { accepted = { x, y, rect: candidate }; break; }
+        }
+        if (accepted) break;
+      }
+      if (accepted) break;
+    }
+    const position = accepted || { x: (route[0].x + route.at(-1).x) / 2, y: (route[0].y + route.at(-1).y) / 2 };
+    group.setAttribute('transform', `translate(${position.x.toFixed(1)} ${position.y.toFixed(1)})`);
+    group.dataset.labelPlacement = accepted ? 'safe' : 'fallback';
+    group._labelRect = accepted?.rect;
+    return group;
+  }
+
+  function corridorRoute(edge, plans, model, width) {
+    const plan = plans.get(edge.id);
+    const a = plan.source.point;
+    const b = plan.target.point;
+    if (plan.source.side === plan.target.side && ['left', 'right'].includes(plan.source.side)) {
+      const peers = model.edges.filter((other) => !other.feedback && plans.get(other.id).source.side === plan.source.side && plans.get(other.id).target.side === plan.target.side).sort((one, two) => {
+        const p = plans.get(one.id); const q = plans.get(two.id);
+        return Math.abs(q.target.point.y - q.source.point.y) - Math.abs(p.target.point.y - p.source.point.y);
+      });
+      // Fit nested lanes inside the measured margin while retaining the terminal stub.
+      const margin = plan.source.side === 'left' ? Math.min(a.x, b.x) : width - Math.max(a.x, b.x);
+      const maxOffset = Math.min(margin - 12, peers.length * 3);
+      if (maxOffset < 3) return null;
+      const offset = 3 + (maxOffset - 3) * Math.max(0, peers.indexOf(edge)) / Math.max(1, peers.length - 1);
+      const x = plan.source.side === 'left' ? offset : width - offset;
+      return [a, { x, y: a.y }, { x, y: b.y }, b];
+    }
+    const horizontal = plan.source.side === 'right' && plan.target.side === 'left';
+    const vertical = plan.source.side === 'bottom' && plan.target.side === 'top';
+    if (!horizontal && !vertical) return null;
+    const axis = horizontal ? 'x' : 'y';
+    const cross = horizontal ? 'y' : 'x';
+    const gap = b[axis] - a[axis];
+    if (gap < 48) return null;
+    const peers = model.edges.filter((other) => other.to === edge.to && !other.feedback && plans.get(other.id).source.side === plan.source.side && plans.get(other.id).target.side === plan.target.side && Math.sign(plans.get(other.id).target.point[cross] - plans.get(other.id).source.point[cross]) === Math.sign(b[cross] - a[cross])).sort((one, two) => {
+      const p = plans.get(one.id); const q = plans.get(two.id);
+      return Math.abs(p.target.point[cross] - p.source.point[cross]) - Math.abs(q.target.point[cross] - q.source.point[cross]);
+    });
+    const lane = a[axis] + 20 + (gap - 40) * (peers.indexOf(edge) + 1) / (peers.length + 1);
+    return [a, { ...a, [axis]: lane }, { ...b, [axis]: lane }, b];
+  }
+
+  function selectProjectionFlow(root, model) {
+    const stage = root.querySelector('[data-projection-stage]');
+    const cards = [...root.querySelectorAll('[data-projection-node]')];
+    if (!stage || !cards.length) return;
+    const style = getComputedStyle(stage);
+    const available = stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    const cardFloor = Math.ceil(Math.max(168, ...cards.map((card) => {
+      const title = card.querySelector('strong');
+      context.font = getComputedStyle(title).font;
+      const wordWidth = Math.max(...title.textContent.split(/\s+/).map((word) => context.measureText(word).width));
+      return Math.min(250, wordWidth + 36);
+    })));
+    const horizontalRequired = model.rankCount * cardFloor + (model.rankCount - 1) * 112;
+    root.dataset.projectionFlow = horizontalRequired <= available ? 'horizontal' : 'vertical';
+    root.style.setProperty('--projection-card-floor', `${cardFloor}px`);
+    const peerColumns = [];
+    root.querySelectorAll('.ds-projection-rank').forEach((rank) => {
+      const count = rank.children.length;
+      const columns = count * cardFloor + (count - 1) * 44 <= available ? count : 1;
+      rank.style.setProperty('--projection-peer-columns', String(columns));
+      peerColumns.push(columns);
+    });
+    root._projectionLayoutDecision = { available, cardFloor, horizontalRequired, peerColumns, flow: root.dataset.projectionFlow };
+  }
+
+  function drawProjection(root, model) {
+    const redraw = () => drawProjectionGeometry(root, model);
+    return window.OzProjectionInteractions ? window.OzProjectionInteractions.preserveFocus(root, redraw) : redraw();
+  }
+
+  function drawProjectionGeometry(root, model) {
+    const stage = root.querySelector('[data-projection-stage]');
+    const svg = root.querySelector('[data-projection-edges]');
+    if (!stage || !svg) return null;
+    selectProjectionFlow(root, model);
+    const stageRect = stage.getBoundingClientRect();
+    const width = Math.round(stageRect.width);
+    const height = Math.round(stageRect.height);
+    root.dataset.projectionLayout = width >= 1000 ? 'desktop' : width >= 560 ? 'tablet' : 'phone';
+    const focusedEdgeId = svg.contains(document.activeElement) ? document.activeElement.dataset.projectionEdge : null;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    const defs = svgElement('defs');
+    const nodeRoles = new Map(model.nodes.map((node) => [node.id, node.role]));
+    const markerIds = new Map();
+    new Set(model.edges.map((edge) => nodeRoles.get(edge.from) || 'fact')).forEach((tone) => {
+      const markerId = `ds-projection-arrow-${root.dataset.projectionInstance}-${tone}`;
+      const marker = svgElement('marker', { id: markerId, class: `ds-projection-marker is-${tone}`, viewBox: '0 0 12 12', markerWidth: 10, markerHeight: 10, refX: 11, refY: 6, orient: 'auto', markerUnits: 'userSpaceOnUse' });
+      marker.append(svgElement('path', { d: 'M 1 1 L 11 6 L 1 11 L 3.6 6 Z' }));
+      markerIds.set(tone, markerId);
+      defs.append(marker);
+    });
+    svg.append(defs);
+    const cards = new Map();
+    root.querySelectorAll('[data-projection-node]').forEach((card) => cards.set(card.dataset.projectionNode, relativeRect(card, stageRect)));
+    const edgePorts = buildEdgePorts(model, cards, root.dataset.projectionFlow);
+    const portDistance = root.dataset.projectionLayout === 'phone' ? 16 : 20;
+    const bundles = buildFanoutBundles(model, cards, edgePorts, portDistance);
+    const heat = new Map();
+    const routes = [];
+    const unroutedEdges = [];
+    model.edges.forEach((edge) => {
+      const source = cards.get(edge.from);
+      const target = cards.get(edge.to);
+      const plan = edgePorts.get(edge.id);
+      const start = plan.source.point;
+      const goal = plan.target.point;
+      const tone = nodeRoles.get(edge.from) || 'fact';
+      let points;
+      if (bundles.has(edge.id)) {
+        points = bundles.get(edge.id);
+      } else if (edge.feedback) {
+        if (plan.source.side === 'right') {
+          const lane = width - 2;
+          points = [
+            start,
+            { x: lane, y: start.y },
+            { x: lane, y: goal.y },
+            goal,
+          ];
+        } else {
+          const lane = height - 18;
+          points = [
+            start,
+            { x: start.x, y: lane },
+            { x: goal.x, y: lane },
+            goal,
+          ];
+        }
+      } else {
+        const startPort = outsidePort(start, plan.source.side, portDistance);
+        const goalPort = outsidePort(goal, plan.target.side, portDistance);
+        const corridor = corridorRoute(edge, edgePorts, model, width);
+        const clearCorridor = corridor && orthogonalRoute(corridor).slice(0, -1).every((point, index, all) => [...cards.entries()].every(([nodeId, rect]) => (nodeId === edge.from && index === 0) || (nodeId === edge.to && index === all.length - 1) || !segmentIntersectsRect(point, orthogonalRoute(corridor)[index + 1], rect, 7)));
+        const middle = clearCorridor ? null : shortestRoute(startPort, goalPort, [...cards.values()], heat, width, height);
+        if (clearCorridor) points = corridor;
+        else {
+        if (!middle.length) { unroutedEdges.push(edge.id); return; }
+        points = [start, ...middle, goal];
+        }
+      }
+      points = orthogonalRoute(points);
+      const blocked = points.slice(0, -1).some((point, index) => [...cards.entries()].some(([nodeId, rect]) => {
+        if (nodeId === edge.from && index === 0) return false;
+        if (nodeId === edge.to && index === points.length - 2) return false;
+        return segmentIntersectsRect(point, points[index + 1], rect, 1);
+      }));
+      if (blocked) { unroutedEdges.push(edge.id); return; }
+      heat.set(edge.id, points.slice(0, -1).map((point, index) => [point, points[index + 1]]));
+      const d = roundedPath(points);
+      routes.push({ d, edge, plan, points, source, target, tone });
+    });
+    routes.forEach((route) => {
+      route.halo = svgElement('path', { class: `ds-projection-edge-halo${route.edge.feedback ? ' is-feedback' : ''}`, 'data-edge-halo': route.edge.id, d: route.d });
+      svg.append(route.halo);
+    });
+    routes.forEach((route) => {
+      route.path = svgElement('path', { class: `ds-projection-edge is-${route.tone}${route.edge.feedback ? ' is-feedback' : ''}`, 'data-projection-edge': route.edge.id, 'data-edge-tone': route.tone, d: route.d, 'marker-end': `url(#${markerIds.get(route.tone)})` });
+      route.path.setAttribute('tabindex', '0');
+      route.path.setAttribute('role', 'img');
+      route.path.setAttribute('aria-label', `${model.nodes.find((node) => node.id === route.edge.from).label} → ${model.nodes.find((node) => node.id === route.edge.to).label}: ${route.edge.label || ''}`);
+      svg.append(route.path);
+    });
+    routes.forEach((route) => svg.append(svgElement('path', { class: 'ds-projection-edge-hit', 'data-projection-edge-hit': route.edge.id, d: route.d, 'aria-hidden': 'true' })));
+    routes.forEach((route) => {
+      route.label = createEdgeLabel(svg, route.edge, route.tone, route.points, cards, routes.filter((candidate) => candidate !== route), { width, height });
+    });
+    root._projectionGeometry = { cards, edgePorts, height, routes, width, unroutedEdges };
+    if (focusedEdgeId) routes.find((route) => route.edge.id === focusedEdgeId)?.path.focus({ preventScroll: true });
+    window.OzProjectionInteractions?.refresh(root);
+    return verifyGeometry(root, model);
+  }
+
+  function verifyGeometry(root, model) {
+    const geometry = root._projectionGeometry;
+    if (!geometry) return { ok: false, issueCount: 1, error: 'geometry_not_rendered' };
+    const { cards, height, routes, width } = geometry;
+    let foreignCardCrossings = 0;
+    let labelCardOverlaps = 0;
+    let labelForeignPathOverlaps = 0;
+    let labelLabelOverlaps = 0;
+    let viewportEscapes = 0;
+    let invalidGeometry = 0;
+    let arrowheadClearanceFailures = 0;
+    let nonOrthogonalSegments = 0;
+    let sharedPortCollisions = 0;
+    const offenders = [];
+    const usedPorts = new Map();
+    let pathCrossings = 0;
+    let pathOverlaps = 0;
+    let intentionalBundleOverlaps = 0;
+    let totalBends = 0;
+    let totalRouteLength = 0;
+    routes.forEach((route, routeIndex) => {
+      totalBends += Math.max(0, route.points.length - 2);
+      route.points.slice(0, -1).forEach((point, index) => {
+        const next = route.points[index + 1];
+        totalRouteLength += Math.abs(point.x - next.x) + Math.abs(point.y - next.y);
+        routes.slice(routeIndex + 1).forEach((other) => other.points.slice(0, -1).forEach((otherPoint, otherIndex) => {
+          const relation = segmentRelation(point, next, otherPoint, other.points[otherIndex + 1]);
+          if (relation === 'crossing' && !(route.plan.bundleId && route.plan.bundleId === other.plan.bundleId)) pathCrossings += 1;
+          if (relation === 'overlap') {
+            if (route.plan.bundleId && route.plan.bundleId === other.plan.bundleId) intentionalBundleOverlaps += 1;
+            else pathOverlaps += 1;
+          }
+        }));
+      });
+    });
+    routes.forEach((route) => {
+      if (!route.path.getAttribute('d') || /NaN|undefined|null/.test(route.path.getAttribute('d'))) invalidGeometry += 1;
+      route.points.forEach((point) => {
+        if (point.x < -1 || point.x > width + 1 || point.y < -1 || point.y > height + 1) viewportEscapes += 1;
+      });
+      route.points.slice(0, -1).forEach((point, index) => {
+        const next = route.points[index + 1];
+        if (point.x !== next.x && point.y !== next.y) nonOrthogonalSegments += 1;
+        cards.forEach((rect, nodeId) => {
+          if (nodeId !== route.edge.from && nodeId !== route.edge.to && segmentIntersectsRect(point, next, rect, 1)) {
+            foreignCardCrossings += 1;
+            offenders.push(`${route.edge.id}:path-card:${nodeId}`);
+          }
+        });
+      });
+      const terminal = route.points.at(-1);
+      const beforeTerminal = route.points.at(-2);
+      if (!beforeTerminal || Math.hypot(terminal.x - beforeTerminal.x, terminal.y - beforeTerminal.y) < 12) {
+        arrowheadClearanceFailures += 1;
+        offenders.push(`${route.edge.id}:arrowhead-clearance`);
+      }
+      for (const [nodeId, endpoint] of [[route.edge.from, route.points[0]], [route.edge.to, terminal]]) {
+        const key = `${nodeId}:${endpoint.x.toFixed(1)}:${endpoint.y.toFixed(1)}`;
+        const bundle = nodeId === route.edge.from ? route.plan.bundleId : null;
+        if (usedPorts.has(key) && (!bundle || usedPorts.get(key) !== bundle)) sharedPortCollisions += 1;
+        usedPorts.set(key, bundle);
+      }
+      const labelRect = relativeRect(route.label, root.querySelector('[data-projection-stage]').getBoundingClientRect());
+      routes.slice(routes.indexOf(route) + 1).forEach((other) => {
+        if (intersects(labelRect, relativeRect(other.label, root.querySelector('[data-projection-stage]').getBoundingClientRect()), 1)) labelLabelOverlaps += 1;
+      });
+      cards.forEach((rect, nodeId) => {
+        if (intersects(labelRect, rect, 1)) {
+          labelCardOverlaps += 1;
+          offenders.push(`${route.edge.id}:label-card:${nodeId}`);
+        }
+      });
+      routes.filter((candidate) => candidate !== route).forEach((candidate) => {
+        if (candidate.points.slice(0, -1).some((point, index) => segmentIntersectsRect(point, candidate.points[index + 1], labelRect, 1))) {
+          labelForeignPathOverlaps += 1;
+          offenders.push(`${route.edge.id}:label-path:${candidate.edge.id}`);
+        }
+      });
+      if (labelRect.left < -1 || labelRect.right > width + 1 || labelRect.top < -1 || labelRect.bottom > height + 1) {
+        viewportEscapes += 1;
+        offenders.push(`${route.edge.id}:label-viewport:${route.label.dataset.labelPlacement}`);
+      }
+    });
+    cards.forEach((rect) => {
+      if (rect.left < -1 || rect.right > width + 1 || rect.top < -1 || rect.bottom > height + 1) viewportEscapes += 1;
+    });
+    const drawnEdges = routes.length;
+    const issueCount = foreignCardCrossings + labelCardOverlaps + labelForeignPathOverlaps + labelLabelOverlaps + pathCrossings + pathOverlaps + viewportEscapes + invalidGeometry + arrowheadClearanceFailures + nonOrthogonalSegments + sharedPortCollisions + Math.abs(model.edges.length - drawnEdges);
+    const report = { ok: issueCount === 0, declaredEdges: model.edges.length, drawnEdges, foreignCardCrossings, labelCardOverlaps, labelForeignPathOverlaps, viewportEscapes, invalidGeometry, arrowheadClearanceFailures, nonOrthogonalSegments, sharedPortCollisions, pathCrossings, pathOverlaps, intentionalBundleOverlaps, totalBends, totalRouteLength: Math.round(totalRouteLength), matchedPortPairs: routes.filter((route) => route.plan.matched).length, fanoutBundles: new Set(routes.map((route) => route.plan.bundleId).filter(Boolean)).size, unroutedEdges: geometry.unroutedEdges || [], issueCount, layout: root.dataset.projectionLayout, width, height, offenders };
+    updateReceipt(root, model, report);
+    report.labelLabelOverlaps = labelLabelOverlaps;
+    root.dataset.projectionGeometry = report.ok ? 'pass' : 'fail';
+    root._projectionReport = report;
+    return report;
+  }
+
+  function updateReceipt(root, model, report) {
+    const verdict = root.querySelector('[data-projection-verdict]');
+    const verdictLabel = root.querySelector('[data-projection-verdict-label]');
+    if (verdict) verdict.dataset.state = report.ok ? 'pass' : 'fail';
+    if (verdictLabel) verdictLabel.textContent = report.ok ? 'Geometry PASS' : 'Geometry FAIL';
+    const edgeCount = root.querySelector('[data-projection-edge-count]');
+    if (edgeCount) edgeCount.textContent = `${report.drawnEdges} / ${report.declaredEdges}`;
+    const issues = root.querySelector('[data-projection-issue-count]');
+    if (issues) issues.textContent = String(report.issueCount);
+    const layout = root.querySelector('[data-projection-layout]');
+    if (layout) layout.textContent = report.layout;
+    const quality = root.querySelector('[data-projection-routing-quality]');
+    if (quality) {
+      quality.textContent = `${report.totalBends} bends · ${report.totalRouteLength}px · ${report.pathCrossings + report.pathOverlaps} contacts · ${root.dataset.projectionFlow}`;
+      quality.title = 'Длина и изгибы центральных ортогональных линий; контакты включают пересечения, касания концов и наложения, кроме объявленных общих стволов. Это измерения маршрутов, а не оценка красоты.';
+    }
+    const hash = root.querySelector('[data-projection-source-hash]');
+    if (hash) hash.textContent = model.sourceHash;
+  }
+
+  function renderProjection(root, source) {
+    window.OzProjectionInteractions?.reset(root);
+    const sourceView = root.querySelector('[data-projection-source-view]');
+    if (sourceView) sourceView.textContent = source.trim();
+    try {
+      const model = parseProjection(source.trim());
+      root._projectionModel = model;
+      root._projectionSource = source.trim();
+      const title = root.querySelector('.ds-projection-toolbar h3');
+      if (title) title.textContent = model.title;
+      const fallback = root.querySelector('[data-projection-fallback]');
+      if (fallback) fallback.hidden = true;
+      const metrics = root.querySelector('[data-projection-metrics]');
+      metrics?.replaceChildren(...model.metrics.map((metric) => {
+        const card = document.createElement('div');
+        card.className = 'ds-projection-metric';
+        card.dataset.metricId = metric.id;
+        const value = document.createElement('strong');
+        value.textContent = metric.value;
+        const label = document.createElement('span');
+        label.textContent = metric.label;
+        card.append(value, label);
+        return card;
+      }));
+      const ranks = root.querySelector('[data-projection-ranks]');
+      const groups = Array.from({ length: model.rankCount }, (_, rank) => {
+        const group = document.createElement('div');
+        group.className = 'ds-projection-rank';
+        group.dataset.rank = String(rank);
+        return group;
+      });
+      model.nodes.forEach((node) => {
+        const card = document.createElement('article');
+        card.className = `ds-projection-node is-${node.role}`;
+        card.dataset.projectionNode = node.id;
+        card.tabIndex = 0;
+        card.setAttribute('aria-label', `${node.label}. ${node.detail}`);
+        const role = document.createElement('span');
+        role.textContent = ROLE_LABELS[node.role];
+        const title = document.createElement('strong');
+        title.textContent = node.label;
+        const detail = document.createElement('p');
+        detail.textContent = node.detail;
+        card.append(role, title, detail);
+        groups[node.rank].append(card);
+      });
+      ranks?.replaceChildren(...groups);
+      root.style.setProperty('--projection-ranks', String(model.rankCount));
+      root.dataset.projectionState = 'ready';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (root._projectionModel === model) drawProjection(root, model);
+      }));
+      return model;
+    } catch (error) {
+      root.dataset.projectionState = 'degraded';
+      const fallback = root.querySelector('[data-projection-fallback]');
+      const message = root.querySelector('[data-projection-error]');
+      if (fallback) fallback.hidden = false;
+      if (message) message.textContent = String(error?.message || error);
+      root.querySelector('[data-projection-ranks]')?.replaceChildren();
+      root.querySelector('[data-projection-edges]')?.replaceChildren();
+      const verdict = root.querySelector('[data-projection-verdict-label]');
+      if (verdict) verdict.textContent = 'DEGRADED · raw source preserved';
+      return null;
+    }
+  }
+
+  function resetGeneratedProjection(clone) {
+    clone.removeAttribute('data-projection-highlight');
+    clone.querySelectorAll('[data-ds-popover]').forEach((popover) => { popover.hidden = true; popover.removeAttribute('data-pinned'); });
+    clone.querySelectorAll('[data-ds-help]').forEach((button) => { button.setAttribute('aria-expanded', 'false'); button.removeAttribute('data-pinned'); });
+    clone.removeAttribute('data-projection-instance');
+    clone.removeAttribute('data-projection-geometry');
+    clone.dataset.projectionState = 'loading';
+    clone.querySelector('[data-projection-metrics]')?.replaceChildren();
+    clone.querySelector('[data-projection-ranks]')?.replaceChildren();
+    clone.querySelector('[data-projection-edges]')?.replaceChildren();
+    clone.querySelector('[data-projection-source-view]')?.replaceChildren();
+    clone.querySelector('[data-projection-export]')?.remove();
+    clone.querySelectorAll('[data-projection-live-only]').forEach((element) => element.remove());
+  }
+
+  async function buildOfflineArtifact(root) {
+    const source = root._projectionSource || root.querySelector('[data-projection-model]')?.textContent || '';
+    const model = parseProjection(source.trim());
+    const [baseCss, componentsCss, runtime, interactions] = await Promise.all([
+      fetch('/design_system.css', { cache: 'no-store' }).then((response) => { if (!response.ok) throw new Error(`design_system.css HTTP ${response.status}`); return response.text(); }),
+      fetch('/design_system_components.css', { cache: 'no-store' }).then((response) => { if (!response.ok) throw new Error(`design_system_components.css HTTP ${response.status}`); return response.text(); }),
+      fetch('/design_system_projection.js', { cache: 'no-store' }).then((response) => { if (!response.ok) throw new Error(`design_system_projection.js HTTP ${response.status}`); return response.text(); }),
+      fetch('/design_system_interactions.js', { cache: 'no-store' }).then((response) => { if (!response.ok) throw new Error(`design_system_interactions.js HTTP ${response.status}`); return response.text(); }),
+    ]);
+    const clone = root.cloneNode(true);
+    resetGeneratedProjection(clone);
+    clone.querySelector('[data-projection-model]').textContent = source;
+    clone.removeAttribute('data-projection-default');
+    clone.querySelector('[data-projection-dense-model]')?.remove();
+    clone.querySelector('[data-projection-dense-toggle]')?.remove();
+    clone.querySelector('[data-projection-source-hash]')?.setAttribute('data-expected-source-hash', model.sourceHash);
+    const safeRuntime = `${interactions}\n${runtime}`.replace(/<\/script/gi, '<\\/script');
+    return `<!doctype html>
+<html lang="ru" data-density="standard" data-context="mechanism">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="oz-projection-source-hash" content="${model.sourceHash}">
+  <title>${model.title.replace(/[<>&"]/g, '')} · MyTwoBrain HTML Projection</title>
+  <style>${baseCss}\n${componentsCss}\nbody{padding:32px 0}main{width:min(calc(100% - 32px),1320px);margin:auto}.ds-projection-lab{display:block}</style>
+</head>
+<body data-projection-standalone="1">
+  <main>${clone.outerHTML}</main>
+  <script>window.OZ_PROJECTION_OFFLINE=true;\n${safeRuntime}<\/script>
+</body>
+</html>`;
+  }
+
+  async function exportOffline(root, button) {
+    const original = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Собираю artifact…';
+    try {
+      const html = await buildOfflineArtifact(root);
+      const blobUrl = URL.createObjectURL(new Blob([html], { type: 'text/html;charset=utf-8' }));
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = 'mytwobrain_html_projection_canary.html';
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+      button.textContent = 'Offline HTML готов ✓';
+    } catch (error) {
+      button.textContent = `Export error: ${String(error?.message || error)}`;
+    } finally {
+      button.disabled = false;
+      setTimeout(() => { button.textContent = original; }, 2600);
+    }
+  }
+
+  function installProjection(root) {
+    if (root.dataset.projectionInstance) return;
+    root.dataset.projectionInstance = String(++instanceCounter);
+    window.OzProjectionInteractions?.install(root);
+    const source = root.querySelector('[data-projection-model]')?.textContent || '';
+    const toggle = root.querySelector('[data-projection-dense-toggle]');
+    const denseSource = root.querySelector('[data-projection-dense-model]')?.textContent;
+    function selectSpecimen(dense) {
+      const selected = Boolean(dense && denseSource);
+      toggle?.setAttribute('aria-pressed', String(selected));
+      if (toggle) toggle.textContent = selected ? 'Базовая схема' : 'Расширенная схема';
+      renderProjection(root, selected ? denseSource : source);
+    }
+    selectSpecimen(root.dataset.projectionDefault === 'dense');
+    toggle?.addEventListener('click', () => {
+      selectSpecimen(toggle.getAttribute('aria-pressed') !== 'true');
+    });
+    if (!window.OZ_PROJECTION_OFFLINE) {
+      document.querySelectorAll('[data-projection-open-dense]').forEach((link) => {
+        link.addEventListener('click', () => selectSpecimen(true));
+      });
+    }
+    root.querySelector('[data-projection-source-toggle]')?.addEventListener('click', (event) => {
+      const details = root.querySelector('[data-projection-source]');
+      if (!details) return;
+      details.open = !details.open;
+      event.currentTarget.setAttribute('aria-expanded', String(details.open));
+      if (details.open) details.scrollIntoView({ block: 'nearest' });
+    });
+    root.querySelector('[data-projection-source]')?.addEventListener('toggle', (event) => {
+      root.querySelector('[data-projection-source-toggle]')?.setAttribute('aria-expanded', String(event.currentTarget.open));
+    });
+    root.querySelector('[data-projection-export]')?.addEventListener('click', (event) => { void exportOffline(root, event.currentTarget); });
+    if (window.ResizeObserver) {
+      let frame = 0;
+      const observer = new ResizeObserver(() => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          if (root._projectionModel) drawProjection(root, root._projectionModel);
+        });
+      });
+      observer.observe(root.querySelector('[data-projection-stage]'));
+      root._projectionObserver = observer;
+    }
+  }
+
+  function init() {
+    document.querySelectorAll('[data-html-projection]').forEach(installProjection);
+  }
+
+  window.OzHtmlProjection = Object.freeze({
+    LIMITS,
+    buildOfflineArtifact,
+    drawProjection,
+    parse: parseProjection,
+    renderInto: renderProjection,
+    verify(root) { return root?._projectionModel ? verifyGeometry(root, root._projectionModel) : null; },
+  });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+  else init();
+})();
+</script><script>document.addEventListener("DOMContentLoaded",()=>{
+const roles={fact:"ИСТОЧНИК",derived:"ПРОЕКЦИЯ",gate:"ПРОВЕРКА",
+annotation:"КОМПОНЕНТ",ready:"РЕЗУЛЬТАТ",risk:"ОГРАНИЧЕНИЕ"};
+document.querySelectorAll(".map-projection [data-html-projection]").forEach(root=>{
+(root._projectionModel?.nodes||[]).forEach(node=>{
+const label=root.querySelector('[data-projection-node="'+node.id+'"] > span');
+if(label) label.textContent=roles[node.role];});});},{once:true});</script><link rel="stylesheet" href="portfolio-value.css"><script src="portfolio-value.js" defer></script><meta name="home-source-sha256" content="fadb13ac84f45ccad9532d6262624364415c0a8cd19388e4a5456966ad52913c"></head>
 <body class="portfolio-home"><a class="skip" href="#main">К содержанию</a>
-<header class="masthead"><a class="brand" href="#main">FG <span>Фёдор Горбунов</span></a><nav aria-label="Разделы портфолио"><a href="#harness">MyTwoBrain</a><a href="#system">Схема Harness</a><a href="#construction">Строительный C1</a><a href="#tools">Инструменты</a><a href="#examples">Инженерные кейсы</a></nav></header>
+<header class="masthead"><a class="brand" href="#main">FG <span>Фёдор Горбунов</span></a><nav aria-label="Разделы портфолио"><a href="#value">От основания к результату</a><a href="#harness">MyTwoBrain</a><a href="#system">Схема Harness</a><a href="#construction">Строительный C1</a><a href="#tools">Инструменты</a><a href="#examples">Инженерные кейсы</a></nav></header>
 <main id="main">
-<section class="product-intro" id="harness"><p class="eyebrow">01 / Собственный продукт · MyTwoBrain</p><div class="intro-grid"><h1>Рабочее место<br>для человека<br>и <em>ИИ-агентов.</em></h1><div><p class="lead">Я создаю среду, в которой можно вести длительную задачу с агентами: обсуждать, работать с файлами, распределять поручения и проверять результат.</p><p>Рабочий интерфейс проекта — UI5175: диалог слева, материалы и управление справа. Ниже можно попробовать его устройство в интерактивном макете.</p><div class="hero-links"><a class="button primary" href="#workspace">Попробовать интерактивную экскурсию ↓</a><a class="text-link" href="mytwobrain/index.html">Полный технический обзор ↗</a></div></div></div></section>
+<section class="product-intro" id="harness"><p class="eyebrow">01 / Собственный продукт · MyTwoBrain</p><div class="intro-grid"><h1>Рабочее место<br>для человека<br>и <em>ИИ-агентов.</em></h1><div><p class="lead">Вопрос связан с документом, работа — с исполнителем, результат — с проверкой. История сохраняет путь между ними.</p><p>MyTwoBrain — собственная рабочая среда: человек и агенты видят материалы, ход работы и основания результата.</p><div class="hero-links"><a class="button primary" href="#workspace">Попробовать интерактивную экскурсию ↓</a><a class="text-link" href="mytwobrain/index.html">Полный технический обзор ↗</a></div></div></div></section>
+<section id="value" class="value-section" aria-labelledby="value-title">
+<div class="section-head"><p class="eyebrow">От основания — к результату</p><h2 id="value-title">Что позволяет двигаться дальше</h2><p>В основании — знания, инструменты и проверки. Они соединяются в рабочем месте и помогают довести вопрос до результата, который можно открыть и применить.</p></div>
+<div class="value-grid">
+<div class="value-pyramid"><div class="map-projection" id="map-projection-0">
+<article class="ds-projection-lab" data-html-projection data-projection-state="loading"
+aria-labelledby="map-projection-0-title">
+<div class="ds-projection-toolbar"><div>
+<h3 id="map-projection-0-title">Связи и роли</h3>
+<p>Выделите узел или стрелку: мышью, Tab или касанием. Escape сбрасывает фокус.</p>
+</div><div class="ds-projection-actions">
+<button class="ds-help" type="button" data-ds-help aria-expanded="false"
+aria-controls="map-projection-0-help" aria-label="Справка о схеме">
+<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.6 7.1a3.55 3.55 0 1 1 5.15 3.18c-1.08.55-1.75 1.12-1.75 2.17v.2"/>
+<circle cx="10" cy="15.45" r=".78"/></svg></button>
+</div></div>
+<div class="ds-info-popover" id="map-projection-0-help" data-ds-popover role="dialog"
+aria-modal="false" aria-labelledby="map-projection-0-help-title" hidden>
+<button class="ds-info-close" type="button" data-ds-help-close aria-label="Закрыть справку">×</button>
+<strong id="map-projection-0-help-title">Проследить одну связь</strong>
+<p><b>Что:</b> направление, подпись и концы связи. Фокус выделяет ближайшие связи;
+остальной контекст приглушается. Пунктир означает обратную связь.</p>
+<p><b>Зачем:</b> понять роль компонента и путь результата.</p>
+<p><b>Источник:</b> модель главной страницы портфолио. Расположение — проекция.</p>
+<p><b>Проверить:</b> Tab выделяет узел или стрелку; Escape снимает выделение.
+Нажатие ? закрепляет справку, повторное нажатие закрывает.</p>
+<p>Geometry проверяет только читаемость маршрутов, не готовность или безопасность продукта.</p>
+</div>
+<div class="ds-projection-stage" data-projection-stage role="group" aria-label="Узлы и направленные связи">
+<svg class="ds-projection-edges" data-projection-edges role="group" aria-label="Связи схемы"></svg>
+<div class="ds-projection-ranks" data-projection-ranks></div></div>
+<div class="ds-projection-fallback" data-projection-fallback hidden>
+<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
+<details class="ds-projection-source" data-projection-source>
+<summary>Устройство схемы и техническая проверка</summary>
+<div class="ds-projection-receipt" aria-live="polite">
+<span><i data-projection-verdict></i><b data-projection-verdict-label>Проверяю маршруты…</b></span>
+<span><b data-projection-edge-count>—</b> связей</span>
+<span><b data-projection-issue-count>—</b> ошибок геометрии</span></div>
+<pre data-projection-source-view>projection &quot;От основания — к решению&quot;
+node execution annotation &quot;Исполнение&quot; &quot;Модели, инструменты и оркестрация&quot;
+node proof gate &quot;Контроль&quot; &quot;Права, версии и проверки&quot;
+node knowledge fact &quot;Знания и основания&quot; &quot;История, Wiki, документы и данные&quot;
+node workplace annotation &quot;MyTwoBrain&quot; &quot;Общее рабочее место человека и агентов&quot;
+node artifact derived &quot;Открываемый результат&quot; &quot;Инструмент, расчёт, документ или поручение&quot;
+node decision ready &quot;Решение человека&quot; &quot;Принять, уточнить и действовать&quot;
+edge knowledge -&gt; workplace &quot;контекст&quot;
+edge execution -&gt; workplace &quot;действие&quot;
+edge proof -&gt; workplace &quot;проверка&quot;
+edge workplace -&gt; artifact &quot;подготовка&quot;
+edge artifact -&gt; decision &quot;основание&quot;
+edge decision -&gt; knowledge &quot;опыт&quot; feedback</pre>
+<p>Источник: <b data-projection-source-hash>—</b>. Это идентификатор модели, не подпись безопасности.</p></details>
+<pre data-projection-model hidden>projection &quot;От основания — к решению&quot;
+node execution annotation &quot;Исполнение&quot; &quot;Модели, инструменты и оркестрация&quot;
+node proof gate &quot;Контроль&quot; &quot;Права, версии и проверки&quot;
+node knowledge fact &quot;Знания и основания&quot; &quot;История, Wiki, документы и данные&quot;
+node workplace annotation &quot;MyTwoBrain&quot; &quot;Общее рабочее место человека и агентов&quot;
+node artifact derived &quot;Открываемый результат&quot; &quot;Инструмент, расчёт, документ или поручение&quot;
+node decision ready &quot;Решение человека&quot; &quot;Принять, уточнить и действовать&quot;
+edge knowledge -&gt; workplace &quot;контекст&quot;
+edge execution -&gt; workplace &quot;действие&quot;
+edge proof -&gt; workplace &quot;проверка&quot;
+edge workplace -&gt; artifact &quot;подготовка&quot;
+edge artifact -&gt; decision &quot;основание&quot;
+edge decision -&gt; knowledge &quot;опыт&quot; feedback</pre>
+<noscript><p>Для стрелок и фокуса включите JavaScript. Исходная модель доступна выше.</p></noscript>
+</article></div></div>
+<div class="value-observer" aria-label="Раскрытие причинной связи">
+<nav class="value-choices" aria-label="Рассмотреть связь"><button type="button" data-value-select="workplace" aria-pressed="true">Рабочее место</button><button type="button" data-value-select="knowledge" aria-pressed="false">Основания</button><button type="button" data-value-select="execution" aria-pressed="false">Исполнение</button><button type="button" data-value-select="proof" aria-pressed="false">Проверка</button><button type="button" data-value-select="artifact" aria-pressed="false">Результат</button><button type="button" data-value-select="decision" aria-pressed="false">Решение</button></nav>
+<p class="value-status" data-value-status aria-live="polite">Рабочее место · диалог и предмет работы рядом</p>
+<article data-value-scene="workplace"><p class="eyebrow">Общая работа человека и агентов</p><h3>Разговор остаётся. Предмет работы — рядом.</h3><figure><a href="assets/harness-workplace.png" data-zoom class="screen-zoom" aria-label="Увеличить целый реальный интерфейс MyTwoBrain"><img src="assets/harness-workplace.png" width="1700" height="1050" alt="Реальное рабочее место: диалог и управление слева, документ и его содержание справа"></a><figcaption>Действующий интерфейс · 12 октября 2026. Нажмите, чтобы рассмотреть целиком.</figcaption></figure><ol class="value-trail"><li>Вопрос в диалоге</li><li>Документ и план рядом</li><li>Проверка и следующий шаг</li></ol><p>Можно читать документ, обсуждать его и переходить к действию, сохраняя общий контекст.</p><a class="text-link" href="mytwobrain/workspace.html">Проследить работу в макете ↗</a></article>
+<article data-value-scene="knowledge" hidden><p class="eyebrow">Знания и основания</p><h3>Найденное знание ведёт к своему источнику.</h3><figure><a href="assets/harness-ontology.png" data-zoom class="screen-zoom" aria-label="Увеличить экран Wiki"><img src="assets/harness-ontology.png" alt="Wiki: понятие, его связи и ответственный источник" loading="lazy"></a><figcaption>Wiki — смысловой вход к документам и принятым определениям.</figcaption></figure><ol class="value-trail"><li>Термин или вопрос</li><li>Определение и владелец</li><li>Действующий документ</li></ol><p>История сохраняет ход работы; Wiki, онтология и документы помогают найти основание для продолжения.</p><a class="text-link" href="mytwobrain/index.html#knowledge-memory">Рассмотреть знания и память ↗</a></article>
+<article data-value-scene="execution" hidden><p class="eyebrow">Исполнение и передача</p><h3>У поручения видны исполнитель и следующий шаг.</h3><ol class="value-trail"><li>Цель и ограничения</li><li>Роли и зависимости</li><li>Материал для общей проверки</li></ol><p>Оркестрация связывает отдельные работы. Модель, инструменты и права выбираются под задачу; переданный результат остаётся связан с поручением.</p><div class="value-object"><span>Объект работы</span><strong>План → исполнитель → возвращённый результат</strong><p>Кто работает, что подготовлено и что ещё требует решения.</p></div><a class="text-link" href="mytwobrain/workspace.html?tab=agents">Увидеть исполнителей в макете ↗</a></article>
+<article data-value-scene="proof" hidden><p class="eyebrow">Проверка текущего основания</p><h3>Изменились данные — прежняя проверка устарела.</h3><ol class="value-trail"><li>Данные с пропуском</li><li>Восстановление и проверка</li><li>Изменение входа отменяет прежний статус</li></ol><div class="value-object"><span>Учебный сценарий</span><strong>Основание r1 → проверено r2 → новый вход r3</strong><p>В макете можно пройти восстановление, принять результат и изменить данные.</p></div><p>Статус относится к конкретной версии. Agent-CI и предметная проверка помогают увидеть, что подтверждено и где требуется повторная работа.</p><a class="text-link" href="mytwobrain/workspace.html?tab=checks">Изменить условия и проверить ↗</a></article>
+<article data-value-scene="artifact" hidden><p class="eyebrow">Прикладной инструмент · DORI</p><h3>Параметры становятся расчётом, который можно проверить.</h3><figure><a href="assets/dori-geometry.png" data-zoom class="screen-zoom" aria-label="Увеличить расчётный интерфейс DORI"><img src="assets/dori-geometry.png" alt="DORI: параметры, расчёт и геометрия камеры" loading="lazy"></a><figcaption>Открываемый калькулятор · два направления расчёта.</figcaption></figure><ol class="value-trail"><li>Дистанция и ширина участка</li><li>Расчёт объектива</li><li>Схема и требования к камере</li></ol><p>При изменении дистанции меняется требуемый объектив. Можно увидеть зависимость и проверить её собственными входами.</p><a class="text-link" href="examples/dori.html">Изменить параметры DORI ↗</a></article>
+<article data-value-scene="decision" hidden><p class="eyebrow">C1 · учебный строительный пример</p><h3>Состояние объекта становится основанием поручения.</h3><figure><a href="assets/construction-model.png" data-zoom class="screen-zoom" aria-label="Увеличить строительный объект и его состояние"><img src="assets/construction-model.png" alt="Фундамент: захватки, состояние работ и связанный расчёт" loading="lazy"></a><figcaption>Чертёж, модель, объёмы и график относятся к одному объекту.</figcaption></figure><ol class="value-trail"><li>Для З-3 не хватает арматуры</li><li>Исходный срок требует пересмотра</li><li>Основания → поручение ПТО и снабжению</li></ol><p>Руководитель принимает решение. Поручение связывает участок, основания, исполнителей и условия завершения.</p><a class="text-link" href="fact-to-decision/index.html#decision-tools">Проследить путь к поручению ↗</a></article>
+<noscript><p>Без JavaScript первым показано рабочее место. Остальные пути доступны в карте портфолио ниже.</p></noscript>
+</div></div>
+<div class="value-effects"><article><h3>Продолжить с достигнутого</h3><p>Контекст и следующий шаг сохранены; нужный материал можно открыть рядом.</p></article><article><h3>Увидеть, что проверено</h3><p>Источник, расчёт и версия результата связаны. Изменения требуют новой проверки.</p></article><article><h3>Переиспользовать сделанное</h3><p>Знания и инструменты переходят в следующую задачу; уточняется затронутая часть.</p></article></div>
+
+</section>
 <nav id="catalog" class="portfolio-routes" aria-label="Карта портфолио"><h2>Что посмотреть</h2><div class="route-grid"><article><span class="index-label">01 / Рабочая среда</span><h3>MyTwoBrain</h3><p>Как человек и агенты ведут общую задачу.</p><a href="mytwobrain/index.html">Подробный обзор ↗</a><a href="#system">Схема связей ↓</a><a href="#workspace">Попробовать макет ↓</a></article><article><span class="index-label">02 / Внедрение в компанию</span><h3>Факт → Решение</h3><p>Как связать документы, расчёты и решения.</p><a href="fact-to-decision/index.html">Открыть строительный C1 ↗</a><a href="fact-to-decision/index.html#decision-tools">3D, чертёж и графики ↗</a></article><article><span class="index-label">03 / Прикладные работы</span><h3>Инструменты и кейсы</h3><p>Расчётные и рабочие интерфейсы на конкретных задачах.</p><a href="#tools">DORI · HR · ферма кроликов ↓</a><a href="#examples">Поток данных и аналитика ↓</a><a href="#utilities">Дополнительные утилиты ↓</a></article></div></nav>
 <section id="capabilities" class="section"><div class="section-head"><p class="eyebrow">Что это даёт в работе</p><h2>Одна точка входа в длительную задачу</h2><p>Не нужно заново собирать разговор, файлы и поручения при каждом переключении. Смена представления помогает рассмотреть ту же работу с другой стороны.</p></div>
 <div class="capability-grid"><article><h3>Продолжить после перерыва</h3><p>История, план и закладки помогают восстановить принятые решения и следующий шаг. Черновик сообщения сохраняется в интерфейсе.</p><a href="mytwobrain/workspace.html?tab=context" data-demo-scene="context">Контекст и закладки ↓</a></article><article><h3>Проверить, что понял агент</h3><p>Документ, перевод и терминология доступны рядом с обсуждением. Модель и глубина рассуждения выбираются под задачу.</p><a href="mytwobrain/workspace.html?tab=translation" data-demo-scene="translation">Перевод в макете ↓</a></article><article><h3>Увидеть основание результата</h3><p>Поручение, выполненные действия и отчёт проверки остаются различимы. Доставка сообщения не подменяет приёмку работы.</p><a href="mytwobrain/workspace.html?tab=checks" data-demo-scene="checks">Проверка и приёмка ↓</a></article></div></section>
@@ -55,7 +2286,8 @@
 <div class="case-feature pipeline-feature"><a class="case-visual chart-cover" href="examples/data-pipeline.html" aria-label="Открыть кейс потока данных"><svg viewBox="0 0 620 275" role="img" aria-labelledby="chart-title"><title id="chart-title">Схема пропуска и восстановления временного ряда</title><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#2e3c42" stroke-width=".6"/></pattern></defs><rect width="620" height="275" fill="url(#grid)"/><rect x="255" y="40" width="105" height="195" fill="#d0aa5416"/><path d="M30 178L70 161L110 171L150 132L190 143L235 109M380 114L420 128L460 85L500 94L545 64L590 77" fill="none" stroke="#84cdb8" stroke-width="3"/><path d="M235 109L275 121L310 98L345 111L380 114" fill="none" stroke="#d0aa54" stroke-width="3" stroke-dasharray="5 5"/><g fill="#cbd5dd" font-family="sans-serif" font-size="13"><text x="30" y="30">ВРЕМЕННОЙ РЯД</text><text x="263" y="258">пропуск</text><text x="440" y="258">восстановление ↗</text></g></svg><span>Источник → проверка → история → расчёт</span></a><div><span class="index-label">01 / Данные и надёжность</span><h3>Поток данных и восстановление</h3><p>Что делать, если сервис работает, а история неполная? Разобран путь записи и контроль пропусков, дублей и доверия к источнику.</p><a class="button" href="examples/data-pipeline.html">Открыть кейс с иллюстрациями ↗</a></div></div>
 <div class="secondary-cases"><a href="examples/analytics.html"><span class="index-label">02 / Аналитика</span><h3>Исследование с участием человека</h3><p>Событие на графике, версия расчёта, проверка и границы вывода.</p><span class="text-link">Читать кейс ↗</span></a></div>
 <div id="utilities" class="utility-links"><h3>Дополнительные утилиты</h3><p>Ранее опубликованные проекты. Открываются репозитории с описанием и инструкциями, не браузерные демо.</p><a href="https://github.com/consulfedor/VoiceGrab"><strong>VoiceGrab ↗</strong><span>Голосовой ввод, расшифровка и перевод для Windows.</span></a><a href="https://github.com/consulfedor/punto-fix"><strong>PuntoFix ↗</strong><span>Исправление текста, набранного в другой раскладке, для Linux.</span></a></div></section>
-<section class="contact"><p class="eyebrow">Фёдор Горбунов</p><h2>От рабочей задачи —<br>к проверяемому <em>первому этапу.</em></h2><p>Проработка требований, агентная разработка, инструменты и интерфейс совместной работы. Предмет разговора — ваши данные, ожидаемый результат и способ его принять.</p><a class="button primary" href="mailto:consulfedor@gmail.com">Обсудить задачу ↗</a></section>
-</main><footer><span>MyTwoBrain · Факт → Решение</span><a href="https://github.com/consulfedor/time-series-core-showcase">GitHub · исходники витрины ↗</a><a href="overview.html">Краткий обзор / English summary ↗</a></footer>
-<dialog class="screen-dialog" aria-label="Увеличенный снимок интерфейса"><div><span>Расчётный интерфейс · исходный прототип</span><button type="button" data-close-zoom>Закрыть ✕</button></div><img alt=""><p>Esc — закрыть. На узком экране снимок прокручивается по горизонтали.</p></dialog>
+<section class="contact"><p class="eyebrow">Связь работ</p><h2>Одна основа.<br>Разные <em>задачи.</em></h2><p>MyTwoBrain показывает, как организована совместная работа. C1 связывает её со строительным объектом. Прикладные инструменты раскрывают отдельные пути от вопроса к результату.</p><a class="text-link" href="#value">Вернуться к целому ↑</a></section>
+</main><footer><span>Фёдор Горбунов · MyTwoBrain / Факт → Решение</span><a href="mailto:consulfedor@gmail.com">consulfedor@gmail.com</a><a href="https://github.com/consulfedor/time-series-core-showcase">GitHub · исходники витрины ↗</a><a href="overview.html">Краткий обзор / English summary ↗</a></footer>
+<dialog class="screen-dialog" aria-label="Увеличенный снимок интерфейса"><div><span>Рабочий интерфейс · увеличенный кадр</span><button type="button" data-close-zoom>Закрыть ✕</button></div><img alt=""><p>Esc — закрыть. На узком экране снимок прокручивается по горизонтали.</p></dialog>
 </body></html>
+
