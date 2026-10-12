@@ -15,30 +15,6 @@
 <p><a href="workspace.html">Открыть интерактивное рабочее место</a> ·
 <a href="../fact-to-decision/index.html">C1 «Факт → Решение»: применение в строительстве</a> ·
 <a href="../overview.html">Портфолио</a></p>
-<h2>Как выглядит рабочая среда</h2>
-<figure>
-<a href="../assets/harness-docs.png"><img src="../assets/harness-docs.png" width="1700" height="1050" alt="Настоящий MyTwoBrain: слева разговор, справа Markdown-документ; выбор модели и ввод сообщения внизу"></a>
-<figcaption>Диалог и документ остаются рядом. Пользователь обсуждает конкретный материал, видит его структуру и может переключиться к исполнителям, плану или переводу.</figcaption>
-</figure>
-
-<p>Это снимки действующего интерфейса от 12 октября 2026. Для публичного показа
-открыт README проекта и выбран фрагмент разговора о портфолио. Внутренние
-идентификаторы и названия частных проектов скрыты; состояния оставлены как
-на момент съёмки. Нажатие на изображение открывает его в полном размере.</p>
-<details>
-<summary>Explorer: список файлов и предпросмотр в той же панели</summary>
-<figure><a href="../assets/harness-explorer.png"><img src="../assets/harness-explorer.png" width="1700" height="1050" alt="Explorer и Markdown-предпросмотр рядом с диалогом" loading="lazy"></a><figcaption>Выбор файла обновляет предпросмотр. Разговор остаётся слева; материал можно открыть в Viewer или посмотреть его исходный текст.</figcaption></figure>
-</details>
-<details>
-<summary>Агенты: роли, модели, группы и состояния</summary>
-<figure><a href="../assets/harness-agents.png"><img src="../assets/harness-agents.png" width="1700" height="1050" alt="Реестр агентов с моделями, ролями и состояниями; частные названия скрыты" loading="lazy"></a><figcaption>Реестр помогает найти исполнителя и перейти к его работе. Наличие процесса, текущая активность и роль — отдельные признаки.</figcaption></figure>
-</details>
-
-<p><a href="workspace.html?tab=docs">Попробовать документы в макете</a> ·
-<a href="workspace.html?tab=agents">Посмотреть роли исполнителей</a> ·
-<a href="workspace.html?tab=checks">Пройти проверку результата</a></p>
-<p>Скриншоты показывают реальный продукт. Интерактивная экскурсия объясняет его
-логику на учебных данных и не обращается к частным сервисам.</p>
 <h2>Одна задача — несколько представлений</h2>
 <p>Предположим, нужно изменить правило расчёта в рабочем приложении.
 Это пример процесса, а не отчёт о конкретном внедрении.</p>
@@ -116,6 +92,10 @@
 Сам интерфейс не делает ответы модели детерминированными: воспроизводимыми
 должны быть входные данные, проверки и условия приёмки.</p>
 <h2>Как устроен Harness</h2>
+<p><a href="../index.html#system">Открыть схему связей Harness</a>: человек и общая точка
+UI/API → агентная работа с контекстом и моделями → инструменты → проверка
+→ результат для приёмки. Блоки схемы ведут к описанию или соответствующей
+сцене интерактивного макета.</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -248,8 +228,7 @@ Wiki, графы документов, Zettelkasten и AST дают разные
 к истории не равна гарантии автоматического восстановления каждого процесса.</p>
 <p>Наблюдение за исполнением объединяет состояния агентов, сервисов, журналов
 и проверок. Watchdog помогает обнаруживать конкретные классы сбоев;
-его доступность не подтверждает безотказность всей системы. Публичные снимки
-показывают определённый момент работы, а не постоянный уровень сервиса.</p>
+его доступность не подтверждает безотказность всей системы.</p>
 <h2>Предметные приложения</h2>
 <p>Harness организует работу, а приложения решают свои задачи. Они используют
 общие возможности контекста, инструментов и проверки, сохраняя собственные
@@ -276,6 +255,8 @@ Wiki, графы документов, Zettelkasten и AST дают разные
 </tr>
 </tbody>
 </table></div>
+<p><a href="../index.html#examples">Посмотреть расчётный интерфейс DORI</a> — исходные
+параметры камеры рядом с геометрическими видами и численным результатом.</p>
 <p>Эти примеры не означают готовое внедрение в компании заказчика или доказанную
 коммерческую эффективность. Основной продукт здесь — MyTwoBrain; C1 показывает
 отдельную концепцию применения накопленного опыта в строительстве.</p>
@@ -293,6 +274,6 @@ roles, tools and change validation. Wiki, document graphs, Zettelkasten and AST
 navigation provide distinct routes to relevant knowledge and source code.
 Agent-CI records checks for a specific code candidate; deployment and human
 acceptance remain separate steps. The public workspace illustrates the UI
-with demonstration data, alongside privacy-prepared captures of the actual UI.
+with demonstration data.
 Multi-agent coordination remains human-supervised. Domain applications are
 supporting case studies, not substitutes for the Harness itself.</p><hr><a class="source-link" href="README.md">Исходный Markdown</a></article></body></html>
