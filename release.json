@@ -6,7 +6,7 @@
   ],
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "fadb13ac84f45ccad9532d6262624364415c0a8cd19388e4a5456966ad52913c",
+    "source_sha256": "bc10e238837816fd29e7a87296f38095c27c287833e0b5accf8042585f9b4350",
     "model_owner": "portfolio-home.html",
     "commercial_kpi_claimed": false
   },
@@ -32,7 +32,7 @@
     "markdown_sha256": "405c27c4240ab76b3eab487d3efc19dcfa9347e483861495ee05b37a41cee178"
   },
   "derived": {
-    "index.html": "dd30eca399a251d879182f650adff2ffe31a762a4b919deeaf9d18def2a43b40",
+    "index.html": "6208144e6bfdcc88745321b879fa33d5ef95619c99487bcd24b3e5d8029763ee",
     "portfolio-value.css": "f05643af6d5bf73badcaf09f677eb6092e61dc3ff190683ba756b3f0f4ed8cd4",
     "portfolio-value.js": "64c667fdb267c2d1b9d0457cb71a4fcb0f7de0c1052e87379782d0acb37b47ea",
     "fact-to-decision/index.html": "7726a26a9d92a030902c8613488dc3f857da906d0c0ba8f1d7fd0e208190fb79",
