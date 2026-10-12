@@ -32,11 +32,21 @@ MyTwoBrain — развиваемая частная система, испол�
 
 ## Прикладные примеры
 
+[Карта портфолио](index.html#catalog) ·
+[Попробовать инструменты](index.html#tools)
+
 | Пример | Что можно посмотреть |
 |---|---|
+| [DORI: подбор камеры](examples/dori.html) | Оригинальный интерактивный калькулятор: оборудование → геометрия и задача → требования к камере; также встроен в главную |
+| [HR-помощник: карточка кандидата](https://consulfedor.github.io/candidate-handoff-card/) | Вакансия, резюме, интервью, основания решения и передача руководителю; [исходники](https://github.com/consulfedor/candidate-handoff-card) |
 | [Поток данных и восстановление](examples/data-pipeline.html) | HTML-кейс: путь данных, интерактивный пример пропуска и реальный экран покрытия истории |
 | [Аналитика с участием человека](examples/analytics.md) | Событие, расчёт, исследовательская версия и подтверждение результата |
 | [Invisible Rabbit Farm](https://consulfedor.github.io/invisible-rabbit-farm/) | Самостоятельный интерактивный прототип объяснимых оценок по косвенным сигналам; [исходники](https://github.com/consulfedor/invisible-rabbit-farm) |
+
+Дополнительные утилиты:
+[VoiceGrab](https://github.com/consulfedor/VoiceGrab) — голосовой ввод и перевод;
+[PuntoFix](https://github.com/consulfedor/punto-fix) — исправление раскладки.
+Это ссылки на репозитории с инструкциями, не на браузерные демонстрации.
 
 ## Что я делаю
 
