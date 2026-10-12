@@ -57,5 +57,12 @@
   $('#draft').addEventListener('input',()=>{$('#draft-state').textContent=$('#draft').value?'сохранён в этой странице':'не отправляется';});
   ['model','effort'].forEach(id=>$('#'+id).addEventListener('change',()=>{state.events.push(`Настройка ${id==='model'?'модели':'режима'}: ${$('#'+id).selectedOptions[0].textContent}. Внешнего вызова нет.`);render();announce('Настройка изменена в макете; диалог и черновик сохранены.');}));
   if(new URLSearchParams(location.search).get('embed')==='1'){document.body.classList.add('embedded');new ResizeObserver(()=>parent.postMessage({type:'portfolio-workspace-height',height:document.body.scrollHeight},location.origin==='null'?'*':location.origin)).observe(document.body);}
-  tour('docs');
+  const scenes = new Set(['docs','agents','plan','checks','memory','translation','board','context','history']);
+  function showScene(scene) {if(scenes.has(scene)){if(captions[scene])tour(scene);else open(scene);}}
+  window.addEventListener('message', e => {
+    if(e.source!==parent||e.origin!==location.origin||e.data?.type!=='portfolio-workspace-scene')return;
+    showScene(e.data.scene);
+  });
+  const requestedScene=new URLSearchParams(location.search).get('tab');
+  showScene(scenes.has(requestedScene)?requestedScene:'docs');
 })();
