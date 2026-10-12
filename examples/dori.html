@@ -496,7 +496,7 @@
                 <strong id="res-angle">0°</strong>
             </div>
             <div class="result-card" title="Business purpose: Target control distance.">
-                <span>Distance ℹ️</span>
+                <span>Ground Distance ℹ️</span>
                 <strong id="res-dist">0 m</strong>
             </div>
         </div>
@@ -722,9 +722,12 @@
     const limitO = document.getElementById('limit-o');
     const limitD = document.getElementById('limit-d');
 
-    function setDistance(val) {
-        elDistSlider.value = val;
-        elDistInput.value = val;
+    function setDistance(groundDistance) {
+        const height = Number(elHeightInput.value);
+        const slant = Math.floor(Math.hypot(groundDistance, height) * 10) / 10;
+        const value = Math.max(Number(elDistInput.min), Math.min(Number(elDistInput.max), slant));
+        elDistSlider.value = value;
+        elDistInput.value = value;
         calculate();
     }
 
@@ -840,14 +843,8 @@
         const focalL = parseFloat(elFocInput.value);
         const camHeight = parseFloat(elHeightInput.value);
         
-        // Enforce that slant distance cannot be less than mounting height
-        elDistInput.min = Math.ceil(camHeight);
-        elDistSlider.min = Math.ceil(camHeight);
-        
-        let hypotenuse = parseFloat(elDistInput.value);
-        if (hypotenuse < camHeight) {
-            hypotenuse = camHeight + 0.1; // Safety fallback
-        }
+        if (!validateInputs()) return;
+        const hypotenuse = parseFloat(elDistInput.value);
         
         const dist = Math.sqrt(hypotenuse * hypotenuse - camHeight * camHeight); // Ground distance
 
@@ -918,10 +915,10 @@
         limitO.innerText = valO.toFixed(1) + ' m';
         limitD.innerText = valD.toFixed(1) + ' m';
 
-        document.getElementById('li-limit-i').onclick = () => setDistance(Math.round(valI));
-        document.getElementById('li-limit-r').onclick = () => setDistance(Math.round(valR));
-        document.getElementById('li-limit-o').onclick = () => setDistance(Math.round(valO));
-        document.getElementById('li-limit-d').onclick = () => setDistance(Math.round(valD));
+        document.getElementById('li-limit-i').onclick = () => setDistance(valI);
+        document.getElementById('li-limit-r').onclick = () => setDistance(valR);
+        document.getElementById('li-limit-o').onclick = () => setDistance(valO);
+        document.getElementById('li-limit-d').onclick = () => setDistance(valD);
 
         // Update SVG Visual with distances
         updateSvg(angleRad, vAngleRad, tiltRad, fov, fovH, dist, camHeight, dMin, valI, valR, valO, valD);
@@ -983,7 +980,7 @@
         document.getElementById('scene-height-label').innerText = fovH.toFixed(1) + ' m';
         
         const textDist = document.getElementById('svg-dist-text');
-        textDist.innerHTML = `<title>Business purpose: Current distance from the camera to the target.</title>${dist} m`;
+        textDist.textContent = `${dist.toFixed(1)} m ground`;
 
         // ---- 1. TOP VIEW (fov-svg) ----
         const cx = 150;
@@ -993,13 +990,15 @@
         // For top view, max distance scale
         const visibleDistMax = Math.max(dist * 1.1, valO); 
         const pxPerMeter = maxH / visibleDistMax;
+        // Separate axis scales keep narrow, long-range coverage readable.
+        const xScale = Math.min(28, 110 / Math.max(fovW / 2, 0.1));
         const drawH = dist * pxPerMeter;
         
         // Clip poly for top view
         const clipPoly = document.getElementById('fov-poly');
         const outlinePoly = document.getElementById('fov-poly-outline');
         
-        const maxDrawHalfW = maxH * Math.tan(angleRad / 2);
+        const maxDrawHalfW = Math.min(140, visibleDistMax * Math.tan(angleRad / 2) * xScale);
         const pointsStr = `${cx},${cy + dMin * pxPerMeter} ${cx - maxDrawHalfW},${cy + maxH} ${cx + maxDrawHalfW},${cy + maxH}`;
         clipPoly.setAttribute('points', pointsStr);
         outlinePoly.setAttribute('points', pointsStr);
@@ -1026,7 +1025,7 @@
 
         const targetLine = document.getElementById('target-dist-line');
         const ty = cy + drawH;
-        const drawHalfW = drawH * Math.tan(angleRad / 2);
+        const drawHalfW = Math.min(140, fovW / 2 * xScale);
         targetLine.setAttribute('y1', ty);
         targetLine.setAttribute('y2', ty);
         
@@ -1735,7 +1734,8 @@
         <h2>Required Equipment (Result)</h2>
         
         <div class="result-card">
-            <span>Minimum Required Pixels (by scene width)</span>
+            <span>Minimum Pixels for the Requested Scene Width</span>
+            <button type="button" title="What: horizontal pixels = scene width × required PPM. Why: select detail level. Source: current width and task inputs. Verify: change width or task; distance changes the lens, not this minimum.">?</button>
             <strong id="res-pixels" class="highlight-accent">0 px</strong>
             <div id="res-table" style="margin-top: 16px; text-align: left;">
                 <!-- Generated by JS -->
@@ -1743,12 +1743,14 @@
         </div>
 
         <div class="result-card">
-            <span>Required Lens Focal Length</span>
+            <span>Required Lens Focal Length (Exact Width)</span>
             <strong id="res-focal" class="highlight-accent" style="color: #3b82f6 !important;">0 mm</strong>
             <div class="recommendation">
-                Closest fixed lens: <span id="rec-lens-fixed" style="color: #3b82f6;">...</span><br>
+                Fixed lens covering the full width: <span id="rec-lens-fixed" style="color: #3b82f6;">...</span><br>
                 Or varifocal range: <span id="rec-lens-var" style="color: #3b82f6;">...</span>
             </div>
+            <p id="rec-fixed-check" style="margin-top:12px; font-size:0.85rem; color:#94a3b8;" aria-live="polite"></p>
+            <button type="button" title="What: an alternative fixed lens, not an exact substitute. Why: check the complete lens/resolution combination. Source: built-in example lens and resolution lists, not a vendor catalogue. Verify: actual width and PPM in the note must meet the requested width and task.">?</button>
         </div>
 
         <div class="result-card" style="margin-bottom: 0;">
@@ -1873,20 +1875,15 @@
     }
 
     function findClosestLenses(focalL) {
-        let exactOrLower = standardLenses[0];
-        let exactOrHigher = standardLenses[standardLenses.length - 1];
-
-        // Find closest standard fixed lenses
-        let closestFix = standardLenses.reduce((prev, curr) => Math.abs(curr - focalL) < Math.abs(prev - focalL) ? curr : prev);
-
-        // Suggest Varifocal range
-        let varRange = "";
-        if (focalL <= 4) varRange = "2.8 - 12 mm";
-        else if (focalL <= 12) varRange = "2.8 - 12 mm";
-        else if (focalL <= 25) varRange = "5 - 50 mm";
-        else varRange = "Specialized telephoto lens";
-
-        return { fix: closestFix, varRange: varRange };
+        // A longer lens would crop the requested width. Prefer the largest
+        // listed focal length that still covers it, then verify resolution.
+        const candidates = standardLenses.filter(value => value <= focalL + 1e-9);
+        const fix = candidates.length ? candidates[candidates.length - 1] : null;
+        let varRange = 'No listed range; check a compatible wider lens';
+        if (focalL >= 2.8 && focalL <= 12) varRange = '2.8 - 12 mm';
+        else if (focalL >= 5 && focalL <= 50) varRange = '5 - 50 mm';
+        else if (focalL > 50) varRange = 'Beyond 50 mm; verify a compatible telephoto lens';
+        return { fix, varRange };
     }
 
     function calculate() {
@@ -1899,14 +1896,8 @@
         
         const camHeight = parseFloat(elHeightInput.value);
         
-        // Enforce that slant distance cannot be less than mounting height
-        elDistInput.min = Math.ceil(camHeight);
-        elDistSlider.min = Math.ceil(camHeight);
-        
-        let hypotenuse = parseFloat(elDistInput.value);
-        if (hypotenuse < camHeight) {
-            hypotenuse = camHeight + 0.1; // Safety fallback
-        }
+        if (!validateInputs()) return;
+        const hypotenuse = parseFloat(elDistInput.value);
         
         const dist = Math.sqrt(hypotenuse * hypotenuse - camHeight * camHeight); // Ground distance
         
@@ -1934,8 +1925,19 @@
         resFocal.innerText = focalL.toFixed(2) + ' mm';
         
         const lenses = findClosestLenses(focalL);
-        recLensFixed.innerText = lenses.fix + ' mm';
+        recLensFixed.innerText = lenses.fix === null ? 'No listed lens covers the width' : lenses.fix + ' mm';
         recLensVar.innerText = lenses.varRange;
+        const fixedCheck = document.getElementById('rec-fixed-check');
+        if (lenses.fix !== null) {
+            const actualWidth = hypotenuse * sensorW / lenses.fix;
+            const fixedPixels = actualWidth * targetPpm;
+            const fixedResolution = standardResolutions.find(res => res.px >= fixedPixels);
+            fixedCheck.textContent = fixedResolution
+                ? `Fixed-lens alternative: ${actualWidth.toFixed(1)} m coverage; use at least ${fixedResolution.mp} (${fixedResolution.px} px across) for ${(fixedResolution.px / actualWidth).toFixed(0)} PPM. The minimum above assumes the exact-width lens.`
+                : `Fixed-lens alternative covers ${actualWidth.toFixed(1)} m and needs ${Math.ceil(fixedPixels)} horizontal pixels. No listed resolution is sufficient; change the lens or design.`;
+        } else {
+            fixedCheck.textContent = 'The example lens list cannot cover this width. Select a compatible wider lens or revise the placement; no fixed-lens package is recommended.';
+        }
 
         // 4. Angle Calculation
         // Angle = 2 * arctan(SensorWidth / (2 * FocalLength))
@@ -1953,7 +1955,11 @@
                 break;
             }
         }
-        if (!matchedResObj) matchedResObj = {px: neededPx}; // fallback
+        const noListedResolution = !matchedResObj;
+        if (!matchedResObj) matchedResObj = {px: 0};
+        document.getElementById('resolution-status').textContent = noListedResolution
+            ? 'No listed camera meets this requirement. The geometry remains visible; do not treat it as a feasible equipment package.'
+            : 'Geometric estimate only: verify lighting, motion, optics and mounting on site.';
 
         const calcMaxHypot = (ppm) => ((matchedResObj.px * focalL) / (ppm * sensorW));
         const getGroundDist = (hypot) => hypot > camHeight ? Math.sqrt(hypot * hypot - camHeight * camHeight) : 0;
@@ -1983,7 +1989,7 @@
         document.getElementById('scene-height-label').innerText = fovH.toFixed(1) + ' m';
         
         const textDist = document.getElementById('svg-dist-text');
-        textDist.innerHTML = `<title>Business purpose: Current distance from the camera to the target.</title>${dist} m`;
+        textDist.textContent = `${dist.toFixed(1)} m ground`;
 
         // ---- 1. TOP VIEW (fov-svg) ----
         const cx = 150;
@@ -1993,13 +1999,15 @@
         // For top view, max distance scale
         const visibleDistMax = Math.max(dist * 1.1, valO); 
         const pxPerMeter = maxH / visibleDistMax;
+        // Separate axis scales keep narrow, long-range coverage readable.
+        const xScale = Math.min(28, 110 / Math.max(fovW / 2, 0.1));
         const drawH = dist * pxPerMeter;
         
         // Clip poly for top view
         const clipPoly = document.getElementById('fov-poly');
         const outlinePoly = document.getElementById('fov-poly-outline');
         
-        const maxDrawHalfW = maxH * Math.tan(angleRad / 2);
+        const maxDrawHalfW = Math.min(140, visibleDistMax * Math.tan(angleRad / 2) * xScale);
         const pointsStr = `${cx},${cy + dMin * pxPerMeter} ${cx - maxDrawHalfW},${cy + maxH} ${cx + maxDrawHalfW},${cy + maxH}`;
         clipPoly.setAttribute('points', pointsStr);
         outlinePoly.setAttribute('points', pointsStr);
@@ -2026,7 +2034,7 @@
 
         const targetLine = document.getElementById('target-dist-line');
         const ty = cy + drawH;
-        const drawHalfW = drawH * Math.tan(angleRad / 2);
+        const drawHalfW = Math.min(140, fovW / 2 * xScale);
         targetLine.setAttribute('y1', ty);
         targetLine.setAttribute('y2', ty);
         
@@ -2314,6 +2322,89 @@
 
   </template>
 
+  <template id="runtime-template">
+    <style>
+      #input-status { margin: 0 0 16px; padding: 10px; color: #fbbf24; border: 1px solid #92400e; border-radius: 6px; }
+      #input-status:empty { display: none; }
+      input[aria-invalid="true"] { outline: 2px solid #fbbf24; }
+      .results-invalid .result-card { opacity: 0.55; }
+      .results-invalid svg { visibility: hidden; }
+      .scene-visual { min-width: 0; }
+      .diagram-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; margin-bottom: 32px; }
+      @media (max-width:1100px) { .diagram-pair { grid-template-columns: minmax(0,1fr); } }
+      @media (max-width:480px) { .panel { padding: 16px; min-width:0; } .result-card { min-width:0; } }
+      .recommendation, #rec-fixed-check { overflow-wrap: anywhere; }
+      .result-card>button[title] { background: transparent; color:#94a3b8; border:1px solid #475569; border-radius:50%; width:20px; height:20px; cursor:help; margin:4px; }
+    </style>
+    <script>
+      const inputStatus = document.createElement('p');
+      inputStatus.id = 'input-status';
+      inputStatus.setAttribute('role', 'status');
+      document.querySelector('.container').before(inputStatus);
+      const resolutionStatus = document.createElement('p');
+      resolutionStatus.id = 'resolution-status';
+      resolutionStatus.style.cssText = 'color:#94a3b8;font-size:0.8rem;margin:8px 0 16px;';
+      resolutionStatus.textContent = 'Geometric estimate only: verify lighting, motion, optics and mounting on site.';
+      document.querySelectorAll('.panel')[1].querySelector('h2').after(resolutionStatus);
+      document.querySelectorAll('.scene-visual').forEach(scene => {
+          scene.parentElement.classList.add('diagram-pair');
+          scene.parentElement.removeAttribute('style');
+      });
+      document.querySelectorAll('#fov-svg').forEach(svg => {
+          const note = document.createElement('p');
+          note.style.cssText = 'color:#94a3b8;font-size:0.75rem;margin:4px 0;';
+          note.textContent = 'Coverage schematic: width and distance use separate scales.';
+          svg.after(note);
+      });
+      document.querySelector('#dist-slider').step = '0.1';
+      document.querySelector('#dist-input').step = '0.1';
+      function validateInputs() {
+          const distance = document.querySelector('#dist-input');
+          const height = Number(document.querySelector('#height-input').value);
+          if (Number.isFinite(height)) {
+              const minimum = (height + 0.1).toFixed(1);
+              distance.min = minimum;
+              document.querySelector('#dist-slider').min = minimum;
+          }
+          let error = '';
+          for (const field of document.querySelectorAll('input[type="number"]:not(:disabled)')) {
+              const value = Number(field.value);
+              const aligned = field.id !== 'dist-input' || Math.abs(value * 10 - Math.round(value * 10)) < 1e-7;
+              const valid = field.value !== '' && Number.isFinite(value) && aligned
+                  && value >= Number(field.min) && value <= Number(field.max);
+              field.setAttribute('aria-invalid', String(!valid));
+              if (!valid && !error) {
+                  const label = field.closest('.form-group')?.querySelector('label')?.textContent || field.id;
+                  error = `${label.replace('ℹ️', '').trim()}: enter a value from ${field.min} to ${field.max}${field.id === 'dist-input' ? ', in 0.1 m steps' : ''}. Results are unavailable until the inputs are valid.`;
+              }
+          }
+          inputStatus.textContent = error;
+          document.body.classList.toggle('results-invalid', Boolean(error));
+          if (error) {
+              document.querySelectorAll('.result-card strong').forEach(node => node.textContent = '—');
+              const status = document.getElementById('dori-status');
+              if (status) status.textContent = 'Waiting for valid inputs';
+              for (const id of ['rec-lens-fixed','rec-lens-var','rec-fixed-check','res-table']) {
+                  const node = document.getElementById(id);
+                  if (node) node.textContent = '';
+              }
+          }
+          return !error;
+      }
+      document.querySelectorAll('input[type="number"]').forEach(field => {
+          field.addEventListener('change', () => {
+              if (field.value === '' || !Number.isFinite(Number(field.value))) return;
+              let value = Math.max(Number(field.min), Math.min(Number(field.max), Number(field.value)));
+              if (field.id === 'dist-input') value = Math.round(value * 10) / 10;
+              field.value = String(value);
+              const slider = document.getElementById(field.id.replace('-input','-slider'));
+              if (slider) slider.value = field.value;
+              calculate();
+          });
+      });
+    </script>
+  </template>
+
   <script>
     const frame = document.getElementById('mode-frame');
     const directButton = document.getElementById('mode-direct');
@@ -2327,7 +2418,7 @@
       designerButton.classList.toggle('active-green', isDesigner);
       directButton.setAttribute('aria-selected', String(!isDesigner));
       designerButton.setAttribute('aria-selected', String(isDesigner));
-      frame.srcdoc = isDesigner ? designerHtml : directHtml;
+      frame.srcdoc = (isDesigner ? designerHtml : directHtml).replace('<script>', document.getElementById('runtime-template').innerHTML + '<script>');
       window.location.hash = isDesigner ? 'designer' : 'direct';
     }
 
