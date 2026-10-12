@@ -6,8 +6,14 @@
   ],
   "mytwobrain": {
     "kind": "public_projection_of_canonical_map",
-    "source_sha256": "2052d9ce0d72b18a662c2c8fcc1362a02c029bb241dcd0e0d775711984481a78",
-    "public_markdown_sha256": "073f801905dd2f346d45238b9ce91847c20e188fcd1792357f6d40324396f05a"
+    "source_sha256": "499ecb700371848cd64fd01214bd6ea68ea550bd0c4ef777de1f9ef5a0c26f43",
+    "public_markdown_sha256": "ec16438664b6bcf6b6747a58499ab4814a7671fc72cb6011638f3ded06cb1901",
+    "diagram_runtime": {
+      "design_system.css": "1d6b5c8619c6ec8bc175bdfef9b8056032df9e92085d89722bfa2ed50d867d5b",
+      "design_system_components.css": "e168bb711118aa72b09e1be0bff29ccf2d36c93d51cf72b3da883a54fbd05cfe",
+      "design_system_interactions.js": "0b6ebb74e3da5a645ba3de8bc7369e12a5c11f358f9a3a018d673e0161ae97ec",
+      "design_system_projection.js": "25376289d3066b042561081e9392310c76511f7f0abc6e2cec930786f2f7c470"
+    }
   },
   "c1": {
     "version": "1.5",
@@ -17,9 +23,9 @@
   },
   "derived": {
     "fact-to-decision/index.html": "e5a5f7936b61290ae1142972fbf8abc72a0db88ce1600b04e6088de7bba138e1",
-    "mytwobrain/README.md": "073f801905dd2f346d45238b9ce91847c20e188fcd1792357f6d40324396f05a",
-    "mytwobrain/index.html": "be64080b9a9cf0291b5484705273353dd58d9b54310826636a6bcc49e67b4192",
-    "harness-map.css": "8541f44518793f4fd88e75de8fb3515e18122475e00795a1292e58ff49b9f8c5",
+    "mytwobrain/README.md": "ec16438664b6bcf6b6747a58499ab4814a7671fc72cb6011638f3ded06cb1901",
+    "mytwobrain/index.html": "f930112d7efa2b8e28cdc657950604691ecbb29c72644cfbe417cd2eea130979",
+    "harness-map.css": "863ace5485462d0fb655c4bc464f14fa61c1768fb47231f82c8b9b2200b7fa3f",
     "harness-map.js": "ed7c9717110814aca5458abe0a65a326ed5fd82a838fd4bddcb8e179db3236a7",
     "examples/analytics.html": "901a7574a7878b6708d2785186ae3d16e44b694deeacedbef40014dc9a0a7cfd",
     "overview.html": "e26342b36484ca4f66498df9859b73f4d39c62e9f843b0f1fb91f1b68a7d35ef",

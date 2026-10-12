@@ -61,17 +61,10 @@ MyTwoBrain/UI5175 - собственная рабочая среда, в кот�
 
 ## 1. Короткая формула
 
-```text
-цель человека
-  -> применимый контекст
-  -> ограниченный work slice
-  -> агентное действие
-  -> артефакт
-  -> AST / тесты / Agent-CI
-  -> observability и evidence
-  -> приёмка человеком
-  -> handoff / опыт / следующий шаг
-```
+1. **Поставить задачу:** цель человека, применимый контекст и ограниченный участок работы.
+2. **Выполнить:** агентное действие и открываемый артефакт.
+3. **Проверить:** AST, тесты, Agent-CI, наблюдаемость и доказательства.
+4. **Принять и продолжить:** решение человека, передача результата, опыт и следующий шаг.
 
 У работы есть понятная цель, ответственный, применимые источники и критерии
 приёмки. После исполнения остаются открываемый результат и сведения о том,
@@ -83,40 +76,30 @@ MyTwoBrain/UI5175 - собственная рабочая среда, в кот�
 
 ### 2.1 Верхний уровень
 
-```text
-Оператор / инженер
-        |
-        v
-Серверный и сетевой слой
-  Tailscale -> SSH / NoMachine -> Ubuntu Server98
-        |
-        v
-Runtime layer
-  systemd / Docker / Zellij / CodexCLI
-        |
-        v
-  Операторский слой
-  OZ + UI5175 (:5175)
-        |
-        +--> Диалог и session control
-        +--> Terminal V2 / runtime observer
-        +--> Harness Wiki / Docs Explorer / Librarian
-        +--> Translation Explorer / glossary
-        +--> Session Board / Architecture Focus
-        +--> Skills / AWP / plan / bookmarks
-        +--> Реестр агентов / профили / группы
-        +--> Оркестратор / mailbox / watchdog
-        +--> Quality Control / Agent-CI / Delivery Proof
-        +--> Observe / logs / metrics / traces
-        |
-        v
-Инженерный результат
-  code / docs / data / tests / receipts / handoff
-        |
-        +--> AST и impact navigation
-        +--> memory and knowledge admission
-        +--> ML/data-контур и Model Lab
+```projection
+projection "Одно рабочее место — связанные возможности"
+node human fact "Человек" "Цель, ограничения и решение о приёмке"
+node workplace derived "Общий UI / API" "Диалог, сессии, терминал, предпросмотр, перевод, доска и Architecture Focus"
+node agents annotation "Агенты и исполнение" "Профили, группы, оркестратор, mailbox, watchdog; skills, AWP, план и закладки"
+node knowledge fact "Контекст и знания" "Wiki, онтология, тезаурус, документы, Librarian, память и AST"
+node proof gate "Проверка результата" "Тесты, Agent-CI, Delivery Proof; журналы, метрики и traces"
+node result annotation "Инженерный результат" "Код, документы, данные и receipts; приложения ML/data и Model Lab"
+edge human -> workplace "цель"
+edge workplace -> agents "роли"
+edge workplace -> knowledge "поиск"
+edge workplace -> proof "тесты"
+edge agents -> result "артефакт"
+edge knowledge -> result "основания"
+edge proof -> result "проверки"
 ```
+
+Наведите на узел или стрелку, чтобы проследить ближайшие связи. С клавиатуры
+используйте Tab; Escape снимает выделение. Карта показывает связи возможностей,
+а не последовательность сетевых вызовов. Размещение и назначение систем — ниже.
+
+**Основа исполнения:** Tailscale, SSH / NoMachine и Ubuntu Server98;
+systemd, Docker, Zellij и CodexCLI. AST связывает результат со структурой кода,
+а память сохраняет проверенный опыт для следующей задачи.
 
 ### 2.2 Системы, назначение и владелец результата
 
@@ -208,15 +191,12 @@ Runtime layer
 
 ### 3.4 Доказательная инженерия
 
-```text
-AWP revision
-  -> route receipt
-  -> stage receipts
-  -> artifact revision
-  -> AST / tests / Agent-CI
-  -> final gate
-  -> UI/API/CLI projection
-```
+| Шаг | Что связывает результат с исходной задачей |
+| --- | --- |
+| Постановка и маршрут | Версия AWP, квитанция выбора маршрута и квитанции этапов |
+| Артефакт | Точная версия полученного материала |
+| Проверка | AST, тесты, Agent-CI и итоговый gate |
+| Наблюдение | UI / API / CLI показывают тот же проверенный объект |
 
 Receipt фиксирует наблюдаемые факты:
 
@@ -243,23 +223,36 @@ Receipt фиксирует наблюдаемые факты:
 и потребителями. Для хранения секретов выбран OpenBao. Приведённая схема
 описывает устройство продукта; перенос существующих подключений идёт поэтапно.
 
-```text
-Человек → карточка подключения
-   │       назначение и права
-   └── ввод секрета → OpenBao
-                       │
-            доступ по назначению
-                       │
-        ┌──────────────┴──────┐
-        ▼                     ▼
-  Шлюз операций       Доверенный сервис
-  результат агенту    работа приложения
-        │                     │
-        └──────────────┬──────┘
-                       ▼
-       Общий наблюдатель: UI / API
-       проверки · версии · ошибки
+```projection
+projection "1 · Человек подключает сервис"
+node human fact "Человек" "Называет подключение, задаёт назначение и вводит секрет"
+node vault annotation "OpenBao" "Хранит значение, версии и правила доступа к секрету"
+node card fact "Карточка подключения" "Имя, назначение, владелец, права, потребители; ссылка на секрет без значения"
+node observer derived "Общий UI / API" "Имя подключения, заполненность, проверки и версии; без раскрытия значения"
+edge human -> vault "секрет"
+edge human -> card "назначение"
+edge vault -> observer "версия"
+edge card -> observer "каталог"
 ```
+
+```projection
+projection "2 · Агент использует разрешённую операцию"
+node agent derived "Агент" "Знает имя подключения и доступные операции; самого секрета не получает"
+node policy gate "Проверка полномочий" "Назначение и права из карточки; проверка действия, ресурса и потребителя"
+node vault annotation "OpenBao" "Доступ по выданным правам; credential только доверенному исполнению"
+node service annotation "Шлюз / доверенный сервис" "Исполняет разрешённое действие с credential; секрет остаётся внутри доверенного исполнения"
+node result derived "Результат агенту" "Данные или отказ, без выдачи credential в контекст модели"
+node observer derived "Общий UI / API" "Список, заполненность, проверки, версии, ошибки и журнал операций"
+edge agent -> policy "операция"
+edge policy -> vault "права сервиса"
+edge vault -> service "credential"
+edge service -> result "ответ"
+edge service -> observer "состояние"
+```
+
+Стрелки показывают модель доступа. Секрет поступает в доверенное исполнение;
+агенту возвращается результат операции. Подписи и цвет различают источник,
+обработку и проверку полномочий. Это архитектурная модель, не отчёт о завершении миграции.
 
 #### Что хранится и кто использует
 
@@ -310,32 +303,19 @@ Systemd и Docker запускают потребителей с выделен�
 
 Это основной фрагмент, который стоит показывать в техническом разговоре.
 
-```text
-1. Human intent
-   Цель, ограничение, бизнес-смысл и решение оператора.
-
-2. Context assembly
-   Canonical docs, ontology, applicable memory, code frontier и текущий runtime.
-
-3. Active Work Package
-   Goal, non-goals, facts, paths, dependencies, acceptance, evidence и stop rules.
-
-4. Route and execution
-   Skill, hook, CLI/MCP, CodexCLI, bounded subagent или ручное действие.
-
-5. Artifact production
-   Код, документ, data slice, тест, diagram, report или иной versioned artifact.
-
-6. Technical proof
-   AST impact, targeted tests, browser/API E2E, Agent-CI, runtime и delivery proof.
-
-7. Human acceptance
-   Оператор сверяет исходную цель, бизнес-приёмку, риски и следующий шаг.
-
-8. Handoff and experience
-   Reproducible handoff, source refs, decision history и admission в подходящий
-   durable memory layer.
-```
+1. **Цель человека:** ограничения, бизнес-смысл и решение оператора.
+2. **Сборка контекста:** действующие документы, онтология, применимый опыт,
+   затронутый код и текущее состояние исполнения.
+3. **Рабочий пакет:** цель, исключения, факты, пути, зависимости, критерии
+   приёмки, план доказательств и условия остановки.
+4. **Маршрут и исполнение:** skill, hook, CLI / MCP, CodexCLI,
+   ограниченный помощник или ручное действие.
+5. **Артефакт:** код, документ, данные, тест, схема или отчёт с точной версией.
+6. **Техническая проверка:** AST impact, целевые тесты, browser / API E2E,
+   Agent-CI, состояние исполнения и подтверждение доставки.
+7. **Приёмка человеком:** сверка исходной цели, бизнес-результата, рисков и следующего шага.
+8. **Передача и опыт:** воспроизводимый handoff, источники, история решений
+   и принятие опыта в подходящий слой памяти.
 
 <span id="41-как-устроена-память"></span>
 
@@ -380,11 +360,16 @@ AST позволяет перейти к структуре кода и оцен
 
 #### Как опыт становится знанием
 
-```text
-Работа → наблюдение с источником → проверка
-  → принятое знание у его владельца → применение в следующей задаче
-                   ↑                         │
-                   └── уточнение по опыту ────┘
+```projection
+projection "Опыт становится знанием после проверки"
+node observation fact "Наблюдение" "Работа, источник и обстоятельства; не готовое правило"
+node review gate "Проверка" "Повторы, противоречия, применимость и решение предметного владельца"
+node knowledge fact "Принятое знание" "Документ, ADR или Registry у своего владельца"
+node use derived "Следующая задача" "Применение знания и новые наблюдения"
+edge observation -> review "источник"
+edge review -> knowledge "принятие"
+edge knowledge -> use "применение"
+edge use -> knowledge "уточнение" feedback
 ```
 
 Перед принятием проверяются повторы, противоречия и применимость.
@@ -591,17 +576,13 @@ ML в этом пакете - не обещание конкретной точ�
 
 ### 7.1 Карта ML-контура
 
-```text
-Binance WebSocket / REST
-  -> SCW stream processing
-  -> Redis hot data
-  -> MongoDB canonical and ML-ready projections
-  -> parity / gap / duplicate / completed-minute checks
-  -> Parquet daily partitions
-  -> model discovery / calibration / test
-  -> MLflow / TensorBoard / Model Lab
-  -> UI5174 and operator health evidence
-```
+| Этап | Инструменты и результат |
+| --- | --- |
+| Приём и обработка | Binance WebSocket / REST, SCW stream processing, Redis hot data |
+| Канонические данные | MongoDB и ML-ready projections |
+| Контроль и экспорт | Parity, gaps, duplicates, completed-minute checks; суточные Parquet partitions |
+| Модели и оценка | Поиск, калибровка и тест; MLflow, TensorBoard и Model Lab |
+| Наблюдение | Предметный UI и подтверждения состояния для оператора |
 
 ### 7.2 Что именно сделано инженерно
 
@@ -643,14 +624,10 @@ ROI или универсальную predictive accuracy.
 
 Пример показывает полный короткий цикл прикладной реализации:
 
-```text
-предметная задача
-  -> параметры и ограничения
-  -> расчётный движок
-  -> SVG-визуализация геометрии
-  -> DORI/PPM decision support
-  -> автономный HTML-артефакт
-```
+1. **Задача и входы:** предметная потребность, параметры и ограничения.
+2. **Расчёт:** движок и SVG-визуализация геометрии.
+3. **Выбор:** DORI / PPM как основание решения.
+4. **Результат:** автономный интерактивный HTML-артефакт.
 
 Инструмент учитывает разрешение, размер сенсора, фокусное расстояние, высоту
 монтажа, наклон, целевую дистанцию, blind zone и геометрию установки. Это

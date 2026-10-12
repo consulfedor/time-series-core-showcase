@@ -176,3 +176,28 @@ img:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
 @media print { .map-nav, .map-links, .map-lightbox { display: none; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
+/* Scoped Wiki HTML Projection: accepted runtime, portfolio-sized reading aids. */
+.map-projection {
+  width: min(1440px, calc(100vw - 32px)); margin: 24px 0;
+  margin-left: calc((100% - min(1440px, calc(100vw - 32px))) / 2);
+  font: 16px/1.55 Inter, "Segoe UI", system-ui, sans-serif;
+}
+.map-projection .ds-projection-toolbar h3 { margin: 0; line-height: 1.3; }
+.map-projection .ds-projection-toolbar p { margin: 10px 0 0; font-size: 14px; }
+.map-projection .ds-projection-node > p { font-size: 14px; }
+.map-projection .ds-projection-node > span { font-size: 12px; letter-spacing: .06em; }
+.map-projection .ds-help {
+  display: inline-grid; place-items: center; padding: 0; line-height: 0;
+  border: 1px solid #d0aa54; border-radius: 999px; background: #171b20; color: #f0cf78; cursor: pointer;
+}
+.map-projection .ds-help svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.map-projection .ds-help circle { fill: currentColor; stroke: none; }
+.map-projection .ds-projection-source pre { white-space: pre-wrap; font-size: 13px; }
+.map-projection .ds-projection-source p { font-size: 13px; }
+.map-projection .ds-projection-receipt > span { font-size: 12px; }
+.map-projection [hidden] { display: none !important; }
+@media print {
+  .map-projection .ds-projection-actions, .map-projection .ds-projection-receipt { display: none; }
+  .map-projection { break-inside: avoid; }
+}
+
