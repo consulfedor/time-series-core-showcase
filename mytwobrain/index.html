@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="map-source-sha256" content="499ecb700371848cd64fd01214bd6ea68ea550bd0c4ef777de1f9ef5a0c26f43">
 <meta name="description" content="MyTwoBrain: общее рабочее место человека и агентов, знания, оркестрация, безопасность и проверяемый результат.">
-<title>MyTwoBrain / UI5175: карта агентной инженерной системы</title><style>@scope (.map-projection) { :scope {
+<title>MyTwoBrain · Рабочее место человека и ИИ-агентов</title><link rel="icon" type="image/svg+xml" href="../favicon.svg"><style>@scope (.map-projection) { :scope {
   color-scheme: dark;
   --ds-bg-deep: #060708;
   --ds-bg: #090b0e;
@@ -2291,14 +2291,15 @@ aria-modal="false" aria-labelledby="map-projection-1-help-title" hidden>
 <div class="ds-projection-stage" data-projection-stage role="group" aria-label="Узлы и направленные связи">
 <svg class="ds-projection-edges" data-projection-edges role="group" aria-label="Связи схемы"></svg>
 <div class="ds-projection-ranks" data-projection-ranks></div></div>
+<div class="ds-projection-fallback" data-projection-fallback hidden>
+<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
+<details class="ds-projection-source" data-projection-source>
+<summary>Устройство схемы и техническая проверка</summary>
 <div class="ds-projection-receipt" aria-live="polite">
 <span><i data-projection-verdict></i><b data-projection-verdict-label>Проверяю маршруты…</b></span>
 <span><b data-projection-edge-count>—</b> связей</span>
 <span><b data-projection-issue-count>—</b> ошибок геометрии</span></div>
-<div class="ds-projection-fallback" data-projection-fallback hidden>
-<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
-<details class="ds-projection-source" data-projection-source>
-<summary>Исходная модель и проверка</summary><pre data-projection-source-view>projection &quot;Одно рабочее место — связанные возможности&quot;
+<pre data-projection-source-view>projection &quot;Одно рабочее место — связанные возможности&quot;
 node human fact &quot;Человек&quot; &quot;Цель, ограничения и решение о приёмке&quot;
 node workplace derived &quot;Общий UI / API&quot; &quot;Диалог, сессии, терминал, предпросмотр, перевод, доска и Architecture Focus&quot;
 node agents annotation &quot;Агенты и исполнение&quot; &quot;Профили, группы, оркестратор, mailbox, watchdog; skills, AWP, план и закладки&quot;
@@ -2622,14 +2623,15 @@ aria-modal="false" aria-labelledby="map-projection-2-help-title" hidden>
 <div class="ds-projection-stage" data-projection-stage role="group" aria-label="Узлы и направленные связи">
 <svg class="ds-projection-edges" data-projection-edges role="group" aria-label="Связи схемы"></svg>
 <div class="ds-projection-ranks" data-projection-ranks></div></div>
+<div class="ds-projection-fallback" data-projection-fallback hidden>
+<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
+<details class="ds-projection-source" data-projection-source>
+<summary>Устройство схемы и техническая проверка</summary>
 <div class="ds-projection-receipt" aria-live="polite">
 <span><i data-projection-verdict></i><b data-projection-verdict-label>Проверяю маршруты…</b></span>
 <span><b data-projection-edge-count>—</b> связей</span>
 <span><b data-projection-issue-count>—</b> ошибок геометрии</span></div>
-<div class="ds-projection-fallback" data-projection-fallback hidden>
-<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
-<details class="ds-projection-source" data-projection-source>
-<summary>Исходная модель и проверка</summary><pre data-projection-source-view>projection &quot;1 · Человек подключает сервис&quot;
+<pre data-projection-source-view>projection &quot;1 · Человек подключает сервис&quot;
 node human fact &quot;Человек&quot; &quot;Называет подключение, задаёт назначение и вводит секрет&quot;
 node vault annotation &quot;OpenBao&quot; &quot;Хранит значение, версии и правила доступа к секрету&quot;
 node card fact &quot;Карточка подключения&quot; &quot;Имя, назначение, владелец, права, потребители; ссылка на секрет без значения&quot;
@@ -2677,14 +2679,15 @@ aria-modal="false" aria-labelledby="map-projection-3-help-title" hidden>
 <div class="ds-projection-stage" data-projection-stage role="group" aria-label="Узлы и направленные связи">
 <svg class="ds-projection-edges" data-projection-edges role="group" aria-label="Связи схемы"></svg>
 <div class="ds-projection-ranks" data-projection-ranks></div></div>
+<div class="ds-projection-fallback" data-projection-fallback hidden>
+<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
+<details class="ds-projection-source" data-projection-source>
+<summary>Устройство схемы и техническая проверка</summary>
 <div class="ds-projection-receipt" aria-live="polite">
 <span><i data-projection-verdict></i><b data-projection-verdict-label>Проверяю маршруты…</b></span>
 <span><b data-projection-edge-count>—</b> связей</span>
 <span><b data-projection-issue-count>—</b> ошибок геометрии</span></div>
-<div class="ds-projection-fallback" data-projection-fallback hidden>
-<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
-<details class="ds-projection-source" data-projection-source>
-<summary>Исходная модель и проверка</summary><pre data-projection-source-view>projection &quot;2 · Агент использует разрешённую операцию&quot;
+<pre data-projection-source-view>projection &quot;2 · Агент использует разрешённую операцию&quot;
 node agent derived &quot;Агент&quot; &quot;Знает имя подключения и доступные операции; самого секрета не получает&quot;
 node policy gate &quot;Проверка полномочий&quot; &quot;Назначение и права из карточки; проверка действия, ресурса и потребителя&quot;
 node vault annotation &quot;OpenBao&quot; &quot;Доступ по выданным правам; credential только доверенному исполнению&quot;
@@ -2908,14 +2911,15 @@ aria-modal="false" aria-labelledby="map-projection-4-help-title" hidden>
 <div class="ds-projection-stage" data-projection-stage role="group" aria-label="Узлы и направленные связи">
 <svg class="ds-projection-edges" data-projection-edges role="group" aria-label="Связи схемы"></svg>
 <div class="ds-projection-ranks" data-projection-ranks></div></div>
+<div class="ds-projection-fallback" data-projection-fallback hidden>
+<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
+<details class="ds-projection-source" data-projection-source>
+<summary>Устройство схемы и техническая проверка</summary>
 <div class="ds-projection-receipt" aria-live="polite">
 <span><i data-projection-verdict></i><b data-projection-verdict-label>Проверяю маршруты…</b></span>
 <span><b data-projection-edge-count>—</b> связей</span>
 <span><b data-projection-issue-count>—</b> ошибок геометрии</span></div>
-<div class="ds-projection-fallback" data-projection-fallback hidden>
-<b>Схема не отрисована. Исходная модель сохранена ниже.</b><p data-projection-error></p></div>
-<details class="ds-projection-source" data-projection-source>
-<summary>Исходная модель и проверка</summary><pre data-projection-source-view>projection &quot;Опыт становится знанием после проверки&quot;
+<pre data-projection-source-view>projection &quot;Опыт становится знанием после проверки&quot;
 node observation fact &quot;Наблюдение&quot; &quot;Работа, источник и обстоятельства; не готовое правило&quot;
 node review gate &quot;Проверка&quot; &quot;Повторы, противоречия, применимость и решение предметного владельца&quot;
 node knowledge fact &quot;Принятое знание&quot; &quot;Документ, ADR или Registry у своего владельца&quot;
@@ -3492,4 +3496,4 @@ ROI или универсальную predictive accuracy.</p>
   от операторского портала.</li>
 </ul>
 <p class="section-home-row"><a class="section-home" href="#readme-navigation" aria-label="Наверх к навигации" title="Наверх к навигации">⌂</a></p>
-<footer class="source-link"><a href="README.md">Публичный Markdown · производная канонической карты</a></footer></body></html>
+<footer class="source-link"><a href="README.md">Описание в Markdown</a></footer></body></html>

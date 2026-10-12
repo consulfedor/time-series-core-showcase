@@ -26,6 +26,10 @@
     overflow-wrap: break-word;
   }
   body::before { display: none; }
+  .map-projection [data-projection-geometry="fail"] .ds-projection-source > summary::after {
+    content: " · Есть ошибки маршрутов";
+    color: var(--coral);
+  }
   a { color: var(--teal); }
   a:hover { color: #a7f2e3; }
   h1, h2, h3, h4, h5, h6 { color: var(--text); line-height: 1.2; scroll-margin-top: 24px; }

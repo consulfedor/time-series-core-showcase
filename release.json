@@ -4,6 +4,10 @@
     "MyTwoBrain",
     "Fact to Decision C1"
   ],
+  "page_identity": {
+    "favicon_sha256": "eaeeeab21d4bd3064fcbf39c84063f2d30d9d190ee9210e2374557ba34f18a92",
+    "standalone_projection": "head_only_icon; source_and_body_unchanged"
+  },
   "mytwobrain": {
     "kind": "public_projection_of_canonical_map",
     "source_sha256": "499ecb700371848cd64fd01214bd6ea68ea550bd0c4ef777de1f9ef5a0c26f43",
@@ -18,17 +22,17 @@
   "c1": {
     "version": "1.5",
     "kind": "construction_concept",
-    "html_sha256": "e5a5f7936b61290ae1142972fbf8abc72a0db88ce1600b04e6088de7bba138e1",
+    "html_sha256": "b9a218d03f3e3324d22b331b336d16e2c6b5555df7b67a679927d2ab1ed614b0",
     "markdown_sha256": "405c27c4240ab76b3eab487d3efc19dcfa9347e483861495ee05b37a41cee178"
   },
   "derived": {
-    "fact-to-decision/index.html": "e5a5f7936b61290ae1142972fbf8abc72a0db88ce1600b04e6088de7bba138e1",
+    "fact-to-decision/index.html": "b9a218d03f3e3324d22b331b336d16e2c6b5555df7b67a679927d2ab1ed614b0",
     "mytwobrain/README.md": "ec16438664b6bcf6b6747a58499ab4814a7671fc72cb6011638f3ded06cb1901",
-    "mytwobrain/index.html": "f930112d7efa2b8e28cdc657950604691ecbb29c72644cfbe417cd2eea130979",
-    "harness-map.css": "863ace5485462d0fb655c4bc464f14fa61c1768fb47231f82c8b9b2200b7fa3f",
+    "mytwobrain/index.html": "29a3d80a1f36a96ed3f9e93d88a570d1e29f9a054e04a65201df73aa9469cd74",
+    "harness-map.css": "b2ed5f336211c4e715bf36331b94d273f1e9604572fd19c6710d83a986e523e5",
     "harness-map.js": "ed7c9717110814aca5458abe0a65a326ed5fd82a838fd4bddcb8e179db3236a7",
-    "examples/analytics.html": "901a7574a7878b6708d2785186ae3d16e44b694deeacedbef40014dc9a0a7cfd",
-    "overview.html": "e26342b36484ca4f66498df9859b73f4d39c62e9f843b0f1fb91f1b68a7d35ef",
-    "examples/dori.html": "bd90753c2d2d0b77781c61ea9b0b37f82e6658f0173c3414d99644a559c93764"
+    "examples/analytics.html": "512f177df78aaa147d44f5f662145efe10c0243129906de19ee1d51d5a0992d9",
+    "overview.html": "86b95b75cf609feae1a46bca213a1c0c54b0655e66b8df190346f2fb1df17d8e",
+    "examples/dori.html": "d35e078df19cc882f270f974989094b891c4637653773c85cd3318b6c479a1c3"
   }
 }
