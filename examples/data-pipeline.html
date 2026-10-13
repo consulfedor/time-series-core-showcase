@@ -1,4 +1,176 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Поток данных и восстановление · Фёдор Горбунов</title><link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="../portfolio.css"><script src="data-pipeline.js" defer></script></head><body>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
+.portfolio-language button,.portfolio-language summary{font:inherit;font-size:12px;color:inherit;background:transparent;border:1px solid #d0aa5470;border-radius:6px;padding:5px 8px;cursor:pointer}
+.portfolio-language button[aria-pressed=true]{background:#d0aa54;color:#141414;font-weight:700}
+.portfolio-language button:focus-visible,.portfolio-language summary:focus-visible{outline:2px solid #d0aa54;outline-offset:3px}
+.portfolio-language details{position:relative}.portfolio-language summary{list-style:none}
+.portfolio-language details p{position:absolute;z-index:30;right:0;top:24px;width:min(310px,80vw);padding:14px;background:#15191e;color:#eee;border:1px solid #d0aa5470;border-radius:8px;box-shadow:0 12px 30px #0008;font-size:13px;font-weight:400;line-height:1.6}
+@media print{.portfolio-language{display:none}}
+</style><script type="application/json" id="portfolio-translations">{"pairs": [["Поток данных и восстановление · Фёдор Горбунов", "Data pipeline and recovery · Fedor Gorbunov"], ["← Портфолио", "← Portfolio"], ["Рабочее место MyTwoBrain ↗", "MyTwoBrain workspace ↗"], ["Строительный C1 ↗", "Construction C1 ↗"], ["Инженерный кейс / данные и надёжность", "Engineering case / data and reliability"], ["Сервис работает.", "The service is running."], ["А данным", "But can you"], ["можно доверять?", "trust the data?"], ["В собственном проекте я выстроил путь рыночных данных: получение, хранение, расчёт и проверка истории. Отдельная задача — обнаружить пропуск и восстановить основание для дальнейшей работы.", "In my own project, I built a market-data workflow: ingestion, storage, calculation and historical-data checks. Detecting a gap and restoring the basis for further work is a separate task."], ["Задача", "The task"], ["Аналитике нужен непрерывный временной ряд. После разрыва соединения или перезапуска хранилище может отвечать, но содержать неполную историю.", "Analytics needs a continuous time series. After a disconnection or restart, the database may respond while still holding incomplete history."], ["Поэтому доступность сервиса, свежесть данных и полнота диапазона проверяются отдельно.", "Service availability, data freshness and coverage of the requested range are therefore checked separately."], ["Мой вклад", "My contribution"], ["Архитектура потока, жизненный цикл данных, восстановление, проверки и операторский интерфейс. Разработка ведётся с ИИ-агентами; требования и приёмку я связываю с наблюдаемым результатом.", "Pipeline architecture, data lifecycle, recovery, checks and the operator interface. I develop with AI agents, tying requirements and acceptance to observable results."], ["Предмет кейса — инфраструктура данных. Торговые правила и доходность здесь не демонстрируются.", "This case concerns data infrastructure. It does not demonstrate trading rules or profitability."], ["Путь одной записи", "The path of one record"], ["У каждого слоя — своя задача", "Each layer has its own job"], ["01 / Источник", "01 / Source"], ["Живые события и получение нужного исторического диапазона.", "Live events and retrieval of the required historical range."], ["02 / Буфер", "02 / Buffer"], ["Оперативное окно данных для текущей обработки.", "An operational data window for current processing."], ["03 / История", "03 / History"], ["Базовые и рассчитанные записи, временные отметки и контроль полноты.", "Base and calculated records, timestamps and coverage checks."], ["04 / Потребители", "04 / Consumers"], ["Аналитика / ML", "Analytics / ML"], ["Проверенная история, производные наборы и Parquet-снимки.", "Verified history, derived datasets and Parquet snapshots."], ["Проверка источника и качества связывает эти этапы. Наличие записи ещё не означает, что она пригодна для последующего расчёта.", "Source and quality checks connect these stages. A record's presence does not establish its fitness for a subsequent calculation."], ["Учебный пример / переключите состояние", "Illustrative example / switch the state"], ["Пропуск должен быть виден", "A gap must be visible"], ["Ниже — иллюстрация из 24 интервалов, не реальные рыночные данные. Сравните пропуск, восстановление и проверенное состояние.", "The illustration below has 24 intervals; it is not real market data. Compare a gap, recovery and a verified state."], ["1 · Найден пропуск", "1 · Gap found"], ["2 · Восстановлен диапазон", "2 · Range restored"], ["3 · Проверено", "3 · Verified"], ["Зелёный — имеющиеся записи", "Green — existing records"], ["Золото — восстановленный диапазон", "Gold — restored range"], ["Штриховка — отсутствующие интервалы", "Hatching — missing intervals"], ["Наблюдение", "Observation"], ["Действие", "Action"], ["Что подтверждает результат", "Evidence for the result"], ["Есть разрыв истории", "A gap in history"], ["Определить отсутствующий диапазон", "Identify the missing range"], ["Сопоставление ожидаемых и сохранённых отметок", "Compare expected and stored timestamps"], ["Получены недостающие данные", "Missing data retrieved"], ["Проверить источник, записать без дублей", "Check the source and write without duplicates"], ["Полнота диапазона и уникальность ключей", "Range completeness and unique keys"], ["База восстановлена", "Base data restored"], ["Пересчитать затронутые производные данные", "Recalculate affected derived data"], ["Согласованность базовых и рассчитанных рядов", "Consistency of base and calculated series"], ["Подготовлен отчёт", "Report prepared"], ["Показать состояние и ограничения оператору", "Show status and limitations to the operator"], ["Матрица покрытия и квитанция проверки", "Coverage matrix and verification receipt"], ["Реальный интерфейс собственного проекта", "The real interface of my own project"], ["Покрытие истории — на одном экране", "History coverage on one screen"], ["Матрица разделяет слои хранения, глубину истории, пропуски и основание статуса. Так можно увидеть, что именно проверено и где остаётся разрыв.", "The matrix separates storage layers, history depth, gaps and the basis for each status. It shows exactly what was checked and where a gap remains."], ["Снимок рабочего интерфейса от 11 октября 2026 года. OK и BLOCKED показаны отдельно по слоям: наличие данных не отменяет ограничений их использования. Откройте изображение для чтения деталей.", "Working-interface snapshot from 11 October 2026. OK and BLOCKED are shown separately for each layer: having data does not remove restrictions on its use. Open the image to read the details."], ["Объект результата", "The deliverable"], ["Диапазон данных с известным происхождением, проверкой полноты и состоянием производных расчётов. Рядом — отчёт, по которому можно продолжить работу или разобраться в сбое.", "A data range with known provenance, completeness checks and the status of derived calculations. An accompanying report supports continued work or investigation of a failure."], ["Связь с MyTwoBrain", "Connection to MyTwoBrain"], ["Агенты помогают исследовать код и документы, готовить изменения и проверки. В рабочем месте человек видит материалы, план и результат рядом с диалогом.", "Agents help investigate code and documents, prepare changes and run checks. The workspace puts material, plan and result beside the conversation."], ["Пройти похожий сценарий в Harness ↗", "Try a similar scenario in the harness ↗"], ["← К другим кейсам", "← More cases"], ["Состояние ряда", "Time-series state"], ["Временной ряд с отмеченным диапазоном восстановления", "Time series with the recovery range highlighted"], ["Снимок матрицы покрытия истории собственного проекта: слои, диапазоны, пропуски и основания статусов", "History-coverage matrix from my own project: layers, ranges, gaps and the basis for each status"], ["20 из 24 интервалов", "20 of 24 intervals"], ["24 из 24 интервалов", "24 of 24 intervals"], ["Начало диапазона", "Range start"], ["Конец диапазона", "Range end"], ["Пропущены четыре интервала. Последующий расчёт нельзя считать полным.", "Four intervals are missing. A subsequent calculation cannot be considered complete."], ["Диапазон восполнен. Наличие всех записей ещё нужно подтвердить проверкой.", "The range has been restored. A check must still confirm that every record is present."], ["В учебном примере присутствуют все 24 интервала, повторов нет. Отчёт готов к рассмотрению.", "All 24 intervals are present in this example, with no duplicates. The report is ready for review."]], "root": "../", "controls_selector": ".case-page>nav,.reader>nav"}</script><script>/* Reviewed translations only. No network translator, storage or HTML injection. */
+"use strict";
+
+function createPortfolioTranslator(pairs, templates = [], decimalTemplates = []) {
+  const normalize = text => text.replace(/\s+/g, " ").trim();
+  const forward = new Map();
+  const reverse = new Map();
+  for (const [ru, en] of pairs) {
+    if (!ru || !en || (forward.has(normalize(ru)) && forward.get(normalize(ru)) !== en)) {
+      throw Error("Missing or conflicting portfolio translation");
+    }
+    forward.set(normalize(ru), en);
+    if (!reverse.has(normalize(en))) reverse.set(normalize(en), ru);
+  }
+  const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const compile = (from, to, decimal = false) => {
+    const names = [...from.matchAll(/\{(\d+)\}/g)].map(m => m[1]);
+    if (names.length !== new Set(names).size ||
+        [...to.matchAll(/\{(\d+)\}/g)].some(m => !names.includes(m[1]))) {
+      throw Error("Invalid numeric translation template");
+    }
+    const pieces = normalize(from).split(/\{\d+\}/g).map(escape);
+    return {pattern:new RegExp("^" + pieces.join(decimal ? "(-?\\d+(?: \\d{3})*(?:[.,]\\d+)?)" : "(\\d+)") + "$"), to, names};
+  };
+  const patterns = {
+    en:[...templates.map(([ru,en]) => compile(ru,en)),...decimalTemplates.map(([ru,en]) => compile(ru,en,true))],
+    ru:[...templates.map(([ru,en]) => compile(en,ru)),...decimalTemplates.map(([ru,en]) => compile(en,ru,true))]
+  };
+  return function translate(value, language) {
+    const key = normalize(value);
+    let replacement = (language === "en" ? forward : reverse).get(key);
+    if (replacement === undefined) {
+      for (const item of patterns[language]) {
+        const match = item.pattern.exec(key);
+        if (!match) continue;
+        replacement = item.to.replace(/\{(\d+)\}/g, (_,name) => match[item.names.indexOf(name)+1]);
+        break;
+      }
+    }
+    if (replacement === undefined && value.includes("\n")) {
+      return value.split("\n").map(line => translate(line,language)).join("\n");
+    }
+    return replacement === undefined ? value : value.replace(/\S[\s\S]*\S|\S/, () => replacement);
+  };
+}
+
+function portfolioLanguageURL(value, language, base, root) {
+  if (!value || value.startsWith("#")) return value;
+  const url = new URL(value, base);
+  const owner = new URL(root, base);
+  if (url.origin !== owner.origin || !url.pathname.startsWith(owner.pathname) ||
+      !(/\/$|\.html$/.test(url.pathname))) return value;
+  const before = url.search;
+  if (language === "en") url.searchParams.set("lang","en");
+  else url.searchParams.delete("lang");
+  return url.search === before ? value : url.href;
+}
+
+function bindPortfolioLanguage() {
+  const source = document.getElementById("portfolio-translations");
+  if (!source) return;
+  const catalog = JSON.parse(source.textContent);
+  const config = Array.isArray(catalog) ? {pairs:catalog} : catalog;
+  const translate = createPortfolioTranslator(config.pairs, config.templates || [], config.decimal_templates || []);
+  const base = config.embedded ? (config.frame_parent_url || document.referrer) : location.href;
+  const parentOrigin = config.embedded ? (config.frame_parent_origin ?? new URL(base).origin) : new URL(base).origin;
+  const root = new URL(config.root || "./", base).href;
+  const records = new WeakMap();
+  const attributes = ["title", "alt", "aria-label", "placeholder", "content"];
+  let language = new URL(base).searchParams.get("lang") === "en" ? "en" : "ru";
+  let observer;
+  const original = (node, field, value) => {
+    const record = records.get(node) || {};
+    if (!record[field] || record[field].applied !== value) {
+      record[field] = {source:value, applied:value};
+      records.set(node, record);
+    }
+    const output = translate(record[field].source, language);
+    record[field].applied = output;
+    return output;
+  };
+  const apply = () => {
+    observer?.disconnect();
+    const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) {
+      const node = walk.currentNode;
+      if (node.parentElement?.closest("script,style,noscript,textarea,[data-language-controls],[data-language-preserve]")) continue;
+      if (config.preserve_selector && node.parentElement?.closest(config.preserve_selector)) continue;
+      const next = original(node, "text", node.nodeValue);
+      if (next !== node.nodeValue) node.nodeValue = next;
+    }
+    document.querySelectorAll("title,meta[name=description],body *").forEach(node => {
+      if (node.closest("[data-language-controls],script,style")) return;
+      attributes.forEach(attribute => {
+        if (!node.hasAttribute(attribute)) return;
+        const value = node.getAttribute(attribute);
+        const next = original(node, attribute, value);
+        if (next !== value) node.setAttribute(attribute, next);
+      });
+    });
+    document.documentElement.lang = language;
+    document.querySelectorAll("[data-portfolio-language]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.portfolioLanguage === language));
+    });
+    document.querySelectorAll("a[href]:not([download])").forEach(link => {
+      const href = link.getAttribute("href");
+      const next = portfolioLanguageURL(href, language, base, root);
+      if (next !== href) link.setAttribute("href",next);
+    });
+    observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true,
+      attributes:true, attributeFilter:attributes});
+  };
+  const controls = document.createElement("div");
+  controls.dataset.languageControls = "";
+  controls.className = "portfolio-language";
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", "Language / Язык");
+  controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
+  if (!config.embedded) (document.querySelector(config.controls_selector || ".masthead,.map-links,.standalone,.reader>nav") || document.body).append(controls);
+  observer = new MutationObserver(apply);
+  const syncFrames = () => {
+    document.querySelectorAll("iframe[src]").forEach(frame => {
+    const url = new URL(frame.src,location.href);
+    if(url.origin === new URL(base).origin) {
+      const opaque = frame.hasAttribute('sandbox') && !frame.sandbox.contains('allow-same-origin');
+      frame.contentWindow?.postMessage({type:"portfolio-language",language},opaque ? "*" : url.origin);
+    }
+    });
+    if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => {
+      // Opaque sandbox origin: address only the explicitly owned inline frame.
+      // Payload contains one language code; the child verifies parent + origin.
+      if(frame.hasAttribute('srcdoc')) frame.contentWindow?.postMessage({type:"portfolio-language",language},"*");
+    });
+  };
+  const select = next => {
+    if (!["ru","en"].includes(next)) return;
+    language = next;
+    const url = new URL(config.embedded ? base : location.href);
+    if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
+    if (!config.embedded && window.origin !== "null") history.replaceState(null, "", url);
+    apply();
+    syncFrames();
+    window.dispatchEvent(new Event("resize"));
+  };
+  controls.addEventListener("click", event => {
+    const button = event.target.closest("[data-portfolio-language]");
+    if (!button) return;
+    select(button.dataset.portfolioLanguage);
+  });
+  window.addEventListener("message", event => {
+    if (window === parent || event.source !== parent || event.origin !== parentOrigin ||
+        event.data?.type !== "portfolio-language") return;
+    select(event.data.language);
+  });
+  document.querySelectorAll("iframe[src]").forEach(frame => frame.addEventListener("load",syncFrames));
+  if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => frame.addEventListener("load",syncFrames));
+  apply();
+  syncFrames();
+}
+
+if (typeof module !== "undefined") module.exports = {createPortfolioTranslator,portfolioLanguageURL};
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPortfolioLanguage);
+  else bindPortfolioLanguage();
+}
+</script><meta name="viewport" content="width=device-width,initial-scale=1"><title>Поток данных и восстановление · Фёдор Горбунов</title><link rel="icon" href="../favicon.svg"><link rel="stylesheet" href="../portfolio.css"><script src="data-pipeline.js" defer></script></head><body>
 <main class="case-page"><nav><a href="../index.html#examples">← Портфолио</a><a href="../mytwobrain/workspace.html">Рабочее место MyTwoBrain ↗</a><a href="../fact-to-decision/index.html">Строительный C1 ↗</a></nav>
 <header><p class="eyebrow">Инженерный кейс / данные и надёжность</p><h1>Сервис работает.<br>А данным <em>можно доверять?</em></h1><p class="lead">В собственном проекте я выстроил путь рыночных данных: получение, хранение, расчёт и проверка истории. Отдельная задача — обнаружить пропуск и восстановить основание для дальнейшей работы.</p></header>
 <section><div class="two-columns"><div><h2>Задача</h2><p>Аналитике нужен непрерывный временной ряд. После разрыва соединения или перезапуска хранилище может отвечать, но содержать неполную историю.</p><p>Поэтому доступность сервиса, свежесть данных и полнота диапазона проверяются отдельно.</p></div><div><h2>Мой вклад</h2><p>Архитектура потока, жизненный цикл данных, восстановление, проверки и операторский интерфейс. Разработка ведётся с ИИ-агентами; требования и приёмку я связываю с наблюдаемым результатом.</p><p>Предмет кейса — инфраструктура данных. Торговые правила и доходность здесь не демонстрируются.</p></div></div></section>

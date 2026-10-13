@@ -1,6 +1,15 @@
 # Фёдор Горбунов · MyTwoBrain / Факт → Решение
 
-Агентская разработка, рабочие инструменты человека и ИИ, архитектура процессов и данных.
+Инженер по автоматизации и ИИ-агентам. Связываю рабочую задачу, данные,
+агентскую разработку и проверку результата.
+
+**[Портфолио · RU / EN](https://consulfedor.github.io/time-series-core-showcase/)** ·
+**[CV · RU / EN](https://consulfedor.github.io/time-series-core-showcase/cv/)** ·
+[Read in English ↗](https://consulfedor.github.io/time-series-core-showcase/overview.html?lang=en)
+
+В портфолио можно открыть реальные экраны, изучить устройство системы и
+попробовать интерактивные примеры. На странице CV доступны выбор языка,
+скачивание автономного HTML-файла и печать.
 
 ## Два основных направления
 
@@ -12,7 +21,7 @@
 
 **[Открыть интерактивное портфолио](https://consulfedor.github.io/time-series-core-showcase/)** ·
 [Попробовать рабочее место](https://consulfedor.github.io/time-series-core-showcase/mytwobrain/workspace.html) ·
-[Технический обзор](mytwobrain/README.md)
+[Технический обзор](https://consulfedor.github.io/time-series-core-showcase/mytwobrain/)
 
 MyTwoBrain — развиваемая частная система, используемая автором в собственной
 работе. Здесь опубликованы технический обзор и интерактивный учебный интерфейс. Исходный код харнеса остаётся
@@ -25,22 +34,22 @@ MyTwoBrain — развиваемая частная система, испол�
 стоимость, поставки и изменения проектных оснований.
 
 **[Открыть строительный C1](https://consulfedor.github.io/time-series-core-showcase/fact-to-decision/)** ·
-[Скачать автономную HTML-презентацию](fact-to-decision/index.html)
+[HTML-файл в репозитории](https://github.com/consulfedor/time-series-core-showcase/blob/main/fact-to-decision/index.html)
 
 Это концепция внедрения и интерактивная демонстрация. Корпоративное внедрение,
 его сроки и измеренный экономический эффект не заявляются.
 
 ## Прикладные примеры
 
-[Карта портфолио](index.html#catalog) ·
-[Попробовать инструменты](index.html#tools)
+[Карта портфолио](https://consulfedor.github.io/time-series-core-showcase/#catalog) ·
+[Попробовать инструменты](https://consulfedor.github.io/time-series-core-showcase/#tools)
 
 | Пример | Что можно посмотреть |
 |---|---|
-| [DORI: подбор камеры](examples/dori.html) | Оригинальный интерактивный калькулятор: оборудование → геометрия и задача → требования к камере; также встроен в главную |
+| [DORI: подбор камеры](https://consulfedor.github.io/time-series-core-showcase/examples/dori.html) | Оригинальный интерактивный калькулятор: оборудование → геометрия и задача → требования к камере; также встроен в главную |
 | [HR-помощник: карточка кандидата](https://consulfedor.github.io/candidate-handoff-card/) | Вакансия, резюме, интервью, основания решения и передача руководителю; [исходники](https://github.com/consulfedor/candidate-handoff-card) |
-| [Поток данных и восстановление](examples/data-pipeline.html) | HTML-кейс: путь данных, интерактивный пример пропуска и реальный экран покрытия истории |
-| [Аналитика с участием человека](examples/analytics.md) | Событие, расчёт, исследовательская версия и подтверждение результата |
+| [Поток данных и восстановление](https://consulfedor.github.io/time-series-core-showcase/examples/data-pipeline.html) | HTML-кейс: путь данных, интерактивный пример пропуска и реальный экран покрытия истории |
+| [Аналитика с участием человека](https://consulfedor.github.io/time-series-core-showcase/examples/analytics.html) | Событие, расчёт, исследовательская версия и подтверждение результата |
 | [Invisible Rabbit Farm](https://consulfedor.github.io/invisible-rabbit-farm/) | Самостоятельный интерактивный прототип объяснимых оценок по косвенным сигналам; [исходники](https://github.com/consulfedor/invisible-rabbit-farm) |
 
 Дополнительные утилиты:
@@ -56,29 +65,17 @@ MyTwoBrain — развиваемая частная система, испол�
 
 Контакт: [consulfedor@gmail.com](mailto:consulfedor@gmail.com)
 
-## English summary
+## Репозиторий и локальный просмотр
 
-**MyTwoBrain** is my private human–AI engineering workspace: a conversation next
-to documents, files, plans, agents and verification results. The public demo
-shows the interaction with fictional data; it does not connect to the private
-system or an LLM. See the [technical guide](mytwobrain/README.md).
-
-**Fact → Decision** is a construction-company AI adoption concept. Its interactive
-foundation example connects a drawing, 3D model, quantities, schedule, cost,
-deliveries and an evidence-backed decision package. It is a proposal and demo,
-not a claim of a completed enterprise deployment.
-
-## Repository and local preview
-
-This repository is the public portfolio surface, not a mirror of private
-implementation code. It contains the website, public explanations and approved
-demonstrations. No dependencies or build are required for the website:
+Здесь находятся сайт, публичные описания и демонстрации. Частный код MyTwoBrain
+в репозиторий не входит. Для локального просмотра готового сайта достаточно
+запустить сервер из этой папки:
 
 ```sh
 python3 -m http.server 8080 --bind 127.0.0.1
 ```
 
-Open `http://127.0.0.1:8080/`. The workspace demo also opens as a local HTML file.
-The C1 presentation is a self-contained generated artifact; its provenance is
-recorded in [the release manifest](release.json). Research drafts, personal
-conversations and original screenshots stay outside this repository.
+Откройте `http://127.0.0.1:8080/`. Демонстрация рабочего места также открывается
+как локальный HTML-файл. Презентация C1 автономна; происхождение материалов
+записано в [манифесте выпуска](release.json). Исследовательские черновики,
+личные переписки и необработанные снимки остаются за пределами репозитория.

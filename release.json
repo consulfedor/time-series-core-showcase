@@ -4,15 +4,40 @@
     "MyTwoBrain",
     "Fact to Decision C1"
   ],
+  "cv": {
+    "kind": "bilingual_projection_of_canonical_cv",
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "html_sha256": "a0110e16b492226462ba50e7e176adb10a0548cf9a3ecf5c0b9ebbb4f43510ac",
+    "attachment_identical_to_web": true,
+    "authoring_sha256": {
+      "Fedor_Gorbunov_CV_BASE_TEMPLATE_RU_2026-08-16.md": "fda21ff27c762e62eabf5fec99baa9b793a85b21567bba46bc0daf466e7e2ede",
+      "Fedor_Gorbunov_CV_BASE_TEMPLATE_EN_2026-08-16.md": "42f67e85bc7bb5eae7264317ec17adafe901fba1f46fad92d8eb27623146c23f",
+      "SYS_SIGNAL_MANUAL_DIRECTIONAL_EXTREME_VOLUME_PARAMETER_AUDIT_P60_JAN_JUN_READER.html": "f5396f0d054b78b4de54901e4d52aaf10dba947140f23eb957f3f624b47db19e",
+      "fedor_cv_photo_from_akkuyu.png": "142c28b51b39a9a2b0e92729ba2c669a9b2bf67e332a1595adbdeba311a7401e"
+    }
+  },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "bc10e238837816fd29e7a87296f38095c27c287833e0b5accf8042585f9b4350",
+    "source_sha256": "8dfc0654a88b039c0ae23017b233055090f3b5057b297451042241dfd622e2c7",
     "model_owner": "portfolio-home.html",
     "commercial_kpi_claimed": false
   },
   "page_identity": {
     "favicon_sha256": "eaeeeab21d4bd3064fcbf39c84063f2d30d9d190ee9210e2374557ba34f18a92",
-    "standalone_projection": "head_only_icon; C1_return_link_relative_path_adapter; calculations_unchanged"
+    "standalone_projection": "icon; C1_return_link_adapter; source_bound_C1_DORI_locale_adapters; calculations_unchanged"
+  },
+  "dori": {
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "source_sha256": "bd90753c2d2d0b77781c61ea9b0b37f82e6658f0173c3414d99644a559c93764",
+    "translation_sha256": "9ec54c86d51331b2aa60500cc239ccd75ee8b4b963c7e374c5f0a4244e683d23",
+    "sandbox": "allow-scripts; no allow-same-origin",
+    "calculation_owner": "06_dori_camera_selector_agent_evening_en.html"
   },
   "mytwobrain": {
     "kind": "public_projection_of_canonical_map",
@@ -26,22 +51,31 @@
     }
   },
   "c1": {
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "translation_sha256": "a2cd5d6b6fc33faa6a998ed148abe6cfd6635d7c7ece65f2f75fc475851fad78",
     "version": "1.5",
     "kind": "construction_concept",
-    "html_sha256": "7726a26a9d92a030902c8613488dc3f857da906d0c0ba8f1d7fd0e208190fb79",
-    "markdown_sha256": "405c27c4240ab76b3eab487d3efc19dcfa9347e483861495ee05b37a41cee178"
+    "html_sha256": "fd90ec6a8b285264bfd3f75737afbab3c01f3a295c4cd89bb3a2e516506d0a6d",
+    "markdown_sha256": "edd8422ad2b5d865f14500e46687079f271c66d5819a7be59ad4faa74379f7ae"
   },
   "derived": {
-    "index.html": "6208144e6bfdcc88745321b879fa33d5ef95619c99487bcd24b3e5d8029763ee",
-    "portfolio-value.css": "f05643af6d5bf73badcaf09f677eb6092e61dc3ff190683ba756b3f0f4ed8cd4",
-    "portfolio-value.js": "64c667fdb267c2d1b9d0457cb71a4fcb0f7de0c1052e87379782d0acb37b47ea",
-    "fact-to-decision/index.html": "7726a26a9d92a030902c8613488dc3f857da906d0c0ba8f1d7fd0e208190fb79",
+    "cv/index.html": "a0110e16b492226462ba50e7e176adb10a0548cf9a3ecf5c0b9ebbb4f43510ac",
+    "index.html": "88747b96ae9a71237aa73166b4a92fce8419d34f7c7b04a2f53df736bebfb08a",
+    "mytwobrain/workspace.html": "0fc3cd358789834e49827929d9d5df2418f193463ae429c655b4101885a15160",
+    "mytwobrain/workspace.js": "b016bfc8be075d467cb94f47fcdad006f97d980c81482585d8598b1913bd49b3",
+    "examples/data-pipeline.html": "62881e056a09f7d920c8a30add6c016b1a1a6659b47d228b4cbe6d7bf78c1633",
+    "portfolio-value.css": "766a132b0d2c9b5a8978245d405c0d976b73022de84f2cec1e28768e27124da5",
+    "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
+    "fact-to-decision/index.html": "fd90ec6a8b285264bfd3f75737afbab3c01f3a295c4cd89bb3a2e516506d0a6d",
     "mytwobrain/README.md": "bf5d6d0455b51bc6e47cdeb1b108a8f65d4b83c1c678a50b7075aec743fabe57",
-    "mytwobrain/index.html": "c2fda87bbeee134fceaa55cc46177d6a47fe193f8469915428c56138bbebe83b",
+    "mytwobrain/index.html": "cbd5b9287883e17dcce0b1708bb76f5a8e3c02761a9fedc02c49140870232656",
     "harness-map.css": "b2ed5f336211c4e715bf36331b94d273f1e9604572fd19c6710d83a986e523e5",
     "harness-map.js": "ed7c9717110814aca5458abe0a65a326ed5fd82a838fd4bddcb8e179db3236a7",
-    "examples/analytics.html": "512f177df78aaa147d44f5f662145efe10c0243129906de19ee1d51d5a0992d9",
-    "overview.html": "86b95b75cf609feae1a46bca213a1c0c54b0655e66b8df190346f2fb1df17d8e",
-    "examples/dori.html": "d35e078df19cc882f270f974989094b891c4637653773c85cd3318b6c479a1c3"
+    "examples/analytics.html": "b52d56a999abfce224d6ccd9f88b1977941dc3d6fe779ab6d8250410d9f1c974",
+    "overview.html": "36df2423f9d2042fc76bc1f8d4007af8b6e5499e1fdcaa5cbbfc28c8ecae3087",
+    "examples/dori.html": "05c404878b99ace60c9e2abdd58d0a8dd402e2d5950e25abb592e8abafd580a8"
   }
 }

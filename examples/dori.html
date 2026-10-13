@@ -1,6 +1,178 @@
 <!doctype html>
 <html lang="en">
-<head>
+<head><style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
+.portfolio-language button,.portfolio-language summary{font:inherit;font-size:12px;color:inherit;background:transparent;border:1px solid #d0aa5470;border-radius:6px;padding:5px 8px;cursor:pointer}
+.portfolio-language button[aria-pressed=true]{background:#d0aa54;color:#141414;font-weight:700}
+.portfolio-language button:focus-visible,.portfolio-language summary:focus-visible{outline:2px solid #d0aa54;outline-offset:3px}
+.portfolio-language details{position:relative}.portfolio-language summary{list-style:none}
+.portfolio-language details p{position:absolute;z-index:30;right:0;top:24px;width:min(310px,80vw);padding:14px;background:#15191e;color:#eee;border:1px solid #d0aa5470;border-radius:8px;box-shadow:0 12px 30px #0008;font-size:13px;font-weight:400;line-height:1.6}
+@media print{.portfolio-language{display:none}}
+</style><script type="application/json" id="portfolio-translations">{"pairs": [["DORI: расчёт и подбор камеры", "DORI Camera Selector / Designer"], ["Прямой расчёт: оборудование → результат", "Direct Calculator (Equipment -> Result)"], ["Подбор: задача → оборудование", "Designer (Task -> Equipment)"], ["Параметры камеры и сцены", "Camera and Scene Parameters"], ["Разрешение сенсора (MP) ℹ️", "Sensor Resolution (MP) ℹ️"], ["Физический размер сенсора ℹ️", "Physical Sensor Size ℹ️"], ["Высота установки (H, метры) ℹ️", "Mounting Height (H, meters) ℹ️"], ["Вертикальный наклон (градусы) ℹ️", "Vertical Tilt (deg) ℹ️"], ["Автонаведение на цель", "Auto-aim at target"], ["Тип объектива ℹ️", "Lens Type ℹ️"], ["Вариофокальный (точная настройка)", "Varifocal (Precise Adjustment)"], ["Фиксированный (стандартный)", "Fixed (Standard)"], ["Фокусное расстояние (мм) ℹ️", "Focal Length (mm) ℹ️"], ["2.8 mm (широкоугольный)", "2.8 mm (Wide-angle)"], ["3.6 mm (стандартный)", "3.6 mm (Standard)"], ["Горизонтальный угол обзора (градусы) ℹ️", "Horizontal Field of View (deg) ℹ️"], ["Дистанция до цели (наклонная, м) ℹ️", "Distance to Target (Slant, m) ℹ️"], ["Результаты расчёта DORI", "Calculation Results (DORI)"], ["Плотность пикселей (PPM) ℹ️", "Pixel Density (PPM) ℹ️"], ["Ширина сцены (FOV) ℹ️", "Scene Width (FOV) ℹ️"], ["Горизонтальный угол ℹ️", "Horizontal Angle ℹ️"], ["Дистанция по земле ℹ️", "Ground Distance ℹ️"], ["Вид сверху: охват по ширине", "Top View (Width Coverage)"], ["Ширина:", "Width:"], ["Вид сбоку: геометрия установки", "Side View - Mounting Geometry"], ["земля", "ground"], ["- m (по земле)", "- m (ground)"], ["🎯 - m (лазер)", "🎯 - m (laser)"], ["↕ Высота:", "↕ Height:"], ["Слепая зона: -", "Blind Zone: -"], ["По земле: - m", "Ground: - m"], ["Загрузка…", "Loading..."], ["Слепая зона", "Blind"], ["Предельные дистанции: нажмите для подстановки", "Maximum Distances (click to apply):"], ["Идентификация (≥250 PPM)", "Identification (≥250 PPM)"], ["Узнавание (≥125 PPM)", "Recognition (≥125 PPM)"], ["Наблюдение (≥62 PPM)", "Observation (≥62 PPM)"], ["Обнаружение (≥25 PPM)", "Detection (≥25 PPM)"], ["Геометрия и задача: исходные данные", "Geometry and Task (Input)"], ["Целевая дистанция (наклонная, м) ℹ️", "Target Distance (Slant, m) ℹ️"], ["Требуемая ширина сцены (метры) ℹ️", "Required Scene Width (meters) ℹ️"], ["Целевая задача DORI ℹ️", "Target Task (DORI) ℹ️"], ["Идентификация (расчётный ориентир 300 PPM)", "Identification (300 PPM design reference)"], ["Узнавание (расчётный ориентир 150 PPM)", "Recognition (150 PPM design reference)"], ["Наблюдение (ориентир 80 PPM): сцена и признаки", "Observation (80 PPM reference) - scene and feature monitoring"], ["Обнаружение (ориентир 40 PPM): базовая аналитика, силуэты", "Detection (40 PPM reference) - basic analytics, silhouettes"], ["Предполагаемый размер сенсора ℹ️", "Assumed Camera Sensor Size ℹ️"], ["1/2.8\" (5.27 x 2.96 mm) — стандартный", "1/2.8\" (5.27 x 2.96 mm) - Standard"], ["1/2\" (6.4 x 4.8 mm) — премиальный", "1/2\" (6.4 x 4.8 mm) - Premium"], ["Вертикальный наклон (°) ℹ️", "Vertical Tilt (°) ℹ️"], ["Автоматически направлять на цель", "Automatically aim at target"], ["Вид сбоку: схема установки", "Side View - Installation Geometry"], ["Требуемое оборудование: результат", "Required Equipment (Result)"], ["Минимум пикселей для заданной ширины сцены", "Minimum Pixels for the Requested Scene Width"], ["Расчётное фокусное расстояние: точная ширина", "Required Lens Focal Length (Exact Width)"], ["Фиксированный объектив с полным охватом ширины:", "Fixed lens covering the full width:"], ["Или диапазон вариофокального объектива:", "Or varifocal range:"], ["Угол обзора для заданной ширины", "Camera Field of View for This Width"], ["Режим расчёта DORI", "DORI calculation mode"], ["Калькулятор DORI", "DORI calculator mode"], ["Разрешение влияет на плотность пикселей по ширине сцены. Геометрический расчёт не гарантирует качество аналитики.", "Purpose: resolution contributes to pixel density across the scene. The geometric estimate does not guarantee analytics quality."], ["Размеры сенсора участвуют в расчёте угла обзора. Ночную съёмку нужно проверять с реальной камерой, объективом и освещением.", "Purpose: sensor dimensions enter the field-of-view calculation. Night imaging also needs verification with the actual camera, lens and lighting."], ["Высота установки влияет на слепую зону под камерой и наклонную дистанцию до цели.", "Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance."], ["Направление объектива. AUTO направляет камеру на цель; без AUTO наклон можно настроить вручную.", "Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually."], ["Сравнение фиксированного и регулируемого фокусного расстояния. Стоимость, долговечность и совместимость зависят от оборудования.", "Purpose: compare a fixed focal length with an adjustable lens. Cost, durability and compatibility depend on the chosen equipment."], ["Короткое фокусное расстояние, например 2.8 mm, даёт широкий охват. Длиннофокусный объектив, от 12 mm, позволяет рассматривать детали на большей дистанции.", "Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances."], ["Угол обзора определяет охват. Широкий угол (>90°) подходит для дворов и парковок; узкий (\u003c40°) — для коридоров и проходных.", "Business purpose: Shows area coverage. A wide angle (>90 deg) is useful for yards and parking areas. A narrow angle (\u003c40 deg) is useful for corridors and checkpoints."], ["Наклонная дистанция от объектива до целевой точки — гипотенуза. Обычно именно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical point (hypotenuse). This is usually the distance measured with a laser rangefinder."], ["Геометрическая плотность пикселей в целевой зоне. Это один из параметров подбора, а не доказательство точности распознавания или соответствия стандарту.", "Purpose: geometric pixel density at the target. It is one input to equipment selection, not proof of recognition accuracy or compliance."], ["Ширина участка, попадающего в кадр на выбранной дистанции. Помогает оценить охват забора, ворот или прохода.", "Business purpose: How many meters of width fit into the frame at the selected distance. Important for covering fences and gates without blind zones."], ["Угол поля зрения оптической системы камеры.", "Business purpose: Actual field of view angle of the camera optical system."], ["Дистанция до контролируемой точки.", "Business purpose: Target control distance."], ["Сравнение расчётной детализации с выбранным ориентиром DORI. Выполнение реальной задачи проверяется на месте.", "Purpose: compare geometric detail with the selected DORI reference. Actual task performance requires an on-site check."], ["\u003c25 PPM: недостаточная детализация", "\u003c25 PPM Blind Zone"], ["25–61 PPM (ориентир ~40)", "25-61 PPM (Optimum ~40)"], ["62–124 PPM (ориентир ~80)", "62-124 PPM (Optimum ~80)"], ["125–249 PPM (ориентир ~150)", "125-249 PPM (Optimum ~150)"], ["250+ PPM (ориентир ~300)", "250+ PPM (Optimum ~300)"], ["Идентификация: наивысший ориентир детализации в этой модели. Расчёт не устанавливает точность биометрии или юридическую доказательность.", "Purpose (Identification): the highest detail reference in this model. It does not establish biometric accuracy or legal evidentiary value."], ["Узнавание: ориентир детализации. Освещение, движение, оптика и система распознавания проверяются отдельно.", "Purpose (Recognition): a detail reference for recognition tasks. Lighting, motion, optics and the recognition system must be tested separately."], ["Наблюдение: оценка сцены — цвета одежды, наличия предмета в руках и направления движения.", "Business purpose (Observation): Situational control. Makes it possible to understand clothing color, whether a person is holding an object, and movement direction."], ["Обнаружение: базовая аналитика для фиксации пересечения периметра или движения вдали.", "Business purpose (Detection): Basic analytics. Records the fact that a perimeter was crossed or that there is movement in the distance."], ["Наклонная дистанция от объектива до целевой зоны — гипотенуза. Обычно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical zone (hypotenuse). This is the distance usually measured with a laser rangefinder."], ["Ширина сцены, которая должна целиком попасть в кадр на этой дистанции. Например, проезд шириной 6 m.", "Business purpose: Required scene width to fit into the frame at this distance. For example, a driveway width of 6 m."], ["Целевая геометрическая детализация по заданной ширине. Это исходное требование проекта, а не гарантия результата на объекте.", "Purpose: the target geometric detail across the requested width. This is a design input, not a guarantee of field performance."], ["Размер сенсора предполагаемой камеры.", "Business purpose: Sensor size planned for the camera."], ["Пиксели по горизонтали = ширина сцены × требуемая PPM. Это минимум для заданной детализации. Измените ширину или задачу: минимум изменится. Изменение дистанции влияет на объектив, а не на этот минимум.", "What: horizontal pixels = scene width × required PPM. Why: select detail level. Source: current width and task inputs. Verify: change width or task; distance changes the lens, not this minimum."], ["Фиксированный объектив — альтернатива, не точная замена. Проверяется комплект объектив + разрешение. Списки встроены для примера, это не каталог производителя. Фактическая ширина и PPM должны соответствовать задаче.", "What: an alternative fixed lens, not an exact substitute. Why: check the complete lens/resolution combination. Source: built-in example lens and resolution lists, not a vendor catalogue. Verify: actual width and PPM in the note must meet the requested width and task."], ["Недостаточно", "Insufficient"], ["Необходимый минимум", "Minimum required"], ["Умеренный запас", "Optimal"], ["Большой запас", "Excessive"], ["В списке нет диапазона; проверьте совместимый широкоугольный объектив", "No listed range; check a compatible wider lens"], ["Более 50 mm; проверьте совместимый длиннофокусный объектив", "Beyond 50 mm; verify a compatible telephoto lens"], ["В списке нет объектива с нужным охватом", "No listed lens covers the width"], ["Объективы из примера не обеспечивают нужную ширину. Подберите совместимый широкоугольный объектив или измените размещение; готовый фиксированный комплект не предложен.", "The example lens list cannot cover this width. Select a compatible wider lens or revise the placement; no fixed-lens package is recommended."], ["Ни одна камера из списка не отвечает требованию. Геометрия показана для анализа; это не подтверждённый комплект оборудования.", "No listed camera meets this requirement. The geometry remains visible; do not treat it as a feasible equipment package."], ["Только геометрическая оценка: освещение, движение, оптика и монтаж проверяются на объекте.", "Geometric estimate only: verify lighting, motion, optics and mounting on site."], ["Схема охвата: ширина и дистанция показаны в разных масштабах.", "Coverage schematic: width and distance use separate scales."], ["Ожидание корректных данных", "Waiting for valid inputs"], ["Недостаточная детализация", "Blind Zone (Insufficient Detail)"], ["Обнаружение: виден силуэт", "Detection - Silhouette visible"], ["Наблюдение: видны основные признаки", "Observation - Basic attributes visible"], ["Ориентир узнавания: только геометрия", "Recognition reference (geometry only)"], ["Ориентир идентификации: только геометрия", "Identification reference (geometry only)"], ["🔴 Идентификация", "🔴 Identification"], ["🟡 Узнавание", "🟡 Recognition"], ["🔵 Наблюдение", "🔵 Observation"], ["🟢 Обнаружение", "🟢 Detection"], ["⚫ Недостаточная детализация", "⚫ Blind zone"]], "decimal_templates": [["{0} m по земле", "{0} m ground"], ["{0} m (по земле)", "{0} m (ground)"], ["Слепая зона: {0} m", "Blind Zone: {0} m"], ["По земле: {0} m", "Ground: {0} m"], ["Фиксированный объектив охватывает {0} m и требует {1} пикселей по горизонтали. Разрешения из списка не хватает; измените объектив или проект.", "Fixed-lens alternative covers {0} m and needs {1} horizontal pixels. No listed resolution is sufficient; change the lens or design."], ["Разрешение сенсора (MP): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Разрешение сенсора (MP): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фиксированный объектив: охват {0} m; нужно не менее 1.3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 1.3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 2MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 2MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 4MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 4MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 5MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 5MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 8MP (4K) ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 8MP (4K) ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 12MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 12MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."]], "root": "../", "controls_selector": ".shell", "srcdoc_selector": "#mode-frame"}</script><script>/* Reviewed translations only. No network translator, storage or HTML injection. */
+"use strict";
+
+function createPortfolioTranslator(pairs, templates = [], decimalTemplates = []) {
+  const normalize = text => text.replace(/\s+/g, " ").trim();
+  const forward = new Map();
+  const reverse = new Map();
+  for (const [ru, en] of pairs) {
+    if (!ru || !en || (forward.has(normalize(ru)) && forward.get(normalize(ru)) !== en)) {
+      throw Error("Missing or conflicting portfolio translation");
+    }
+    forward.set(normalize(ru), en);
+    if (!reverse.has(normalize(en))) reverse.set(normalize(en), ru);
+  }
+  const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const compile = (from, to, decimal = false) => {
+    const names = [...from.matchAll(/\{(\d+)\}/g)].map(m => m[1]);
+    if (names.length !== new Set(names).size ||
+        [...to.matchAll(/\{(\d+)\}/g)].some(m => !names.includes(m[1]))) {
+      throw Error("Invalid numeric translation template");
+    }
+    const pieces = normalize(from).split(/\{\d+\}/g).map(escape);
+    return {pattern:new RegExp("^" + pieces.join(decimal ? "(-?\\d+(?: \\d{3})*(?:[.,]\\d+)?)" : "(\\d+)") + "$"), to, names};
+  };
+  const patterns = {
+    en:[...templates.map(([ru,en]) => compile(ru,en)),...decimalTemplates.map(([ru,en]) => compile(ru,en,true))],
+    ru:[...templates.map(([ru,en]) => compile(en,ru)),...decimalTemplates.map(([ru,en]) => compile(en,ru,true))]
+  };
+  return function translate(value, language) {
+    const key = normalize(value);
+    let replacement = (language === "en" ? forward : reverse).get(key);
+    if (replacement === undefined) {
+      for (const item of patterns[language]) {
+        const match = item.pattern.exec(key);
+        if (!match) continue;
+        replacement = item.to.replace(/\{(\d+)\}/g, (_,name) => match[item.names.indexOf(name)+1]);
+        break;
+      }
+    }
+    if (replacement === undefined && value.includes("\n")) {
+      return value.split("\n").map(line => translate(line,language)).join("\n");
+    }
+    return replacement === undefined ? value : value.replace(/\S[\s\S]*\S|\S/, () => replacement);
+  };
+}
+
+function portfolioLanguageURL(value, language, base, root) {
+  if (!value || value.startsWith("#")) return value;
+  const url = new URL(value, base);
+  const owner = new URL(root, base);
+  if (url.origin !== owner.origin || !url.pathname.startsWith(owner.pathname) ||
+      !(/\/$|\.html$/.test(url.pathname))) return value;
+  const before = url.search;
+  if (language === "en") url.searchParams.set("lang","en");
+  else url.searchParams.delete("lang");
+  return url.search === before ? value : url.href;
+}
+
+function bindPortfolioLanguage() {
+  const source = document.getElementById("portfolio-translations");
+  if (!source) return;
+  const catalog = JSON.parse(source.textContent);
+  const config = Array.isArray(catalog) ? {pairs:catalog} : catalog;
+  const translate = createPortfolioTranslator(config.pairs, config.templates || [], config.decimal_templates || []);
+  const base = config.embedded ? (config.frame_parent_url || document.referrer) : location.href;
+  const parentOrigin = config.embedded ? (config.frame_parent_origin ?? new URL(base).origin) : new URL(base).origin;
+  const root = new URL(config.root || "./", base).href;
+  const records = new WeakMap();
+  const attributes = ["title", "alt", "aria-label", "placeholder", "content"];
+  let language = new URL(base).searchParams.get("lang") === "en" ? "en" : "ru";
+  let observer;
+  const original = (node, field, value) => {
+    const record = records.get(node) || {};
+    if (!record[field] || record[field].applied !== value) {
+      record[field] = {source:value, applied:value};
+      records.set(node, record);
+    }
+    const output = translate(record[field].source, language);
+    record[field].applied = output;
+    return output;
+  };
+  const apply = () => {
+    observer?.disconnect();
+    const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) {
+      const node = walk.currentNode;
+      if (node.parentElement?.closest("script,style,noscript,textarea,[data-language-controls],[data-language-preserve]")) continue;
+      if (config.preserve_selector && node.parentElement?.closest(config.preserve_selector)) continue;
+      const next = original(node, "text", node.nodeValue);
+      if (next !== node.nodeValue) node.nodeValue = next;
+    }
+    document.querySelectorAll("title,meta[name=description],body *").forEach(node => {
+      if (node.closest("[data-language-controls],script,style")) return;
+      attributes.forEach(attribute => {
+        if (!node.hasAttribute(attribute)) return;
+        const value = node.getAttribute(attribute);
+        const next = original(node, attribute, value);
+        if (next !== value) node.setAttribute(attribute, next);
+      });
+    });
+    document.documentElement.lang = language;
+    document.querySelectorAll("[data-portfolio-language]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.portfolioLanguage === language));
+    });
+    document.querySelectorAll("a[href]:not([download])").forEach(link => {
+      const href = link.getAttribute("href");
+      const next = portfolioLanguageURL(href, language, base, root);
+      if (next !== href) link.setAttribute("href",next);
+    });
+    observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true,
+      attributes:true, attributeFilter:attributes});
+  };
+  const controls = document.createElement("div");
+  controls.dataset.languageControls = "";
+  controls.className = "portfolio-language";
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", "Language / Язык");
+  controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
+  if (!config.embedded) (document.querySelector(config.controls_selector || ".masthead,.map-links,.standalone,.reader>nav") || document.body).append(controls);
+  observer = new MutationObserver(apply);
+  const syncFrames = () => {
+    document.querySelectorAll("iframe[src]").forEach(frame => {
+    const url = new URL(frame.src,location.href);
+    if(url.origin === new URL(base).origin) {
+      const opaque = frame.hasAttribute('sandbox') && !frame.sandbox.contains('allow-same-origin');
+      frame.contentWindow?.postMessage({type:"portfolio-language",language},opaque ? "*" : url.origin);
+    }
+    });
+    if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => {
+      // Opaque sandbox origin: address only the explicitly owned inline frame.
+      // Payload contains one language code; the child verifies parent + origin.
+      if(frame.hasAttribute('srcdoc')) frame.contentWindow?.postMessage({type:"portfolio-language",language},"*");
+    });
+  };
+  const select = next => {
+    if (!["ru","en"].includes(next)) return;
+    language = next;
+    const url = new URL(config.embedded ? base : location.href);
+    if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
+    if (!config.embedded && window.origin !== "null") history.replaceState(null, "", url);
+    apply();
+    syncFrames();
+    window.dispatchEvent(new Event("resize"));
+  };
+  controls.addEventListener("click", event => {
+    const button = event.target.closest("[data-portfolio-language]");
+    if (!button) return;
+    select(button.dataset.portfolioLanguage);
+  });
+  window.addEventListener("message", event => {
+    if (window === parent || event.source !== parent || event.origin !== parentOrigin ||
+        event.data?.type !== "portfolio-language") return;
+    select(event.data.language);
+  });
+  document.querySelectorAll("iframe[src]").forEach(frame => frame.addEventListener("load",syncFrames));
+  if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => frame.addEventListener("load",syncFrames));
+  apply();
+  syncFrames();
+}
+
+if (typeof module !== "undefined") module.exports = {createPortfolioTranslator,portfolioLanguageURL};
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPortfolioLanguage);
+  else bindPortfolioLanguage();
+}
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DORI Camera Selector / Designer</title>
@@ -396,8 +568,8 @@
     <div class="panel">
         <h2>Camera and Scene Parameters</h2>
         
-        <div class="form-group" title="Business purpose: Affects overall image detail. More megapixels allow one camera to cover a larger area without losing analytics quality.">
-            <label for="resolution">Sensor Resolution (MP) ℹ️</label>
+        <div class="form-group" title="Purpose: resolution contributes to pixel density across the scene. The geometric estimate does not guarantee analytics quality.">
+            <label for="resolution" data-dori-label="Sensor Resolution (MP) ℹ️">Sensor Resolution (MP) ℹ️</label>
             <select id="resolution">
                 <option value="1920x1080">2MP (1920x1080)</option>
                 <option value="2048x1536">3MP (2048x1536)</option>
@@ -407,8 +579,8 @@
             </select>
         </div>
 
-        <div class="form-group" title="Business purpose: Larger sensors, for example 1/2&quot;, capture more light and provide a wider field of view. This is critical for high-quality color night imaging.">
-            <label for="sensor">Physical Sensor Size ℹ️</label>
+        <div class="form-group" title="Purpose: sensor dimensions enter the field-of-view calculation. Night imaging also needs verification with the actual camera, lens and lighting.">
+            <label for="sensor" data-dori-label="Physical Sensor Size ℹ️">Physical Sensor Size ℹ️</label>
             <select id="sensor">
                 <option value="4.8" data-height="3.6">1/3" (4.8 x 3.6 mm)</option>
                 <option value="5.27" data-height="2.96" selected>1/2.8" (5.27 x 2.96 mm)</option>
@@ -418,7 +590,7 @@
         </div>
 
         <div class="form-group" style="margin-top: 24px;" title="Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance.">
-            <label for="height-slider">Mounting Height (H, meters) ℹ️</label>
+            <label for="height-slider" data-dori-label="Mounting Height (H, meters) ℹ️">Mounting Height (H, meters) ℹ️</label>
             <div class="slider-group">
                 <input type="range" id="height-slider" min="1" max="20" step="0.5" value="3">
                 <input type="number" id="height-input" min="1" max="20" step="0.5" value="3">
@@ -426,10 +598,10 @@
         </div>
 
         <div class="form-group" title="Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually.">
-            <label for="tilt-slider">Vertical Tilt (deg) ℹ️</label>
+            <label for="tilt-slider" data-dori-label="Vertical Tilt (deg) ℹ️">Vertical Tilt (deg) ℹ️</label>
             <div style="display: flex; align-items: center; margin-bottom: 8px;">
                 <input type="checkbox" id="tilt-auto" checked style="width: auto; margin-right: 8px;">
-                <label for="tilt-auto" style="margin-bottom: 0; display: inline;">Auto-aim at target</label>
+                <label for="tilt-auto" style="margin-bottom: 0; display: inline;" data-dori-label="Auto-aim at target">Auto-aim at target</label>
             </div>
             <div class="slider-group">
                 <input type="range" id="tilt-slider" min="0" max="90" step="1" value="16" disabled style="opacity: 0.5;">
@@ -437,14 +609,14 @@
             </div>
         </div>
 
-        <div class="form-group" title="Business purpose: Fixed lenses are cheaper and more durable. Varifocal lenses allow precise framing on the object, removing unnecessary walls and keeping only the controlled passage in frame.">
-            <label>Lens Type ℹ️</label>
+        <div class="form-group" title="Purpose: compare a fixed focal length with an adjustable lens. Cost, durability and compatibility depend on the chosen equipment.">
+            <label data-dori-label="Lens Type ℹ️">Lens Type ℹ️</label>
             <div class="optics-type-toggle" id="optics-toggle">
                 <button type="button" class="active" data-type="varifocal">Varifocal (Precise Adjustment)</button>
                 <button type="button" data-type="fixed">Fixed (Standard)</button>
             </div>
             
-            <label for="focal-slider" title="Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances.">Focal Length (mm) ℹ️</label>
+            <label for="focal-slider" title="Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances." data-dori-label="Focal Length (mm) ℹ️">Focal Length (mm) ℹ️</label>
             <select id="focal-fixed" style="display: none; margin-bottom: 8px;">
                 <option value="2.8">2.8 mm (Wide-angle)</option>
                 <option value="3.6" selected>3.6 mm (Standard)</option>
@@ -463,7 +635,7 @@
         </div>
 
         <div class="form-group" id="angle-group" style="margin-top: 16px;" title="Business purpose: Shows area coverage. A wide angle (>90 deg) is useful for yards and parking areas. A narrow angle (<40 deg) is useful for corridors and checkpoints.">
-            <label for="angle-slider">Horizontal Field of View (deg) ℹ️</label>
+            <label for="angle-slider" data-dori-label="Horizontal Field of View (deg) ℹ️">Horizontal Field of View (deg) ℹ️</label>
             <div class="slider-group">
                 <input type="range" id="angle-slider" min="5" max="170" step="1" value="73">
                 <input type="number" id="angle-input" min="5" max="170" step="0.1" value="73.4">
@@ -471,7 +643,7 @@
         </div>
 
         <div class="form-group" style="margin-top: 32px;" title="Business purpose: Slant distance from the camera lens to the critical point (hypotenuse). This is usually the distance measured with a laser rangefinder.">
-            <label for="dist-slider">Distance to Target (Slant, m) ℹ️</label>
+            <label for="dist-slider" data-dori-label="Distance to Target (Slant, m) ℹ️">Distance to Target (Slant, m) ℹ️</label>
             <div class="slider-group">
                 <input type="range" id="dist-slider" min="1" max="150" step="1" value="10">
                 <input type="number" id="dist-input" min="1" max="150" step="1" value="10">
@@ -484,7 +656,7 @@
         <h2>Calculation Results (DORI)</h2>
         
         <div class="result-grid">
-            <div class="result-card" title="Business purpose: The main analytics quality criterion (EN 62676-4). The higher the number, the more small details, such as faces or banknotes, are distinguishable.">
+            <div class="result-card" title="Purpose: geometric pixel density at the target. It is one input to equipment selection, not proof of recognition accuracy or compliance.">
                 <span>Pixel Density (PPM) ℹ️</span>
                 <strong id="res-ppm" class="ppm-highlight">0</strong>
             </div>
@@ -654,7 +826,7 @@
                 </div>
             </div>
 
-            <div id="dori-status" class="dori-status" title="Business purpose: Which security task the camera can reliably solve at this distance.">Loading...</div>
+            <div id="dori-status" class="dori-status" title="Purpose: compare geometric detail with the selected DORI reference. Actual task performance requires an on-site check.">Loading...</div>
             
             <div style="position: relative;">
                 <div class="dori-bar">
@@ -668,13 +840,13 @@
                 <div id="scale-indicator" class="indicator" style="left: 0%;"></div>
             </div>
 
-            <label style="display: block; margin-top: 24px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.875rem;">Maximum Distances (click to apply):</label>
+            <label style="display: block; margin-top: 24px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.875rem;" data-dori-label="Maximum Distances (click to apply):">Maximum Distances (click to apply):</label>
             <ul class="limits-list">
-                <li id="li-limit-i" title="Business purpose (Identification): Detailed biometrics. Used for FaceID systems and strong identity evidence in court.">
+                <li id="li-limit-i" title="Purpose (Identification): the highest detail reference in this model. It does not establish biometric accuracy or legal evidentiary value.">
                     <span style="color: var(--zone-identification)">Identification (≥250 PPM)</span>
                     <span class="dist" id="limit-i">0 m</span>
                 </li>
-                <li id="li-limit-r" title="Business purpose (Recognition): Clear license plate reading (LPR), recognition of familiar faces by security staff, and detailed cash-desk operation control.">
+                <li id="li-limit-r" title="Purpose (Recognition): a detail reference for recognition tasks. Lighting, motion, optics and the recognition system must be tested separately.">
                     <span style="color: var(--zone-recognition)">Recognition (≥125 PPM)</span>
                     <span class="dist" id="limit-r">0 m</span>
                 </li>
@@ -955,12 +1127,12 @@
             bgColor = "var(--zone-observation)";
             percent = 25 + ((ppm - 62) / (124 - 62)) * 20;
         } else if (ppm < 250) {
-            statusText = "Recognition - Faces/license plates recognizable";
+            statusText = "Recognition reference (geometry only)";
             bgColor = "var(--zone-recognition)";
             textColor = "#000";
             percent = 45 + ((ppm - 125) / (249 - 125)) * 25;
         } else {
-            statusText = "Identification - Detailed biometrics";
+            statusText = "Identification reference (geometry only)";
             bgColor = "var(--zone-identification)";
             percent = 70 + Math.min((ppm - 250) / 150, 1) * 30;
         }
@@ -1518,7 +1690,7 @@
         <h2>Geometry and Task (Input)</h2>
         
         <div class="form-group" title="Business purpose: Slant distance from the camera lens to the critical zone (hypotenuse). This is the distance usually measured with a laser rangefinder.">
-            <label for="dist-slider">Target Distance (Slant, m) ℹ️</label>
+            <label for="dist-slider" data-dori-label="Target Distance (Slant, m) ℹ️">Target Distance (Slant, m) ℹ️</label>
             <div class="slider-group">
                 <input type="range" id="dist-slider" min="1" max="150" step="1" value="10">
                 <input type="number" id="dist-input" min="1" max="150" step="1" value="10">
@@ -1526,25 +1698,25 @@
         </div>
 
         <div class="form-group" title="Business purpose: Required scene width to fit into the frame at this distance. For example, a driveway width of 6 m.">
-            <label for="width-slider">Required Scene Width (meters) ℹ️</label>
+            <label for="width-slider" data-dori-label="Required Scene Width (meters) ℹ️">Required Scene Width (meters) ℹ️</label>
             <div class="slider-group">
                 <input type="range" id="width-slider" min="1" max="100" step="0.5" value="6">
                 <input type="number" id="width-input" min="1" max="100" step="0.5" value="6">
             </div>
         </div>
 
-        <div class="form-group" title="Business purpose: Required detail level that must be guaranteed across this scene width.">
-            <label for="dori-task">Target Task (DORI) ℹ️</label>
+        <div class="form-group" title="Purpose: the target geometric detail across the requested width. This is a design input, not a guarantee of field performance.">
+            <label for="dori-task" data-dori-label="Target Task (DORI) ℹ️">Target Task (DORI) ℹ️</label>
             <select id="dori-task">
-                <option value="300">Identification (300 PPM reference) - detailed biometrics, FaceID</option>
-                <option value="150" selected>Recognition (150 PPM reference) - faces, license plates</option>
+                <option value="300">Identification (300 PPM design reference)</option>
+                <option value="150" selected>Recognition (150 PPM design reference)</option>
                 <option value="80">Observation (80 PPM reference) - scene and feature monitoring</option>
                 <option value="40">Detection (40 PPM reference) - basic analytics, silhouettes</option>
             </select>
         </div>
 
         <div class="form-group" style="margin-top: 24px;" title="Business purpose: Sensor size planned for the camera.">
-            <label for="sensor">Assumed Camera Sensor Size ℹ️</label>
+            <label for="sensor" data-dori-label="Assumed Camera Sensor Size ℹ️">Assumed Camera Sensor Size ℹ️</label>
             <select id="sensor">
                 <option value="4.8" data-height="3.6">1/3" (4.8 x 3.6 mm)</option>
                 <option value="5.27" data-height="2.96" selected>1/2.8" (5.27 x 2.96 mm) - Standard</option>
@@ -1554,7 +1726,7 @@
         </div>
 
         <div class="form-group" style="margin-top: 24px;" title="Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance.">
-            <label for="height-slider">Mounting Height (H, meters) ℹ️</label>
+            <label for="height-slider" data-dori-label="Mounting Height (H, meters) ℹ️">Mounting Height (H, meters) ℹ️</label>
             <div class="slider-group">
                 <input type="range" id="height-slider" min="1" max="20" step="0.5" value="3">
                 <input type="number" id="height-input" min="1" max="20" step="0.5" value="3">
@@ -1562,10 +1734,10 @@
         </div>
 
         <div class="form-group" title="Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually.">
-            <label for="tilt-slider">Vertical Tilt (°) ℹ️</label>
+            <label for="tilt-slider" data-dori-label="Vertical Tilt (°) ℹ️">Vertical Tilt (°) ℹ️</label>
             <div style="display: flex; align-items: center; margin-bottom: 8px;">
                 <input type="checkbox" id="tilt-auto" checked style="width: auto; margin-right: 8px;">
-                <label for="tilt-auto" style="margin-bottom: 0; display: inline;">Automatically aim at target</label>
+                <label for="tilt-auto" style="margin-bottom: 0; display: inline;" data-dori-label="Automatically aim at target">Automatically aim at target</label>
             </div>
             <div class="slider-group">
                 <input type="range" id="tilt-slider" min="0" max="90" step="1" value="16" disabled style="opacity: 0.5;">
@@ -2323,7 +2495,179 @@
 
   </template>
 
-  <template id="runtime-template">
+  <template id="runtime-template"><style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
+.portfolio-language button,.portfolio-language summary{font:inherit;font-size:12px;color:inherit;background:transparent;border:1px solid #d0aa5470;border-radius:6px;padding:5px 8px;cursor:pointer}
+.portfolio-language button[aria-pressed=true]{background:#d0aa54;color:#141414;font-weight:700}
+.portfolio-language button:focus-visible,.portfolio-language summary:focus-visible{outline:2px solid #d0aa54;outline-offset:3px}
+.portfolio-language details{position:relative}.portfolio-language summary{list-style:none}
+.portfolio-language details p{position:absolute;z-index:30;right:0;top:24px;width:min(310px,80vw);padding:14px;background:#15191e;color:#eee;border:1px solid #d0aa5470;border-radius:8px;box-shadow:0 12px 30px #0008;font-size:13px;font-weight:400;line-height:1.6}
+@media print{.portfolio-language{display:none}}
+</style><script type="application/json" id="portfolio-translations">{"pairs": [["DORI: расчёт и подбор камеры", "DORI Camera Selector / Designer"], ["Прямой расчёт: оборудование → результат", "Direct Calculator (Equipment -> Result)"], ["Подбор: задача → оборудование", "Designer (Task -> Equipment)"], ["Параметры камеры и сцены", "Camera and Scene Parameters"], ["Разрешение сенсора (MP) ℹ️", "Sensor Resolution (MP) ℹ️"], ["Физический размер сенсора ℹ️", "Physical Sensor Size ℹ️"], ["Высота установки (H, метры) ℹ️", "Mounting Height (H, meters) ℹ️"], ["Вертикальный наклон (градусы) ℹ️", "Vertical Tilt (deg) ℹ️"], ["Автонаведение на цель", "Auto-aim at target"], ["Тип объектива ℹ️", "Lens Type ℹ️"], ["Вариофокальный (точная настройка)", "Varifocal (Precise Adjustment)"], ["Фиксированный (стандартный)", "Fixed (Standard)"], ["Фокусное расстояние (мм) ℹ️", "Focal Length (mm) ℹ️"], ["2.8 mm (широкоугольный)", "2.8 mm (Wide-angle)"], ["3.6 mm (стандартный)", "3.6 mm (Standard)"], ["Горизонтальный угол обзора (градусы) ℹ️", "Horizontal Field of View (deg) ℹ️"], ["Дистанция до цели (наклонная, м) ℹ️", "Distance to Target (Slant, m) ℹ️"], ["Результаты расчёта DORI", "Calculation Results (DORI)"], ["Плотность пикселей (PPM) ℹ️", "Pixel Density (PPM) ℹ️"], ["Ширина сцены (FOV) ℹ️", "Scene Width (FOV) ℹ️"], ["Горизонтальный угол ℹ️", "Horizontal Angle ℹ️"], ["Дистанция по земле ℹ️", "Ground Distance ℹ️"], ["Вид сверху: охват по ширине", "Top View (Width Coverage)"], ["Ширина:", "Width:"], ["Вид сбоку: геометрия установки", "Side View - Mounting Geometry"], ["земля", "ground"], ["- m (по земле)", "- m (ground)"], ["🎯 - m (лазер)", "🎯 - m (laser)"], ["↕ Высота:", "↕ Height:"], ["Слепая зона: -", "Blind Zone: -"], ["По земле: - m", "Ground: - m"], ["Загрузка…", "Loading..."], ["Слепая зона", "Blind"], ["Предельные дистанции: нажмите для подстановки", "Maximum Distances (click to apply):"], ["Идентификация (≥250 PPM)", "Identification (≥250 PPM)"], ["Узнавание (≥125 PPM)", "Recognition (≥125 PPM)"], ["Наблюдение (≥62 PPM)", "Observation (≥62 PPM)"], ["Обнаружение (≥25 PPM)", "Detection (≥25 PPM)"], ["Геометрия и задача: исходные данные", "Geometry and Task (Input)"], ["Целевая дистанция (наклонная, м) ℹ️", "Target Distance (Slant, m) ℹ️"], ["Требуемая ширина сцены (метры) ℹ️", "Required Scene Width (meters) ℹ️"], ["Целевая задача DORI ℹ️", "Target Task (DORI) ℹ️"], ["Идентификация (расчётный ориентир 300 PPM)", "Identification (300 PPM design reference)"], ["Узнавание (расчётный ориентир 150 PPM)", "Recognition (150 PPM design reference)"], ["Наблюдение (ориентир 80 PPM): сцена и признаки", "Observation (80 PPM reference) - scene and feature monitoring"], ["Обнаружение (ориентир 40 PPM): базовая аналитика, силуэты", "Detection (40 PPM reference) - basic analytics, silhouettes"], ["Предполагаемый размер сенсора ℹ️", "Assumed Camera Sensor Size ℹ️"], ["1/2.8\" (5.27 x 2.96 mm) — стандартный", "1/2.8\" (5.27 x 2.96 mm) - Standard"], ["1/2\" (6.4 x 4.8 mm) — премиальный", "1/2\" (6.4 x 4.8 mm) - Premium"], ["Вертикальный наклон (°) ℹ️", "Vertical Tilt (°) ℹ️"], ["Автоматически направлять на цель", "Automatically aim at target"], ["Вид сбоку: схема установки", "Side View - Installation Geometry"], ["Требуемое оборудование: результат", "Required Equipment (Result)"], ["Минимум пикселей для заданной ширины сцены", "Minimum Pixels for the Requested Scene Width"], ["Расчётное фокусное расстояние: точная ширина", "Required Lens Focal Length (Exact Width)"], ["Фиксированный объектив с полным охватом ширины:", "Fixed lens covering the full width:"], ["Или диапазон вариофокального объектива:", "Or varifocal range:"], ["Угол обзора для заданной ширины", "Camera Field of View for This Width"], ["Режим расчёта DORI", "DORI calculation mode"], ["Калькулятор DORI", "DORI calculator mode"], ["Разрешение влияет на плотность пикселей по ширине сцены. Геометрический расчёт не гарантирует качество аналитики.", "Purpose: resolution contributes to pixel density across the scene. The geometric estimate does not guarantee analytics quality."], ["Размеры сенсора участвуют в расчёте угла обзора. Ночную съёмку нужно проверять с реальной камерой, объективом и освещением.", "Purpose: sensor dimensions enter the field-of-view calculation. Night imaging also needs verification with the actual camera, lens and lighting."], ["Высота установки влияет на слепую зону под камерой и наклонную дистанцию до цели.", "Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance."], ["Направление объектива. AUTO направляет камеру на цель; без AUTO наклон можно настроить вручную.", "Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually."], ["Сравнение фиксированного и регулируемого фокусного расстояния. Стоимость, долговечность и совместимость зависят от оборудования.", "Purpose: compare a fixed focal length with an adjustable lens. Cost, durability and compatibility depend on the chosen equipment."], ["Короткое фокусное расстояние, например 2.8 mm, даёт широкий охват. Длиннофокусный объектив, от 12 mm, позволяет рассматривать детали на большей дистанции.", "Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances."], ["Угол обзора определяет охват. Широкий угол (>90°) подходит для дворов и парковок; узкий (\u003c40°) — для коридоров и проходных.", "Business purpose: Shows area coverage. A wide angle (>90 deg) is useful for yards and parking areas. A narrow angle (\u003c40 deg) is useful for corridors and checkpoints."], ["Наклонная дистанция от объектива до целевой точки — гипотенуза. Обычно именно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical point (hypotenuse). This is usually the distance measured with a laser rangefinder."], ["Геометрическая плотность пикселей в целевой зоне. Это один из параметров подбора, а не доказательство точности распознавания или соответствия стандарту.", "Purpose: geometric pixel density at the target. It is one input to equipment selection, not proof of recognition accuracy or compliance."], ["Ширина участка, попадающего в кадр на выбранной дистанции. Помогает оценить охват забора, ворот или прохода.", "Business purpose: How many meters of width fit into the frame at the selected distance. Important for covering fences and gates without blind zones."], ["Угол поля зрения оптической системы камеры.", "Business purpose: Actual field of view angle of the camera optical system."], ["Дистанция до контролируемой точки.", "Business purpose: Target control distance."], ["Сравнение расчётной детализации с выбранным ориентиром DORI. Выполнение реальной задачи проверяется на месте.", "Purpose: compare geometric detail with the selected DORI reference. Actual task performance requires an on-site check."], ["\u003c25 PPM: недостаточная детализация", "\u003c25 PPM Blind Zone"], ["25–61 PPM (ориентир ~40)", "25-61 PPM (Optimum ~40)"], ["62–124 PPM (ориентир ~80)", "62-124 PPM (Optimum ~80)"], ["125–249 PPM (ориентир ~150)", "125-249 PPM (Optimum ~150)"], ["250+ PPM (ориентир ~300)", "250+ PPM (Optimum ~300)"], ["Идентификация: наивысший ориентир детализации в этой модели. Расчёт не устанавливает точность биометрии или юридическую доказательность.", "Purpose (Identification): the highest detail reference in this model. It does not establish biometric accuracy or legal evidentiary value."], ["Узнавание: ориентир детализации. Освещение, движение, оптика и система распознавания проверяются отдельно.", "Purpose (Recognition): a detail reference for recognition tasks. Lighting, motion, optics and the recognition system must be tested separately."], ["Наблюдение: оценка сцены — цвета одежды, наличия предмета в руках и направления движения.", "Business purpose (Observation): Situational control. Makes it possible to understand clothing color, whether a person is holding an object, and movement direction."], ["Обнаружение: базовая аналитика для фиксации пересечения периметра или движения вдали.", "Business purpose (Detection): Basic analytics. Records the fact that a perimeter was crossed or that there is movement in the distance."], ["Наклонная дистанция от объектива до целевой зоны — гипотенуза. Обычно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical zone (hypotenuse). This is the distance usually measured with a laser rangefinder."], ["Ширина сцены, которая должна целиком попасть в кадр на этой дистанции. Например, проезд шириной 6 m.", "Business purpose: Required scene width to fit into the frame at this distance. For example, a driveway width of 6 m."], ["Целевая геометрическая детализация по заданной ширине. Это исходное требование проекта, а не гарантия результата на объекте.", "Purpose: the target geometric detail across the requested width. This is a design input, not a guarantee of field performance."], ["Размер сенсора предполагаемой камеры.", "Business purpose: Sensor size planned for the camera."], ["Пиксели по горизонтали = ширина сцены × требуемая PPM. Это минимум для заданной детализации. Измените ширину или задачу: минимум изменится. Изменение дистанции влияет на объектив, а не на этот минимум.", "What: horizontal pixels = scene width × required PPM. Why: select detail level. Source: current width and task inputs. Verify: change width or task; distance changes the lens, not this minimum."], ["Фиксированный объектив — альтернатива, не точная замена. Проверяется комплект объектив + разрешение. Списки встроены для примера, это не каталог производителя. Фактическая ширина и PPM должны соответствовать задаче.", "What: an alternative fixed lens, not an exact substitute. Why: check the complete lens/resolution combination. Source: built-in example lens and resolution lists, not a vendor catalogue. Verify: actual width and PPM in the note must meet the requested width and task."], ["Недостаточно", "Insufficient"], ["Необходимый минимум", "Minimum required"], ["Умеренный запас", "Optimal"], ["Большой запас", "Excessive"], ["В списке нет диапазона; проверьте совместимый широкоугольный объектив", "No listed range; check a compatible wider lens"], ["Более 50 mm; проверьте совместимый длиннофокусный объектив", "Beyond 50 mm; verify a compatible telephoto lens"], ["В списке нет объектива с нужным охватом", "No listed lens covers the width"], ["Объективы из примера не обеспечивают нужную ширину. Подберите совместимый широкоугольный объектив или измените размещение; готовый фиксированный комплект не предложен.", "The example lens list cannot cover this width. Select a compatible wider lens or revise the placement; no fixed-lens package is recommended."], ["Ни одна камера из списка не отвечает требованию. Геометрия показана для анализа; это не подтверждённый комплект оборудования.", "No listed camera meets this requirement. The geometry remains visible; do not treat it as a feasible equipment package."], ["Только геометрическая оценка: освещение, движение, оптика и монтаж проверяются на объекте.", "Geometric estimate only: verify lighting, motion, optics and mounting on site."], ["Схема охвата: ширина и дистанция показаны в разных масштабах.", "Coverage schematic: width and distance use separate scales."], ["Ожидание корректных данных", "Waiting for valid inputs"], ["Недостаточная детализация", "Blind Zone (Insufficient Detail)"], ["Обнаружение: виден силуэт", "Detection - Silhouette visible"], ["Наблюдение: видны основные признаки", "Observation - Basic attributes visible"], ["Ориентир узнавания: только геометрия", "Recognition reference (geometry only)"], ["Ориентир идентификации: только геометрия", "Identification reference (geometry only)"], ["🔴 Идентификация", "🔴 Identification"], ["🟡 Узнавание", "🟡 Recognition"], ["🔵 Наблюдение", "🔵 Observation"], ["🟢 Обнаружение", "🟢 Detection"], ["⚫ Недостаточная детализация", "⚫ Blind zone"]], "decimal_templates": [["{0} m по земле", "{0} m ground"], ["{0} m (по земле)", "{0} m (ground)"], ["Слепая зона: {0} m", "Blind Zone: {0} m"], ["По земле: {0} m", "Ground: {0} m"], ["Фиксированный объектив охватывает {0} m и требует {1} пикселей по горизонтали. Разрешения из списка не хватает; измените объектив или проект.", "Fixed-lens alternative covers {0} m and needs {1} horizontal pixels. No listed resolution is sufficient; change the lens or design."], ["Разрешение сенсора (MP): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Разрешение сенсора (MP): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фиксированный объектив: охват {0} m; нужно не менее 1.3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 1.3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 2MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 2MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 4MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 4MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 5MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 5MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 8MP (4K) ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 8MP (4K) ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 12MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 12MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."]], "root": "../", "embedded": true, "frame_parent_url": "__DORI_PARENT_URL__", "frame_parent_origin": "__DORI_PARENT_ORIGIN__"}</script><script>/* Reviewed translations only. No network translator, storage or HTML injection. */
+"use strict";
+
+function createPortfolioTranslator(pairs, templates = [], decimalTemplates = []) {
+  const normalize = text => text.replace(/\s+/g, " ").trim();
+  const forward = new Map();
+  const reverse = new Map();
+  for (const [ru, en] of pairs) {
+    if (!ru || !en || (forward.has(normalize(ru)) && forward.get(normalize(ru)) !== en)) {
+      throw Error("Missing or conflicting portfolio translation");
+    }
+    forward.set(normalize(ru), en);
+    if (!reverse.has(normalize(en))) reverse.set(normalize(en), ru);
+  }
+  const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const compile = (from, to, decimal = false) => {
+    const names = [...from.matchAll(/\{(\d+)\}/g)].map(m => m[1]);
+    if (names.length !== new Set(names).size ||
+        [...to.matchAll(/\{(\d+)\}/g)].some(m => !names.includes(m[1]))) {
+      throw Error("Invalid numeric translation template");
+    }
+    const pieces = normalize(from).split(/\{\d+\}/g).map(escape);
+    return {pattern:new RegExp("^" + pieces.join(decimal ? "(-?\\d+(?: \\d{3})*(?:[.,]\\d+)?)" : "(\\d+)") + "$"), to, names};
+  };
+  const patterns = {
+    en:[...templates.map(([ru,en]) => compile(ru,en)),...decimalTemplates.map(([ru,en]) => compile(ru,en,true))],
+    ru:[...templates.map(([ru,en]) => compile(en,ru)),...decimalTemplates.map(([ru,en]) => compile(en,ru,true))]
+  };
+  return function translate(value, language) {
+    const key = normalize(value);
+    let replacement = (language === "en" ? forward : reverse).get(key);
+    if (replacement === undefined) {
+      for (const item of patterns[language]) {
+        const match = item.pattern.exec(key);
+        if (!match) continue;
+        replacement = item.to.replace(/\{(\d+)\}/g, (_,name) => match[item.names.indexOf(name)+1]);
+        break;
+      }
+    }
+    if (replacement === undefined && value.includes("\n")) {
+      return value.split("\n").map(line => translate(line,language)).join("\n");
+    }
+    return replacement === undefined ? value : value.replace(/\S[\s\S]*\S|\S/, () => replacement);
+  };
+}
+
+function portfolioLanguageURL(value, language, base, root) {
+  if (!value || value.startsWith("#")) return value;
+  const url = new URL(value, base);
+  const owner = new URL(root, base);
+  if (url.origin !== owner.origin || !url.pathname.startsWith(owner.pathname) ||
+      !(/\/$|\.html$/.test(url.pathname))) return value;
+  const before = url.search;
+  if (language === "en") url.searchParams.set("lang","en");
+  else url.searchParams.delete("lang");
+  return url.search === before ? value : url.href;
+}
+
+function bindPortfolioLanguage() {
+  const source = document.getElementById("portfolio-translations");
+  if (!source) return;
+  const catalog = JSON.parse(source.textContent);
+  const config = Array.isArray(catalog) ? {pairs:catalog} : catalog;
+  const translate = createPortfolioTranslator(config.pairs, config.templates || [], config.decimal_templates || []);
+  const base = config.embedded ? (config.frame_parent_url || document.referrer) : location.href;
+  const parentOrigin = config.embedded ? (config.frame_parent_origin ?? new URL(base).origin) : new URL(base).origin;
+  const root = new URL(config.root || "./", base).href;
+  const records = new WeakMap();
+  const attributes = ["title", "alt", "aria-label", "placeholder", "content"];
+  let language = new URL(base).searchParams.get("lang") === "en" ? "en" : "ru";
+  let observer;
+  const original = (node, field, value) => {
+    const record = records.get(node) || {};
+    if (!record[field] || record[field].applied !== value) {
+      record[field] = {source:value, applied:value};
+      records.set(node, record);
+    }
+    const output = translate(record[field].source, language);
+    record[field].applied = output;
+    return output;
+  };
+  const apply = () => {
+    observer?.disconnect();
+    const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) {
+      const node = walk.currentNode;
+      if (node.parentElement?.closest("script,style,noscript,textarea,[data-language-controls],[data-language-preserve]")) continue;
+      if (config.preserve_selector && node.parentElement?.closest(config.preserve_selector)) continue;
+      const next = original(node, "text", node.nodeValue);
+      if (next !== node.nodeValue) node.nodeValue = next;
+    }
+    document.querySelectorAll("title,meta[name=description],body *").forEach(node => {
+      if (node.closest("[data-language-controls],script,style")) return;
+      attributes.forEach(attribute => {
+        if (!node.hasAttribute(attribute)) return;
+        const value = node.getAttribute(attribute);
+        const next = original(node, attribute, value);
+        if (next !== value) node.setAttribute(attribute, next);
+      });
+    });
+    document.documentElement.lang = language;
+    document.querySelectorAll("[data-portfolio-language]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.portfolioLanguage === language));
+    });
+    document.querySelectorAll("a[href]:not([download])").forEach(link => {
+      const href = link.getAttribute("href");
+      const next = portfolioLanguageURL(href, language, base, root);
+      if (next !== href) link.setAttribute("href",next);
+    });
+    observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true,
+      attributes:true, attributeFilter:attributes});
+  };
+  const controls = document.createElement("div");
+  controls.dataset.languageControls = "";
+  controls.className = "portfolio-language";
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", "Language / Язык");
+  controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
+  if (!config.embedded) (document.querySelector(config.controls_selector || ".masthead,.map-links,.standalone,.reader>nav") || document.body).append(controls);
+  observer = new MutationObserver(apply);
+  const syncFrames = () => {
+    document.querySelectorAll("iframe[src]").forEach(frame => {
+    const url = new URL(frame.src,location.href);
+    if(url.origin === new URL(base).origin) {
+      const opaque = frame.hasAttribute('sandbox') && !frame.sandbox.contains('allow-same-origin');
+      frame.contentWindow?.postMessage({type:"portfolio-language",language},opaque ? "*" : url.origin);
+    }
+    });
+    if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => {
+      // Opaque sandbox origin: address only the explicitly owned inline frame.
+      // Payload contains one language code; the child verifies parent + origin.
+      if(frame.hasAttribute('srcdoc')) frame.contentWindow?.postMessage({type:"portfolio-language",language},"*");
+    });
+  };
+  const select = next => {
+    if (!["ru","en"].includes(next)) return;
+    language = next;
+    const url = new URL(config.embedded ? base : location.href);
+    if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
+    if (!config.embedded && window.origin !== "null") history.replaceState(null, "", url);
+    apply();
+    syncFrames();
+    window.dispatchEvent(new Event("resize"));
+  };
+  controls.addEventListener("click", event => {
+    const button = event.target.closest("[data-portfolio-language]");
+    if (!button) return;
+    select(button.dataset.portfolioLanguage);
+  });
+  window.addEventListener("message", event => {
+    if (window === parent || event.source !== parent || event.origin !== parentOrigin ||
+        event.data?.type !== "portfolio-language") return;
+    select(event.data.language);
+  });
+  document.querySelectorAll("iframe[src]").forEach(frame => frame.addEventListener("load",syncFrames));
+  if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => frame.addEventListener("load",syncFrames));
+  apply();
+  syncFrames();
+}
+
+if (typeof module !== "undefined") module.exports = {createPortfolioTranslator,portfolioLanguageURL};
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPortfolioLanguage);
+  else bindPortfolioLanguage();
+}
+</script>
     <style>
       #input-status { margin: 0 0 16px; padding: 10px; color: #fbbf24; border: 1px solid #92400e; border-radius: 6px; }
       #input-status:empty { display: none; }
@@ -2375,7 +2719,7 @@
                   && value >= Number(field.min) && value <= Number(field.max);
               field.setAttribute('aria-invalid', String(!valid));
               if (!valid && !error) {
-                  const label = field.closest('.form-group')?.querySelector('label')?.textContent || field.id;
+                  const label = field.closest('.form-group')?.querySelector('label')?.getAttribute('data-dori-label') || field.id;
                   error = `${label.replace('ℹ️', '').trim()}: enter a value from ${field.min} to ${field.max}${field.id === 'dist-input' ? ', in 0.1 m steps' : ''}. Results are unavailable until the inputs are valid.`;
               }
           }
@@ -2419,7 +2763,9 @@
       designerButton.classList.toggle('active-green', isDesigner);
       directButton.setAttribute('aria-selected', String(!isDesigner));
       designerButton.setAttribute('aria-selected', String(isDesigner));
-      frame.srcdoc = (isDesigner ? designerHtml : directHtml).replace('<script>', document.getElementById('runtime-template').innerHTML + '<script>');
+      frame.srcdoc = (isDesigner ? designerHtml : directHtml).replace('<script>', () => document.getElementById('runtime-template').innerHTML
+        .replace('"__DORI_PARENT_URL__"', () => JSON.stringify(location.href).replaceAll('<', '\\u003c'))
+        .replace('"__DORI_PARENT_ORIGIN__"', () => JSON.stringify(window.origin)) + '<script>');
       window.location.hash = isDesigner ? 'designer' : 'direct';
     }
 
