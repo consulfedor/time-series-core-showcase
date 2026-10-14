@@ -23,7 +23,13 @@
     "kind": "causal_product_map",
     "source_sha256": "e1d071e57e398adc3c76c23e431b7045f2b877b2af56efc0b5d491681aed94d4",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
-    "semantic_graph_sha256": "ac1108f286925692273df2083d14f960f4f420e00793832e45aaf7fa20288e3c",
+    "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
+    "h00_authoring_sha256": {
+      "portfolio_h00.py": "6f92c9525b226e9239ecbe760d0cdaf41fe597634a44d83d0c6a6d92f4b19876",
+      "_maintenance/h00.md": "778da91c9b12e6bb14ea44e5cac39b8e07afc638299ea5b45ef0bcb150814ffb",
+      "_maintenance/h00.css": "c4eeb4ed8f5b4b0f3ca9b7dcbec243c5cfb3fe626b78e8f8a601449460ab56eb",
+      "_maintenance/h00-responsive.js": "fccc4df952e2f82cd01743b6b4e2c79e123f4eb487947573aeacd2a0fa9d543d"
+    },
     "commercial_kpi_claimed": false
   },
   "page_identity": {
@@ -69,7 +75,7 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "a0110e16b492226462ba50e7e176adb10a0548cf9a3ecf5c0b9ebbb4f43510ac",
-    "index.html": "8cea452ea57dbf5d1d8a513f4730a1357fa72281fa0d56ce7f4738904da6a038",
+    "index.html": "531cece0a932dd87d9eaf399176f15b59305da801e824fdb9104f0e44d94973d",
     "mytwobrain/workspace.html": "0fc3cd358789834e49827929d9d5df2418f193463ae429c655b4101885a15160",
     "mytwobrain/workspace.js": "b016bfc8be075d467cb94f47fcdad006f97d980c81482585d8598b1913bd49b3",
     "examples/data-pipeline.html": "62881e056a09f7d920c8a30add6c016b1a1a6659b47d228b4cbe6d7bf78c1633",
