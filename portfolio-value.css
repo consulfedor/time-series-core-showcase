@@ -1,4 +1,13 @@
 /* Home benefit hierarchy. Geometry/focus remain owned by the Wiki renderer. */
+.md-mermaid-block, .md-diagram-dialog { --border: #394145; --accent-2: #e0bd69; --accent-2-rgb: 224,189,105; }
+html[lang="en"] .md-mermaid-stage[data-mermaid-state="ready"]::after { content: "Swipe / Shift+wheel ↔"; }
+.value-pyramid.semantic-overview .ds-projection-rank { grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+.value-pyramid.semantic-overview .ds-projection-rank[data-rank="0"] { width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.value-pyramid.semantic-overview .ds-projection-rank:has(> :only-child) { width: min(100%, 540px); grid-template-columns: 1fr; }
+.semantic-groups > li ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.semantic-groups > li ul > li { display: block; border: 0; padding: 0; counter-increment: none; }
+.semantic-groups > li ul > li::before { content: none; }
+.semantic-groups > li ul a { display: inline-block; padding: 5px 0; }
 .product-intro .intro-grid { grid-template-columns: .85fr 1.3fr; gap: 42px; }
 .product-intro h1 { font-size: clamp(36px, 3.8vw, 57px); margin-bottom: 24px; }
 .workplace-first { margin: 0; min-width: 0; }
@@ -65,6 +74,8 @@
   .value-pyramid .ds-projection-node > strong { font-size: 18px; }
 }
 @media (max-width: 600px) {
+  .value-pyramid.semantic-overview .ds-projection-rank { grid-template-columns: 1fr; }
+  .value-pyramid.semantic-overview .ds-projection-rank[data-rank="0"] { grid-template-columns: 1fr; }
   .product-intro h1 { font-size: 40px; }
   .value-pyramid .ds-projection-stage { padding: 22px 68px 22px 16px; }
   .value-pyramid .ds-projection-rank { grid-template-columns: 1fr; gap: 22px; }

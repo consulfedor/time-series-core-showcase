@@ -14,6 +14,18 @@
     --coral: #ee8c77;
     --blue: #8cb8e8;
   }
+  .md-mermaid-block, .md-diagram-dialog { --border: var(--line); --accent-2: var(--teal); --accent-2-rgb: 97,208,187; }
+  html[lang="en"] .md-mermaid-stage[data-mermaid-state="ready"]::after { content: "Swipe / Shift+wheel ↔"; }
+  .semantic-groups { list-style: none; padding: 0; }
+  .semantic-groups > li { display: grid; grid-template-columns: 1fr 1.25fr; gap: 24px; padding: 20px 0; border-top: 1px solid var(--line); }
+  .semantic-groups h3 { margin: 0; }
+  .semantic-groups ul { margin: 0; }
+  .semantic-groups ul > li { margin: 8px 0; }
+  .semantic-systems > details { margin: 12px 0; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); scroll-margin-top: 140px; }
+  .semantic-systems > details > summary { color: var(--text); font-size: 1.1rem; font-weight: 600; cursor: pointer; }
+  .semantic-systems > details[open] > summary { margin-bottom: 20px; }
+  .semantic-systems .system-basis { font-size: .9rem; }
+  @media (max-width: 600px) { .semantic-groups > li { grid-template-columns: 1fr; gap: 8px; } }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {

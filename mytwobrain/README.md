@@ -2,11 +2,11 @@
 
 **Диалог, документы, агенты и проверка результата — в одном рабочем контексте.**
 
-Собственный проект Фёдора Горбунова · обновлено 12 октября 2026.
+Собственный проект Фёдора Горбунова · обновлено 14 октября 2026.
 
 <nav class="map-nav" id="readme-navigation" aria-label="Разделы MyTwoBrain">
 <a href="#workspace">Рабочее место</a>
-<a href="#2-карта-систем">Связи</a>
+<a href="#systems">Системы</a>
 <a href="#orchestration">Агенты</a>
 <a href="#knowledge-memory">Знания</a>
 <a href="#connections-security">Безопасность</a>
@@ -24,7 +24,6 @@ MyTwoBrain — среда для агентной разработки и вед
 
 Harness — обвязка этой работы: история, контекст, роли, инструменты,
 проверки и продолжение после перерыва. Её операторский интерфейс — UI5175.
-Возможности и этапы развития указаны отдельно.
 
 <div class="workplace-points">
 <p><strong>Слева — разговор и управление.</strong> Цель, история, ввод поручения, модель и глубина рассуждения остаются рядом.</p>
@@ -72,63 +71,23 @@ MyTwoBrain/UI5175 - собственная рабочая среда, в кот�
 
 <p class="section-home-row"><a class="section-home" href="#readme-navigation" aria-label="Наверх к навигации" title="Наверх к навигации">⌂</a></p>
 
-## 2. Карта систем
+## 2. Карта систем {#systems}
 
-### 2.1 Верхний уровень
+### 2.1 Человек, ИИ и Harness
 
-```projection
-projection "Одно рабочее место — связанные возможности"
-node human fact "Человек" "Цель, ограничения и решение о приёмке"
-node workplace derived "Общий UI / API" "Диалог, сессии, терминал, предпросмотр, перевод, доска и Architecture Focus"
-node agents annotation "Агенты и исполнение" "Профили, группы, оркестратор, mailbox, watchdog; skills, AWP, план и закладки"
-node knowledge fact "Контекст и знания" "Wiki, онтология, тезаурус, документы, Librarian, память и AST"
-node proof gate "Проверка результата" "Тесты, Agent-CI, Delivery Proof; журналы, метрики и traces"
-node result annotation "Инженерный результат" "Код, документы, данные и receipts; приложения ML/data и Model Lab"
-edge human -> workplace "цель"
-edge workplace -> agents "роли"
-edge workplace -> knowledge "поиск"
-edge workplace -> proof "тесты"
-edge agents -> result "артефакт"
-edge knowledge -> result "основания"
-edge proof -> result "проверки"
-```
+Человек определяет цель. Оз ведёт работу, используя память и инструменты Harness.
+Общий UI/API связывает их с одним предметом работы и основаниями результата.
+Решение о приёмке остаётся за человеком.
 
-Наведите на узел или стрелку, чтобы проследить ближайшие связи. С клавиатуры
-используйте Tab; Escape снимает выделение. Карта показывает связи возможностей,
-а не последовательность сетевых вызовов. Размещение и назначение систем — ниже.
+<!-- HARNESS_OVERVIEW -->
 
-**Основа исполнения:** Tailscale, SSH / NoMachine и Ubuntu Server98;
-systemd, Docker, Zellij и CodexCLI. AST связывает результат со структурой кода,
-а память сохраняет проверенный опыт для следующей задачи.
+### 2.2 От потребности — к системе
 
-### 2.2 Системы, назначение и владелец результата
+<!-- HARNESS_USEFUL -->
 
-| Слой | Система | Назначение | Результат |
-| --- | --- | --- | --- |
-| Доступ | Ubuntu Server98 | Основной host для проекта, сервисов и документов | Рабочая среда, на которой живут runtime и SSoT файлов |
-| Доступ | Tailscale | Частный overlay-доступ между рабочими устройствами и сервером | Достижимость сервера без публичного port forwarding |
-| Доступ | SSH / NoMachine | Текстовый и графический operator access | Подключение, диагностика и визуальная работа с сервером |
-| Host lifecycle | systemd / Docker | Владение долгоживущими сервисами, контейнерами и restart policy | Управляемый runtime вместо ручного запуска в терминале |
-| Execution | Zellij | Persistent terminal workspace для агентной сессии | Сессия переживает разрыв браузера и attach-соединения |
-| Execution | CodexCLI | Фактический цикл reasoning, tool use, editing и verification | Rollout и изменения в рабочем дереве |
-| Session control | OZ | Обвязка CodexCLI: запуск, resume, metadata, logs и lifecycle | Связанная OZ-сессия с plan, notes, bookmarks и evidence |
-| Operator surface | UI5175 | Общая точка наблюдения и контролируемого управления | Оператор видит одну текущую картину и допустимые действия |
-| Dialog | `session_view.html?kind=dialog` | Работа с одной сессией, её историей и текущей задачей | Диалог, AWP, план, статусы, next action и handoff |
-| Runtime observer | Terminal V2 | Лёгкий screen observer поверх Zellij | Снимок живого терминала и честное состояние runtime |
-| Docs surface | Docs Explorer / Workbench | Навигация по документам и артефактам с предпросмотром | Связанный документ, изображение, PDF или HTML-артефакт |
-| Collaboration | Session Board | Быстрый совместный набросок схемы рядом с диалогом | Session-scoped карта и сохранённые варианты |
-| Architecture | Architecture Focus / C4 | Фокус на текущем AppDescriptor-контуре и его связях | Read-only архитектурный маршрут и runtime overlay |
-| Knowledge | Docs / Librarian / DOC Graph | Поиск канонического документа, связей и provenance | Ссылка на owner-документ, а не копия смысла |
-| Memory | Zettelkasten / GoalMemory / situation | Кандидаты опыта и временная сборка применимого контекста | Reviewable memory artifacts с source refs и применимостью |
-| Semantics | Ontology Wiki | Словарь понятий, отношений и границ ответственности | Семантический маршрут к owning document или registry |
-| Connections | OpenBao / права операций / доставка сервисам | Хранение секретов отдельно от назначения подключения и правил использования | Разрешённая операция и её результат без раскрытия ключа в диалоге |
-| Code intelligence | AST / symbol passports | Навигация по структуре кода и impact frontier | Symbols, imports, owners и затронутые области |
-| Procedure | Skills / hooks / composition graph | SOP для повторяемых операций и соседних проверок | Bounded route и execution receipt |
-| Coordination | Реестр / группы / оркестратор | Состав команды, назначение работ и проверка общего итога | У каждой части и результата есть ответственный |
-| Delivery | Mailbox / watchdog | Адресная передача результата и уведомление владельца | Видно, что сохранено, доставлено, прочитано и принято |
-| Quality | Agent-CI / Delivery Proof | Проверка зафиксированных границ, AST, тестов, сборки и evidence | Owner-bound verdict, repair chain и текущая proof-свежесть |
-| Observability | Prometheus / Loki / Tempo / Grafana | Метрики, логи, traces и runtime diagnosis | Correlated evidence вместо одного зелёного индикатора |
-| Data / ML | SCW / Monetochka / FLAPPING_WINGS_AI | Потоковые данные, ML-ready подготовка и Model Lab | Проверенный dataset, состояние контура, model run и operator view |
+### Что даёт каждая система
+
+<!-- HARNESS_SYSTEMS -->
 
 ### 2.3 Границы авторства
 
