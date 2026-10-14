@@ -28,6 +28,8 @@
   .product-area { padding-top: 12px; scroll-margin-top: 140px; }
   .product-area-navigation { padding-left: 24px; columns: 2; column-gap: 32px; }
   .product-area-navigation li { break-inside: avoid; margin: 8px 0; }
+  /* Leave space for the H02 return-to-review label in vertical diagrams. */
+  .memory-cycle [data-projection-flow="vertical"] .ds-projection-stage { padding-inline-end: 144px; }
   @media (max-width: 700px) { .product-area-navigation { columns: 1; } }
   @media (max-width: 600px) { .semantic-groups > li { grid-template-columns: 1fr; gap: 8px; } }
   * { box-sizing: border-box; }

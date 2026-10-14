@@ -48,8 +48,8 @@
   },
   "mytwobrain": {
     "kind": "public_projection_of_canonical_map",
-    "source_sha256": "f71054e56e133c144652049af4daff300073f37b781ec07c7f1d2e4d428c33fb",
-    "public_markdown_sha256": "422f76b6d9f3c070f6af46418a03767fa416f676fbd6920bac29661f151c84a3",
+    "source_sha256": "cc78a2635789c42d44eec8add8463922270ad2e7a265b1aaba9c72a288c3235b",
+    "public_markdown_sha256": "23eb3bf26e4c5ba2687bd682df65a0a8a6f33db0b6faa856b52e66e38e189c03",
     "diagram_runtime": {
       "design_system.css": "1d6b5c8619c6ec8bc175bdfef9b8056032df9e92085d89722bfa2ed50d867d5b",
       "design_system_components.css": "e168bb711118aa72b09e1be0bff29ccf2d36c93d51cf72b3da883a54fbd05cfe",
@@ -82,9 +82,9 @@
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
     "fact-to-decision/index.html": "fd90ec6a8b285264bfd3f75737afbab3c01f3a295c4cd89bb3a2e516506d0a6d",
-    "mytwobrain/README.md": "422f76b6d9f3c070f6af46418a03767fa416f676fbd6920bac29661f151c84a3",
-    "mytwobrain/index.html": "d963f1c874ccd0ee72bf42d87e3381cae2028aea8945a73c1c0c4a241c2d9aec",
-    "harness-map.css": "7ddb19a1250c9eda1803c5b9378a9e996403712d04cf8f467a04c2cadd22a97e",
+    "mytwobrain/README.md": "23eb3bf26e4c5ba2687bd682df65a0a8a6f33db0b6faa856b52e66e38e189c03",
+    "mytwobrain/index.html": "aae83c06614bebffa0c22ce4721d204b322c4ae8fe9f648ee6b38fc435769a5f",
+    "harness-map.css": "c9f23f1515906de7de3265ad0d64ab7f11ce1fc018decf25c8559d516bfb1396",
     "harness-map.js": "ed7c9717110814aca5458abe0a65a326ed5fd82a838fd4bddcb8e179db3236a7",
     "examples/analytics.html": "b52d56a999abfce224d6ccd9f88b1977941dc3d6fe779ab6d8250410d9f1c974",
     "overview.html": "36df2423f9d2042fc76bc1f8d4007af8b6e5499e1fdcaa5cbbfc28c8ecae3087",
