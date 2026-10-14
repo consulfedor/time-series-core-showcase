@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="MyTwoBrain: собственный Harness для работы человека и ИИ-агентов. Рабочее место, контекст, оркестрация и проверка результата. Строительный C1 Факт → Решение."><title>Фёдор Горбунов · MyTwoBrain и Факт → Решение</title><link rel="icon" href="https://consulfedor.github.io/time-series-core-showcase/favicon.svg"><link rel="stylesheet" href="https://consulfedor.github.io/time-series-core-showcase/portfolio.css"><script src="https://consulfedor.github.io/time-series-core-showcase/portfolio.js" defer></script><link rel="stylesheet" href="https://consulfedor.github.io/time-series-core-showcase/vendor/oz_markdown.css"><script src="https://consulfedor.github.io/time-series-core-showcase/vendor/mermaid.min.js" defer></script><script src="https://consulfedor.github.io/time-series-core-showcase/vendor/oz_markdown_diagrams.js" defer></script><script>// H00 adapter over the accepted viewer: language + responsive direction.
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Фёдор Горбунов — автоматизация и ИИ-агенты</title><link rel="icon" href="https://consulfedor.github.io/time-series-core-showcase/favicon.svg"><link rel="stylesheet" href="https://consulfedor.github.io/time-series-core-showcase/portfolio.css"><script src="https://consulfedor.github.io/time-series-core-showcase/portfolio.js" defer></script><link rel="stylesheet" href="https://consulfedor.github.io/time-series-core-showcase/vendor/oz_markdown.css"><script src="https://consulfedor.github.io/time-series-core-showcase/vendor/mermaid.min.js" defer></script><script src="https://consulfedor.github.io/time-series-core-showcase/vendor/oz_markdown_diagrams.js" defer></script><script>// H00 adapter over the accepted viewer: language + responsive direction.
 "use strict";
 function bindH00Diagram(document, viewer) {
   const media = document.defaultView.matchMedia("(max-width: 1280px)");
@@ -108,13 +108,16 @@ function bindPortfolioLanguage() {
   if (!source) return;
   const catalog = JSON.parse(source.textContent);
   const config = Array.isArray(catalog) ? {pairs:catalog} : catalog;
+  const editionNode = document.getElementById('portfolio-static-editions');
+  const editions = editionNode ? JSON.parse(editionNode.textContent) : null;
   const translate = createPortfolioTranslator(config.pairs, config.templates || [], config.decimal_templates || []);
   const base = config.embedded ? (config.frame_parent_url || document.referrer) : location.href;
   const parentOrigin = config.embedded ? (config.frame_parent_origin ?? new URL(base).origin) : new URL(base).origin;
   const root = new URL(config.root || "./", base).href;
   const records = new WeakMap();
   const attributes = ["title", "alt", "aria-label", "placeholder", "content"];
-  let language = new URL(base).searchParams.get("lang") === "en" ? "en" : "ru";
+  let language = new URL(base).searchParams.get("lang") || document.documentElement.lang || "ru";
+  language = language === "en" ? "en" : "ru";
   let observer;
   const original = (node, field, value) => {
     const record = records.get(node) || {};
@@ -149,20 +152,41 @@ function bindPortfolioLanguage() {
     document.querySelectorAll("[data-portfolio-language]").forEach(button => {
       button.setAttribute("aria-pressed", String(button.dataset.portfolioLanguage === language));
     });
-    document.querySelectorAll("a[href]:not([download])").forEach(link => {
+    document.querySelectorAll("a[href]:not([download]):not([data-static-language])").forEach(link => {
       const href = link.getAttribute("href");
       const next = portfolioLanguageURL(href, language, base, root);
       if (next !== href) link.setAttribute("href",next);
     });
+    if(editions && !config.embedded) {
+      const meta=editions[language];
+      document.title=meta.title;
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href',meta.url);
+      for(const [selector,value] of [
+        ['meta[name="description"]',meta.description],['meta[property="og:title"]',meta.title],
+        ['meta[property="og:description"]',meta.description],['meta[property="og:url"]',meta.url],
+        ['meta[property="og:locale"]',language==='en'?'en_US':'ru_RU']
+      ])document.querySelector(selector)?.setAttribute('content',value);
+      document.querySelectorAll('a[href]:not([download]):not([data-static-language])').forEach(link=>{
+        const url=new URL(link.getAttribute('href'),base),owner=new URL(editions.root);
+        if(url.origin!==owner.origin||!url.pathname.startsWith(owner.pathname)||link.getAttribute('href').startsWith('#'))return;
+        let relative=url.pathname.slice(owner.pathname.length).replace(/^en\//,'');
+        const key=relative.endsWith('/')||!relative?relative+'index.html':relative;
+        if(!editions.routes.includes(key))return;
+        const canonical=key.endsWith('index.html')?key.slice(0,-10):key;
+        url.pathname=owner.pathname+(language==='en'?'en/':'')+canonical;
+        url.searchParams.delete('lang');link.setAttribute('href',url.href);
+      });
+    }
     observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true,
       attributes:true, attributeFilter:attributes});
   };
-  const controls = document.createElement("div");
+  const existingControls = !config.embedded && document.querySelector('[data-static-language-controls]');
+  const controls = existingControls || document.createElement("div");
   controls.dataset.languageControls = "";
   controls.className = "portfolio-language";
   controls.setAttribute("role", "group");
   controls.setAttribute("aria-label", "Language / Язык");
-  controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
+  if (!existingControls) controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
   if (!config.embedded) (document.querySelector(config.controls_selector || ".masthead,.map-links,.standalone,.reader>nav") || document.body).append(controls);
   observer = new MutationObserver(apply);
   const syncFrames = () => {
@@ -182,9 +206,15 @@ function bindPortfolioLanguage() {
   const select = next => {
     if (!["ru","en"].includes(next)) return;
     language = next;
-    const url = new URL(config.embedded ? base : location.href);
-    if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
-    if (!config.embedded && window.origin !== "null") history.replaceState(null, "", url);
+    const url = new URL(editions && !config.embedded ? editions[language].url : config.embedded ? base : location.href);
+    if(editions && !config.embedded)url.hash=location.hash;
+    else if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
+    if (!config.embedded && window.origin !== "null") {
+      if(url.origin!==location.origin){
+        const preview=new URL(location.href);preview.searchParams.set('lang',language);
+        history.replaceState(null,'',preview);
+      } else history.replaceState(null, "", url);
+    }
     apply();
     syncFrames();
     window.dispatchEvent(new Event("resize"));
@@ -192,6 +222,7 @@ function bindPortfolioLanguage() {
   controls.addEventListener("click", event => {
     const button = event.target.closest("[data-portfolio-language]");
     if (!button) return;
+    if (button.hasAttribute('data-static-language')) event.preventDefault();
     select(button.dataset.portfolioLanguage);
   });
   window.addEventListener("message", event => {
@@ -240,8 +271,26 @@ if (typeof document !== "undefined") {
   .h00-cycle .md-mermaid-stage { min-height: 230px; }
   .h00-roles > div { padding: 15px; }
 }
-</style></head>
-<body class="portfolio-home"><a class="skip" href="#main">К содержанию</a>
+</style>
+<!-- PORTFOLIO_SEO_START -->
+<meta name="portfolio-static-language" content="ru">
+<meta name="description" content="MyTwoBrain: рабочее место человека и ИИ, проверяемые результаты, данные и строительный пример «Факт → Решение».">
+<link rel="canonical" href="https://consulfedor.github.io/time-series-core-showcase/">
+<link rel="alternate" hreflang="ru" href="https://consulfedor.github.io/time-series-core-showcase/">
+<link rel="alternate" hreflang="en" href="https://consulfedor.github.io/time-series-core-showcase/en/">
+<link rel="alternate" hreflang="x-default" href="https://consulfedor.github.io/time-series-core-showcase/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Фёдор Горбунов — автоматизация и ИИ-агенты">
+<meta property="og:description" content="MyTwoBrain: рабочее место человека и ИИ, проверяемые результаты, данные и строительный пример «Факт → Решение».">
+<meta property="og:url" content="https://consulfedor.github.io/time-series-core-showcase/">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://consulfedor.github.io/time-series-core-showcase/assets/harness-workplace.png">
+<meta property="og:image:alt" content="Фёдор Горбунов — автоматизация и ИИ-агенты">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/json" id="portfolio-static-editions">{"root": "https://consulfedor.github.io/time-series-core-showcase/", "routes": ["index.html", "mytwobrain/index.html", "cv/index.html", "fact-to-decision/index.html", "mytwobrain/workspace.html", "examples/data-pipeline.html", "examples/analytics.html", "examples/dori.html", "overview.html"], "ru": {"title": "Фёдор Горбунов — автоматизация и ИИ-агенты", "description": "MyTwoBrain: рабочее место человека и ИИ, проверяемые результаты, данные и строительный пример «Факт → Решение».", "url": "https://consulfedor.github.io/time-series-core-showcase/"}, "en": {"title": "Fedor Gorbunov — AI automation and agents", "description": "MyTwoBrain: a shared human–AI workspace, verifiable results, data engineering and the construction concept Fact → Decision.", "url": "https://consulfedor.github.io/time-series-core-showcase/en/"}}</script>
+<!-- PORTFOLIO_SEO_END -->
+</head>
+<body class="portfolio-home"><div class="portfolio-language" role="group" data-language-controls data-static-language-controls aria-label="Language / Язык"><a data-static-language="ru" data-portfolio-language="ru" hreflang="ru" lang="ru" href="https://consulfedor.github.io/time-series-core-showcase/">RU</a><a data-static-language="en" data-portfolio-language="en" hreflang="en" lang="en" href="https://consulfedor.github.io/time-series-core-showcase/en/">EN</a></div><a class="skip" href="#main">К содержанию</a>
 <header class="masthead"><a class="brand" href="#main">FG <span>Фёдор Горбунов</span></a><nav aria-label="Разделы портфолио"><a href="#harness">MyTwoBrain</a><a href="#value">Польза в работе</a><a href="#capabilities">Возможности</a><a href="https://consulfedor.github.io/time-series-core-showcase/mytwobrain/index.html#systems">Устройство</a><a href="#construction">Строительный C1</a><a href="#tools">Инструменты</a><a href="#examples">Кейсы</a><a href="https://consulfedor.github.io/time-series-core-showcase/cv/">CV · RU / EN</a></nav></header>
 <main id="main">
 <section class="product-intro" id="harness">

@@ -1,0 +1,58 @@
+{
+  "schema": "portfolio.public_evidence.v1",
+  "kind": "redacted_historical_results_not_current_runtime_health",
+  "daily_export": {
+    "title_ru": "Плановая подготовка и проверка данных",
+    "title_en": "Scheduled data preparation and verification",
+    "source_sha256": "144c96033d5e85281e5be6535d8812a9b43bbbbb74d42c0d9ff4469ee2952214",
+    "observed_utc": "2026-10-14T00:17:08.818793+00:00",
+    "day_utc": "2026-10-13",
+    "expected_minutes": 1440,
+    "parquet_rows": 1440,
+    "timestamp_checks": {
+      "series_a": {
+        "total": 1440,
+        "unique": 1440,
+        "dups": 0
+      },
+      "series_b": {
+        "total": 1440,
+        "unique": 1440,
+        "dups": 0
+      },
+      "matched": true
+    },
+    "sampled_values": {
+      "rows": 12,
+      "columns": 10,
+      "mismatch_count": 0,
+      "all_cells_checked": false
+    },
+    "coverage": {
+      "days": 360,
+      "oldest_day": "2025-10-19",
+      "newest_day": "2026-10-13",
+      "contiguous": true,
+      "missing_days_count": 0
+    },
+    "limits_ru": "Проверка значений выборочная. Отчёт содержит отдельное предупреждение о микроструктуре рынка; открытый интерес исключён. Это не оценка торговой доходности или всех признаков.",
+    "limits_en": "Value checks are sampled. The source contains a separate market-microstructure advisory; open interest is excluded. This does not evaluate trading profitability or every feature."
+  },
+  "research_repeatability": {
+    "title_ru": "Контроль повторяемости исследовательской конфигурации",
+    "title_en": "Repeatability control for a research configuration",
+    "source_sha256": "a5f395565e94c02651255c5aec98e9dd82678a93210fcd4376f15d201a54e73c",
+    "observed_utc": "2026-10-06T12:05:33.843300+00:00",
+    "checks": {
+      "conditions_visible": true,
+      "features_and_error_breakdown_visible": true,
+      "desktop_and_mobile_passport": true
+    },
+    "repeat_fit_processes": 2,
+    "purpose": "determinism control only",
+    "new_business_model_selected": false,
+    "trading_enabled": false,
+    "limits_ru": "Два повтора относятся к одной выбранной конфигурации. Это не доказательство качества прогноза или всех будущих конфигураций.",
+    "limits_en": "The two repeats concern one selected configuration. They do not establish predictive quality or results for all future configurations."
+  }
+}

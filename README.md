@@ -5,7 +5,7 @@
 
 **[Портфолио · RU / EN](https://consulfedor.github.io/time-series-core-showcase/)** ·
 **[CV · RU / EN](https://consulfedor.github.io/time-series-core-showcase/cv/)** ·
-[Read in English ↗](https://consulfedor.github.io/time-series-core-showcase/overview.html?lang=en)
+[Read in English ↗](https://consulfedor.github.io/time-series-core-showcase/en/overview.html)
 
 В портфолио можно открыть реальные экраны, изучить устройство системы и
 попробовать интерактивные примеры. На странице CV доступны выбор языка,
@@ -46,7 +46,7 @@ MyTwoBrain — развиваемая частная система, испол�
 
 | Пример | Что можно посмотреть |
 |---|---|
-| [DORI: подбор камеры](https://consulfedor.github.io/time-series-core-showcase/examples/dori.html) | Оригинальный интерактивный калькулятор: оборудование → геометрия и задача → требования к камере; также встроен в главную |
+| [DORI: подбор камеры](https://consulfedor.github.io/time-series-core-showcase/examples/dori.html) | Оригинальный интерактивный калькулятор: оборудование → геометрия и задача → требования к камере |
 | [HR-помощник: карточка кандидата](https://consulfedor.github.io/candidate-handoff-card/) | Вакансия, резюме, интервью, основания решения и передача руководителю; [исходники](https://github.com/consulfedor/candidate-handoff-card) |
 | [Поток данных и восстановление](https://consulfedor.github.io/time-series-core-showcase/examples/data-pipeline.html) | HTML-кейс: путь данных, интерактивный пример пропуска и реальный экран покрытия истории |
 | [Аналитика с участием человека](https://consulfedor.github.io/time-series-core-showcase/examples/analytics.html) | Событие, расчёт, исследовательская версия и подтверждение результата |
@@ -64,18 +64,3 @@ MyTwoBrain — развиваемая частная система, испол�
 и рабочая среда, и способы применить этот опыт к процессам компании.
 
 Контакт: [consulfedor@gmail.com](mailto:consulfedor@gmail.com)
-
-## Репозиторий и локальный просмотр
-
-Здесь находятся сайт, публичные описания и демонстрации. Частный код MyTwoBrain
-в репозиторий не входит. Для локального просмотра готового сайта достаточно
-запустить сервер из этой папки:
-
-```sh
-python3 -m http.server 8080 --bind 127.0.0.1
-```
-
-Откройте `http://127.0.0.1:8080/`. Демонстрация рабочего места также открывается
-как локальный HTML-файл. Презентация C1 автономна; происхождение материалов
-записано в [манифесте выпуска](release.json). Исследовательские черновики,
-личные переписки и необработанные снимки остаются за пределами репозитория.

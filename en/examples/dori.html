@@ -1,0 +1,2849 @@
+<!doctype html>
+<html lang="en">
+<head><style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
+.portfolio-language button,.portfolio-language summary{font:inherit;font-size:12px;color:inherit;background:transparent;border:1px solid #d0aa5470;border-radius:6px;padding:5px 8px;cursor:pointer}
+.portfolio-language button[aria-pressed=true]{background:#d0aa54;color:#141414;font-weight:700}
+.portfolio-language button:focus-visible,.portfolio-language summary:focus-visible{outline:2px solid #d0aa54;outline-offset:3px}
+.portfolio-language details{position:relative}.portfolio-language summary{list-style:none}
+.portfolio-language details p{position:absolute;z-index:30;right:0;top:24px;width:min(310px,80vw);padding:14px;background:#15191e;color:#eee;border:1px solid #d0aa5470;border-radius:8px;box-shadow:0 12px 30px #0008;font-size:13px;font-weight:400;line-height:1.6}
+@media print{.portfolio-language{display:none}}
+</style><script type="application/json" id="portfolio-translations">{"pairs": [["DORI: расчёт и подбор камеры", "DORI Camera Selector / Designer"], ["Прямой расчёт: оборудование → результат", "Direct Calculator (Equipment -> Result)"], ["Подбор: задача → оборудование", "Designer (Task -> Equipment)"], ["Параметры камеры и сцены", "Camera and Scene Parameters"], ["Разрешение сенсора (MP) ℹ️", "Sensor Resolution (MP) ℹ️"], ["Физический размер сенсора ℹ️", "Physical Sensor Size ℹ️"], ["Высота установки (H, метры) ℹ️", "Mounting Height (H, meters) ℹ️"], ["Вертикальный наклон (градусы) ℹ️", "Vertical Tilt (deg) ℹ️"], ["Автонаведение на цель", "Auto-aim at target"], ["Тип объектива ℹ️", "Lens Type ℹ️"], ["Вариофокальный (точная настройка)", "Varifocal (Precise Adjustment)"], ["Фиксированный (стандартный)", "Fixed (Standard)"], ["Фокусное расстояние (мм) ℹ️", "Focal Length (mm) ℹ️"], ["2.8 mm (широкоугольный)", "2.8 mm (Wide-angle)"], ["3.6 mm (стандартный)", "3.6 mm (Standard)"], ["Горизонтальный угол обзора (градусы) ℹ️", "Horizontal Field of View (deg) ℹ️"], ["Дистанция до цели (наклонная, м) ℹ️", "Distance to Target (Slant, m) ℹ️"], ["Результаты расчёта DORI", "Calculation Results (DORI)"], ["Плотность пикселей (PPM) ℹ️", "Pixel Density (PPM) ℹ️"], ["Ширина сцены (FOV) ℹ️", "Scene Width (FOV) ℹ️"], ["Горизонтальный угол ℹ️", "Horizontal Angle ℹ️"], ["Дистанция по земле ℹ️", "Ground Distance ℹ️"], ["Вид сверху: охват по ширине", "Top View (Width Coverage)"], ["Ширина:", "Width:"], ["Вид сбоку: геометрия установки", "Side View - Mounting Geometry"], ["земля", "ground"], ["- m (по земле)", "- m (ground)"], ["🎯 - m (лазер)", "🎯 - m (laser)"], ["↕ Высота:", "↕ Height:"], ["Слепая зона: -", "Blind Zone: -"], ["По земле: - m", "Ground: - m"], ["Загрузка…", "Loading..."], ["Слепая зона", "Blind"], ["Предельные дистанции: нажмите для подстановки", "Maximum Distances (click to apply):"], ["Идентификация (≥250 PPM)", "Identification (≥250 PPM)"], ["Узнавание (≥125 PPM)", "Recognition (≥125 PPM)"], ["Наблюдение (≥62 PPM)", "Observation (≥62 PPM)"], ["Обнаружение (≥25 PPM)", "Detection (≥25 PPM)"], ["Геометрия и задача: исходные данные", "Geometry and Task (Input)"], ["Целевая дистанция (наклонная, м) ℹ️", "Target Distance (Slant, m) ℹ️"], ["Требуемая ширина сцены (метры) ℹ️", "Required Scene Width (meters) ℹ️"], ["Целевая задача DORI ℹ️", "Target Task (DORI) ℹ️"], ["Идентификация (расчётный ориентир 300 PPM)", "Identification (300 PPM design reference)"], ["Узнавание (расчётный ориентир 150 PPM)", "Recognition (150 PPM design reference)"], ["Наблюдение (ориентир 80 PPM): сцена и признаки", "Observation (80 PPM reference) - scene and feature monitoring"], ["Обнаружение (ориентир 40 PPM): базовая аналитика, силуэты", "Detection (40 PPM reference) - basic analytics, silhouettes"], ["Предполагаемый размер сенсора ℹ️", "Assumed Camera Sensor Size ℹ️"], ["1/2.8\" (5.27 x 2.96 mm) — стандартный", "1/2.8\" (5.27 x 2.96 mm) - Standard"], ["1/2\" (6.4 x 4.8 mm) — премиальный", "1/2\" (6.4 x 4.8 mm) - Premium"], ["Вертикальный наклон (°) ℹ️", "Vertical Tilt (°) ℹ️"], ["Автоматически направлять на цель", "Automatically aim at target"], ["Вид сбоку: схема установки", "Side View - Installation Geometry"], ["Требуемое оборудование: результат", "Required Equipment (Result)"], ["Минимум пикселей для заданной ширины сцены", "Minimum Pixels for the Requested Scene Width"], ["Расчётное фокусное расстояние: точная ширина", "Required Lens Focal Length (Exact Width)"], ["Фиксированный объектив с полным охватом ширины:", "Fixed lens covering the full width:"], ["Или диапазон вариофокального объектива:", "Or varifocal range:"], ["Угол обзора для заданной ширины", "Camera Field of View for This Width"], ["Режим расчёта DORI", "DORI calculation mode"], ["Калькулятор DORI", "DORI calculator mode"], ["Разрешение влияет на плотность пикселей по ширине сцены. Геометрический расчёт не гарантирует качество аналитики.", "Purpose: resolution contributes to pixel density across the scene. The geometric estimate does not guarantee analytics quality."], ["Размеры сенсора участвуют в расчёте угла обзора. Ночную съёмку нужно проверять с реальной камерой, объективом и освещением.", "Purpose: sensor dimensions enter the field-of-view calculation. Night imaging also needs verification with the actual camera, lens and lighting."], ["Высота установки влияет на слепую зону под камерой и наклонную дистанцию до цели.", "Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance."], ["Направление объектива. AUTO направляет камеру на цель; без AUTO наклон можно настроить вручную.", "Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually."], ["Сравнение фиксированного и регулируемого фокусного расстояния. Стоимость, долговечность и совместимость зависят от оборудования.", "Purpose: compare a fixed focal length with an adjustable lens. Cost, durability and compatibility depend on the chosen equipment."], ["Короткое фокусное расстояние, например 2.8 mm, даёт широкий охват. Длиннофокусный объектив, от 12 mm, позволяет рассматривать детали на большей дистанции.", "Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances."], ["Угол обзора определяет охват. Широкий угол (>90°) подходит для дворов и парковок; узкий (<40°) — для коридоров и проходных.", "Business purpose: Shows area coverage. A wide angle (>90 deg) is useful for yards and parking areas. A narrow angle (<40 deg) is useful for corridors and checkpoints."], ["Наклонная дистанция от объектива до целевой точки — гипотенуза. Обычно именно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical point (hypotenuse). This is usually the distance measured with a laser rangefinder."], ["Геометрическая плотность пикселей в целевой зоне. Это один из параметров подбора, а не доказательство точности распознавания или соответствия стандарту.", "Purpose: geometric pixel density at the target. It is one input to equipment selection, not proof of recognition accuracy or compliance."], ["Ширина участка, попадающего в кадр на выбранной дистанции. Помогает оценить охват забора, ворот или прохода.", "Business purpose: How many meters of width fit into the frame at the selected distance. Important for covering fences and gates without blind zones."], ["Угол поля зрения оптической системы камеры.", "Business purpose: Actual field of view angle of the camera optical system."], ["Дистанция до контролируемой точки.", "Business purpose: Target control distance."], ["Сравнение расчётной детализации с выбранным ориентиром DORI. Выполнение реальной задачи проверяется на месте.", "Purpose: compare geometric detail with the selected DORI reference. Actual task performance requires an on-site check."], ["<25 PPM: недостаточная детализация", "<25 PPM Blind Zone"], ["25–61 PPM (ориентир ~40)", "25-61 PPM (Optimum ~40)"], ["62–124 PPM (ориентир ~80)", "62-124 PPM (Optimum ~80)"], ["125–249 PPM (ориентир ~150)", "125-249 PPM (Optimum ~150)"], ["250+ PPM (ориентир ~300)", "250+ PPM (Optimum ~300)"], ["Идентификация: наивысший ориентир детализации в этой модели. Расчёт не устанавливает точность биометрии или юридическую доказательность.", "Purpose (Identification): the highest detail reference in this model. It does not establish biometric accuracy or legal evidentiary value."], ["Узнавание: ориентир детализации. Освещение, движение, оптика и система распознавания проверяются отдельно.", "Purpose (Recognition): a detail reference for recognition tasks. Lighting, motion, optics and the recognition system must be tested separately."], ["Наблюдение: оценка сцены — цвета одежды, наличия предмета в руках и направления движения.", "Business purpose (Observation): Situational control. Makes it possible to understand clothing color, whether a person is holding an object, and movement direction."], ["Обнаружение: базовая аналитика для фиксации пересечения периметра или движения вдали.", "Business purpose (Detection): Basic analytics. Records the fact that a perimeter was crossed or that there is movement in the distance."], ["Наклонная дистанция от объектива до целевой зоны — гипотенуза. Обычно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical zone (hypotenuse). This is the distance usually measured with a laser rangefinder."], ["Ширина сцены, которая должна целиком попасть в кадр на этой дистанции. Например, проезд шириной 6 m.", "Business purpose: Required scene width to fit into the frame at this distance. For example, a driveway width of 6 m."], ["Целевая геометрическая детализация по заданной ширине. Это исходное требование проекта, а не гарантия результата на объекте.", "Purpose: the target geometric detail across the requested width. This is a design input, not a guarantee of field performance."], ["Размер сенсора предполагаемой камеры.", "Business purpose: Sensor size planned for the camera."], ["Пиксели по горизонтали = ширина сцены × требуемая PPM. Это минимум для заданной детализации. Измените ширину или задачу: минимум изменится. Изменение дистанции влияет на объектив, а не на этот минимум.", "What: horizontal pixels = scene width × required PPM. Why: select detail level. Source: current width and task inputs. Verify: change width or task; distance changes the lens, not this minimum."], ["Фиксированный объектив — альтернатива, не точная замена. Проверяется комплект объектив + разрешение. Списки встроены для примера, это не каталог производителя. Фактическая ширина и PPM должны соответствовать задаче.", "What: an alternative fixed lens, not an exact substitute. Why: check the complete lens/resolution combination. Source: built-in example lens and resolution lists, not a vendor catalogue. Verify: actual width and PPM in the note must meet the requested width and task."], ["Недостаточно", "Insufficient"], ["Необходимый минимум", "Minimum required"], ["Умеренный запас", "Optimal"], ["Большой запас", "Excessive"], ["В списке нет диапазона; проверьте совместимый широкоугольный объектив", "No listed range; check a compatible wider lens"], ["Более 50 mm; проверьте совместимый длиннофокусный объектив", "Beyond 50 mm; verify a compatible telephoto lens"], ["В списке нет объектива с нужным охватом", "No listed lens covers the width"], ["Объективы из примера не обеспечивают нужную ширину. Подберите совместимый широкоугольный объектив или измените размещение; готовый фиксированный комплект не предложен.", "The example lens list cannot cover this width. Select a compatible wider lens or revise the placement; no fixed-lens package is recommended."], ["Ни одна камера из списка не отвечает требованию. Геометрия показана для анализа; это не подтверждённый комплект оборудования.", "No listed camera meets this requirement. The geometry remains visible; do not treat it as a feasible equipment package."], ["Только геометрическая оценка: освещение, движение, оптика и монтаж проверяются на объекте.", "Geometric estimate only: verify lighting, motion, optics and mounting on site."], ["Схема охвата: ширина и дистанция показаны в разных масштабах.", "Coverage schematic: width and distance use separate scales."], ["Ожидание корректных данных", "Waiting for valid inputs"], ["Недостаточная детализация", "Blind Zone (Insufficient Detail)"], ["Обнаружение: виден силуэт", "Detection - Silhouette visible"], ["Наблюдение: видны основные признаки", "Observation - Basic attributes visible"], ["Ориентир узнавания: только геометрия", "Recognition reference (geometry only)"], ["Ориентир идентификации: только геометрия", "Identification reference (geometry only)"], ["🔴 Идентификация", "🔴 Identification"], ["🟡 Узнавание", "🟡 Recognition"], ["🔵 Наблюдение", "🔵 Observation"], ["🟢 Обнаружение", "🟢 Detection"], ["⚫ Недостаточная детализация", "⚫ Blind zone"]], "decimal_templates": [["{0} m по земле", "{0} m ground"], ["{0} m (по земле)", "{0} m (ground)"], ["Слепая зона: {0} m", "Blind Zone: {0} m"], ["По земле: {0} m", "Ground: {0} m"], ["Фиксированный объектив охватывает {0} m и требует {1} пикселей по горизонтали. Разрешения из списка не хватает; измените объектив или проект.", "Fixed-lens alternative covers {0} m and needs {1} horizontal pixels. No listed resolution is sufficient; change the lens or design."], ["Разрешение сенсора (MP): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Разрешение сенсора (MP): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фиксированный объектив: охват {0} m; нужно не менее 1.3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 1.3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 2MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 2MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 4MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 4MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 5MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 5MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 8MP (4K) ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 8MP (4K) ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 12MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 12MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."]], "root": "https://consulfedor.github.io/time-series-core-showcase/", "controls_selector": ".shell", "srcdoc_selector": "#mode-frame"}</script><script>/* Reviewed translations only. No network translator, storage or HTML injection. */
+"use strict";
+
+function createPortfolioTranslator(pairs, templates = [], decimalTemplates = []) {
+  const normalize = text => text.replace(/\s+/g, " ").trim();
+  const forward = new Map();
+  const reverse = new Map();
+  for (const [ru, en] of pairs) {
+    if (!ru || !en || (forward.has(normalize(ru)) && forward.get(normalize(ru)) !== en)) {
+      throw Error("Missing or conflicting portfolio translation");
+    }
+    forward.set(normalize(ru), en);
+    if (!reverse.has(normalize(en))) reverse.set(normalize(en), ru);
+  }
+  const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const compile = (from, to, decimal = false) => {
+    const names = [...from.matchAll(/\{(\d+)\}/g)].map(m => m[1]);
+    if (names.length !== new Set(names).size ||
+        [...to.matchAll(/\{(\d+)\}/g)].some(m => !names.includes(m[1]))) {
+      throw Error("Invalid numeric translation template");
+    }
+    const pieces = normalize(from).split(/\{\d+\}/g).map(escape);
+    return {pattern:new RegExp("^" + pieces.join(decimal ? "(-?\\d+(?: \\d{3})*(?:[.,]\\d+)?)" : "(\\d+)") + "$"), to, names};
+  };
+  const patterns = {
+    en:[...templates.map(([ru,en]) => compile(ru,en)),...decimalTemplates.map(([ru,en]) => compile(ru,en,true))],
+    ru:[...templates.map(([ru,en]) => compile(en,ru)),...decimalTemplates.map(([ru,en]) => compile(en,ru,true))]
+  };
+  return function translate(value, language) {
+    const key = normalize(value);
+    let replacement = (language === "en" ? forward : reverse).get(key);
+    if (replacement === undefined) {
+      for (const item of patterns[language]) {
+        const match = item.pattern.exec(key);
+        if (!match) continue;
+        replacement = item.to.replace(/\{(\d+)\}/g, (_,name) => match[item.names.indexOf(name)+1]);
+        break;
+      }
+    }
+    if (replacement === undefined && value.includes("\n")) {
+      return value.split("\n").map(line => translate(line,language)).join("\n");
+    }
+    return replacement === undefined ? value : value.replace(/\S[\s\S]*\S|\S/, () => replacement);
+  };
+}
+
+function portfolioLanguageURL(value, language, base, root) {
+  if (!value || value.startsWith("#")) return value;
+  const url = new URL(value, base);
+  const owner = new URL(root, base);
+  if (url.origin !== owner.origin || !url.pathname.startsWith(owner.pathname) ||
+      !(/\/$|\.html$/.test(url.pathname))) return value;
+  const before = url.search;
+  if (language === "en") url.searchParams.set("lang","en");
+  else url.searchParams.delete("lang");
+  return url.search === before ? value : url.href;
+}
+
+function bindPortfolioLanguage() {
+  const source = document.getElementById("portfolio-translations");
+  if (!source) return;
+  const catalog = JSON.parse(source.textContent);
+  const config = Array.isArray(catalog) ? {pairs:catalog} : catalog;
+  const editionNode = document.getElementById('portfolio-static-editions');
+  const editions = editionNode ? JSON.parse(editionNode.textContent) : null;
+  const translate = createPortfolioTranslator(config.pairs, config.templates || [], config.decimal_templates || []);
+  const base = config.embedded ? (config.frame_parent_url || document.referrer) : location.href;
+  const parentOrigin = config.embedded ? (config.frame_parent_origin ?? new URL(base).origin) : new URL(base).origin;
+  const root = new URL(config.root || "./", base).href;
+  const records = new WeakMap();
+  const attributes = ["title", "alt", "aria-label", "placeholder", "content"];
+  let language = new URL(base).searchParams.get("lang") || document.documentElement.lang || "ru";
+  language = language === "en" ? "en" : "ru";
+  let observer;
+  const original = (node, field, value) => {
+    const record = records.get(node) || {};
+    if (!record[field] || record[field].applied !== value) {
+      record[field] = {source:value, applied:value};
+      records.set(node, record);
+    }
+    const output = translate(record[field].source, language);
+    record[field].applied = output;
+    return output;
+  };
+  const apply = () => {
+    observer?.disconnect();
+    const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) {
+      const node = walk.currentNode;
+      if (node.parentElement?.closest("script,style,noscript,textarea,[data-language-controls],[data-language-preserve]")) continue;
+      if (config.preserve_selector && node.parentElement?.closest(config.preserve_selector)) continue;
+      const next = original(node, "text", node.nodeValue);
+      if (next !== node.nodeValue) node.nodeValue = next;
+    }
+    document.querySelectorAll("title,meta[name=description],body *").forEach(node => {
+      if (node.closest("[data-language-controls],script,style")) return;
+      attributes.forEach(attribute => {
+        if (!node.hasAttribute(attribute)) return;
+        const value = node.getAttribute(attribute);
+        const next = original(node, attribute, value);
+        if (next !== value) node.setAttribute(attribute, next);
+      });
+    });
+    document.documentElement.lang = language;
+    document.querySelectorAll("[data-portfolio-language]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.portfolioLanguage === language));
+    });
+    document.querySelectorAll("a[href]:not([download]):not([data-static-language])").forEach(link => {
+      const href = link.getAttribute("href");
+      const next = portfolioLanguageURL(href, language, base, root);
+      if (next !== href) link.setAttribute("href",next);
+    });
+    if(editions && !config.embedded) {
+      const meta=editions[language];
+      document.title=meta.title;
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href',meta.url);
+      for(const [selector,value] of [
+        ['meta[name="description"]',meta.description],['meta[property="og:title"]',meta.title],
+        ['meta[property="og:description"]',meta.description],['meta[property="og:url"]',meta.url],
+        ['meta[property="og:locale"]',language==='en'?'en_US':'ru_RU']
+      ])document.querySelector(selector)?.setAttribute('content',value);
+      document.querySelectorAll('a[href]:not([download]):not([data-static-language])').forEach(link=>{
+        const url=new URL(link.getAttribute('href'),base),owner=new URL(editions.root);
+        if(url.origin!==owner.origin||!url.pathname.startsWith(owner.pathname)||link.getAttribute('href').startsWith('#'))return;
+        let relative=url.pathname.slice(owner.pathname.length).replace(/^en\//,'');
+        const key=relative.endsWith('/')||!relative?relative+'index.html':relative;
+        if(!editions.routes.includes(key))return;
+        const canonical=key.endsWith('index.html')?key.slice(0,-10):key;
+        url.pathname=owner.pathname+(language==='en'?'en/':'')+canonical;
+        url.searchParams.delete('lang');link.setAttribute('href',url.href);
+      });
+    }
+    observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true,
+      attributes:true, attributeFilter:attributes});
+  };
+  const existingControls = !config.embedded && document.querySelector('[data-static-language-controls]');
+  const controls = existingControls || document.createElement("div");
+  controls.dataset.languageControls = "";
+  controls.className = "portfolio-language";
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", "Language / Язык");
+  if (!existingControls) controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
+  if (!config.embedded) (document.querySelector(config.controls_selector || ".masthead,.map-links,.standalone,.reader>nav") || document.body).append(controls);
+  observer = new MutationObserver(apply);
+  const syncFrames = () => {
+    document.querySelectorAll("iframe[src]").forEach(frame => {
+    const url = new URL(frame.src,location.href);
+    if(url.origin === new URL(base).origin) {
+      const opaque = frame.hasAttribute('sandbox') && !frame.sandbox.contains('allow-same-origin');
+      frame.contentWindow?.postMessage({type:"portfolio-language",language},opaque ? "*" : url.origin);
+    }
+    });
+    if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => {
+      // Opaque sandbox origin: address only the explicitly owned inline frame.
+      // Payload contains one language code; the child verifies parent + origin.
+      if(frame.hasAttribute('srcdoc')) frame.contentWindow?.postMessage({type:"portfolio-language",language},"*");
+    });
+  };
+  const select = next => {
+    if (!["ru","en"].includes(next)) return;
+    language = next;
+    const url = new URL(editions && !config.embedded ? editions[language].url : config.embedded ? base : location.href);
+    if(editions && !config.embedded)url.hash=location.hash;
+    else if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
+    if (!config.embedded && window.origin !== "null") {
+      if(url.origin!==location.origin){
+        const preview=new URL(location.href);preview.searchParams.set('lang',language);
+        history.replaceState(null,'',preview);
+      } else history.replaceState(null, "", url);
+    }
+    apply();
+    syncFrames();
+    window.dispatchEvent(new Event("resize"));
+  };
+  controls.addEventListener("click", event => {
+    const button = event.target.closest("[data-portfolio-language]");
+    if (!button) return;
+    if (button.hasAttribute('data-static-language')) event.preventDefault();
+    select(button.dataset.portfolioLanguage);
+  });
+  window.addEventListener("message", event => {
+    if (window === parent || event.source !== parent || event.origin !== parentOrigin ||
+        event.data?.type !== "portfolio-language") return;
+    select(event.data.language);
+  });
+  document.querySelectorAll("iframe[src]").forEach(frame => frame.addEventListener("load",syncFrames));
+  if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => frame.addEventListener("load",syncFrames));
+  apply();
+  syncFrames();
+}
+
+if (typeof module !== "undefined") module.exports = {createPortfolioTranslator,portfolioLanguageURL};
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPortfolioLanguage);
+  else bindPortfolioLanguage();
+}
+</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DORI — camera calculation and selection</title>
+  <style>
+    :root {
+      --bg-color: #0f1115;
+      --panel-bg: #1a1d24;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent-blue: #3b82f6;
+      --accent-green: #10b981;
+      --border: #2d3748;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-main);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .shell {
+      width: 100%;
+      max-width: 1240px;
+      padding: 20px 20px 0;
+    }
+    .nav-bar {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+    .nav-btn {
+      padding: 10px 20px;
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      border-radius: 8px;
+      font-weight: 500;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+    .nav-btn:hover { background-color: #2d3748; }
+    .nav-btn.active-blue { border-color: var(--accent-blue); color: var(--accent-blue); }
+    .nav-btn.active-green { border-color: var(--accent-green); color: var(--accent-green); }
+    .mode-frame {
+      display: block;
+      width: 100%;
+      height: calc(100vh - 92px);
+      min-height: 760px;
+      border: 0;
+      background: var(--bg-color);
+    }
+    @media (max-width: 860px) {
+      .shell { padding: 12px 12px 0; }
+      .nav-bar { grid-template-columns: 1fr; gap: 10px; }
+      .mode-frame { height: calc(100vh - 132px); min-height: 820px; }
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="https://consulfedor.github.io/time-series-core-showcase/favicon.svg">
+
+<!-- PORTFOLIO_SEO_START -->
+<meta name="portfolio-static-language" content="en">
+<meta name="description" content="DORI calculator: installation geometry, pixel density, distance and optical requirements. Two calculation modes.">
+<link rel="canonical" href="https://consulfedor.github.io/time-series-core-showcase/en/examples/dori.html">
+<link rel="alternate" hreflang="ru" href="https://consulfedor.github.io/time-series-core-showcase/examples/dori.html">
+<link rel="alternate" hreflang="en" href="https://consulfedor.github.io/time-series-core-showcase/en/examples/dori.html">
+<link rel="alternate" hreflang="x-default" href="https://consulfedor.github.io/time-series-core-showcase/examples/dori.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DORI — camera calculation and selection">
+<meta property="og:description" content="DORI calculator: installation geometry, pixel density, distance and optical requirements. Two calculation modes.">
+<meta property="og:url" content="https://consulfedor.github.io/time-series-core-showcase/en/examples/dori.html">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://consulfedor.github.io/time-series-core-showcase/assets/dori-geometry.png">
+<meta property="og:image:alt" content="DORI — camera calculation and selection">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/json" id="portfolio-static-editions">{"root": "https://consulfedor.github.io/time-series-core-showcase/", "routes": ["index.html", "mytwobrain/index.html", "cv/index.html", "fact-to-decision/index.html", "mytwobrain/workspace.html", "examples/data-pipeline.html", "examples/analytics.html", "examples/dori.html", "overview.html"], "ru": {"title": "DORI — расчёт и подбор камеры", "description": "Калькулятор DORI: геометрия установки, плотность пикселей, дистанция и требования к оптике. Два режима расчёта.", "url": "https://consulfedor.github.io/time-series-core-showcase/examples/dori.html"}, "en": {"title": "DORI — camera calculation and selection", "description": "DORI calculator: installation geometry, pixel density, distance and optical requirements. Two calculation modes.", "url": "https://consulfedor.github.io/time-series-core-showcase/en/examples/dori.html"}}</script>
+<!-- PORTFOLIO_SEO_END -->
+</head>
+<body><div class="portfolio-language" role="group" data-language-controls data-static-language-controls aria-label="Language / Язык"><a data-static-language="ru" data-portfolio-language="ru" hreflang="ru" lang="ru" href="https://consulfedor.github.io/time-series-core-showcase/examples/dori.html">RU</a><a data-static-language="en" data-portfolio-language="en" hreflang="en" lang="en" href="https://consulfedor.github.io/time-series-core-showcase/en/examples/dori.html">EN</a></div><noscript><p>DORI is an interactive camera calculation tool. It relates distance, installation geometry and pixel density to optical requirements. Direct Calculator and Designer provide two ways to explore the same calculation. Enable JavaScript to use the controls; changing a value recalculates the result. This is not a physical camera test.</p></noscript>
+  <div class="shell">
+    <div class="nav-bar" role="tablist" aria-label="DORI calculation mode">
+      <button type="button" class="nav-btn active-blue" id="mode-direct" role="tab" aria-selected="true">Direct Calculator (Equipment -&gt; Result)</button>
+      <button type="button" class="nav-btn" id="mode-designer" role="tab" aria-selected="false">Designer (Task -&gt; Equipment)</button>
+    </div>
+  </div>
+
+  <iframe id="mode-frame" class="mode-frame" title="DORI calculator mode" sandbox="allow-scripts"></iframe>
+
+  <template id="direct-template">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DORI Camera Selector / Designer</title>
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --panel-bg: #1a1d24;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --border: #2d3748;
+            --radius: 12px;
+            
+            --zone-blind: #475569;
+            --zone-detection: #10b981;
+            --zone-observation: #3b82f6;
+            --zone-recognition: #eab308;
+            --zone-identification: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+        .nav-bar {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #2d3748;
+        }
+
+        .nav-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 860px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            background-color: #0f1115;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input[type="number"]:focus {
+            border-color: var(--accent);
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .slider-group input[type="range"] {
+            flex-grow: 1;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .slider-group input[type="number"] {
+            width: 80px;
+            text-align: center;
+        }
+
+        /* Results Panel */
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .result-card {
+            background-color: #0f1115;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .result-card span {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .result-card strong {
+            display: block;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .ppm-highlight {
+            color: var(--accent) !important;
+            font-size: 2rem !important;
+        }
+
+        /* Visualization */
+        .visualization {
+            margin-top: 30px;
+        }
+
+        .dori-status {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            background-color: var(--border);
+            transition: all 0.3s;
+        }
+
+        .dori-bar {
+            width: 100%;
+            height: 24px;
+            background-color: #0f1115;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .dori-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: bold;
+            color: #000;
+            opacity: 0.8;
+            position: relative;
+        }
+        .dori-segment:hover {
+            opacity: 1;
+        }
+
+        .opt-tick {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #fff;
+            opacity: 0.6;
+            z-index: 5;
+        }
+
+        .seg-blind { background-color: var(--zone-blind); width: 10%; color: #fff;} /* Up to 25 */
+        .seg-detection { background-color: var(--zone-detection); width: 15%; } /* 25 to 61 */
+        .seg-observation { background-color: var(--zone-observation); width: 20%; } /* 62 to 124 */
+        .seg-recognition { background-color: var(--zone-recognition); width: 25%; } /* 125 to 249 */
+        .seg-identification { background-color: var(--zone-identification); flex-grow: 1; } /* 250+ */
+
+        .indicator {
+            width: 4px;
+            height: 32px;
+            background-color: #fff;
+            position: relative;
+            top: -28px;
+            margin-bottom: -32px;
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(255,255,255,0.8);
+            transition: left 0.3s ease-out;
+            z-index: 10;
+        }
+
+        .limits-list {
+            list-style: none;
+            background: #0f1115;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .limits-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+
+        .limits-list li:hover {
+            background-color: #2d3748;
+        }
+
+        .limits-list li:last-child {
+            border-bottom: none;
+        }
+
+        .limits-list li span.dist {
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .optics-type-toggle {
+            display: flex;
+            background: #0f1115;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        .optics-type-toggle button {
+            flex: 1;
+            padding: 8px;
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.85rem;
+        }
+        .optics-type-toggle button.active {
+            background: var(--border);
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Panel 1: Inputs -->
+    <div class="panel">
+        <h2>Camera and Scene Parameters</h2>
+        
+        <div class="form-group" title="Purpose: resolution contributes to pixel density across the scene. The geometric estimate does not guarantee analytics quality.">
+            <label for="resolution" data-dori-label="Sensor Resolution (MP) ℹ️">Sensor Resolution (MP) ℹ️</label>
+            <select id="resolution">
+                <option value="1920x1080">2MP (1920x1080)</option>
+                <option value="2048x1536">3MP (2048x1536)</option>
+                <option value="2560x1440" selected>4MP (2560x1440)</option>
+                <option value="2592x1944">5MP (2592x1944)</option>
+                <option value="3840x2160">8MP / 4K (3840x2160)</option>
+            </select>
+        </div>
+
+        <div class="form-group" title="Purpose: sensor dimensions enter the field-of-view calculation. Night imaging also needs verification with the actual camera, lens and lighting.">
+            <label for="sensor" data-dori-label="Physical Sensor Size ℹ️">Physical Sensor Size ℹ️</label>
+            <select id="sensor">
+                <option value="4.8" data-height="3.6">1/3" (4.8 x 3.6 mm)</option>
+                <option value="5.27" data-height="2.96" selected>1/2.8" (5.27 x 2.96 mm)</option>
+                <option value="5.37" data-height="3.02">1/2.7" (5.37 x 3.02 mm)</option>
+                <option value="6.4" data-height="4.8">1/2" (6.4 x 4.8 mm)</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-top: 24px;" title="Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance.">
+            <label for="height-slider" data-dori-label="Mounting Height (H, meters) ℹ️">Mounting Height (H, meters) ℹ️</label>
+            <div class="slider-group">
+                <input type="range" id="height-slider" min="1" max="20" step="0.5" value="3">
+                <input type="number" id="height-input" min="1" max="20" step="0.5" value="3">
+            </div>
+        </div>
+
+        <div class="form-group" title="Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually.">
+            <label for="tilt-slider" data-dori-label="Vertical Tilt (deg) ℹ️">Vertical Tilt (deg) ℹ️</label>
+            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                <input type="checkbox" id="tilt-auto" checked style="width: auto; margin-right: 8px;">
+                <label for="tilt-auto" style="margin-bottom: 0; display: inline;" data-dori-label="Auto-aim at target">Auto-aim at target</label>
+            </div>
+            <div class="slider-group">
+                <input type="range" id="tilt-slider" min="0" max="90" step="1" value="16" disabled style="opacity: 0.5;">
+                <input type="number" id="tilt-input" min="0" max="90" step="1" value="16" disabled style="opacity: 0.5;">
+            </div>
+        </div>
+
+        <div class="form-group" title="Purpose: compare a fixed focal length with an adjustable lens. Cost, durability and compatibility depend on the chosen equipment.">
+            <label data-dori-label="Lens Type ℹ️">Lens Type ℹ️</label>
+            <div class="optics-type-toggle" id="optics-toggle">
+                <button type="button" class="active" data-type="varifocal">Varifocal (Precise Adjustment)</button>
+                <button type="button" data-type="fixed">Fixed (Standard)</button>
+            </div>
+            
+            <label for="focal-slider" title="Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances." data-dori-label="Focal Length (mm) ℹ️">Focal Length (mm) ℹ️</label>
+            <select id="focal-fixed" style="display: none; margin-bottom: 8px;">
+                <option value="2.8">2.8 mm (Wide-angle)</option>
+                <option value="3.6" selected>3.6 mm (Standard)</option>
+                <option value="4">4.0 mm</option>
+                <option value="6">6.0 mm</option>
+                <option value="8">8.0 mm</option>
+                <option value="12">12.0 mm</option>
+                <option value="16">16.0 mm</option>
+                <option value="25">25.0 mm</option>
+            </select>
+
+            <div class="slider-group" id="focal-slider-group">
+                <input type="range" id="focal-slider" min="2.8" max="50" step="0.1" value="3.6">
+                <input type="number" id="focal-input" min="2.8" max="50" step="0.1" value="3.6">
+            </div>
+        </div>
+
+        <div class="form-group" id="angle-group" style="margin-top: 16px;" title="Business purpose: Shows area coverage. A wide angle (&gt;90 deg) is useful for yards and parking areas. A narrow angle (&lt;40 deg) is useful for corridors and checkpoints.">
+            <label for="angle-slider" data-dori-label="Horizontal Field of View (deg) ℹ️">Horizontal Field of View (deg) ℹ️</label>
+            <div class="slider-group">
+                <input type="range" id="angle-slider" min="5" max="170" step="1" value="73">
+                <input type="number" id="angle-input" min="5" max="170" step="0.1" value="73.4">
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 32px;" title="Business purpose: Slant distance from the camera lens to the critical point (hypotenuse). This is usually the distance measured with a laser rangefinder.">
+            <label for="dist-slider" data-dori-label="Distance to Target (Slant, m) ℹ️">Distance to Target (Slant, m) ℹ️</label>
+            <div class="slider-group">
+                <input type="range" id="dist-slider" min="1" max="150" step="1" value="10">
+                <input type="number" id="dist-input" min="1" max="150" step="1" value="10">
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel 2: Results & Visualization -->
+    <div class="panel">
+        <h2>Calculation Results (DORI)</h2>
+        
+        <div class="result-grid">
+            <div class="result-card" title="Purpose: geometric pixel density at the target. It is one input to equipment selection, not proof of recognition accuracy or compliance.">
+                <span>Pixel Density (PPM) ℹ️</span>
+                <strong id="res-ppm" class="ppm-highlight">0</strong>
+            </div>
+            <div class="result-card" title="Business purpose: How many meters of width fit into the frame at the selected distance. Important for covering fences and gates without blind zones.">
+                <span>Scene Width (FOV) ℹ️</span>
+                <strong id="res-fov">0 m</strong>
+            </div>
+            <div class="result-card" title="Business purpose: Actual field of view angle of the camera optical system.">
+                <span>Horizontal Angle ℹ️</span>
+                <strong id="res-angle">0°</strong>
+            </div>
+            <div class="result-card" title="Business purpose: Target control distance.">
+                <span>Ground Distance ℹ️</span>
+                <strong id="res-dist">0 m</strong>
+            </div>
+        </div>
+
+        <div class="visualization">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px;">
+                <!-- Top View SVG -->
+                <div class="scene-visual" style="text-align: center; position: relative; background: #15181e; padding: 16px; border-radius: 8px; border: 1px solid var(--border);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 8px;">Top View (Width Coverage)</div>
+                    <svg id="fov-svg" viewbox="0 0 300 150" style="width: 100%; height: 150px; display: block; margin: 0 auto; overflow: visible;">
+                        <defs>
+                            <clippath id="fov-clip">
+                                <polygon id="fov-poly" points="150,14 50,130 250,130"></polygon>
+                            </clippath>
+                        </defs>
+                        <!-- Camera icon -->
+                        <rect x="140" y="0" width="20" height="14" fill="#94a3b8" rx="2"></rect>
+                        <circle cx="150" cy="7" r="4" fill="#0f1115"></circle>
+                        <!-- Heatmap -->
+                        <g clip-path="url(#fov-clip)" opacity="0.6">
+                            <rect id="rect-blind" x="0" y="14" width="300" height="150" fill="var(--zone-blind)"></rect>
+                            <rect id="rect-d" x="0" y="14" width="300" height="0" fill="var(--zone-detection)"></rect>
+                            <rect id="rect-o" x="0" y="14" width="300" height="0" fill="var(--zone-observation)"></rect>
+                            <rect id="rect-r" x="0" y="14" width="300" height="0" fill="var(--zone-recognition)"></rect>
+                            <rect id="rect-i" x="0" y="14" width="300" height="0" fill="var(--zone-identification)"></rect>
+                        </g>
+                        <!-- Outline -->
+                        <polygon id="fov-poly-outline" points="150,14 50,130 250,130" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4"></polygon>
+                        <!-- Target Line -->
+                        <line id="target-dist-line" x1="50" y1="130" x2="250" y2="130" stroke="#fff" stroke-width="2"></line>
+                        <text id="svg-dist-text" x="150" y="70" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">10 m</text>
+                    </svg>
+                    <div style="margin-top: 8px; font-size: 0.85rem; font-weight: 500; color: #fff;">
+                        Width: <span id="scene-width-label" style="color: var(--accent);">0 m</span>
+                    </div>
+                </div>
+
+                <!-- Side View SVG -->
+                <div class="scene-visual" style="position: relative; background: #0d1117; padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+                    <div style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 6px; text-align:center; letter-spacing:0.05em; text-transform: uppercase;">Side View - Mounting Geometry</div>
+                    <svg id="side-svg" viewbox="0 0 420 240" style="width: 100%; height: auto; display: block; overflow: visible;">
+                        <defs>
+                            <clippath id="side-clip">
+                                <rect x="40" y="0" width="380" height="210"></rect>
+                            </clippath>
+                            <marker id="arr-end" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"></path>
+                            </marker>
+                            <marker id="arr-white" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#e2e8f0"></path>
+                            </marker>
+                            <marker id="arr-orange" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#f97316"></path>
+                            </marker>
+                        </defs>
+
+                        <!-- Background -->
+                        <rect x="0" y="0" width="420" height="240" fill="#0d1117"></rect>
+
+                        <!-- Sky/wall area -->
+                        <rect id="side-sky" x="40" y="0" width="380" height="200" fill="#111827"></rect>
+
+                        <!-- Grid Lines (dynamic) -->
+                        <g id="side-grid"></g>
+
+                        <!-- DORI cone zones (clip to drawing area) -->
+                        <g clip-path="url(#side-clip)" id="side-zones-group">
+                            <polygon id="side-i" fill="#ef4444" opacity="0"></polygon>
+                            <polygon id="side-r" fill="#eab308" opacity="0"></polygon>
+                            <polygon id="side-o" fill="#3b82f6" opacity="0"></polygon>
+                            <polygon id="side-d" fill="#10b981" opacity="0"></polygon>
+                            <polygon id="side-blind" fill="#475569" opacity="0"></polygon>
+                        </g>
+
+                        <!-- Ground line -->
+                        <line x1="40" y1="200" x2="420" y2="200" stroke="#334155" stroke-width="1.5"></line>
+                        <!-- Ground fill -->
+                        <rect x="40" y="200" width="380" height="40" fill="#1a2035"></rect>
+                        <!-- Ground label -->
+                        <text x="420" y="215" fill="#475569" font-size="9" text-anchor="end">ground</text>
+
+                        <!-- Y-axis (wall/pole side) -->
+                        <line x1="40" y1="0" x2="40" y2="210" stroke="#334155" stroke-width="1"></line>
+
+                        <!-- Mounting pole -->
+                        <line id="side-pole" x1="44" y1="50" x2="44" y2="200" stroke="#64748b" stroke-width="3" stroke-linecap="round"></line>
+
+                        <!-- Blind zone polygon (separate layer, above zones) -->
+                        <polygon id="side-blind-top" fill="#1e293b" clip-path="url(#side-clip)" opacity="0.85"></polygon>
+
+                        <!-- Hypotenuse ray (median — laser beam) -->
+                        <line id="side-hyp-line" x1="44" y1="50" x2="250" y2="200" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr-orange)" opacity="0.9"></line>
+
+                        <!-- Top ray of cone -->
+                        <line id="side-top-ray" x1="44" y1="50" x2="300" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"></line>
+                        <!-- Bottom ray of cone -->
+                        <line id="side-bot-ray" x1="44" y1="50" x2="300" y2="200" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"></line>
+
+                        <!-- Camera icon group (rotates around lens center) -->
+                        <g id="side-cam-group" transform="translate(44, 80)">
+                            <!-- Camera body -->
+                            <rect x="-10" y="-7" width="14" height="14" fill="#475569" rx="2"></rect>
+                            <!-- Lens barrel -->
+                            <polygon points="4,-5 4,5 12,7 12,-7" fill="#64748b"></polygon>
+                            <!-- Lens glass -->
+                            <ellipse cx="12" cy="0" rx="4" ry="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"></ellipse>
+                            <ellipse cx="12" cy="0" rx="2" ry="2" fill="#60a5fa" opacity="0.6"></ellipse>
+                            <!-- Mount bolt -->
+                            <circle cx="-5" cy="0" r="2" fill="#94a3b8"></circle>
+                        </g>
+
+                        <!-- Height dimension line (left of pole) -->
+                        <g id="side-height-dim">
+                            <line id="side-hdim-line" x1="20" y1="80" x2="20" y2="200" stroke="#94a3b8" stroke-width="1" marker-end="url(#arr-end)"></line>
+                            <line id="side-hdim-top" x1="15" y1="80" x2="38" y2="80" stroke="#94a3b8" stroke-width="1"></line>
+                            <line id="side-hdim-bot" x1="15" y1="200" x2="38" y2="200" stroke="#94a3b8" stroke-width="1"></line>
+                            <text id="side-hdim-text" x="18" y="140" fill="#94a3b8" font-size="9" text-anchor="middle" transform="rotate(-90,18,140)">H = 3.0 m</text>
+                        </g>
+
+                        <!-- Ground distance dimension -->
+                        <line id="side-gdim-line" x1="44" y1="218" x2="200" y2="218" stroke="#64748b" stroke-width="1" marker-end="url(#arr-end)"></line>
+                        <text id="side-gdim-text" x="120" y="230" fill="#64748b" font-size="9" text-anchor="middle">- m (ground)</text>
+
+                        <!-- Target person (stick figure) -->
+                        <g id="side-person">
+                            <line id="person-body" x1="0" y1="0" x2="0" y2="-25" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round"></line>
+                            <circle id="person-head" cx="0" cy="-30" r="5" fill="none" stroke="#f8fafc" stroke-width="2"></circle>
+                            <!-- Feet indicator -->
+                            <circle cx="0" cy="0" r="2" fill="#f97316"></circle>
+                        </g>
+                                    <g id="side-person-17" stroke="#ef4444" stroke-width="1.5" opacity="0.8">
+                                        <line id="person-17-body" x1="0" y1="0" x2="0" y2="-20"></line>
+                                        <circle id="person-17-head" cx="0" cy="-24" r="3" fill="#ef4444"></circle>
+                                        <text id="person-17-text" x="5" y="-12" fill="#ef4444" font-size="8" font-family="sans-serif">1.7 m</text>
+                                    </g>
+
+                        <!-- Hypotenuse label (along the dashed line) -->
+                        <text id="side-hyp-text" x="150" y="90" fill="#f97316" font-size="9" text-anchor="middle" transform="">🎯 - m (laser)</text>
+
+                        <!-- Head-in-zone indicator -->
+                        <text id="side-zone-label" x="220" y="20" fill="#94a3b8" font-size="9" text-anchor="middle"></text>
+
+                    </svg>
+                    <!-- Info row below SVG -->
+                    <div style="display:flex; gap:16px; margin-top:8px; font-size:0.78rem; color:#94a3b8; justify-content: space-between; flex-wrap:wrap;">
+                        <span>↕ Height: <strong id="scene-height-label" style="color:var(--accent)">-</strong></span>
+                        <span id="side-blind-info" style="color:#ef4444;">Blind Zone: -</span>
+                        <span id="side-horiz-info" style="color:#64748b;">Ground: - m</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dori-status" class="dori-status" title="Purpose: compare geometric detail with the selected DORI reference. Actual task performance requires an on-site check.">Loading...</div>
+            
+            <div style="position: relative;">
+                <div class="dori-bar">
+                    <div class="dori-segment seg-blind" title="&lt;25 PPM Blind Zone">Blind</div>
+                    <div class="dori-segment seg-detection" title="25-61 PPM (Optimum ~40)"><div class="opt-tick" style="left: 41%;"></div>D</div>
+                    <div class="dori-segment seg-observation" title="62-124 PPM (Optimum ~80)"><div class="opt-tick" style="left: 29%;"></div>O</div>
+                    <div class="dori-segment seg-recognition" title="125-249 PPM (Optimum ~150)"><div class="opt-tick" style="left: 20%;"></div>R</div>
+                    <div class="dori-segment seg-identification" title="250+ PPM (Optimum ~300)"><div class="opt-tick" style="left: 33%;"></div>I</div>
+                </div>
+                <!-- Scale indicator -->
+                <div id="scale-indicator" class="indicator" style="left: 0%;"></div>
+            </div>
+
+            <label style="display: block; margin-top: 24px; margin-bottom: 8px; color: var(--text-muted); font-size: 0.875rem;" data-dori-label="Maximum Distances (click to apply):">Maximum Distances (click to apply):</label>
+            <ul class="limits-list">
+                <li id="li-limit-i" title="Purpose (Identification): the highest detail reference in this model. It does not establish biometric accuracy or legal evidentiary value.">
+                    <span style="color: var(--zone-identification)">Identification (≥250 PPM)</span>
+                    <span class="dist" id="limit-i">0 m</span>
+                </li>
+                <li id="li-limit-r" title="Purpose (Recognition): a detail reference for recognition tasks. Lighting, motion, optics and the recognition system must be tested separately.">
+                    <span style="color: var(--zone-recognition)">Recognition (≥125 PPM)</span>
+                    <span class="dist" id="limit-r">0 m</span>
+                </li>
+                <li id="li-limit-o" title="Business purpose (Observation): Situational control. Makes it possible to understand clothing color, whether a person is holding an object, and movement direction.">
+                    <span style="color: var(--zone-observation)">Observation (≥62 PPM)</span>
+                    <span class="dist" id="limit-o">0 m</span>
+                </li>
+                <li id="li-limit-d" title="Business purpose (Detection): Basic analytics. Records the fact that a perimeter was crossed or that there is movement in the distance.">
+                    <span style="color: var(--zone-detection)">Detection (≥25 PPM)</span>
+                    <span class="dist" id="limit-d">0 m</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // DOM Elements
+    const elRes = document.getElementById('resolution');
+    const elSens = document.getElementById('sensor');
+    const elFocSlider = document.getElementById('focal-slider');
+    const elFocInput = document.getElementById('focal-input');
+    const elFocFixed = document.getElementById('focal-fixed');
+    const elDistSlider = document.getElementById('dist-slider');
+    const elDistInput = document.getElementById('dist-input');
+    const elAngleSlider = document.getElementById('angle-slider');
+    const elAngleInput = document.getElementById('angle-input');
+    const opticsBtns = document.querySelectorAll('.optics-type-toggle button');
+    
+    const elHeightSlider = document.getElementById('height-slider');
+    const elHeightInput = document.getElementById('height-input');
+    const elTiltSlider = document.getElementById('tilt-slider');
+    const elTiltInput = document.getElementById('tilt-input');
+    const elTiltAuto = document.getElementById('tilt-auto');
+
+    const resPpm = document.getElementById('res-ppm');
+    const resFov = document.getElementById('res-fov');
+    const resAngle = document.getElementById('res-angle');
+    const resDist = document.getElementById('res-dist');
+    
+    const doriStatus = document.getElementById('dori-status');
+    const scaleIndicator = document.getElementById('scale-indicator');
+    
+    const limitI = document.getElementById('limit-i');
+    const limitR = document.getElementById('limit-r');
+    const limitO = document.getElementById('limit-o');
+    const limitD = document.getElementById('limit-d');
+
+    function setDistance(groundDistance) {
+        const height = Number(elHeightInput.value);
+        const slant = Math.floor(Math.hypot(groundDistance, height) * 10) / 10;
+        const value = Math.max(Number(elDistInput.min), Math.min(Number(elDistInput.max), slant));
+        elDistSlider.value = value;
+        elDistInput.value = value;
+        calculate();
+    }
+
+    let isFixedLens = false;
+
+    // Sync inputs and sliders
+    function syncInput(source, target) {
+        target.value = source.value;
+        calculate();
+    }
+
+    elFocSlider.addEventListener('input', () => syncInput(elFocSlider, elFocInput));
+    elFocInput.addEventListener('input', () => syncInput(elFocInput, elFocSlider));
+    elDistSlider.addEventListener('input', () => syncInput(elDistSlider, elDistInput));
+    elDistInput.addEventListener('input', () => syncInput(elDistInput, elDistSlider));
+
+    elHeightSlider.addEventListener('input', () => syncInput(elHeightSlider, elHeightInput));
+    elHeightInput.addEventListener('input', () => syncInput(elHeightInput, elHeightSlider));
+    
+    elTiltSlider.addEventListener('input', () => {
+        elTiltInput.value = elTiltSlider.value;
+        if (!elTiltAuto.checked) calculate();
+    });
+    elTiltInput.addEventListener('input', () => {
+        elTiltSlider.value = elTiltInput.value;
+        if (!elTiltAuto.checked) calculate();
+    });
+    
+    elTiltAuto.addEventListener('change', () => {
+        const isAuto = elTiltAuto.checked;
+        elTiltSlider.disabled = isAuto;
+        elTiltInput.disabled = isAuto;
+        elTiltSlider.style.opacity = isAuto ? '0.5' : '1';
+        elTiltInput.style.opacity = isAuto ? '0.5' : '1';
+        calculate();
+    });
+    
+    // Sync angle inputs
+    elAngleSlider.addEventListener('input', () => {
+        elAngleInput.value = elAngleSlider.value;
+        updateFocalFromAngle();
+    });
+    elAngleInput.addEventListener('input', () => {
+        elAngleSlider.value = elAngleInput.value;
+        updateFocalFromAngle();
+    });
+
+    function updateFocalFromAngle() {
+        if (isFixedLens) return; // Cannot change angle manually if fixed
+        const angleDeg = parseFloat(elAngleInput.value);
+        if (isNaN(angleDeg) || angleDeg <= 0 || angleDeg >= 180) return;
+        const sensorW = parseFloat(elSens.value);
+        const angleRad = angleDeg * Math.PI / 180;
+        
+        // Formula: FocalLength = SensorWidth / (2 * Math.tan(Angle_in_radians / 2))
+        const focalL = sensorW / (2 * Math.tan(angleRad / 2));
+        
+        // Clamp to allowed focal length limits visually or allow overflow?
+        // Let's just set the value. Range slider will cap visually.
+        elFocInput.value = focalL.toFixed(2);
+        elFocSlider.value = focalL.toFixed(2);
+        
+        calculate();
+    }
+
+    elRes.addEventListener('change', calculate);
+    elSens.addEventListener('change', calculate);
+    elFocFixed.addEventListener('change', () => {
+        elFocSlider.value = elFocFixed.value;
+        elFocInput.value = elFocFixed.value;
+        calculate();
+    });
+
+    // Toggle Lens Type
+    opticsBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            opticsBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            isFixedLens = btn.dataset.type === 'fixed';
+            
+            if (isFixedLens) {
+                document.getElementById('focal-slider-group').style.display = 'none';
+                elFocFixed.style.display = 'block';
+                elFocSlider.value = elFocFixed.value;
+                elFocInput.value = elFocFixed.value;
+                
+                elAngleSlider.disabled = true;
+                elAngleInput.disabled = true;
+                elAngleSlider.style.opacity = '0.5';
+                elAngleInput.style.opacity = '0.5';
+            } else {
+                document.getElementById('focal-slider-group').style.display = 'flex';
+                elFocFixed.style.display = 'none';
+                
+                elAngleSlider.disabled = false;
+                elAngleInput.disabled = false;
+                elAngleSlider.style.opacity = '1';
+                elAngleInput.style.opacity = '1';
+            }
+            calculate();
+        });
+    });
+
+    function calculate() {
+        const resParts = elRes.value.split('x');
+        const horizPx = parseFloat(resParts[0]);
+        const vertPx = parseFloat(resParts[1]);
+        
+        const sensorOption = elSens.options[elSens.selectedIndex];
+        const sensorW = parseFloat(sensorOption.value);
+        const sensorH = parseFloat(sensorOption.getAttribute('data-height'));
+        
+        const focalL = parseFloat(elFocInput.value);
+        const camHeight = parseFloat(elHeightInput.value);
+        
+        if (!validateInputs()) return;
+        const hypotenuse = parseFloat(elDistInput.value);
+        
+        const dist = Math.sqrt(hypotenuse * hypotenuse - camHeight * camHeight); // Ground distance
+
+        // 1. Angle Calculation
+        const angleRad = 2 * Math.atan(sensorW / (2 * focalL));
+        const angleDeg = angleRad * 180 / Math.PI;
+        
+        const vAngleRad = 2 * Math.atan(sensorH / (2 * focalL));
+
+        if (document.activeElement !== elAngleSlider && document.activeElement !== elAngleInput) {
+            elAngleSlider.value = angleDeg.toFixed(1);
+            elAngleInput.value = angleDeg.toFixed(1);
+        }
+        
+        // 2. Tilt Angle Logic
+        let tiltDeg;
+        if (elTiltAuto.checked) {
+            tiltDeg = Math.atan(camHeight / dist) * 180 / Math.PI;
+            if (dist === 0) tiltDeg = 90;
+            elTiltSlider.value = tiltDeg.toFixed(1);
+            elTiltInput.value = tiltDeg.toFixed(1);
+        } else {
+            tiltDeg = parseFloat(elTiltInput.value);
+        }
+        const tiltRad = tiltDeg * Math.PI / 180;
+
+        // 3. Field of View Width & Height at target distance
+        const fov = 2 * hypotenuse * Math.tan(angleRad / 2);
+        const fovH = 2 * hypotenuse * Math.tan(vAngleRad / 2);
+
+        // 4. Pixels Per Meter (PPM) at target distance
+        const ppm = horizPx / fov;
+
+        // Display basic results
+        resAngle.innerText = angleDeg.toFixed(1) + '°';
+        resFov.innerText = fov.toFixed(1) + ' m';
+        resDist.innerText = dist.toFixed(1) + ' m';
+        resPpm.innerText = Math.round(ppm);
+
+        // Calculate Max 3D Diagonal Distances for DORI
+        const calcMaxHypot = (targetPpm) => ((horizPx * focalL) / (targetPpm * sensorW));
+        
+        // Ground projections (D = sqrt(Hypot^2 - H^2))
+        const getGroundDist = (hypot) => hypot > camHeight ? Math.sqrt(hypot * hypot - camHeight * camHeight) : 0;
+
+        const valI_h = calcMaxHypot(250);
+        const valR_h = calcMaxHypot(125);
+        const valO_h = calcMaxHypot(62);
+        const valD_h = calcMaxHypot(25);
+        
+        const valI = getGroundDist(valI_h);
+        const valR = getGroundDist(valR_h);
+        const valO = getGroundDist(valO_h);
+        const valD = getGroundDist(valD_h);
+
+        // Blind zone under camera based on bottom ray of V-FOV
+        const bottomRayAngle = tiltRad + vAngleRad / 2;
+        let dMin = 0;
+        if (bottomRayAngle > 0) {
+            dMin = camHeight / Math.tan(bottomRayAngle);
+            if (dMin < 0) dMin = 0; // if it goes past vertical looking backwards
+        } else {
+            dMin = 9999; // camera looks above horizon entirely
+        }
+
+        limitI.innerText = valI.toFixed(1) + ' m';
+        limitR.innerText = valR.toFixed(1) + ' m';
+        limitO.innerText = valO.toFixed(1) + ' m';
+        limitD.innerText = valD.toFixed(1) + ' m';
+
+        document.getElementById('li-limit-i').onclick = () => setDistance(valI);
+        document.getElementById('li-limit-r').onclick = () => setDistance(valR);
+        document.getElementById('li-limit-o').onclick = () => setDistance(valO);
+        document.getElementById('li-limit-d').onclick = () => setDistance(valD);
+
+        // Update SVG Visual with distances
+        updateSvg(angleRad, vAngleRad, tiltRad, fov, fovH, dist, camHeight, dMin, valI, valR, valO, valD);
+
+        // Update Visualization
+        updateVisualization(ppm);
+    }
+
+    function updateVisualization(ppm) {
+        let statusText = "";
+        let bgColor = "";
+        let textColor = "#fff";
+        let percent = 0; // for indicator position
+
+        // Calculate position on the bar (max limit around 350 for visual scale)
+        // Let's map PPM to percentage non-linearly to match our visual segments
+        // 0-25: 0-10%
+        // 25-61: 10-25%
+        // 62-124: 25-45%
+        // 125-249: 45-70%
+        // >=250: 70-100%
+
+        if (ppm < 25) {
+            statusText = "Blind Zone (Insufficient Detail)";
+            bgColor = "var(--zone-blind)";
+            percent = (ppm / 25) * 10;
+        } else if (ppm < 62) {
+            statusText = "Detection - Silhouette visible";
+            bgColor = "var(--zone-detection)";
+            percent = 10 + ((ppm - 25) / (61 - 25)) * 15;
+        } else if (ppm < 125) {
+            statusText = "Observation - Basic attributes visible";
+            bgColor = "var(--zone-observation)";
+            percent = 25 + ((ppm - 62) / (124 - 62)) * 20;
+        } else if (ppm < 250) {
+            statusText = "Recognition reference (geometry only)";
+            bgColor = "var(--zone-recognition)";
+            textColor = "#000";
+            percent = 45 + ((ppm - 125) / (249 - 125)) * 25;
+        } else {
+            statusText = "Identification reference (geometry only)";
+            bgColor = "var(--zone-identification)";
+            percent = 70 + Math.min((ppm - 250) / 150, 1) * 30;
+        }
+
+        doriStatus.innerText = statusText;
+        doriStatus.style.backgroundColor = bgColor;
+        doriStatus.style.color = textColor;
+        
+        // Ensure percent doesn't go over 100%
+        percent = Math.max(0, Math.min(100, percent));
+        scaleIndicator.style.left = `calc(${percent}% - 2px)`; // center the 4px indicator
+        
+        resPpm.style.color = bgColor;
+    }
+
+    function updateSvg(angleRad, vAngleRad, tiltRad, fovW, fovH, dist, camHeight, dMin, valI, valR, valO, valD) {
+        document.getElementById('scene-width-label').innerText = fovW.toFixed(1) + ' m';
+        document.getElementById('scene-height-label').innerText = fovH.toFixed(1) + ' m';
+        
+        const textDist = document.getElementById('svg-dist-text');
+        textDist.textContent = `${dist.toFixed(1)} m ground`;
+
+        // ---- 1. TOP VIEW (fov-svg) ----
+        const cx = 150;
+        const cy = 14;
+        const maxH = 116; 
+        
+        // For top view, max distance scale
+        const visibleDistMax = Math.max(dist * 1.1, valO); 
+        const pxPerMeter = maxH / visibleDistMax;
+        // Separate axis scales keep narrow, long-range coverage readable.
+        const xScale = Math.min(28, 110 / Math.max(fovW / 2, 0.1));
+        const drawH = dist * pxPerMeter;
+        
+        // Clip poly for top view
+        const clipPoly = document.getElementById('fov-poly');
+        const outlinePoly = document.getElementById('fov-poly-outline');
+        
+        const maxDrawHalfW = Math.min(140, visibleDistMax * Math.tan(angleRad / 2) * xScale);
+        const pointsStr = `${cx},${cy + dMin * pxPerMeter} ${cx - maxDrawHalfW},${cy + maxH} ${cx + maxDrawHalfW},${cy + maxH}`;
+        clipPoly.setAttribute('points', pointsStr);
+        outlinePoly.setAttribute('points', pointsStr);
+        
+        const yMin = cy + dMin * pxPerMeter;
+        const yI = cy + Math.max(dMin, valI) * pxPerMeter;
+        const yR = cy + Math.max(dMin, valR) * pxPerMeter;
+        const yO = cy + Math.max(dMin, valO) * pxPerMeter;
+        const yD = cy + Math.max(dMin, valD) * pxPerMeter;
+
+        const rectI = document.getElementById('rect-i');
+        const rectR = document.getElementById('rect-r');
+        const rectO = document.getElementById('rect-o');
+        const rectD = document.getElementById('rect-d');
+        
+        rectI.setAttribute('y', yMin);
+        rectI.setAttribute('height', Math.max(0, yI - yMin));
+        rectR.setAttribute('y', yI);
+        rectR.setAttribute('height', Math.max(0, yR - yI));
+        rectO.setAttribute('y', yR);
+        rectO.setAttribute('height', Math.max(0, yO - yR));
+        rectD.setAttribute('y', yO);
+        rectD.setAttribute('height', Math.max(0, yD - yO));
+
+        const targetLine = document.getElementById('target-dist-line');
+        const ty = cy + drawH;
+        const drawHalfW = Math.min(140, fovW / 2 * xScale);
+        targetLine.setAttribute('y1', ty);
+        targetLine.setAttribute('y2', ty);
+        
+        // Hide target line if it is in the blind zone (behind dMin)
+        if (ty < yMin) {
+            targetLine.setAttribute('opacity', '0');
+        } else {
+            targetLine.setAttribute('opacity', '1');
+            targetLine.setAttribute('x1', cx - drawHalfW);
+            targetLine.setAttribute('x2', cx + drawHalfW);
+        }
+        
+        textDist.setAttribute('y', ty - 6);
+
+        // ---- 2. SIDE VIEW (side-svg) — Professional Engineering Drawing ----
+        // SVG constants
+        const SV = {
+            W: 420, H: 240,
+            originX: 44,   // x of the pole / camera
+            groundY: 200,  // y of the ground line
+            topY: 4,       // top margin
+            rightX: 416,   // right edge
+        };
+
+        // Compute scale: keep 1:1 physical ratio if possible
+        // horizontal span: rightX - originX = 372px
+        // vertical span: groundY - topY = 196px
+        const physH = Math.max(camHeight * 1.35, 4);   // physical height domain
+        const physW = Math.max(dist * 1.15, physH * (372/196)); // physical horiz domain
+
+        const scX = (372) / physW;
+        const scY = (196) / physH;
+
+        // SVG coordinate helpers
+        const svgX = (d) => SV.originX + d * scX;
+        const svgY = (h) => SV.groundY - h * scY;
+
+        // Camera position in SVG
+        const camSvgX = SV.originX;
+        const camSvgY = svgY(camHeight);
+
+        // Physical ray angles (from horizontal, positive = downward)
+        // tiltRad = angle from horizontal the camera is tilted down
+        const topRayAngle = tiltRad - vAngleRad / 2;   // above center (might be negative = looking up)
+        const botRayAngle = tiltRad + vAngleRad / 2;   // below center
+
+        // Ray endpoint helper: given angle (down from horizontal), distance d along ground
+        // We compute where the ray intersects various things
+        // Height at ground distance d: h(d) = camHeight - d*tan(angle)
+        const rayH = (d, angle) => camHeight - d * Math.tan(angle);
+
+        // Clip distance where a ray hits the ground (h=0)
+        const rayGroundDist = (angle) => angle > 0.001 ? camHeight / Math.tan(angle) : physW * 2;
+        const rayTopDist = (angle) => angle < -0.001 ? -camHeight / Math.tan(angle) : physW * 2;
+
+        const botGroundD = rayGroundDist(botRayAngle);
+        const topGroundD = rayGroundDist(topRayAngle);
+
+        // ---- Draw Grid ----
+        const gridGroup = document.getElementById('side-grid');
+        gridGroup.innerHTML = '';
+        
+        // Horizontal (height) grid lines
+        const hStep = physH > 8 ? 2 : 1;
+        for (let h = 0; h <= physH; h += hStep) {
+            const y = svgY(h);
+            if (y < SV.topY || y > SV.groundY) continue;
+            const isMajor = (h % (hStep * 2) === 0);
+            gridGroup.innerHTML += `<line x1="${SV.originX}" x2="${SV.rightX}" y1="${y}" y2="${y}" stroke="${isMajor ? '#1e3a5f' : '#111827'}" stroke-width="${isMajor ? 1 : 0.5}"/>`;
+            if (isMajor && h > 0) {
+                gridGroup.innerHTML += `<text x="37" y="${y + 3}" fill="#334155" font-size="8" text-anchor="end">${h}m</text>`;
+            }
+        }
+        // Vertical (distance) grid lines
+        const dStep = physW > 30 ? 10 : physW > 15 ? 5 : 2;
+        for (let d = 0; d <= physW; d += dStep) {
+            const x = svgX(d);
+            if (x < SV.originX || x > SV.rightX) continue;
+            const isMajor = (d % (dStep * 2) === 0);
+            gridGroup.innerHTML += `<line x1="${x}" x2="${x}" y1="${SV.topY}" y2="${SV.groundY}" stroke="${isMajor ? '#1e3a5f' : '#111827'}" stroke-width="${isMajor ? 1 : 0.5}"/>`;
+            if (isMajor && d > 0) {
+                gridGroup.innerHTML += `<text x="${x}" y="${SV.groundY + 10}" fill="#334155" font-size="8" text-anchor="middle">${d}</text>`;
+            }
+        }
+        // Distance axis label
+        gridGroup.innerHTML += `<text x="${SV.rightX}" y="${SV.groundY + 10}" fill="#334155" font-size="8" text-anchor="end">m -></text>`;
+
+        // ---- Draw DORI zone slices ----
+        // Each zone is a trapezoid between two distances along the two rays
+        const hypotenuse = Math.sqrt(dist * dist + camHeight * camHeight);
+        
+        // Return points for a quad representing a zone between dist d1 and d2 (distance from camera)
+        const conePoints = (d1, d2) => {
+            const t1 = d1 / Math.cos(vAngleRad / 2);
+            const t2 = d2 / Math.cos(vAngleRad / 2);
+            
+            const pts = [];
+            // top ray intersection
+            pts.push([svgX(t1 * Math.cos(topRayAngle)), svgY(camHeight - t1 * Math.sin(topRayAngle))]);
+            pts.push([svgX(t2 * Math.cos(topRayAngle)), svgY(camHeight - t2 * Math.sin(topRayAngle))]);
+            // bottom ray intersection
+            pts.push([svgX(t2 * Math.cos(botRayAngle)), svgY(camHeight - t2 * Math.sin(botRayAngle))]);
+            pts.push([svgX(t1 * Math.cos(botRayAngle)), svgY(camHeight - t1 * Math.sin(botRayAngle))]);
+            
+            return pts.map(p => p.join(',')).join(' ');
+        };
+
+        const setZone = (id, d1, d2) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (d2 <= d1 || d1 >= physW * 1.5) { el.setAttribute('opacity', '0'); return; }
+            el.setAttribute('opacity', '0.55');
+            el.setAttribute('points', conePoints(d1, Math.min(d2, physW * 1.5)));
+        };
+        setZone('side-i', 0, valI);
+        setZone('side-r', valI, valR);
+        setZone('side-o', valR, valO);
+        setZone('side-d', valO, valD);
+
+        // ---- Blind zone (triangle below bottom ray, near camera) ----
+        const blindEl = document.getElementById('side-blind');
+        const blindTopEl = document.getElementById('side-blind-top');
+        if (blindEl) blindEl.setAttribute('opacity', '0'); // disable old one
+        if (blindTopEl) {
+            const bPts = [];
+            bPts.push([camSvgX, camSvgY]);
+            if (botRayAngle > 0.001) {
+                bPts.push([svgX(botGroundD), SV.groundY]);
+            } else {
+                bPts.push([SV.rightX, SV.groundY]);
+            }
+            bPts.push([SV.originX, SV.groundY]);
+            blindTopEl.setAttribute('points', bPts.map(p => p.join(',')).join(' '));
+            blindTopEl.setAttribute('opacity', '0.85');
+        }
+
+        // ---- Pole ----
+        const poleEl = document.getElementById('side-pole');
+        if (poleEl) {
+            poleEl.setAttribute('x1', camSvgX + 4);
+            poleEl.setAttribute('x2', camSvgX + 4);
+            poleEl.setAttribute('y1', camSvgY);
+            poleEl.setAttribute('y2', SV.groundY);
+        }
+
+        // ---- Camera icon: rotate to tilt angle (compensated for non-1:1 scale) ----
+        const camGroup = document.getElementById('side-cam-group');
+        if (camGroup) {
+            // Visual tilt in SVG space (accounts for scX/scY ratio)
+            const svgTiltDeg = Math.atan(Math.tan(tiltRad) * (scY / scX)) * 180 / Math.PI;
+            camGroup.setAttribute('transform', `translate(${camSvgX}, ${camSvgY}) rotate(${svgTiltDeg})`);
+        }
+
+        // ---- Hypotenuse ray (laser beam to target) ----
+        const targetSvgX = svgX(dist);
+        const hypLine = document.getElementById('side-hyp-line');
+        if (hypLine) {
+            hypLine.setAttribute('x1', camSvgX + 12); // from lens tip
+            hypLine.setAttribute('y1', camSvgY);
+            hypLine.setAttribute('x2', targetSvgX);
+            hypLine.setAttribute('y2', SV.groundY);
+        }
+
+        // Top and bottom rays visual
+        const topRayEl = document.getElementById('side-top-ray');
+        const botRayEl = document.getElementById('side-bot-ray');
+        const topEndD = Math.min(topGroundD, physW);
+        const botEndD = Math.min(botGroundD, physW);
+        if (topRayEl) {
+            topRayEl.setAttribute('x1', camSvgX);
+            topRayEl.setAttribute('y1', camSvgY);
+            topRayEl.setAttribute('x2', svgX(topEndD));
+            topRayEl.setAttribute('y2', svgY(Math.max(0, rayH(topEndD, topRayAngle))));
+        }
+        if (botRayEl) {
+            botRayEl.setAttribute('x1', camSvgX);
+            botRayEl.setAttribute('y1', camSvgY);
+            botRayEl.setAttribute('x2', svgX(botEndD));
+            botRayEl.setAttribute('y2', SV.groundY);
+        }
+
+        // ---- Height dimension ----
+        const hdimLine = document.getElementById('side-hdim-line');
+        const hdimTop  = document.getElementById('side-hdim-top');
+        const hdimBot  = document.getElementById('side-hdim-bot');
+        const hdimText = document.getElementById('side-hdim-text');
+        if (hdimLine) {
+            hdimLine.setAttribute('y1', camSvgY);
+            hdimLine.setAttribute('y2', SV.groundY);
+            hdimTop.setAttribute('y1', camSvgY); hdimTop.setAttribute('y2', camSvgY);
+            const midY = (camSvgY + SV.groundY) / 2;
+            hdimText.setAttribute('y', midY + 3);
+            hdimText.setAttribute('transform', `rotate(-90, 18, ${midY})`);
+            hdimText.textContent = `H = ${camHeight.toFixed(1)} m`;
+        }
+
+        // ---- Hypotenuse label (at midpoint of the dashed line) ----
+        const hypText = document.getElementById('side-hyp-text');
+        if (hypText) {
+            const mx = (camSvgX + targetSvgX) / 2;
+            const my = (camSvgY + SV.groundY) / 2;
+            hypText.setAttribute('x', mx + 8);
+            hypText.setAttribute('y', my - 6);
+            hypText.textContent = `🎯 ${hypotenuse.toFixed(1)} m`;
+        }
+
+        // ---- Ground distance dimension ----
+        const gdimLine = document.getElementById('side-gdim-line');
+        const gdimText = document.getElementById('side-gdim-text');
+        if (gdimLine) {
+            gdimLine.setAttribute('x1', camSvgX);
+            gdimLine.setAttribute('x2', targetSvgX);
+            gdimText.setAttribute('x', (camSvgX + targetSvgX) / 2);
+            gdimText.textContent = `${dist.toFixed(1)} m (ground)`;
+        }
+
+        // ---- Target person (1.7m at median line intersection with floor) ----
+        const person17Group = document.getElementById('side-person-17');
+        if (person17Group) {
+            // Find distance where median line hits ground
+            const medianGroundD = (tiltRad > 0.001) ? camHeight / Math.tan(tiltRad) : physW * 2;
+            const pxX = svgX(medianGroundD);
+            person17Group.setAttribute('transform', `translate(${pxX}, ${SV.groundY})`);
+            
+            const pBodyPx = 1.45 * scY;
+            const pHeadPx = 0.125 * scY;
+            const bodyEl17 = document.getElementById('person-17-body');
+            const headEl17 = document.getElementById('person-17-head');
+            if (bodyEl17) bodyEl17.setAttribute('y2', -pBodyPx);
+            if (headEl17) {
+                headEl17.setAttribute('cy', -(pBodyPx + pHeadPx + 1));
+                headEl17.setAttribute('r', pHeadPx);
+            }
+        }
+        
+        // ---- Target person (target distance) ----
+        const personGroup = document.getElementById('side-person');
+        if (personGroup) {
+            personGroup.setAttribute('transform', `translate(${targetSvgX}, ${SV.groundY})`);
+            const personBodyPx = 1.5 * scY;
+            const personHeadPx = Math.max(3, 0.15 * scY);
+            const bodyEl = document.getElementById('person-body');
+            const headEl = document.getElementById('person-head');
+            if (bodyEl) bodyEl.setAttribute('y2', -personBodyPx);
+            if (headEl) {
+                headEl.setAttribute('cy', -(personBodyPx + personHeadPx + 1));
+                headEl.setAttribute('r', personHeadPx);
+            }
+        }
+
+        // ---- Info row below SVG ----
+        const heightLabelEl = document.getElementById('scene-height-label');
+        if (heightLabelEl) heightLabelEl.innerText = fovH.toFixed(1) + ' m';
+        
+        const blindInfoEl = document.getElementById('side-blind-info');
+        if (blindInfoEl) {
+            const blindDist = botGroundD < dist ? botGroundD.toFixed(1) + ' m' : '0 m';
+            blindInfoEl.textContent = `Blind Zone: ${blindDist}`;
+        }
+        const horizInfoEl = document.getElementById('side-horiz-info');
+        if (horizInfoEl) horizInfoEl.textContent = `Ground: ${dist.toFixed(1)} m`;
+
+        // ---- Zone label at head position ----
+        const zoneLabelEl = document.getElementById('side-zone-label');
+        if (zoneLabelEl) {
+            const headH = 1.65;
+            let zoneLabel = '—';
+            const ppm_at_target = parseFloat(document.getElementById('res-ppm')?.innerText) || 0;
+            if (ppm_at_target >= 300) zoneLabel = '🔴 Identification';
+            else if (ppm_at_target >= 150) zoneLabel = '🟡 Recognition';
+            else if (ppm_at_target >= 80) zoneLabel = '🔵 Observation';
+            else if (ppm_at_target >= 40) zoneLabel = '🟢 Detection';
+            else zoneLabel = '⚫ Blind zone';
+            zoneLabelEl.setAttribute('x', targetSvgX + 10);
+            zoneLabelEl.setAttribute('y', svgY(headH) - 4);
+            zoneLabelEl.textContent = zoneLabel;
+        }
+    }
+
+    // Init
+    calculate();
+</script>
+</body>
+</html>
+
+  </template>
+
+  <template id="designer-template">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DORI Camera Selector / Designer</title>
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --panel-bg: #1a1d24;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent: #10b981; /* Green accent to distinguish from the blue primary calculator */
+            --border: #2d3748;
+            --radius: 12px;
+            
+            --zone-blind: #475569;
+            --zone-detection: #10b981;
+            --zone-observation: #3b82f6;
+            --zone-recognition: #eab308;
+            --zone-identification: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-bar {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: #2d3748;
+        }
+
+        .nav-btn.active {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        @media (max-width: 860px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #fff;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            background-color: #0f1115;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input[type="number"]:focus {
+            border-color: var(--accent);
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .slider-group input[type="range"] {
+            flex-grow: 1;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .slider-group input[type="number"] {
+            width: 80px;
+            text-align: center;
+        }
+
+        /* Results Panel */
+        .result-card {
+            background-color: #0f1115;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .result-card span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .result-card strong {
+            display: block;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .highlight-accent {
+            color: var(--accent) !important;
+            font-size: 1.8rem !important;
+        }
+
+        .recommendation {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border);
+        }
+
+        .recommendation span {
+            display: inline;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Visualization */
+        .visualization {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Panel 1: Inputs -->
+    <div class="panel">
+        <h2>Geometry and Task (Input)</h2>
+        
+        <div class="form-group" title="Business purpose: Slant distance from the camera lens to the critical zone (hypotenuse). This is the distance usually measured with a laser rangefinder.">
+            <label for="dist-slider" data-dori-label="Target Distance (Slant, m) ℹ️">Target Distance (Slant, m) ℹ️</label>
+            <div class="slider-group">
+                <input type="range" id="dist-slider" min="1" max="150" step="1" value="10">
+                <input type="number" id="dist-input" min="1" max="150" step="1" value="10">
+            </div>
+        </div>
+
+        <div class="form-group" title="Business purpose: Required scene width to fit into the frame at this distance. For example, a driveway width of 6 m.">
+            <label for="width-slider" data-dori-label="Required Scene Width (meters) ℹ️">Required Scene Width (meters) ℹ️</label>
+            <div class="slider-group">
+                <input type="range" id="width-slider" min="1" max="100" step="0.5" value="6">
+                <input type="number" id="width-input" min="1" max="100" step="0.5" value="6">
+            </div>
+        </div>
+
+        <div class="form-group" title="Purpose: the target geometric detail across the requested width. This is a design input, not a guarantee of field performance.">
+            <label for="dori-task" data-dori-label="Target Task (DORI) ℹ️">Target Task (DORI) ℹ️</label>
+            <select id="dori-task">
+                <option value="300">Identification (300 PPM design reference)</option>
+                <option value="150" selected>Recognition (150 PPM design reference)</option>
+                <option value="80">Observation (80 PPM reference) - scene and feature monitoring</option>
+                <option value="40">Detection (40 PPM reference) - basic analytics, silhouettes</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-top: 24px;" title="Business purpose: Sensor size planned for the camera.">
+            <label for="sensor" data-dori-label="Assumed Camera Sensor Size ℹ️">Assumed Camera Sensor Size ℹ️</label>
+            <select id="sensor">
+                <option value="4.8" data-height="3.6">1/3" (4.8 x 3.6 mm)</option>
+                <option value="5.27" data-height="2.96" selected>1/2.8" (5.27 x 2.96 mm) - Standard</option>
+                <option value="5.37" data-height="3.02">1/2.7" (5.37 x 3.02 mm)</option>
+                <option value="6.4" data-height="4.8">1/2" (6.4 x 4.8 mm) - Premium</option>
+            </select>
+        </div>
+
+        <div class="form-group" style="margin-top: 24px;" title="Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance.">
+            <label for="height-slider" data-dori-label="Mounting Height (H, meters) ℹ️">Mounting Height (H, meters) ℹ️</label>
+            <div class="slider-group">
+                <input type="range" id="height-slider" min="1" max="20" step="0.5" value="3">
+                <input type="number" id="height-input" min="1" max="20" step="0.5" value="3">
+            </div>
+        </div>
+
+        <div class="form-group" title="Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually.">
+            <label for="tilt-slider" data-dori-label="Vertical Tilt (°) ℹ️">Vertical Tilt (°) ℹ️</label>
+            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                <input type="checkbox" id="tilt-auto" checked style="width: auto; margin-right: 8px;">
+                <label for="tilt-auto" style="margin-bottom: 0; display: inline;" data-dori-label="Automatically aim at target">Automatically aim at target</label>
+            </div>
+            <div class="slider-group">
+                <input type="range" id="tilt-slider" min="0" max="90" step="1" value="16" disabled style="opacity: 0.5;">
+                <input type="number" id="tilt-input" min="0" max="90" step="1" value="16" disabled style="opacity: 0.5;">
+            </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid var(--border); margin: 24px 0;">
+        
+        <div class="visualization">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <!-- Top View SVG -->
+                <div class="scene-visual" style="text-align: center; position: relative; background: #15181e; padding: 16px; border-radius: 8px; border: 1px solid var(--border);">
+                    <div style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 8px;">Top View (Width Coverage)</div>
+                    <svg id="fov-svg" viewbox="0 0 300 150" style="width: 100%; height: 150px; display: block; margin: 0 auto; overflow: visible;">
+                        <defs>
+                            <clippath id="fov-clip">
+                                <polygon id="fov-poly" points="150,14 50,130 250,130"></polygon>
+                            </clippath>
+                        </defs>
+                        <!-- Camera icon -->
+                        <rect x="140" y="0" width="20" height="14" fill="#94a3b8" rx="2"></rect>
+                        <circle cx="150" cy="7" r="4" fill="#0f1115"></circle>
+                        <!-- Heatmap -->
+                        <g clip-path="url(#fov-clip)" opacity="0.6">
+                            <rect id="rect-blind" x="0" y="14" width="300" height="150" fill="var(--zone-blind)"></rect>
+                            <rect id="rect-d" x="0" y="14" width="300" height="0" fill="var(--zone-detection)"></rect>
+                            <rect id="rect-o" x="0" y="14" width="300" height="0" fill="var(--zone-observation)"></rect>
+                            <rect id="rect-r" x="0" y="14" width="300" height="0" fill="var(--zone-recognition)"></rect>
+                            <rect id="rect-i" x="0" y="14" width="300" height="0" fill="var(--zone-identification)"></rect>
+                        </g>
+                        <!-- Outline -->
+                        <polygon id="fov-poly-outline" points="150,14 50,130 250,130" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4"></polygon>
+                        <!-- Target Line -->
+                        <line id="target-dist-line" x1="50" y1="130" x2="250" y2="130" stroke="#fff" stroke-width="2"></line>
+                        <text id="svg-dist-text" x="150" y="70" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle" style="text-shadow: 0 1px 3px rgba(0,0,0,0.8);">10 m</text>
+                    </svg>
+                    <div style="margin-top: 8px; font-size: 0.85rem; font-weight: 500; color: #fff;">
+                        Width: <span id="scene-width-label" style="color: var(--accent);">0 m</span>
+                    </div>
+                </div>
+
+                <!-- Side View SVG -->
+                <div class="scene-visual" style="position: relative; background: #0d1117; padding: 12px; border-radius: 8px; border: 1px solid var(--border);">
+                    <div style="color: #94a3b8; font-size: 0.8rem; margin-bottom: 6px; text-align:center; letter-spacing:0.05em; text-transform: uppercase;">Side View - Installation Geometry</div>
+                    <svg id="side-svg" viewbox="0 0 420 240" style="width: 100%; height: auto; display: block; overflow: visible;">
+                        <defs>
+                            <clippath id="side-clip">
+                                <rect x="40" y="0" width="380" height="210"></rect>
+                            </clippath>
+                            <marker id="arr-end" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#94a3b8"></path>
+                            </marker>
+                            <marker id="arr-white" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#e2e8f0"></path>
+                            </marker>
+                            <marker id="arr-orange" markerwidth="6" markerheight="6" refx="5" refy="3" orient="auto">
+                                <path d="M0,0 L6,3 L0,6 Z" fill="#f97316"></path>
+                            </marker>
+                        </defs>
+
+                        <!-- Background -->
+                        <rect x="0" y="0" width="420" height="240" fill="#0d1117"></rect>
+
+                        <!-- Sky/wall area -->
+                        <rect id="side-sky" x="40" y="0" width="380" height="200" fill="#111827"></rect>
+
+                        <!-- Grid Lines (dynamic) -->
+                        <g id="side-grid"></g>
+
+                        <!-- DORI cone zones (clip to drawing area) -->
+                        <g clip-path="url(#side-clip)" id="side-zones-group">
+                            <polygon id="side-i" fill="#ef4444" opacity="0"></polygon>
+                            <polygon id="side-r" fill="#eab308" opacity="0"></polygon>
+                            <polygon id="side-o" fill="#3b82f6" opacity="0"></polygon>
+                            <polygon id="side-d" fill="#10b981" opacity="0"></polygon>
+                            <polygon id="side-blind" fill="#475569" opacity="0"></polygon>
+                        </g>
+
+                        <!-- Ground line -->
+                        <line x1="40" y1="200" x2="420" y2="200" stroke="#334155" stroke-width="1.5"></line>
+                        <!-- Ground fill -->
+                        <rect x="40" y="200" width="380" height="40" fill="#1a2035"></rect>
+                        <!-- Ground label -->
+                        <text x="420" y="215" fill="#475569" font-size="9" text-anchor="end">ground</text>
+
+                        <!-- Y-axis (wall/pole side) -->
+                        <line x1="40" y1="0" x2="40" y2="210" stroke="#334155" stroke-width="1"></line>
+
+                        <!-- Mounting pole -->
+                        <line id="side-pole" x1="44" y1="50" x2="44" y2="200" stroke="#64748b" stroke-width="3" stroke-linecap="round"></line>
+
+                        <!-- Blind zone polygon (separate layer, above zones) -->
+                        <polygon id="side-blind-top" fill="#1e293b" clip-path="url(#side-clip)" opacity="0.85"></polygon>
+
+                        <!-- Hypotenuse ray (median — laser beam) -->
+                        <line id="side-hyp-line" x1="44" y1="50" x2="250" y2="200" stroke="#f97316" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arr-orange)" opacity="0.9"></line>
+
+                        <!-- Top ray of cone -->
+                        <line id="side-top-ray" x1="44" y1="50" x2="300" y2="100" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"></line>
+                        <!-- Bottom ray of cone -->
+                        <line id="side-bot-ray" x1="44" y1="50" x2="300" y2="200" stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3 4" opacity="0.5"></line>
+
+                        <!-- Camera icon group (rotates around lens center) -->
+                        <g id="side-cam-group" transform="translate(44, 80)">
+                            <!-- Camera body -->
+                            <rect x="-10" y="-7" width="14" height="14" fill="#475569" rx="2"></rect>
+                            <!-- Lens barrel -->
+                            <polygon points="4,-5 4,5 12,7 12,-7" fill="#64748b"></polygon>
+                            <!-- Lens glass -->
+                            <ellipse cx="12" cy="0" rx="4" ry="4" fill="#1e3a5f" stroke="#3b82f6" stroke-width="1"></ellipse>
+                            <ellipse cx="12" cy="0" rx="2" ry="2" fill="#60a5fa" opacity="0.6"></ellipse>
+                            <!-- Mount bolt -->
+                            <circle cx="-5" cy="0" r="2" fill="#94a3b8"></circle>
+                        </g>
+
+                        <!-- Height dimension line (left of pole) -->
+                        <g id="side-height-dim">
+                            <line id="side-hdim-line" x1="20" y1="80" x2="20" y2="200" stroke="#94a3b8" stroke-width="1" marker-end="url(#arr-end)"></line>
+                            <line id="side-hdim-top" x1="15" y1="80" x2="38" y2="80" stroke="#94a3b8" stroke-width="1"></line>
+                            <line id="side-hdim-bot" x1="15" y1="200" x2="38" y2="200" stroke="#94a3b8" stroke-width="1"></line>
+                            <text id="side-hdim-text" x="18" y="140" fill="#94a3b8" font-size="9" text-anchor="middle" transform="rotate(-90,18,140)">H = 3.0 m</text>
+                        </g>
+
+                        <!-- Ground distance dimension -->
+                        <line id="side-gdim-line" x1="44" y1="218" x2="200" y2="218" stroke="#64748b" stroke-width="1" marker-end="url(#arr-end)"></line>
+                        <text id="side-gdim-text" x="120" y="230" fill="#64748b" font-size="9" text-anchor="middle">- m (ground)</text>
+
+                        <!-- Target person (stick figure) -->
+                        <g id="side-person">
+                            <line id="person-body" x1="0" y1="0" x2="0" y2="-25" stroke="#f8fafc" stroke-width="2.5" stroke-linecap="round"></line>
+                            <circle id="person-head" cx="0" cy="-30" r="5" fill="none" stroke="#f8fafc" stroke-width="2"></circle>
+                            <!-- Feet indicator -->
+                            <circle cx="0" cy="0" r="2" fill="#f97316"></circle>
+                        </g>
+                                    <g id="side-person-17" stroke="#ef4444" stroke-width="1.5" opacity="0.8">
+                                        <line id="person-17-body" x1="0" y1="0" x2="0" y2="-20"></line>
+                                        <circle id="person-17-head" cx="0" cy="-24" r="3" fill="#ef4444"></circle>
+                                        <text id="person-17-text" x="5" y="-12" fill="#ef4444" font-size="8" font-family="sans-serif">1.7 m</text>
+                                    </g>
+
+                        <!-- Hypotenuse label (along the dashed line) -->
+                        <text id="side-hyp-text" x="150" y="90" fill="#f97316" font-size="9" text-anchor="middle" transform="">🎯 - m (laser)</text>
+
+                        <!-- Head-in-zone indicator -->
+                        <text id="side-zone-label" x="220" y="20" fill="#94a3b8" font-size="9" text-anchor="middle"></text>
+
+                    </svg>
+                    <!-- Info row below SVG -->
+                    <div style="display:flex; gap:16px; margin-top:8px; font-size:0.78rem; color:#94a3b8; justify-content: space-between; flex-wrap:wrap;">
+                        <span>↕ Height: <strong id="scene-height-label" style="color:var(--accent)">—</strong></span>
+                        <span id="side-blind-info" style="color:#ef4444;">Blind Zone: -</span>
+                        <span id="side-horiz-info" style="color:#64748b;">Ground: - m</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Panel 2: Results -->
+    <div class="panel">
+        <h2>Required Equipment (Result)</h2>
+        
+        <div class="result-card">
+            <span>Minimum Pixels for the Requested Scene Width</span>
+            <button type="button" title="What: horizontal pixels = scene width × required PPM. Why: select detail level. Source: current width and task inputs. Verify: change width or task; distance changes the lens, not this minimum.">?</button>
+            <strong id="res-pixels" class="highlight-accent">0 px</strong>
+            <div id="res-table" style="margin-top: 16px; text-align: left;">
+                <!-- Generated by JS -->
+            </div>
+        </div>
+
+        <div class="result-card">
+            <span>Required Lens Focal Length (Exact Width)</span>
+            <strong id="res-focal" class="highlight-accent" style="color: #3b82f6 !important;">0 mm</strong>
+            <div class="recommendation">
+                Fixed lens covering the full width: <span id="rec-lens-fixed" style="color: #3b82f6;">...</span><br>
+                Or varifocal range: <span id="rec-lens-var" style="color: #3b82f6;">...</span>
+            </div>
+            <p id="rec-fixed-check" style="margin-top:12px; font-size:0.85rem; color:#94a3b8;" aria-live="polite"></p>
+            <button type="button" title="What: an alternative fixed lens, not an exact substitute. Why: check the complete lens/resolution combination. Source: built-in example lens and resolution lists, not a vendor catalogue. Verify: actual width and PPM in the note must meet the requested width and task.">?</button>
+        </div>
+
+        <div class="result-card" style="margin-bottom: 0;">
+            <span>Camera Field of View for This Width</span>
+            <strong id="res-angle">0°</strong>
+        </div>    </div>
+</div>
+
+<script>
+    // DOM Elements
+    const elDistSlider = document.getElementById('dist-slider');
+    const elDistInput = document.getElementById('dist-input');
+    const elWidthSlider = document.getElementById('width-slider');
+    const elWidthInput = document.getElementById('width-input');
+    const elDoriTask = document.getElementById('dori-task');
+    const elSens = document.getElementById('sensor');
+    
+    const elHeightSlider = document.getElementById('height-slider');
+    const elHeightInput = document.getElementById('height-input');
+    const elTiltSlider = document.getElementById('tilt-slider');
+    const elTiltInput = document.getElementById('tilt-input');
+    const elTiltAuto = document.getElementById('tilt-auto');
+
+    const resPixels = document.getElementById('res-pixels');
+    const resFocal = document.getElementById('res-focal');
+    const recLensFixed = document.getElementById('rec-lens-fixed');
+    const recLensVar = document.getElementById('rec-lens-var');
+    const resAngle = document.getElementById('res-angle');
+
+    const standardResolutions = [
+        { mp: "1.3MP", px: 1280 },
+        { mp: "2MP", px: 1920 },
+        { mp: "3MP", px: 2048 },
+        { mp: "4MP", px: 2560 },
+        { mp: "5MP", px: 2592 },
+        { mp: "8MP (4K)", px: 3840 },
+        { mp: "12MP", px: 4000 }
+    ];
+
+    const standardLenses = [2.8, 3.6, 4.0, 6.0, 8.0, 12.0, 16.0, 25.0, 50.0];
+
+    // Sync inputs and sliders
+    function syncInput(source, target) {
+        target.value = source.value;
+        calculate();
+    }
+
+    elDistSlider.addEventListener('input', () => syncInput(elDistSlider, elDistInput));
+    elDistInput.addEventListener('input', () => syncInput(elDistInput, elDistSlider));
+    elWidthSlider.addEventListener('input', () => syncInput(elWidthSlider, elWidthInput));
+    elWidthInput.addEventListener('input', () => syncInput(elWidthInput, elWidthSlider));
+    
+    elHeightSlider.addEventListener('input', () => syncInput(elHeightSlider, elHeightInput));
+    elHeightInput.addEventListener('input', () => syncInput(elHeightInput, elHeightSlider));
+    
+    elTiltSlider.addEventListener('input', () => {
+        elTiltInput.value = elTiltSlider.value;
+        if (!elTiltAuto.checked) calculate();
+    });
+    elTiltInput.addEventListener('input', () => {
+        elTiltSlider.value = elTiltInput.value;
+        if (!elTiltAuto.checked) calculate();
+    });
+    
+    elTiltAuto.addEventListener('change', () => {
+        const isAuto = elTiltAuto.checked;
+        elTiltSlider.disabled = isAuto;
+        elTiltInput.disabled = isAuto;
+        elTiltSlider.style.opacity = isAuto ? '0.5' : '1';
+        elTiltInput.style.opacity = isAuto ? '0.5' : '1';
+        calculate();
+    });
+    
+    elDoriTask.addEventListener('change', calculate);
+    elSens.addEventListener('change', calculate);
+
+    function renderResolutionTable(neededPx) {
+        let html = '<div style="display: flex; flex-direction: column; gap: 4px;">';
+        let foundMin = false;
+
+        for (let res of standardResolutions) {
+            let status = "";
+            let color = "";
+            let bgColor = "";
+            let icon = "";
+
+            if (res.px < neededPx) {
+                status = "Insufficient";
+                color = "#ef4444"; // red
+                bgColor = "rgba(239, 68, 68, 0.05)";
+                icon = "";
+            } else {
+                if (!foundMin) {
+                    status = "Minimum required";
+                    color = "#10b981"; // green
+                    bgColor = "rgba(16, 185, 129, 0.1)";
+                    icon = "";
+                    foundMin = true;
+                } else if (res.px <= neededPx * 1.5) {
+                    status = "Optimal";
+                    color = "#3b82f6"; // blue
+                    bgColor = "rgba(59, 130, 246, 0.1)";
+                    icon = "";
+                } else {
+                    status = "Excessive";
+                    color = "#94a3b8"; // gray
+                    bgColor = "transparent";
+                    icon = "";
+                }
+            }
+
+            html += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; background: ${bgColor}; border: 1px solid ${color}; border-radius: 4px; font-size: 0.8rem;">
+                    <div style="font-weight: 600; color: #fff; white-space: nowrap;">${res.mp} <span style="font-weight: normal; color: #94a3b8; margin-left: 4px;">(${res.px}px)</span></div>
+                    <div style="color: ${color}; text-align: right; white-space: nowrap;">${status}</div>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('res-table').innerHTML = html;
+    }
+
+    function findClosestLenses(focalL) {
+        // A longer lens would crop the requested width. Prefer the largest
+        // listed focal length that still covers it, then verify resolution.
+        const candidates = standardLenses.filter(value => value <= focalL + 1e-9);
+        const fix = candidates.length ? candidates[candidates.length - 1] : null;
+        let varRange = 'No listed range; check a compatible wider lens';
+        if (focalL >= 2.8 && focalL <= 12) varRange = '2.8 - 12 mm';
+        else if (focalL >= 5 && focalL <= 50) varRange = '5 - 50 mm';
+        else if (focalL > 50) varRange = 'Beyond 50 mm; verify a compatible telephoto lens';
+        return { fix, varRange };
+    }
+
+    function calculate() {
+        const fovWidth = parseFloat(elWidthInput.value);
+        const targetPpm = parseFloat(elDoriTask.value);
+        
+        const sensorOption = elSens.options[elSens.selectedIndex];
+        const sensorW = parseFloat(sensorOption.value);
+        const sensorH = parseFloat(sensorOption.getAttribute('data-height'));
+        
+        const camHeight = parseFloat(elHeightInput.value);
+        
+        if (!validateInputs()) return;
+        const hypotenuse = parseFloat(elDistInput.value);
+        
+        const dist = Math.sqrt(hypotenuse * hypotenuse - camHeight * camHeight); // Ground distance
+        
+        // 1. Tilt Angle Logic
+        let tiltDeg;
+        if (elTiltAuto.checked) {
+            tiltDeg = Math.atan(camHeight / dist) * 180 / Math.PI;
+            if (dist === 0) tiltDeg = 90;
+            elTiltSlider.value = tiltDeg.toFixed(1);
+            elTiltInput.value = tiltDeg.toFixed(1);
+        } else {
+            tiltDeg = parseFloat(elTiltInput.value);
+        }
+        const tiltRad = tiltDeg * Math.PI / 180;
+
+        // 2. Resolution Calculation
+        // Required horizontal pixels = Scene Width (m) * Required PPM
+        const neededPx = fovWidth * targetPpm;
+        resPixels.innerText = Math.ceil(neededPx) + ' px';
+        renderResolutionTable(neededPx);
+
+        // 3. Focal Length Calculation
+        // FocalLength = Hypotenuse * SensorWidth / FOV
+        const focalL = (hypotenuse * sensorW) / fovWidth;
+        resFocal.innerText = focalL.toFixed(2) + ' mm';
+        
+        const lenses = findClosestLenses(focalL);
+        recLensFixed.innerText = lenses.fix === null ? 'No listed lens covers the width' : lenses.fix + ' mm';
+        recLensVar.innerText = lenses.varRange;
+        const fixedCheck = document.getElementById('rec-fixed-check');
+        if (lenses.fix !== null) {
+            const actualWidth = hypotenuse * sensorW / lenses.fix;
+            const fixedPixels = actualWidth * targetPpm;
+            const fixedResolution = standardResolutions.find(res => res.px >= fixedPixels);
+            fixedCheck.textContent = fixedResolution
+                ? `Fixed-lens alternative: ${actualWidth.toFixed(1)} m coverage; use at least ${fixedResolution.mp} (${fixedResolution.px} px across) for ${(fixedResolution.px / actualWidth).toFixed(0)} PPM. The minimum above assumes the exact-width lens.`
+                : `Fixed-lens alternative covers ${actualWidth.toFixed(1)} m and needs ${Math.ceil(fixedPixels)} horizontal pixels. No listed resolution is sufficient; change the lens or design.`;
+        } else {
+            fixedCheck.textContent = 'The example lens list cannot cover this width. Select a compatible wider lens or revise the placement; no fixed-lens package is recommended.';
+        }
+
+        // 4. Angle Calculation
+        // Angle = 2 * arctan(SensorWidth / (2 * FocalLength))
+        const angleRad = 2 * Math.atan(sensorW / (2 * focalL));
+        const angleDeg = angleRad * 180 / Math.PI;
+        resAngle.innerText = angleDeg.toFixed(1) + '°';
+        
+        const vAngleRad = 2 * Math.atan(sensorH / (2 * focalL));
+
+        // 5. Calculate Max Distances based on chosen resolution
+        let matchedResObj = null;
+        for (let res of standardResolutions) {
+            if (res.px >= neededPx) {
+                matchedResObj = res;
+                break;
+            }
+        }
+        const noListedResolution = !matchedResObj;
+        if (!matchedResObj) matchedResObj = {px: 0};
+        document.getElementById('resolution-status').textContent = noListedResolution
+            ? 'No listed camera meets this requirement. The geometry remains visible; do not treat it as a feasible equipment package.'
+            : 'Geometric estimate only: verify lighting, motion, optics and mounting on site.';
+
+        const calcMaxHypot = (ppm) => ((matchedResObj.px * focalL) / (ppm * sensorW));
+        const getGroundDist = (hypot) => hypot > camHeight ? Math.sqrt(hypot * hypot - camHeight * camHeight) : 0;
+        
+        const valI = getGroundDist(calcMaxHypot(250));
+        const valR = getGroundDist(calcMaxHypot(125));
+        const valO = getGroundDist(calcMaxHypot(62));
+        const valD = getGroundDist(calcMaxHypot(25));
+        
+        // Blind zone under camera based on bottom ray of V-FOV
+        const bottomRayAngle = tiltRad + vAngleRad / 2;
+        let dMin = 0;
+        if (bottomRayAngle > 0) {
+            dMin = camHeight / Math.tan(bottomRayAngle);
+            if (dMin < 0) dMin = 0;
+        } else {
+            dMin = 9999;
+        }
+
+        // Update SVG Visual
+        const fovH = 2 * hypotenuse * Math.tan(vAngleRad / 2);
+        updateSvg(angleRad, vAngleRad, tiltRad, fovWidth, fovH, dist, camHeight, dMin, valI, valR, valO, valD);
+    }
+
+    function updateSvg(angleRad, vAngleRad, tiltRad, fovW, fovH, dist, camHeight, dMin, valI, valR, valO, valD) {
+        document.getElementById('scene-width-label').innerText = fovW.toFixed(1) + ' m';
+        document.getElementById('scene-height-label').innerText = fovH.toFixed(1) + ' m';
+        
+        const textDist = document.getElementById('svg-dist-text');
+        textDist.textContent = `${dist.toFixed(1)} m ground`;
+
+        // ---- 1. TOP VIEW (fov-svg) ----
+        const cx = 150;
+        const cy = 14;
+        const maxH = 116; 
+        
+        // For top view, max distance scale
+        const visibleDistMax = Math.max(dist * 1.1, valO); 
+        const pxPerMeter = maxH / visibleDistMax;
+        // Separate axis scales keep narrow, long-range coverage readable.
+        const xScale = Math.min(28, 110 / Math.max(fovW / 2, 0.1));
+        const drawH = dist * pxPerMeter;
+        
+        // Clip poly for top view
+        const clipPoly = document.getElementById('fov-poly');
+        const outlinePoly = document.getElementById('fov-poly-outline');
+        
+        const maxDrawHalfW = Math.min(140, visibleDistMax * Math.tan(angleRad / 2) * xScale);
+        const pointsStr = `${cx},${cy + dMin * pxPerMeter} ${cx - maxDrawHalfW},${cy + maxH} ${cx + maxDrawHalfW},${cy + maxH}`;
+        clipPoly.setAttribute('points', pointsStr);
+        outlinePoly.setAttribute('points', pointsStr);
+        
+        const yMin = cy + dMin * pxPerMeter;
+        const yI = cy + Math.max(dMin, valI) * pxPerMeter;
+        const yR = cy + Math.max(dMin, valR) * pxPerMeter;
+        const yO = cy + Math.max(dMin, valO) * pxPerMeter;
+        const yD = cy + Math.max(dMin, valD) * pxPerMeter;
+
+        const rectI = document.getElementById('rect-i');
+        const rectR = document.getElementById('rect-r');
+        const rectO = document.getElementById('rect-o');
+        const rectD = document.getElementById('rect-d');
+        
+        rectI.setAttribute('y', yMin);
+        rectI.setAttribute('height', Math.max(0, yI - yMin));
+        rectR.setAttribute('y', yI);
+        rectR.setAttribute('height', Math.max(0, yR - yI));
+        rectO.setAttribute('y', yR);
+        rectO.setAttribute('height', Math.max(0, yO - yR));
+        rectD.setAttribute('y', yO);
+        rectD.setAttribute('height', Math.max(0, yD - yO));
+
+        const targetLine = document.getElementById('target-dist-line');
+        const ty = cy + drawH;
+        const drawHalfW = Math.min(140, fovW / 2 * xScale);
+        targetLine.setAttribute('y1', ty);
+        targetLine.setAttribute('y2', ty);
+        
+        // Hide target line if it is in the blind zone (behind dMin)
+        if (ty < yMin) {
+            targetLine.setAttribute('opacity', '0');
+        } else {
+            targetLine.setAttribute('opacity', '1');
+            targetLine.setAttribute('x1', cx - drawHalfW);
+            targetLine.setAttribute('x2', cx + drawHalfW);
+        }
+        
+        textDist.setAttribute('y', ty - 6);
+
+        // ---- 2. SIDE VIEW (side-svg) — Professional Engineering Drawing ----
+        // SVG constants
+        const SV = {
+            W: 420, H: 240,
+            originX: 44,   // x of the pole / camera
+            groundY: 200,  // y of the ground line
+            topY: 4,       // top margin
+            rightX: 416,   // right edge
+        };
+
+        // Compute scale: keep 1:1 physical ratio if possible
+        // horizontal span: rightX - originX = 372px
+        // vertical span: groundY - topY = 196px
+        const physH = Math.max(camHeight * 1.35, 4);   // physical height domain
+        const physW = Math.max(dist * 1.15, physH * (372/196)); // physical horiz domain
+
+        const scX = (372) / physW;
+        const scY = (196) / physH;
+
+        // SVG coordinate helpers
+        const svgX = (d) => SV.originX + d * scX;
+        const svgY = (h) => SV.groundY - h * scY;
+
+        // Camera position in SVG
+        const camSvgX = SV.originX;
+        const camSvgY = svgY(camHeight);
+
+        // Physical ray angles (from horizontal, positive = downward)
+        // tiltRad = angle from horizontal the camera is tilted down
+        const topRayAngle = tiltRad - vAngleRad / 2;   // above center (might be negative = looking up)
+        const botRayAngle = tiltRad + vAngleRad / 2;   // below center
+
+        // Ray endpoint helper: given angle (down from horizontal), distance d along ground
+        // We compute where the ray intersects various things
+        // Height at ground distance d: h(d) = camHeight - d*tan(angle)
+        const rayH = (d, angle) => camHeight - d * Math.tan(angle);
+
+        // Clip distance where a ray hits the ground (h=0)
+        const rayGroundDist = (angle) => angle > 0.001 ? camHeight / Math.tan(angle) : physW * 2;
+        const rayTopDist = (angle) => angle < -0.001 ? -camHeight / Math.tan(angle) : physW * 2;
+
+        const botGroundD = rayGroundDist(botRayAngle);
+        const topGroundD = rayGroundDist(topRayAngle);
+
+        // ---- Draw Grid ----
+        const gridGroup = document.getElementById('side-grid');
+        gridGroup.innerHTML = '';
+        
+        // Horizontal (height) grid lines
+        const hStep = physH > 8 ? 2 : 1;
+        for (let h = 0; h <= physH; h += hStep) {
+            const y = svgY(h);
+            if (y < SV.topY || y > SV.groundY) continue;
+            const isMajor = (h % (hStep * 2) === 0);
+            gridGroup.innerHTML += `<line x1="${SV.originX}" x2="${SV.rightX}" y1="${y}" y2="${y}" stroke="${isMajor ? '#1e3a5f' : '#111827'}" stroke-width="${isMajor ? 1 : 0.5}"/>`;
+            if (isMajor && h > 0) {
+                gridGroup.innerHTML += `<text x="37" y="${y + 3}" fill="#334155" font-size="8" text-anchor="end">${h} m</text>`;
+            }
+        }
+        // Vertical (distance) grid lines
+        const dStep = physW > 30 ? 10 : physW > 15 ? 5 : 2;
+        for (let d = 0; d <= physW; d += dStep) {
+            const x = svgX(d);
+            if (x < SV.originX || x > SV.rightX) continue;
+            const isMajor = (d % (dStep * 2) === 0);
+            gridGroup.innerHTML += `<line x1="${x}" x2="${x}" y1="${SV.topY}" y2="${SV.groundY}" stroke="${isMajor ? '#1e3a5f' : '#111827'}" stroke-width="${isMajor ? 1 : 0.5}"/>`;
+            if (isMajor && d > 0) {
+                gridGroup.innerHTML += `<text x="${x}" y="${SV.groundY + 10}" fill="#334155" font-size="8" text-anchor="middle">${d}</text>`;
+            }
+        }
+        // Distance axis label
+        gridGroup.innerHTML += `<text x="${SV.rightX}" y="${SV.groundY + 10}" fill="#334155" font-size="8" text-anchor="end">m →</text>`;
+
+        // ---- Draw DORI zone slices ----
+        // Each zone is a trapezoid between two distances along the two rays
+        const hypotenuse = Math.sqrt(dist * dist + camHeight * camHeight);
+        
+        // Return points for a quad representing a zone between dist d1 and d2 (distance from camera)
+        const conePoints = (d1, d2) => {
+            const t1 = d1 / Math.cos(vAngleRad / 2);
+            const t2 = d2 / Math.cos(vAngleRad / 2);
+            
+            const pts = [];
+            // top ray intersection
+            pts.push([svgX(t1 * Math.cos(topRayAngle)), svgY(camHeight - t1 * Math.sin(topRayAngle))]);
+            pts.push([svgX(t2 * Math.cos(topRayAngle)), svgY(camHeight - t2 * Math.sin(topRayAngle))]);
+            // bottom ray intersection
+            pts.push([svgX(t2 * Math.cos(botRayAngle)), svgY(camHeight - t2 * Math.sin(botRayAngle))]);
+            pts.push([svgX(t1 * Math.cos(botRayAngle)), svgY(camHeight - t1 * Math.sin(botRayAngle))]);
+            
+            return pts.map(p => p.join(',')).join(' ');
+        };
+
+        const setZone = (id, d1, d2) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (d2 <= d1 || d1 >= physW * 1.5) { el.setAttribute('opacity', '0'); return; }
+            el.setAttribute('opacity', '0.55');
+            el.setAttribute('points', conePoints(d1, Math.min(d2, physW * 1.5)));
+        };
+        setZone('side-i', 0, valI);
+        setZone('side-r', valI, valR);
+        setZone('side-o', valR, valO);
+        setZone('side-d', valO, valD);
+
+        // ---- Blind zone (triangle below bottom ray, near camera) ----
+        const blindEl = document.getElementById('side-blind');
+        const blindTopEl = document.getElementById('side-blind-top');
+        if (blindEl) blindEl.setAttribute('opacity', '0'); // disable old one
+        if (blindTopEl) {
+            const bPts = [];
+            bPts.push([camSvgX, camSvgY]);
+            if (botRayAngle > 0.001) {
+                bPts.push([svgX(botGroundD), SV.groundY]);
+            } else {
+                bPts.push([SV.rightX, SV.groundY]);
+            }
+            bPts.push([SV.originX, SV.groundY]);
+            blindTopEl.setAttribute('points', bPts.map(p => p.join(',')).join(' '));
+            blindTopEl.setAttribute('opacity', '0.85');
+        }
+
+        // ---- Pole ----
+        const poleEl = document.getElementById('side-pole');
+        if (poleEl) {
+            poleEl.setAttribute('x1', camSvgX + 4);
+            poleEl.setAttribute('x2', camSvgX + 4);
+            poleEl.setAttribute('y1', camSvgY);
+            poleEl.setAttribute('y2', SV.groundY);
+        }
+
+        // ---- Camera icon: rotate to tilt angle (compensated for non-1:1 scale) ----
+        const camGroup = document.getElementById('side-cam-group');
+        if (camGroup) {
+            // Visual tilt in SVG space (accounts for scX/scY ratio)
+            const svgTiltDeg = Math.atan(Math.tan(tiltRad) * (scY / scX)) * 180 / Math.PI;
+            camGroup.setAttribute('transform', `translate(${camSvgX}, ${camSvgY}) rotate(${svgTiltDeg})`);
+        }
+
+        // ---- Hypotenuse ray (laser beam to target) ----
+        const targetSvgX = svgX(dist);
+        const hypLine = document.getElementById('side-hyp-line');
+        if (hypLine) {
+            hypLine.setAttribute('x1', camSvgX + 12); // from lens tip
+            hypLine.setAttribute('y1', camSvgY);
+            hypLine.setAttribute('x2', targetSvgX);
+            hypLine.setAttribute('y2', SV.groundY);
+        }
+
+        // Top and bottom rays visual
+        const topRayEl = document.getElementById('side-top-ray');
+        const botRayEl = document.getElementById('side-bot-ray');
+        const topEndD = Math.min(topGroundD, physW);
+        const botEndD = Math.min(botGroundD, physW);
+        if (topRayEl) {
+            topRayEl.setAttribute('x1', camSvgX);
+            topRayEl.setAttribute('y1', camSvgY);
+            topRayEl.setAttribute('x2', svgX(topEndD));
+            topRayEl.setAttribute('y2', svgY(Math.max(0, rayH(topEndD, topRayAngle))));
+        }
+        if (botRayEl) {
+            botRayEl.setAttribute('x1', camSvgX);
+            botRayEl.setAttribute('y1', camSvgY);
+            botRayEl.setAttribute('x2', svgX(botEndD));
+            botRayEl.setAttribute('y2', SV.groundY);
+        }
+
+        // ---- Height dimension ----
+        const hdimLine = document.getElementById('side-hdim-line');
+        const hdimTop  = document.getElementById('side-hdim-top');
+        const hdimBot  = document.getElementById('side-hdim-bot');
+        const hdimText = document.getElementById('side-hdim-text');
+        if (hdimLine) {
+            hdimLine.setAttribute('y1', camSvgY);
+            hdimLine.setAttribute('y2', SV.groundY);
+            hdimTop.setAttribute('y1', camSvgY); hdimTop.setAttribute('y2', camSvgY);
+            const midY = (camSvgY + SV.groundY) / 2;
+            hdimText.setAttribute('y', midY + 3);
+            hdimText.setAttribute('transform', `rotate(-90, 18, ${midY})`);
+            hdimText.textContent = `H = ${camHeight.toFixed(1)} m`;
+        }
+
+        // ---- Hypotenuse label (at midpoint of the dashed line) ----
+        const hypText = document.getElementById('side-hyp-text');
+        if (hypText) {
+            const mx = (camSvgX + targetSvgX) / 2;
+            const my = (camSvgY + SV.groundY) / 2;
+            hypText.setAttribute('x', mx + 8);
+            hypText.setAttribute('y', my - 6);
+            hypText.textContent = `🎯 ${hypotenuse.toFixed(1)} m`;
+        }
+
+        // ---- Ground distance dimension ----
+        const gdimLine = document.getElementById('side-gdim-line');
+        const gdimText = document.getElementById('side-gdim-text');
+        if (gdimLine) {
+            gdimLine.setAttribute('x1', camSvgX);
+            gdimLine.setAttribute('x2', targetSvgX);
+            gdimText.setAttribute('x', (camSvgX + targetSvgX) / 2);
+            gdimText.textContent = `${dist.toFixed(1)} m (ground)`;
+        }
+
+        // ---- Target person (1.7m at median line intersection with floor) ----
+        const person17Group = document.getElementById('side-person-17');
+        if (person17Group) {
+            // Find distance where median line hits ground
+            const medianGroundD = (tiltRad > 0.001) ? camHeight / Math.tan(tiltRad) : physW * 2;
+            const pxX = svgX(medianGroundD);
+            person17Group.setAttribute('transform', `translate(${pxX}, ${SV.groundY})`);
+            
+            const pBodyPx = 1.45 * scY;
+            const pHeadPx = 0.125 * scY;
+            const bodyEl17 = document.getElementById('person-17-body');
+            const headEl17 = document.getElementById('person-17-head');
+            if (bodyEl17) bodyEl17.setAttribute('y2', -pBodyPx);
+            if (headEl17) {
+                headEl17.setAttribute('cy', -(pBodyPx + pHeadPx + 1));
+                headEl17.setAttribute('r', pHeadPx);
+            }
+        }
+        
+        // ---- Target person (target distance) ----
+        const personGroup = document.getElementById('side-person');
+        if (personGroup) {
+            personGroup.setAttribute('transform', `translate(${targetSvgX}, ${SV.groundY})`);
+            const personBodyPx = 1.5 * scY;
+            const personHeadPx = Math.max(3, 0.15 * scY);
+            const bodyEl = document.getElementById('person-body');
+            const headEl = document.getElementById('person-head');
+            if (bodyEl) bodyEl.setAttribute('y2', -personBodyPx);
+            if (headEl) {
+                headEl.setAttribute('cy', -(personBodyPx + personHeadPx + 1));
+                headEl.setAttribute('r', personHeadPx);
+            }
+        }
+
+        // ---- Info row below SVG ----
+        const heightLabelEl = document.getElementById('scene-height-label');
+        if (heightLabelEl) heightLabelEl.innerText = fovH.toFixed(1) + ' m';
+        
+        const blindInfoEl = document.getElementById('side-blind-info');
+        if (blindInfoEl) {
+            const blindDist = botGroundD < dist ? botGroundD.toFixed(1) + ' m' : '0 m';
+            blindInfoEl.textContent = `Blind Zone: ${blindDist}`;
+        }
+        const horizInfoEl = document.getElementById('side-horiz-info');
+        if (horizInfoEl) horizInfoEl.textContent = `Ground: ${dist.toFixed(1)} m`;
+
+        // ---- Zone label at head position ----
+        const zoneLabelEl = document.getElementById('side-zone-label');
+        if (zoneLabelEl) {
+            const headH = 1.65;
+            let zoneLabel = '—';
+            const ppm_at_target = parseFloat(elDoriTask.value) || 0;
+            if (ppm_at_target >= 300) zoneLabel = '🔴 Identification';
+            else if (ppm_at_target >= 150) zoneLabel = '🟡 Recognition';
+            else if (ppm_at_target >= 80) zoneLabel = '🔵 Observation';
+            else if (ppm_at_target >= 40) zoneLabel = '🟢 Detection';
+            else zoneLabel = '⚫ Blind zone';
+            zoneLabelEl.setAttribute('x', targetSvgX + 10);
+            zoneLabelEl.setAttribute('y', svgY(headH) - 4);
+            zoneLabelEl.textContent = zoneLabel;
+        }
+    }
+
+    // Init
+    calculate();
+</script>
+</body>
+</html>
+
+  </template>
+
+  <template id="runtime-template"><style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
+.portfolio-language button,.portfolio-language summary{font:inherit;font-size:12px;color:inherit;background:transparent;border:1px solid #d0aa5470;border-radius:6px;padding:5px 8px;cursor:pointer}
+.portfolio-language button[aria-pressed=true]{background:#d0aa54;color:#141414;font-weight:700}
+.portfolio-language button:focus-visible,.portfolio-language summary:focus-visible{outline:2px solid #d0aa54;outline-offset:3px}
+.portfolio-language details{position:relative}.portfolio-language summary{list-style:none}
+.portfolio-language details p{position:absolute;z-index:30;right:0;top:24px;width:min(310px,80vw);padding:14px;background:#15191e;color:#eee;border:1px solid #d0aa5470;border-radius:8px;box-shadow:0 12px 30px #0008;font-size:13px;font-weight:400;line-height:1.6}
+@media print{.portfolio-language{display:none}}
+</style><script type="application/json" id="portfolio-translations">{"pairs": [["DORI: расчёт и подбор камеры", "DORI Camera Selector / Designer"], ["Прямой расчёт: оборудование → результат", "Direct Calculator (Equipment -> Result)"], ["Подбор: задача → оборудование", "Designer (Task -> Equipment)"], ["Параметры камеры и сцены", "Camera and Scene Parameters"], ["Разрешение сенсора (MP) ℹ️", "Sensor Resolution (MP) ℹ️"], ["Физический размер сенсора ℹ️", "Physical Sensor Size ℹ️"], ["Высота установки (H, метры) ℹ️", "Mounting Height (H, meters) ℹ️"], ["Вертикальный наклон (градусы) ℹ️", "Vertical Tilt (deg) ℹ️"], ["Автонаведение на цель", "Auto-aim at target"], ["Тип объектива ℹ️", "Lens Type ℹ️"], ["Вариофокальный (точная настройка)", "Varifocal (Precise Adjustment)"], ["Фиксированный (стандартный)", "Fixed (Standard)"], ["Фокусное расстояние (мм) ℹ️", "Focal Length (mm) ℹ️"], ["2.8 mm (широкоугольный)", "2.8 mm (Wide-angle)"], ["3.6 mm (стандартный)", "3.6 mm (Standard)"], ["Горизонтальный угол обзора (градусы) ℹ️", "Horizontal Field of View (deg) ℹ️"], ["Дистанция до цели (наклонная, м) ℹ️", "Distance to Target (Slant, m) ℹ️"], ["Результаты расчёта DORI", "Calculation Results (DORI)"], ["Плотность пикселей (PPM) ℹ️", "Pixel Density (PPM) ℹ️"], ["Ширина сцены (FOV) ℹ️", "Scene Width (FOV) ℹ️"], ["Горизонтальный угол ℹ️", "Horizontal Angle ℹ️"], ["Дистанция по земле ℹ️", "Ground Distance ℹ️"], ["Вид сверху: охват по ширине", "Top View (Width Coverage)"], ["Ширина:", "Width:"], ["Вид сбоку: геометрия установки", "Side View - Mounting Geometry"], ["земля", "ground"], ["- m (по земле)", "- m (ground)"], ["🎯 - m (лазер)", "🎯 - m (laser)"], ["↕ Высота:", "↕ Height:"], ["Слепая зона: -", "Blind Zone: -"], ["По земле: - m", "Ground: - m"], ["Загрузка…", "Loading..."], ["Слепая зона", "Blind"], ["Предельные дистанции: нажмите для подстановки", "Maximum Distances (click to apply):"], ["Идентификация (≥250 PPM)", "Identification (≥250 PPM)"], ["Узнавание (≥125 PPM)", "Recognition (≥125 PPM)"], ["Наблюдение (≥62 PPM)", "Observation (≥62 PPM)"], ["Обнаружение (≥25 PPM)", "Detection (≥25 PPM)"], ["Геометрия и задача: исходные данные", "Geometry and Task (Input)"], ["Целевая дистанция (наклонная, м) ℹ️", "Target Distance (Slant, m) ℹ️"], ["Требуемая ширина сцены (метры) ℹ️", "Required Scene Width (meters) ℹ️"], ["Целевая задача DORI ℹ️", "Target Task (DORI) ℹ️"], ["Идентификация (расчётный ориентир 300 PPM)", "Identification (300 PPM design reference)"], ["Узнавание (расчётный ориентир 150 PPM)", "Recognition (150 PPM design reference)"], ["Наблюдение (ориентир 80 PPM): сцена и признаки", "Observation (80 PPM reference) - scene and feature monitoring"], ["Обнаружение (ориентир 40 PPM): базовая аналитика, силуэты", "Detection (40 PPM reference) - basic analytics, silhouettes"], ["Предполагаемый размер сенсора ℹ️", "Assumed Camera Sensor Size ℹ️"], ["1/2.8\" (5.27 x 2.96 mm) — стандартный", "1/2.8\" (5.27 x 2.96 mm) - Standard"], ["1/2\" (6.4 x 4.8 mm) — премиальный", "1/2\" (6.4 x 4.8 mm) - Premium"], ["Вертикальный наклон (°) ℹ️", "Vertical Tilt (°) ℹ️"], ["Автоматически направлять на цель", "Automatically aim at target"], ["Вид сбоку: схема установки", "Side View - Installation Geometry"], ["Требуемое оборудование: результат", "Required Equipment (Result)"], ["Минимум пикселей для заданной ширины сцены", "Minimum Pixels for the Requested Scene Width"], ["Расчётное фокусное расстояние: точная ширина", "Required Lens Focal Length (Exact Width)"], ["Фиксированный объектив с полным охватом ширины:", "Fixed lens covering the full width:"], ["Или диапазон вариофокального объектива:", "Or varifocal range:"], ["Угол обзора для заданной ширины", "Camera Field of View for This Width"], ["Режим расчёта DORI", "DORI calculation mode"], ["Калькулятор DORI", "DORI calculator mode"], ["Разрешение влияет на плотность пикселей по ширине сцены. Геометрический расчёт не гарантирует качество аналитики.", "Purpose: resolution contributes to pixel density across the scene. The geometric estimate does not guarantee analytics quality."], ["Размеры сенсора участвуют в расчёте угла обзора. Ночную съёмку нужно проверять с реальной камерой, объективом и освещением.", "Purpose: sensor dimensions enter the field-of-view calculation. Night imaging also needs verification with the actual camera, lens and lighting."], ["Высота установки влияет на слепую зону под камерой и наклонную дистанцию до цели.", "Business purpose: Camera mounting height. Affects the blind zone below the camera and the real diagonal distance."], ["Направление объектива. AUTO направляет камеру на цель; без AUTO наклон можно настроить вручную.", "Business purpose: Where the lens is aimed. AUTO points the camera directly at the target. If disabled, the lens can be tilted down or up manually."], ["Сравнение фиксированного и регулируемого фокусного расстояния. Стоимость, долговечность и совместимость зависят от оборудования.", "Purpose: compare a fixed focal length with an adjustable lens. Cost, durability and compatibility depend on the chosen equipment."], ["Короткое фокусное расстояние, например 2.8 mm, даёт широкий охват. Длиннофокусный объектив, от 12 mm, позволяет рассматривать детали на большей дистанции.", "Business purpose: A short focal length, such as 2.8 mm, gives wide perimeter coverage. A long focal length, 12 mm and above, works like binoculars for detailed control at longer distances."], ["Угол обзора определяет охват. Широкий угол (>90°) подходит для дворов и парковок; узкий (\u003c40°) — для коридоров и проходных.", "Business purpose: Shows area coverage. A wide angle (>90 deg) is useful for yards and parking areas. A narrow angle (\u003c40 deg) is useful for corridors and checkpoints."], ["Наклонная дистанция от объектива до целевой точки — гипотенуза. Обычно именно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical point (hypotenuse). This is usually the distance measured with a laser rangefinder."], ["Геометрическая плотность пикселей в целевой зоне. Это один из параметров подбора, а не доказательство точности распознавания или соответствия стандарту.", "Purpose: geometric pixel density at the target. It is one input to equipment selection, not proof of recognition accuracy or compliance."], ["Ширина участка, попадающего в кадр на выбранной дистанции. Помогает оценить охват забора, ворот или прохода.", "Business purpose: How many meters of width fit into the frame at the selected distance. Important for covering fences and gates without blind zones."], ["Угол поля зрения оптической системы камеры.", "Business purpose: Actual field of view angle of the camera optical system."], ["Дистанция до контролируемой точки.", "Business purpose: Target control distance."], ["Сравнение расчётной детализации с выбранным ориентиром DORI. Выполнение реальной задачи проверяется на месте.", "Purpose: compare geometric detail with the selected DORI reference. Actual task performance requires an on-site check."], ["\u003c25 PPM: недостаточная детализация", "\u003c25 PPM Blind Zone"], ["25–61 PPM (ориентир ~40)", "25-61 PPM (Optimum ~40)"], ["62–124 PPM (ориентир ~80)", "62-124 PPM (Optimum ~80)"], ["125–249 PPM (ориентир ~150)", "125-249 PPM (Optimum ~150)"], ["250+ PPM (ориентир ~300)", "250+ PPM (Optimum ~300)"], ["Идентификация: наивысший ориентир детализации в этой модели. Расчёт не устанавливает точность биометрии или юридическую доказательность.", "Purpose (Identification): the highest detail reference in this model. It does not establish biometric accuracy or legal evidentiary value."], ["Узнавание: ориентир детализации. Освещение, движение, оптика и система распознавания проверяются отдельно.", "Purpose (Recognition): a detail reference for recognition tasks. Lighting, motion, optics and the recognition system must be tested separately."], ["Наблюдение: оценка сцены — цвета одежды, наличия предмета в руках и направления движения.", "Business purpose (Observation): Situational control. Makes it possible to understand clothing color, whether a person is holding an object, and movement direction."], ["Обнаружение: базовая аналитика для фиксации пересечения периметра или движения вдали.", "Business purpose (Detection): Basic analytics. Records the fact that a perimeter was crossed or that there is movement in the distance."], ["Наклонная дистанция от объектива до целевой зоны — гипотенуза. Обычно её измеряют лазерным дальномером.", "Business purpose: Slant distance from the camera lens to the critical zone (hypotenuse). This is the distance usually measured with a laser rangefinder."], ["Ширина сцены, которая должна целиком попасть в кадр на этой дистанции. Например, проезд шириной 6 m.", "Business purpose: Required scene width to fit into the frame at this distance. For example, a driveway width of 6 m."], ["Целевая геометрическая детализация по заданной ширине. Это исходное требование проекта, а не гарантия результата на объекте.", "Purpose: the target geometric detail across the requested width. This is a design input, not a guarantee of field performance."], ["Размер сенсора предполагаемой камеры.", "Business purpose: Sensor size planned for the camera."], ["Пиксели по горизонтали = ширина сцены × требуемая PPM. Это минимум для заданной детализации. Измените ширину или задачу: минимум изменится. Изменение дистанции влияет на объектив, а не на этот минимум.", "What: horizontal pixels = scene width × required PPM. Why: select detail level. Source: current width and task inputs. Verify: change width or task; distance changes the lens, not this minimum."], ["Фиксированный объектив — альтернатива, не точная замена. Проверяется комплект объектив + разрешение. Списки встроены для примера, это не каталог производителя. Фактическая ширина и PPM должны соответствовать задаче.", "What: an alternative fixed lens, not an exact substitute. Why: check the complete lens/resolution combination. Source: built-in example lens and resolution lists, not a vendor catalogue. Verify: actual width and PPM in the note must meet the requested width and task."], ["Недостаточно", "Insufficient"], ["Необходимый минимум", "Minimum required"], ["Умеренный запас", "Optimal"], ["Большой запас", "Excessive"], ["В списке нет диапазона; проверьте совместимый широкоугольный объектив", "No listed range; check a compatible wider lens"], ["Более 50 mm; проверьте совместимый длиннофокусный объектив", "Beyond 50 mm; verify a compatible telephoto lens"], ["В списке нет объектива с нужным охватом", "No listed lens covers the width"], ["Объективы из примера не обеспечивают нужную ширину. Подберите совместимый широкоугольный объектив или измените размещение; готовый фиксированный комплект не предложен.", "The example lens list cannot cover this width. Select a compatible wider lens or revise the placement; no fixed-lens package is recommended."], ["Ни одна камера из списка не отвечает требованию. Геометрия показана для анализа; это не подтверждённый комплект оборудования.", "No listed camera meets this requirement. The geometry remains visible; do not treat it as a feasible equipment package."], ["Только геометрическая оценка: освещение, движение, оптика и монтаж проверяются на объекте.", "Geometric estimate only: verify lighting, motion, optics and mounting on site."], ["Схема охвата: ширина и дистанция показаны в разных масштабах.", "Coverage schematic: width and distance use separate scales."], ["Ожидание корректных данных", "Waiting for valid inputs"], ["Недостаточная детализация", "Blind Zone (Insufficient Detail)"], ["Обнаружение: виден силуэт", "Detection - Silhouette visible"], ["Наблюдение: видны основные признаки", "Observation - Basic attributes visible"], ["Ориентир узнавания: только геометрия", "Recognition reference (geometry only)"], ["Ориентир идентификации: только геометрия", "Identification reference (geometry only)"], ["🔴 Идентификация", "🔴 Identification"], ["🟡 Узнавание", "🟡 Recognition"], ["🔵 Наблюдение", "🔵 Observation"], ["🟢 Обнаружение", "🟢 Detection"], ["⚫ Недостаточная детализация", "⚫ Blind zone"]], "decimal_templates": [["{0} m по земле", "{0} m ground"], ["{0} m (по земле)", "{0} m (ground)"], ["Слепая зона: {0} m", "Blind Zone: {0} m"], ["По земле: {0} m", "Ground: {0} m"], ["Фиксированный объектив охватывает {0} m и требует {1} пикселей по горизонтали. Разрешения из списка не хватает; измените объектив или проект.", "Fixed-lens alternative covers {0} m and needs {1} horizontal pixels. No listed resolution is sufficient; change the lens or design."], ["Разрешение сенсора (MP): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Разрешение сенсора (MP): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Sensor Resolution (MP): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Физический размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Physical Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Высота установки (H, метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Mounting Height (H, meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Тип объектива: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Lens Type: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Фокусное расстояние (мм): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Focal Length (mm): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол обзора (градусы): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Field of View (deg): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция до цели (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Distance to Target (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Плотность пикселей (PPM): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Pixel Density (PPM): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Ширина сцены (FOV): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Scene Width (FOV): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Горизонтальный угол: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Horizontal Angle: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Дистанция по земле: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Ground Distance: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая дистанция (наклонная, м): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Distance (Slant, m): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Требуемая ширина сцены (метры): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Required Scene Width (meters): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Целевая задача DORI: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Target Task (DORI): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Предполагаемый размер сенсора: введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Assumed Camera Sensor Size: enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1}. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}. Results are unavailable until the inputs are valid."], ["Вертикальный наклон (°): введите значение от {0} до {1} с шагом 0.1 m. Для расчёта нужны корректные исходные данные.", "Vertical Tilt (°): enter a value from {0} to {1}, in 0.1 m steps. Results are unavailable until the inputs are valid."], ["Фиксированный объектив: охват {0} m; нужно не менее 1.3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 1.3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 2MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 2MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 3MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 3MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 4MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 4MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 5MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 5MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 8MP (4K) ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 8MP (4K) ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."], ["Фиксированный объектив: охват {0} m; нужно не менее 12MP ({1} px по горизонтали), чтобы получить {2} PPM. Минимум выше рассчитан для объектива с точной шириной охвата.", "Fixed-lens alternative: {0} m coverage; use at least 12MP ({1} px across) for {2} PPM. The minimum above assumes the exact-width lens."]], "root": "../", "embedded": true, "frame_parent_url": "__DORI_PARENT_URL__", "frame_parent_origin": "__DORI_PARENT_ORIGIN__"}</script><script>/* Reviewed translations only. No network translator, storage or HTML injection. */
+"use strict";
+
+function createPortfolioTranslator(pairs, templates = [], decimalTemplates = []) {
+  const normalize = text => text.replace(/\s+/g, " ").trim();
+  const forward = new Map();
+  const reverse = new Map();
+  for (const [ru, en] of pairs) {
+    if (!ru || !en || (forward.has(normalize(ru)) && forward.get(normalize(ru)) !== en)) {
+      throw Error("Missing or conflicting portfolio translation");
+    }
+    forward.set(normalize(ru), en);
+    if (!reverse.has(normalize(en))) reverse.set(normalize(en), ru);
+  }
+  const escape = text => text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const compile = (from, to, decimal = false) => {
+    const names = [...from.matchAll(/\{(\d+)\}/g)].map(m => m[1]);
+    if (names.length !== new Set(names).size ||
+        [...to.matchAll(/\{(\d+)\}/g)].some(m => !names.includes(m[1]))) {
+      throw Error("Invalid numeric translation template");
+    }
+    const pieces = normalize(from).split(/\{\d+\}/g).map(escape);
+    return {pattern:new RegExp("^" + pieces.join(decimal ? "(-?\\d+(?: \\d{3})*(?:[.,]\\d+)?)" : "(\\d+)") + "$"), to, names};
+  };
+  const patterns = {
+    en:[...templates.map(([ru,en]) => compile(ru,en)),...decimalTemplates.map(([ru,en]) => compile(ru,en,true))],
+    ru:[...templates.map(([ru,en]) => compile(en,ru)),...decimalTemplates.map(([ru,en]) => compile(en,ru,true))]
+  };
+  return function translate(value, language) {
+    const key = normalize(value);
+    let replacement = (language === "en" ? forward : reverse).get(key);
+    if (replacement === undefined) {
+      for (const item of patterns[language]) {
+        const match = item.pattern.exec(key);
+        if (!match) continue;
+        replacement = item.to.replace(/\{(\d+)\}/g, (_,name) => match[item.names.indexOf(name)+1]);
+        break;
+      }
+    }
+    if (replacement === undefined && value.includes("\n")) {
+      return value.split("\n").map(line => translate(line,language)).join("\n");
+    }
+    return replacement === undefined ? value : value.replace(/\S[\s\S]*\S|\S/, () => replacement);
+  };
+}
+
+function portfolioLanguageURL(value, language, base, root) {
+  if (!value || value.startsWith("#")) return value;
+  const url = new URL(value, base);
+  const owner = new URL(root, base);
+  if (url.origin !== owner.origin || !url.pathname.startsWith(owner.pathname) ||
+      !(/\/$|\.html$/.test(url.pathname))) return value;
+  const before = url.search;
+  if (language === "en") url.searchParams.set("lang","en");
+  else url.searchParams.delete("lang");
+  return url.search === before ? value : url.href;
+}
+
+function bindPortfolioLanguage() {
+  const source = document.getElementById("portfolio-translations");
+  if (!source) return;
+  const catalog = JSON.parse(source.textContent);
+  const config = Array.isArray(catalog) ? {pairs:catalog} : catalog;
+  const editionNode = document.getElementById('portfolio-static-editions');
+  const editions = editionNode ? JSON.parse(editionNode.textContent) : null;
+  const translate = createPortfolioTranslator(config.pairs, config.templates || [], config.decimal_templates || []);
+  const base = config.embedded ? (config.frame_parent_url || document.referrer) : location.href;
+  const parentOrigin = config.embedded ? (config.frame_parent_origin ?? new URL(base).origin) : new URL(base).origin;
+  const root = new URL(config.root || "./", base).href;
+  const records = new WeakMap();
+  const attributes = ["title", "alt", "aria-label", "placeholder", "content"];
+  let language = new URL(base).searchParams.get("lang") || document.documentElement.lang || "ru";
+  language = language === "en" ? "en" : "ru";
+  let observer;
+  const original = (node, field, value) => {
+    const record = records.get(node) || {};
+    if (!record[field] || record[field].applied !== value) {
+      record[field] = {source:value, applied:value};
+      records.set(node, record);
+    }
+    const output = translate(record[field].source, language);
+    record[field].applied = output;
+    return output;
+  };
+  const apply = () => {
+    observer?.disconnect();
+    const walk = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) {
+      const node = walk.currentNode;
+      if (node.parentElement?.closest("script,style,noscript,textarea,[data-language-controls],[data-language-preserve]")) continue;
+      if (config.preserve_selector && node.parentElement?.closest(config.preserve_selector)) continue;
+      const next = original(node, "text", node.nodeValue);
+      if (next !== node.nodeValue) node.nodeValue = next;
+    }
+    document.querySelectorAll("title,meta[name=description],body *").forEach(node => {
+      if (node.closest("[data-language-controls],script,style")) return;
+      attributes.forEach(attribute => {
+        if (!node.hasAttribute(attribute)) return;
+        const value = node.getAttribute(attribute);
+        const next = original(node, attribute, value);
+        if (next !== value) node.setAttribute(attribute, next);
+      });
+    });
+    document.documentElement.lang = language;
+    document.querySelectorAll("[data-portfolio-language]").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.portfolioLanguage === language));
+    });
+    document.querySelectorAll("a[href]:not([download]):not([data-static-language])").forEach(link => {
+      const href = link.getAttribute("href");
+      const next = portfolioLanguageURL(href, language, base, root);
+      if (next !== href) link.setAttribute("href",next);
+    });
+    if(editions && !config.embedded) {
+      const meta=editions[language];
+      document.title=meta.title;
+      document.querySelector('link[rel="canonical"]')?.setAttribute('href',meta.url);
+      for(const [selector,value] of [
+        ['meta[name="description"]',meta.description],['meta[property="og:title"]',meta.title],
+        ['meta[property="og:description"]',meta.description],['meta[property="og:url"]',meta.url],
+        ['meta[property="og:locale"]',language==='en'?'en_US':'ru_RU']
+      ])document.querySelector(selector)?.setAttribute('content',value);
+      document.querySelectorAll('a[href]:not([download]):not([data-static-language])').forEach(link=>{
+        const url=new URL(link.getAttribute('href'),base),owner=new URL(editions.root);
+        if(url.origin!==owner.origin||!url.pathname.startsWith(owner.pathname)||link.getAttribute('href').startsWith('#'))return;
+        let relative=url.pathname.slice(owner.pathname.length).replace(/^en\//,'');
+        const key=relative.endsWith('/')||!relative?relative+'index.html':relative;
+        if(!editions.routes.includes(key))return;
+        const canonical=key.endsWith('index.html')?key.slice(0,-10):key;
+        url.pathname=owner.pathname+(language==='en'?'en/':'')+canonical;
+        url.searchParams.delete('lang');link.setAttribute('href',url.href);
+      });
+    }
+    observer?.observe(document.documentElement, {subtree:true, childList:true, characterData:true,
+      attributes:true, attributeFilter:attributes});
+  };
+  const existingControls = !config.embedded && document.querySelector('[data-static-language-controls]');
+  const controls = existingControls || document.createElement("div");
+  controls.dataset.languageControls = "";
+  controls.className = "portfolio-language";
+  controls.setAttribute("role", "group");
+  controls.setAttribute("aria-label", "Language / Язык");
+  if (!existingControls) controls.innerHTML = '<button type="button" data-portfolio-language="ru" lang="ru">RU</button><button type="button" data-portfolio-language="en" lang="en">EN</button><details><summary aria-label="Language help / Справка о языке">?</summary><p>RU / EN: язык этой страницы, схем и подсказок. / Language of this page, diagrams and help. Исходные снимки интерфейса не изменяются. / Original screenshots remain unchanged.</p></details>';
+  if (!config.embedded) (document.querySelector(config.controls_selector || ".masthead,.map-links,.standalone,.reader>nav") || document.body).append(controls);
+  observer = new MutationObserver(apply);
+  const syncFrames = () => {
+    document.querySelectorAll("iframe[src]").forEach(frame => {
+    const url = new URL(frame.src,location.href);
+    if(url.origin === new URL(base).origin) {
+      const opaque = frame.hasAttribute('sandbox') && !frame.sandbox.contains('allow-same-origin');
+      frame.contentWindow?.postMessage({type:"portfolio-language",language},opaque ? "*" : url.origin);
+    }
+    });
+    if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => {
+      // Opaque sandbox origin: address only the explicitly owned inline frame.
+      // Payload contains one language code; the child verifies parent + origin.
+      if(frame.hasAttribute('srcdoc')) frame.contentWindow?.postMessage({type:"portfolio-language",language},"*");
+    });
+  };
+  const select = next => {
+    if (!["ru","en"].includes(next)) return;
+    language = next;
+    const url = new URL(editions && !config.embedded ? editions[language].url : config.embedded ? base : location.href);
+    if(editions && !config.embedded)url.hash=location.hash;
+    else if (language === "en") url.searchParams.set("lang", "en"); else url.searchParams.delete("lang");
+    if (!config.embedded && window.origin !== "null") {
+      if(url.origin!==location.origin){
+        const preview=new URL(location.href);preview.searchParams.set('lang',language);
+        history.replaceState(null,'',preview);
+      } else history.replaceState(null, "", url);
+    }
+    apply();
+    syncFrames();
+    window.dispatchEvent(new Event("resize"));
+  };
+  controls.addEventListener("click", event => {
+    const button = event.target.closest("[data-portfolio-language]");
+    if (!button) return;
+    if (button.hasAttribute('data-static-language')) event.preventDefault();
+    select(button.dataset.portfolioLanguage);
+  });
+  window.addEventListener("message", event => {
+    if (window === parent || event.source !== parent || event.origin !== parentOrigin ||
+        event.data?.type !== "portfolio-language") return;
+    select(event.data.language);
+  });
+  document.querySelectorAll("iframe[src]").forEach(frame => frame.addEventListener("load",syncFrames));
+  if (config.srcdoc_selector) document.querySelectorAll(config.srcdoc_selector).forEach(frame => frame.addEventListener("load",syncFrames));
+  apply();
+  syncFrames();
+}
+
+if (typeof module !== "undefined") module.exports = {createPortfolioTranslator,portfolioLanguageURL};
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bindPortfolioLanguage);
+  else bindPortfolioLanguage();
+}
+</script>
+    <style>
+      #input-status { margin: 0 0 16px; padding: 10px; color: #fbbf24; border: 1px solid #92400e; border-radius: 6px; }
+      #input-status:empty { display: none; }
+      input[aria-invalid="true"] { outline: 2px solid #fbbf24; }
+      .results-invalid .result-card { opacity: 0.55; }
+      .results-invalid svg { visibility: hidden; }
+      .scene-visual { min-width: 0; }
+      .diagram-pair { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; margin-bottom: 32px; }
+      @media (max-width:1100px) { .diagram-pair { grid-template-columns: minmax(0,1fr); } }
+      @media (max-width:480px) { .panel { padding: 16px; min-width:0; } .result-card { min-width:0; } }
+      .recommendation, #rec-fixed-check { overflow-wrap: anywhere; }
+      .result-card>button[title] { background: transparent; color:#94a3b8; border:1px solid #475569; border-radius:50%; width:20px; height:20px; cursor:help; margin:4px; }
+    </style>
+    <script>
+      const inputStatus = document.createElement('p');
+      inputStatus.id = 'input-status';
+      inputStatus.setAttribute('role', 'status');
+      document.querySelector('.container').before(inputStatus);
+      const resolutionStatus = document.createElement('p');
+      resolutionStatus.id = 'resolution-status';
+      resolutionStatus.style.cssText = 'color:#94a3b8;font-size:0.8rem;margin:8px 0 16px;';
+      resolutionStatus.textContent = 'Geometric estimate only: verify lighting, motion, optics and mounting on site.';
+      document.querySelectorAll('.panel')[1].querySelector('h2').after(resolutionStatus);
+      document.querySelectorAll('.scene-visual').forEach(scene => {
+          scene.parentElement.classList.add('diagram-pair');
+          scene.parentElement.removeAttribute('style');
+      });
+      document.querySelectorAll('#fov-svg').forEach(svg => {
+          const note = document.createElement('p');
+          note.style.cssText = 'color:#94a3b8;font-size:0.75rem;margin:4px 0;';
+          note.textContent = 'Coverage schematic: width and distance use separate scales.';
+          svg.after(note);
+      });
+      document.querySelector('#dist-slider').step = '0.1';
+      document.querySelector('#dist-input').step = '0.1';
+      function validateInputs() {
+          const distance = document.querySelector('#dist-input');
+          const height = Number(document.querySelector('#height-input').value);
+          if (Number.isFinite(height)) {
+              const minimum = (height + 0.1).toFixed(1);
+              distance.min = minimum;
+              document.querySelector('#dist-slider').min = minimum;
+          }
+          let error = '';
+          for (const field of document.querySelectorAll('input[type="number"]:not(:disabled)')) {
+              const value = Number(field.value);
+              const aligned = field.id !== 'dist-input' || Math.abs(value * 10 - Math.round(value * 10)) < 1e-7;
+              const valid = field.value !== '' && Number.isFinite(value) && aligned
+                  && value >= Number(field.min) && value <= Number(field.max);
+              field.setAttribute('aria-invalid', String(!valid));
+              if (!valid && !error) {
+                  const label = field.closest('.form-group')?.querySelector('label')?.getAttribute('data-dori-label') || field.id;
+                  error = `${label.replace('ℹ️', '').trim()}: enter a value from ${field.min} to ${field.max}${field.id === 'dist-input' ? ', in 0.1 m steps' : ''}. Results are unavailable until the inputs are valid.`;
+              }
+          }
+          inputStatus.textContent = error;
+          document.body.classList.toggle('results-invalid', Boolean(error));
+          if (error) {
+              document.querySelectorAll('.result-card strong').forEach(node => node.textContent = '—');
+              const status = document.getElementById('dori-status');
+              if (status) status.textContent = 'Waiting for valid inputs';
+              for (const id of ['rec-lens-fixed','rec-lens-var','rec-fixed-check','res-table']) {
+                  const node = document.getElementById(id);
+                  if (node) node.textContent = '';
+              }
+          }
+          return !error;
+      }
+      document.querySelectorAll('input[type="number"]').forEach(field => {
+          field.addEventListener('change', () => {
+              if (field.value === '' || !Number.isFinite(Number(field.value))) return;
+              let value = Math.max(Number(field.min), Math.min(Number(field.max), Number(field.value)));
+              if (field.id === 'dist-input') value = Math.round(value * 10) / 10;
+              field.value = String(value);
+              const slider = document.getElementById(field.id.replace('-input','-slider'));
+              if (slider) slider.value = field.value;
+              calculate();
+          });
+      });
+    </script>
+  </template>
+
+  <script>
+    const frame = document.getElementById('mode-frame');
+    const directButton = document.getElementById('mode-direct');
+    const designerButton = document.getElementById('mode-designer');
+    const directHtml = document.getElementById('direct-template').innerHTML.trim();
+    const designerHtml = document.getElementById('designer-template').innerHTML.trim();
+
+    function setMode(mode) {
+      const isDesigner = mode === 'designer';
+      directButton.classList.toggle('active-blue', !isDesigner);
+      designerButton.classList.toggle('active-green', isDesigner);
+      directButton.setAttribute('aria-selected', String(!isDesigner));
+      designerButton.setAttribute('aria-selected', String(isDesigner));
+      frame.srcdoc = (isDesigner ? designerHtml : directHtml).replace('<script>', () => document.getElementById('runtime-template').innerHTML
+        .replace('"__DORI_PARENT_URL__"', () => JSON.stringify(location.href).replaceAll('<', '\\u003c'))
+        .replace('"__DORI_PARENT_ORIGIN__"', () => JSON.stringify(window.origin)) + '<script>');
+      window.location.hash = isDesigner ? 'designer' : 'direct';
+    }
+
+    directButton.addEventListener('click', () => setMode('direct'));
+    designerButton.addEventListener('click', () => setMode('designer'));
+    setMode(window.location.hash === '#designer' ? 'designer' : 'direct');
+  </script>
+</body>
+</html>

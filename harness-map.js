@@ -33,4 +33,45 @@
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); }
     });
   });
+
+  // Keep the complete row readable on a narrow screen. Labels are copied
+  // from the current translated headings, never maintained as a second text.
+  function refreshReadingLayout() {
+    const navigation = document.getElementById('readme-navigation');
+    if (navigation) {
+      document.documentElement.style.setProperty(
+        '--map-nav-height', Math.ceil(navigation.getBoundingClientRect().height) + 'px'
+      );
+    }
+    document.querySelectorAll('.table-scroll > table').forEach(table => {
+      if (table.closest('[data-html-projection]')) return;
+      const headings = [...table.querySelectorAll('thead th')];
+      if (!headings.length) return;
+      table.classList.add('reader-table');
+      table.setAttribute('role', 'table');
+      table.querySelector('thead')?.setAttribute('role', 'rowgroup');
+      table.querySelector('tbody')?.setAttribute('role', 'rowgroup');
+      headings.forEach(heading => heading.setAttribute('scope', 'col'));
+      table.querySelectorAll('tr').forEach(row => row.setAttribute('role', 'row'));
+      table.querySelectorAll('tbody tr').forEach(row => {
+        [...row.children].forEach((cell, index) => {
+          cell.setAttribute('role', 'cell');
+          cell.dataset.columnLabel = headings[index]?.textContent.trim() || '';
+        });
+      });
+    });
+  }
+  let layoutFrame = null;
+  function scheduleReadingLayout() {
+    if (layoutFrame !== null) return;
+    layoutFrame = requestAnimationFrame(() => {
+      layoutFrame = null;
+      refreshReadingLayout();
+    });
+  }
+  refreshReadingLayout();
+  window.addEventListener('resize', scheduleReadingLayout);
+  new MutationObserver(scheduleReadingLayout).observe(document.documentElement, {
+    attributes: true, attributeFilter: ['lang']
+  });
 })();

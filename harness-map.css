@@ -169,7 +169,7 @@ body { padding-top: 18px; }
 .map-nav a { padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; font-size: .86rem; text-decoration: none; }
 .map-nav a:hover, .map-nav a:focus-visible { background: var(--surface-2); border-color: var(--teal); }
 .map-links { display: flex; flex-wrap: wrap; gap: 16px; color: var(--muted); font-size: .85rem; }
-h2, h3, [id] { scroll-margin-top: 110px; }
+h2, h3, [id] { scroll-margin-top: calc(var(--map-nav-height, 110px) + 18px); }
 figure { margin: 24px 0; }
 figcaption { color: var(--muted); font-size: .86rem; line-height: 1.5; }
 .workplace-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -193,7 +193,27 @@ img:focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
   .workplace-points { grid-template-columns: 1fr; gap: 0; }
   .agent-route { flex-direction: column; align-items: stretch; }
   .agent-route i { text-align: center; transform: rotate(90deg); }
-  h2, h3, [id] { scroll-margin-top: 135px; }
+  h2, h3, [id] { scroll-margin-top: calc(var(--map-nav-height, 135px) + 18px); }
+  .table-scroll:has(.reader-table) { overflow: visible; }
+  .table-scroll .reader-table { display: block; border: 0; background: transparent; }
+  .reader-table thead {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    padding: 0; overflow: hidden; clip-path: inset(50%);
+  }
+  .reader-table tbody { display: block; }
+  .reader-table tbody tr {
+    display: block; margin: 0 0 16px; border: 1px solid var(--line);
+    border-radius: 8px; background: var(--surface); overflow: hidden;
+  }
+  .reader-table tbody td {
+    display: block; min-width: 0; width: auto; border: 0;
+    padding: 10px 14px; overflow-wrap: anywhere;
+  }
+  .reader-table tbody td + td { border-top: 1px solid var(--line); }
+  .reader-table tbody td::before {
+    content: attr(data-column-label); display: block; margin-bottom: 4px;
+    color: var(--amber); font-size: .83rem; font-weight: 600;
+  }
 }
 @media print { .map-nav, .map-links, .map-lightbox { display: none; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
