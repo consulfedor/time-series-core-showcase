@@ -28,6 +28,26 @@
   .product-area { padding-top: 12px; scroll-margin-top: 140px; }
   .product-area-navigation { padding-left: 24px; columns: 2; column-gap: 32px; }
   .product-area-navigation li { break-inside: avoid; margin: 8px 0; }
+  .useful-chapter-entry { margin: 18px 0 28px; }
+  .useful-reading-question { font-weight: 600; color: var(--amber); }
+  .useful-chapter-entry .semantic-systems > details { padding: 10px 14px; }
+  .useful-chapter-entry .semantic-systems > details > summary { padding: 9px 0; }
+  .useful-chapter-entry .semantic-systems > details[open] > summary { margin-bottom: 12px; }
+  .system-reference, .useful-view, .useful-reference-overview { border-radius: 7px; }
+  .system-reference > summary, .useful-view > summary { font-size: .95rem; }
+  .reference-boundary { color: var(--muted); font-size: .9rem; }
+  .relation-feedback { display: block; font-size: .85em; color: var(--amber); }
+  .view-mechanisms { line-height: 1.9; }
+  .useful-mechanisms [data-mechanism]:target { outline: 2px solid var(--amber); outline-offset: -2px; }
+  .useful-practice-link { display: inline-block; margin-block: 8px 14px; }
+  .useful-anchor { display: block; }
+  .useful-view .md-mermaid-block { margin-inline: 0; max-width: 100%; }
+  .useful-view .md-mermaid-fallback { display: none; }
+  .useful-view .md-mermaid-stage[data-mermaid-state="error"] .md-mermaid-fallback { display: block; }
+  @media (max-width: 700px) {
+    .useful-chapter-entry .semantic-systems > details { padding: 8px; }
+    .system-reference > :not(summary), .useful-view > :not(summary) { margin-inline: 8px; }
+  }
   /* Leave space for the H02 return-to-review label in vertical diagrams. */
   .memory-cycle [data-projection-flow="vertical"] .ds-projection-stage { padding-inline-end: 144px; }
   @media (max-width: 700px) { .product-area-navigation { columns: 1; } }

@@ -74,4 +74,35 @@
   new MutationObserver(scheduleReadingLayout).observe(document.documentElement, {
     attributes: true, attributeFilter: ['lang']
   });
+
+  // Direct links reveal their actual target, including all containing details.
+  // Browser history remains native; no page-wide open-all or forced accordion.
+  if (document.querySelector('.useful-chapter-entry')) {
+    let navigationFrame = null;
+    function revealHash() {
+      let identity;
+      try { identity = decodeURIComponent(location.hash.slice(1)); }
+      catch { return; }
+      if (!identity) return;
+      const target = document.getElementById(identity);
+      if (!target) return;
+      for (let node = target; node; node = node.parentElement) {
+        if (node.tagName === 'DETAILS') node.open = true;
+      }
+      if (navigationFrame !== null) cancelAnimationFrame(navigationFrame);
+      navigationFrame = requestAnimationFrame(() => {
+        navigationFrame = null;
+        refreshReadingLayout();
+        target.scrollIntoView({block:'start',behavior:'instant'});
+      });
+    }
+    window.addEventListener('hashchange', revealHash);
+    // The current hash can be selected again without a hashchange event.
+    document.addEventListener('click', event => {
+      const link = event.target.closest?.('a[href^="#"]');
+      if (link && !event.defaultPrevented && !event.ctrlKey && !event.metaKey &&
+          !event.shiftKey && link.getAttribute('href') === location.hash) revealHash();
+    });
+    revealHash();
+  }
 })();
