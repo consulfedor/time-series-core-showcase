@@ -21,14 +21,14 @@
   },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "1a13f77853c12060da17406a97bbd750ad20dcf2dcc644d0977e38aad64e9199",
+    "source_sha256": "bc67a63a1e681a9c781d1d77a6d41363f574d4d7210e37428b19ac3f4d9af1f4",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
       "portfolio_h00.py": "2f12c1a1c43ec46c94f6411e650f3b403c9d3d9c3542d3374be5ae722bfb5356",
       "_maintenance/h00.md": "7320b46f61d71d7594e00b77532dbfe11698bca74a857c58bb365a841aeb0dec",
-      "_maintenance/h00.css": "65967e0a42c8f1556ff3aa5f33350ddbe2f5b6befac77b20ef8c5326fa481742",
-      "_maintenance/h00-responsive.js": "201894e74cd3bf81bcc34a63a42b495dfe8c14fc81dfdf39f5900e1ac2a1dcb5"
+      "_maintenance/h00.css": "eead6a1d70154a419736b38046505ba56fc6c13a1b40d4bac44235bb8b37739a",
+      "_maintenance/h00-responsive.js": "d9aacda7a6796f02799a1c8a102a0ef19663bc2a1ea4591edc28e73c056649d9"
     },
     "commercial_kpi_claimed": false
   },
@@ -69,6 +69,10 @@
     "markdown_sha256": "edd8422ad2b5d865f14500e46687079f271c66d5819a7be59ad4faa74379f7ae"
   },
   "derived": {
+    "assets/mytwobrain-prism-loop.mp4": "8ca9b5eb64281073f5f36afd0e2b50b06e60bfa20b7d034ba2a2fc4fcce64be9",
+    "assets/mytwobrain-prism-poster.webp": "153a731dddc5b9916963051347adb76ba5dc05bda9fc1cbcb8ee05d9a9e7ddfc",
+    "assets/market-author-original.png": "2de9f945ff4ffc1a6bf73d8bbd8b584a6210af5b1ecca9942df18554885a5439",
+    "assets/market-tools-author-original.png": "55705b8e757edbdf9c4c85c8a144d0879979cfbf98c44d2a4d53bbc209a2769a",
     "assets/babelvoice-control.webp": "67ec10d8fa30be79da56d4ab9e8745449e31e3a10d3baf72b19532233da3b761",
     "README.md": "1ddfb2ca29032edfb02c44f53c388dc2ca12c581c3706368c74428da9c6571b2",
     "examples/evidence.json": "f7444577fdd350e39fb8d2c48322fa33f2fc2b716849897fc91216ee09b3eaf8",
@@ -79,7 +83,7 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "7672aaa88acc0352c792f9724eb8bff6ec1d42350c47c423e4fb38504f999641",
-    "index.html": "9a341da4935272bbfe47db707a8bbdb03428b5dff8f28cb80e93fb63094bf228",
+    "index.html": "b71398739129bee91897523fc1a664d5b4520d1af7318b563f86920bdf0852c5",
     "mytwobrain/workspace.html": "d1a2bae767f045ee9622738594fb5584a1001083ceb377fdb1cecc9a3edab734",
     "mytwobrain/workspace.js": "0e89b08d81af4896cb23a835dcaae940a63dbec54dc34b881c20dfff81817269",
     "examples/data-pipeline.html": "e3503c7b232df2b5ae6da62d927719f9ee0011c52f14f66dd878cb36f99aa9ed",
@@ -90,16 +94,17 @@
     "mytwobrain/index.html": "a0c9b1023254bb763b63eb32da4dd6f9df60949c175fa71a5ed0c0f0d7c5c0d9",
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
-    "examples/analytics.html": "36b82064968e4a262396c421867034724e1e7609cac8d8d8a2a2087d834b3d65",
+    "examples/analytics.html": "dad5c1b9e0c1e8a37909401ebbef2a3a41e5719b9e3d384f00fedb5011a3dff8",
+    "examples/analytics.md": "f305dbd006e769be8cb6cab4d679dcfec857e3c565c46a09a3273c762ec4acc3",
     "overview.html": "9af10500f774da58eda5c15e2690016af260d4cf57b569a076240ceb7fe40204",
     "examples/dori.html": "80223ac31c93aba2b1b7558d39766009af92594a686318a7bc75d2f6bb7d87c4",
-    "en/index.html": "9a15b19342af3d625c874dc843e1f8558d6730e07b638be03bc7145809e8193b",
+    "en/index.html": "d909b63bd28f28c41e7131b630f19862dbe99ff4598199d7e42bd0ffeba7971d",
     "en/mytwobrain/index.html": "93dd6d0e4a2cef6d11dcc58197181f784380749db4e1848c8b09599e6407a04c",
     "en/cv/index.html": "20941af5c87adb837055f3544db4e7eccb2130d74ccaad4f9fef867b4044690b",
     "en/fact-to-decision/index.html": "20d2748dd94f630810b963d9af8a9f79ca692877ab553ddc2ab775d09feed822",
     "en/mytwobrain/workspace.html": "4c704d82ebae2f64921b82ab55e615e0ed0c805dd4024dd2484a85f3786b6de6",
     "en/examples/data-pipeline.html": "3690ea3af8642aa60be0f7703ea82cbaca3f1e24acde48efc1c607cb7a7fcc48",
-    "en/examples/analytics.html": "9c0b145876ca124f3da9fa4f882b1ddba7639ccfd9fe55287ed8bd6fc7f335ec",
+    "en/examples/analytics.html": "756ac4b2f12e3a358e6be95e47b12f1ad2ff813a5ed818f3c9d4aba71fd1f3b2",
     "en/examples/dori.html": "63702e1f2c034b3e792fb3d7ca7ef92728341de0fa10ad044c7c1178cbdf413b",
     "en/overview.html": "00fe643271155b7b92f144a9fd394918d117951b774300ba87213aea731d53c9",
     "sitemap.xml": "6e929db3a9a27ffe04faaa53086309ebe66962af2bea28b0121c569e75147f64"
