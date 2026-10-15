@@ -1,6 +1,143 @@
 "use strict";
 (() => {
   const $ = (s) => document.querySelector(s);
+  // Browser voice is opt-in, independent of the illustrative model selector.
+  let recognition = null, utterance = null;
+  const voiceLanguage = () => document.documentElement.lang === 'en' ? 'en-US' : 'ru-RU';
+  const recognizerType = () => window.SpeechRecognition || window.webkitSpeechRecognition;
+  const speechAvailable = () => Boolean(window.speechSynthesis && window.SpeechSynthesisUtterance);
+  const dictationStatus = text => { $('#voice-status').textContent = text; };
+  const speechStatus = text => { $('#voice-speech-status').textContent = text; };
+  function voiceAvailability() {
+    $('#voice-start').disabled = Boolean(recognition) || !recognizerType();
+    $('#voice-stop').disabled = !recognition;
+    $('#voice-speak').disabled = !speechAvailable();
+    if (!recognizerType()) dictationStatus('Диктовка не поддерживается этим браузером. Можно ввести текст вручную.');
+    if (!speechAvailable()) speechStatus('Озвучка не поддерживается этим браузером.');
+  }
+  function stopDictation(text = 'Диктовка остановлена. Распознанный текст остался в черновике.') {
+    const previous = recognition;
+    recognition = null; // Ignore late callbacks, including from a previous start.
+    if (previous) { try { previous.abort(); } catch (_) { /* Already ended. */ } }
+    if (previous) dictationStatus(text);
+    voiceAvailability();
+  }
+  function stopSpeech(text = 'Озвучка остановлена.') {
+    const previous = utterance;
+    utterance = null;
+    if (previous) { window.speechSynthesis.cancel(); speechStatus(text); }
+    $('#voice-silence').disabled = true;
+  }
+  function cleanupVoice() { stopDictation(); stopSpeech(); }
+  function startDictation() {
+    if (recognition) return;
+    stopSpeech();
+    const Recognition = recognizerType();
+    if (!Recognition) { voiceAvailability(); return; }
+    try {
+      const current = new Recognition();
+      recognition = current;
+      current.lang = voiceLanguage();
+      current.continuous = false;
+      current.interimResults = false;
+      const committed = new Set();
+      current.onstart = () => {
+        if (recognition === current) dictationStatus('Микрофон включён. Говорите; текст появится в черновике.');
+      };
+      current.onresult = event => {
+        if (recognition !== current) return;
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const result = event.results[i];
+          if (!result.isFinal || committed.has(i)) continue;
+          committed.add(i);
+          const text = result[0].transcript.trim();
+          if (!text) continue;
+          const draft = $('#draft');
+          draft.value += (draft.value && !/\s$/.test(draft.value) ? ' ' : '') + text;
+          draft.dispatchEvent(new Event('input', {bubbles:true}));
+        }
+      };
+      current.onerror = event => {
+        if (recognition !== current) return;
+        const errors = {
+          'not-allowed':'Доступ к микрофону не разрешён. Разрешение можно проверить в настройках браузера или ввести текст вручную.',
+          'service-not-allowed':'Служба диктовки запрещена браузером. Введите текст вручную.',
+          'network':'Служба диктовки недоступна по сети. Текст сохранён; повторный запуск — только по кнопке.',
+          'audio-capture':'Микрофон недоступен. Проверьте устройство и разрешения браузера.',
+          'no-speech':'Речь не обнаружена. Можно повторить диктовку кнопкой.',
+          'aborted':'Диктовка отменена.',
+          'language-not-supported':'Выбранный язык диктовки не поддерживается браузером.'
+        };
+        stopDictation(errors[event.error] || 'Не удалось выполнить диктовку. Введите текст вручную или повторите запуск кнопкой.');
+      };
+      current.onend = () => {
+        if (recognition !== current) return;
+        recognition = null;
+        dictationStatus('Диктовка завершена. Проверьте черновик: модели ничего не отправлено.');
+        voiceAvailability();
+      };
+      dictationStatus('Ожидается разрешение браузера на микрофон. Запуск можно отменить.');
+      voiceAvailability();
+      current.start();
+    } catch (_) {
+      stopDictation();
+      dictationStatus('Не удалось запустить микрофон. Проверьте разрешения браузера и защищённое соединение.');
+    }
+  }
+  function readVoiceText() {
+    stopDictation(); stopSpeech();
+    if (!speechAvailable()) { voiceAvailability(); return; }
+    const text = $('#voice-text').value.trim();
+    if (!text) { speechStatus('Сначала выберите ответ или введите текст для озвучки.'); return; }
+    try {
+      const current = new window.SpeechSynthesisUtterance(text);
+      current.lang = voiceLanguage();
+      utterance = current;
+      current.onend = () => {
+        if (utterance !== current) return;
+        utterance = null; $('#voice-silence').disabled = true;
+        speechStatus('Озвучка завершена.');
+      };
+      current.onerror = () => {
+        if (utterance !== current) return;
+        utterance = null; $('#voice-silence').disabled = true;
+        speechStatus('Не удалось озвучить текст. Проверьте голосовой движок браузера.');
+      };
+      $('#voice-silence').disabled = false;
+      speechStatus('Озвучивается выбранный текст. Это не ответ голосового ИИ.');
+      window.speechSynthesis.speak(current);
+    } catch (_) {
+      stopSpeech();
+      speechStatus('Не удалось озвучить текст. Проверьте голосовой движок браузера.');
+    }
+  }
+  function fillVoiceResponses() {
+    const select = $('#voice-response');
+    select.innerHTML = '';
+    const responses = [...document.querySelectorAll('#messages .message.agent p')];
+    responses.forEach((response, index) => {
+      const option = document.createElement('option');
+      option.value = response.textContent;
+      option.textContent = 'OZ · ' + (index + 1);
+      select.append(option);
+    });
+    select.selectedIndex = responses.length - 1;
+    if (responses.length) select.value = responses[responses.length - 1].textContent;
+    $('#voice-from-response').disabled = !responses.length;
+    if (!$('#voice-text').value) $('#voice-text').value = select.value || '';
+  }
+  window.addEventListener('pagehide', cleanupVoice);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) cleanupVoice(); });
+  if (typeof MutationObserver !== 'undefined') {
+    let previousLanguage = document.documentElement.lang;
+    new MutationObserver(() => {
+      if (previousLanguage === document.documentElement.lang) return;
+      previousLanguage = document.documentElement.lang;
+      cleanupVoice();
+      dictationStatus('Язык изменён. Для диктовки нажмите кнопку запуска снова.');
+      voiceAvailability();
+    }).observe(document.documentElement, {attributes:true, attributeFilter:['lang']});
+  }
   const modelLabel = () => ({codex:'Codex · демо',claude:'Claude · демо',local:'Локальная · демо'})[$('#model').value];
   const escape = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const initialEvents = ['OZ связал задачу с отчётом качества и правилом проверки.', 'Инженеру назначено восстановление 62 записей; ревьюеру — независимая сверка.'];
@@ -33,11 +170,25 @@
   };
   function render(){document.querySelectorAll('[data-tab]').forEach(b=>{const active=b.dataset.tab===state.view;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;});$('#panel').setAttribute('aria-labelledby',`tab-${state.view}`);$('#panel').innerHTML=views[state.view]();$('#version').textContent=`Основание r${state.revision}`;$('#task-status').textContent=status();}
   function announce(s){$('#feedback').textContent=s;}
-  function open(view){if(!views[view])return;state.view=view;render();$('#panel').scrollTop=0;}
+  function open(view){if(!views[view])return;cleanupVoice();state.view=view;render();$('#panel').scrollTop=0;}
   function event(s){state.events.push(s);const n=document.createElement('article');n.className='message agent generated';const h=document.createElement('header');h.textContent='OZ · результат действия';const p=document.createElement('p');p.textContent=s;n.append(h,p);$('#messages').append(n);$('#messages').scrollTop=$('#messages').scrollHeight;render();announce(s);}
   function tour(view){document.querySelectorAll('[data-tour]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tour===view)));$('#scene-caption').innerHTML=captions[view];open(view);}
   function agentDetail(role){open(role==='reviewer'?'checks':'agents');if(role==='engineer'){$('#panel').innerHTML=`<span class="overline">Роль · инженер данных</span><h2>Ограниченное задание, явный результат</h2><p>Восполнить пропуск в текущем диапазоне, не менять правила расчёта.</p><h3>Инструменты</h3><table><tr><td>Проверка истории</td><td>чтение</td></tr><tr><td>Восстановление диапазона</td><td>по заданию</td></tr><tr><td>Торговые операции</td><td>вне задачи</td></tr></table><h3>Процедуры / skills</h3><p>Проверить основание → подготовить результат → передать ревьюеру. Выполнение процедуры не заменяет проверку результата.</p><div class="actions"><button data-open="checks">Результат и проверка ↗</button><button data-open="agents">К команде ↗</button></div>`;}announce('Открыто поручение исполнителя. Основной диалог сохранён.');}
   document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.id==='voice-toggle'){
+      const show=$('#voice-panel').hidden;
+      $('#voice-panel').hidden=!show;
+      $('#voice-toggle').setAttribute('aria-expanded',String(show));
+      if(show){fillVoiceResponses();voiceAvailability();dictationStatus(recognizerType()?'Диктовка выключена. Прочитайте предупреждение перед запуском.':'Диктовка не поддерживается этим браузером. Можно ввести текст вручную.');}
+      else cleanupVoice();
+    }
+    if(b.id==='voice-start')startDictation();
+    if(b.id==='voice-stop')stopDictation();
+    if(b.id==='voice-speak')readVoiceText();
+    if(b.id==='voice-silence')stopSpeech();
+    if(b.id==='voice-from-draft'){$('#voice-text').value=$('#draft').value;stopSpeech();}
+    if(b.id==='voice-from-response'){$('#voice-text').value=$('#voice-response').value;stopSpeech();}
+    if(b.id==='reset'){cleanupVoice();$('#voice-text').value='';$('#voice-panel').hidden=true;$('#voice-toggle').setAttribute('aria-expanded','false');dictationStatus('Диктовка выключена.');speechStatus('Озвучка выключена.');}
     if(b.dataset.tour)tour(b.dataset.tour);
     if(b.dataset.tab)open(b.dataset.tab);
     if(b.dataset.open)open(b.dataset.open);
@@ -66,4 +217,13 @@
   });
   const requestedScene=new URLSearchParams(location.search).get('tab');
   showScene(scenes.has(requestedScene)?requestedScene:'docs');
+  // A shared voice link reveals controls, never starts recording or playback.
+  function revealVoiceLink() {
+    if (location.hash !== '#voice') return;
+    if ($('#voice-panel').hidden) $('#voice-toggle').click();
+    $('#voice-toggle').focus();
+    $('#voice-toggle').scrollIntoView?.({block:'center',behavior:'instant'});
+  }
+  window.addEventListener('hashchange', revealVoiceLink);
+  if (location.hash === '#voice') setTimeout(revealVoiceLink, 0);
 })();
