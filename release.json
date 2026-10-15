@@ -21,14 +21,14 @@
   },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "e01c0cb5d2b1d6f1e1c387cedf5a419824630f4de02fadab45f8ed9c32f27ba9",
+    "source_sha256": "7adf0f85231662e32b1b5df587026963769b0b047cf485b8b19a5b5aa9a51bfc",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
-      "portfolio_h00.py": "4193feee3e0980dd54b3773ebf05844b2f74e90fca077aa283dde39f8c351eff",
-      "_maintenance/h00.md": "f3ccfa5838017b9775e7d0b780d47064db8c85fc505325c473435d66bb382226",
-      "_maintenance/h00.css": "d3e2a68763f6eac0cecb59574e69248cd0ded90cb181cca6773efea5ad84269b",
-      "_maintenance/h00-responsive.js": "d3dacc3d9941647d12fc7a6ad79bc4f6307904e065239a77b99e518cdf1e2078"
+      "portfolio_h00.py": "94e9de7fe1426e5048d95136468e3c8861a7dc3ef61fb83938f99918def8165b",
+      "_maintenance/h00.md": "9544cafb4ea2fa9e4d2db26829db2b0a2c7147139995ec9022d9bbcf7aac1d09",
+      "_maintenance/h00.css": "d73ba4aa829a1ed86cc9752dd75220c5bc80752184265af6239bb3f1d0d9b6d8",
+      "_maintenance/h00-responsive.js": "3f45fff74666f9b224ad95c649382d9561d9d23c004a6e43392b3803ec14cf3c"
     },
     "commercial_kpi_claimed": false
   },
@@ -48,8 +48,8 @@
   },
   "mytwobrain": {
     "kind": "public_projection_of_canonical_map",
-    "source_sha256": "a7932e5a9598acab00a8cbf02dc5884a88bc717021ff2fe318c3284772f56c09",
-    "public_markdown_sha256": "90ac6b0832d5f7a00b97012da5cc51747e69b849987bd7ccb2ef45f3a37745a5",
+    "source_sha256": "31ea21aa20c2c0a22b47116eacd041f4caf77b0695c4287646767063fbdf8799",
+    "public_markdown_sha256": "825fd29889bdd20c2ddd603ef456c6a7ace67618db56312c572face46ddf12b7",
     "diagram_runtime": {
       "design_system.css": "1d6b5c8619c6ec8bc175bdfef9b8056032df9e92085d89722bfa2ed50d867d5b",
       "design_system_components.css": "e168bb711118aa72b09e1be0bff29ccf2d36c93d51cf72b3da883a54fbd05cfe",
@@ -69,7 +69,8 @@
     "markdown_sha256": "edd8422ad2b5d865f14500e46687079f271c66d5819a7be59ad4faa74379f7ae"
   },
   "derived": {
-    "README.md": "616ec69a2d1fb144c54ce91b9888d18f3c053fa96e3d480573dbdf6bd0aaac45",
+    "assets/babelvoice-control.webp": "67ec10d8fa30be79da56d4ab9e8745449e31e3a10d3baf72b19532233da3b761",
+    "README.md": "1ddfb2ca29032edfb02c44f53c388dc2ca12c581c3706368c74428da9c6571b2",
     "examples/evidence.json": "f7444577fdd350e39fb8d2c48322fa33f2fc2b716849897fc91216ee09b3eaf8",
     "assets/fedor.png": "142c28b51b39a9a2b0e92729ba2c669a9b2bf67e332a1595adbdeba311a7401e",
     "portfolio-semantic.js": "2ffd38eb58882bdf5f49e4d46342ec8d0cab3188c6e7672107432d79251f6439",
@@ -78,29 +79,29 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "7672aaa88acc0352c792f9724eb8bff6ec1d42350c47c423e4fb38504f999641",
-    "index.html": "84da4aa70f56255ea35664c6e54a529c605d86b2217494e721377f341a217335",
-    "mytwobrain/workspace.html": "1c7ec75172e83f76aa3c0e7ed62c60246b806d7d1195b94fa6ee99baea8c6a0b",
-    "mytwobrain/workspace.js": "33decbc92a2abf45019f636d6e019bda3aea03cde8186ca81b4bd90708b107c6",
+    "index.html": "8a161fab7d924e05a30511e4a6a8ccc88468dfe5bd9b23b89931c4991007cd62",
+    "mytwobrain/workspace.html": "45a98d3a8298d013dfcad9125a51d4201b9f5fe5d41676939bfce53c141cd0ac",
+    "mytwobrain/workspace.js": "0e89b08d81af4896cb23a835dcaae940a63dbec54dc34b881c20dfff81817269",
     "examples/data-pipeline.html": "e3503c7b232df2b5ae6da62d927719f9ee0011c52f14f66dd878cb36f99aa9ed",
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
     "fact-to-decision/index.html": "9d01475e19f4f559fc0c77542f277397c14bdf0b9c5516072ce8528da198b00a",
-    "mytwobrain/README.md": "90ac6b0832d5f7a00b97012da5cc51747e69b849987bd7ccb2ef45f3a37745a5",
-    "mytwobrain/index.html": "11dd18cff7ccb67cf76754d920ecee3e067c5b3e7cac1d9600a90ba8f9e4f05e",
+    "mytwobrain/README.md": "825fd29889bdd20c2ddd603ef456c6a7ace67618db56312c572face46ddf12b7",
+    "mytwobrain/index.html": "a0c9b1023254bb763b63eb32da4dd6f9df60949c175fa71a5ed0c0f0d7c5c0d9",
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
     "examples/analytics.html": "36b82064968e4a262396c421867034724e1e7609cac8d8d8a2a2087d834b3d65",
-    "overview.html": "c61f7aae09c329b8c3c1dcd2d01edb66145c33c11b2b51a6b1baf840bf76492c",
+    "overview.html": "9af10500f774da58eda5c15e2690016af260d4cf57b569a076240ceb7fe40204",
     "examples/dori.html": "80223ac31c93aba2b1b7558d39766009af92594a686318a7bc75d2f6bb7d87c4",
-    "en/index.html": "5309277c499f5f83dba8fae6a75bb0a14416bd0765627f75a571ed53c45c3e9c",
-    "en/mytwobrain/index.html": "a91b66c84112a928ad26f1a5c695406737d5512a259c008bc2ccd6fface96a36",
+    "en/index.html": "6796c8ca65773fd2c763551283958445834e2841e2d910e11008c3e771ac5266",
+    "en/mytwobrain/index.html": "93dd6d0e4a2cef6d11dcc58197181f784380749db4e1848c8b09599e6407a04c",
     "en/cv/index.html": "20941af5c87adb837055f3544db4e7eccb2130d74ccaad4f9fef867b4044690b",
     "en/fact-to-decision/index.html": "20d2748dd94f630810b963d9af8a9f79ca692877ab553ddc2ab775d09feed822",
-    "en/mytwobrain/workspace.html": "74b9a3d727bc5cec3cdeb82f905f612adcd5441280d680abf8e7f7e442f90daf",
+    "en/mytwobrain/workspace.html": "92e76ae54932a5802118f3a8db55be827e7d09156659f1a137aa9131ace2c7f5",
     "en/examples/data-pipeline.html": "3690ea3af8642aa60be0f7703ea82cbaca3f1e24acde48efc1c607cb7a7fcc48",
     "en/examples/analytics.html": "9c0b145876ca124f3da9fa4f882b1ddba7639ccfd9fe55287ed8bd6fc7f335ec",
     "en/examples/dori.html": "63702e1f2c034b3e792fb3d7ca7ef92728341de0fa10ad044c7c1178cbdf413b",
-    "en/overview.html": "6710991b49d67d7eb2963d21e78bd8c1d7ab2f3e624455d4898d8cfb54cce5c6",
+    "en/overview.html": "00fe643271155b7b92f144a9fd394918d117951b774300ba87213aea731d53c9",
     "sitemap.xml": "6e929db3a9a27ffe04faaa53086309ebe66962af2bea28b0121c569e75147f64"
   }
 }
