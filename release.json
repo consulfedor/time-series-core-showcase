@@ -21,14 +21,14 @@
   },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "bc67a63a1e681a9c781d1d77a6d41363f574d4d7210e37428b19ac3f4d9af1f4",
+    "source_sha256": "7b9119032747160dc7eb8b6c5b39946a280c5added90da7b18d66f091d636d07",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
-      "portfolio_h00.py": "2f12c1a1c43ec46c94f6411e650f3b403c9d3d9c3542d3374be5ae722bfb5356",
+      "portfolio_h00.py": "4a6be880ea39acff4a5f64bfc626a2ddfd3a88a2a0fb2e91f4e57ddc1a663125",
       "_maintenance/h00.md": "7320b46f61d71d7594e00b77532dbfe11698bca74a857c58bb365a841aeb0dec",
-      "_maintenance/h00.css": "eead6a1d70154a419736b38046505ba56fc6c13a1b40d4bac44235bb8b37739a",
-      "_maintenance/h00-responsive.js": "d9aacda7a6796f02799a1c8a102a0ef19663bc2a1ea4591edc28e73c056649d9"
+      "_maintenance/h00.css": "d705dd4c4e1490927ee3e5dc16f408c33622e723c51e2dc155c3ec196bc3f0ca",
+      "_maintenance/h00-responsive.js": "d4d8ad9d9feb1f31cc5f4e2f3b3be8e308d54834fe01f46718778f8debc31c9d"
     },
     "commercial_kpi_claimed": false
   },
@@ -83,7 +83,7 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "7672aaa88acc0352c792f9724eb8bff6ec1d42350c47c423e4fb38504f999641",
-    "index.html": "b71398739129bee91897523fc1a664d5b4520d1af7318b563f86920bdf0852c5",
+    "index.html": "cdc0c5a66a1470b22bd6fc0fa3bffc08aa6d8388d9762eb90bd9a301daf6d597",
     "mytwobrain/workspace.html": "d1a2bae767f045ee9622738594fb5584a1001083ceb377fdb1cecc9a3edab734",
     "mytwobrain/workspace.js": "0e89b08d81af4896cb23a835dcaae940a63dbec54dc34b881c20dfff81817269",
     "examples/data-pipeline.html": "e3503c7b232df2b5ae6da62d927719f9ee0011c52f14f66dd878cb36f99aa9ed",
@@ -94,17 +94,17 @@
     "mytwobrain/index.html": "a0c9b1023254bb763b63eb32da4dd6f9df60949c175fa71a5ed0c0f0d7c5c0d9",
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
-    "examples/analytics.html": "dad5c1b9e0c1e8a37909401ebbef2a3a41e5719b9e3d384f00fedb5011a3dff8",
+    "examples/analytics.html": "4fbaf271a450fb749a25329e229d93f343c542a34861b25f2865f4be33e6f2db",
     "examples/analytics.md": "f305dbd006e769be8cb6cab4d679dcfec857e3c565c46a09a3273c762ec4acc3",
     "overview.html": "9af10500f774da58eda5c15e2690016af260d4cf57b569a076240ceb7fe40204",
     "examples/dori.html": "80223ac31c93aba2b1b7558d39766009af92594a686318a7bc75d2f6bb7d87c4",
-    "en/index.html": "d909b63bd28f28c41e7131b630f19862dbe99ff4598199d7e42bd0ffeba7971d",
+    "en/index.html": "5147fa81f50d99c58faea9bf93a84b616c1dadf14fb4b9137e7c8272359d3f88",
     "en/mytwobrain/index.html": "93dd6d0e4a2cef6d11dcc58197181f784380749db4e1848c8b09599e6407a04c",
     "en/cv/index.html": "20941af5c87adb837055f3544db4e7eccb2130d74ccaad4f9fef867b4044690b",
     "en/fact-to-decision/index.html": "20d2748dd94f630810b963d9af8a9f79ca692877ab553ddc2ab775d09feed822",
     "en/mytwobrain/workspace.html": "4c704d82ebae2f64921b82ab55e615e0ed0c805dd4024dd2484a85f3786b6de6",
     "en/examples/data-pipeline.html": "3690ea3af8642aa60be0f7703ea82cbaca3f1e24acde48efc1c607cb7a7fcc48",
-    "en/examples/analytics.html": "756ac4b2f12e3a358e6be95e47b12f1ad2ff813a5ed818f3c9d4aba71fd1f3b2",
+    "en/examples/analytics.html": "38865358fd3a6f4cbc720c108adb0a1569cb2f38290a5a9d0dc0a02cab7eb5a4",
     "en/examples/dori.html": "63702e1f2c034b3e792fb3d7ca7ef92728341de0fa10ad044c7c1178cbdf413b",
     "en/overview.html": "00fe643271155b7b92f144a9fd394918d117951b774300ba87213aea731d53c9",
     "sitemap.xml": "6e929db3a9a27ffe04faaa53086309ebe66962af2bea28b0121c569e75147f64"

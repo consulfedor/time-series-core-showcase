@@ -215,6 +215,125 @@ function selectSignal(scene,key){
   scene.querySelectorAll('[data-signal-view]').forEach(view=>{view.hidden=view.dataset.signalView!==key;});
 }
 
+function mapSelection(model,kind,key,aggregate=null){
+  if(kind==='whole'&&key!=='whole')throw new RangeError('Unknown whole');
+  if(kind==='cluster'&&!model.areas.some(a=>a.id===key))throw new RangeError('Unknown area');
+  if(kind==='system'&&!Object.hasOwn(model.system_areas,key))throw new RangeError('Unknown system');
+  if(!['whole','cluster','system'].includes(kind))throw new RangeError('Unknown map type');
+  const area=kind==='system'?model.system_areas[key]:kind==='cluster'?key:null;
+  const nodes=new Set(Object.entries(model.owners).filter(([,s])=>kind==='whole'||(kind==='system'?s===key:model.system_areas[s]===key)).map(([n])=>n));
+  if(kind==='whole')nodes.add('result');
+  let edges=Object.keys(model.edges).filter(id=>nodes.has(model.edges[id].left)||nodes.has(model.edges[id].right));
+  if(aggregate){
+    if(!Object.hasOwn(model.aggregates,aggregate))throw new RangeError('Unknown relationship');
+    const source=new Set(model.aggregates[aggregate].edges);edges=edges.filter(id=>source.has(id));
+  }
+  const neighbors=new Set(area?[area]:model.areas.map(a=>a.id));
+  for(const id of edges){const e=model.edges[id];for(const n of [e.left,e.right]){const a=model.system_areas[model.owners[n]];if(a)neighbors.add(a);}}
+  return {kind,key,area,edges,neighbors:[...neighbors]};
+}
+
+function bindSystemMap(doc){
+  const root=doc.querySelector('[data-system-map]');if(!root)return ()=>{};
+  const win=doc.defaultView,model=JSON.parse(root.querySelector('[data-system-map-model]').textContent);
+  const canvas=root.querySelector('.system-map-canvas'),panel=root.querySelector('.system-map-context');
+  const controls=[...root.querySelectorAll('[data-map-kind]')],areas=[...root.querySelectorAll('[data-map-area]')];
+  const paths=[...root.querySelectorAll('[data-map-edge]')],rows=[...root.querySelectorAll('[data-map-relation]')];
+  let selected={kind:'whole',key:'whole'},transient=null,aggregate=null,frame=0,closed=false;
+  const listeners=[];
+  const on=(node,type,handler)=>{node.addEventListener(type,handler);listeners.push(()=>node.removeEventListener(type,handler));};
+  controls.forEach(a=>{a.setAttribute('role','button');a.setAttribute('aria-pressed','false');});
+  const show=()=>{
+    const view=mapSelection(model,selected.kind,selected.key,aggregate);
+    root.dataset.mapSelection=selected.kind+':'+selected.key;
+    root.querySelectorAll('[data-map-panel]').forEach(p=>{p.hidden=!(p.dataset.panelKind===selected.kind&&p.dataset.mapPanel===selected.key);});
+    controls.forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.mapKind===selected.kind&&c.dataset.mapKey===selected.key)));
+    const edgeSet=new Set(view.edges);
+    rows.forEach(row=>{row.hidden=!edgeSet.has(row.dataset.mapRelation);});
+    root.querySelectorAll('[data-map-aggregate]').forEach(button=>{
+      const group=model.aggregates[button.dataset.mapAggregate];
+      const scope=mapSelection(model,selected.kind,selected.key);
+      button.hidden=!group.edges.some(id=>scope.edges.includes(id));
+      button.setAttribute('aria-pressed',String(aggregate===button.dataset.mapAggregate));
+    });
+    root.querySelector('[data-map-all-relations]').hidden=!aggregate;
+    highlight();
+  };
+  const highlight=()=>{
+    const state=transient||selected,view=mapSelection(model,state.kind,state.key,transient?null:aggregate);
+    const activeEdges=new Set(view.edges);
+    areas.forEach(a=>{
+      a.classList.toggle('map-muted',!view.neighbors.includes(a.dataset.mapArea));
+      a.classList.toggle('map-focused',a.dataset.mapArea===view.area);
+    });
+    paths.forEach(p=>{
+      const relevant=model.aggregates[p.dataset.mapEdge].edges.some(id=>activeEdges.has(id));
+      p.classList.toggle('map-related',state.kind!=='whole'&&relevant);
+      p.classList.toggle('map-muted',!relevant);
+    });
+  };
+  const place=()=>{
+    frame=0;if(closed)return;
+    const box=canvas.getBoundingClientRect();
+    const points=new Map(areas.map(a=>{const b=a.getBoundingClientRect();return [a.dataset.mapArea,{x:b.x-box.x+b.width/2,y:b.y-box.y+b.height/2,rx:b.width/2+5,ry:b.height/2+5}];}));
+    const svg=root.querySelector('.system-map-lines');svg.setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
+    const boundary=(a,b)=>{const dx=b.x-a.x,dy=b.y-a.y,t=1/Math.sqrt((dx/a.rx)**2+(dy/a.ry)**2);return {x:a.x+dx*t,y:a.y+dy*t};};
+    paths.forEach(p=>{
+      const a=points.get(p.dataset.mapLeft),b=points.get(p.dataset.mapRight),start=boundary(a,b),end=boundary(b,a);
+      const dx=end.x-start.x,dy=end.y-start.y,length=Math.hypot(dx,dy)||1;
+      // Small directional bend separates reciprocal pairs without moving labels.
+      const bend=Math.min(18,length/5),cx=(start.x+end.x)/2-dy/length*bend,cy=(start.y+end.y)/2+dx/length*bend;
+      p.setAttribute('d',`M${start.x},${start.y} Q${cx},${cy} ${end.x},${end.y}`);
+    });
+  };
+  const schedule=()=>{if(!frame&&!closed)frame=win.requestAnimationFrame(place);};
+  const fromHash=()=>{
+    const match=/^#map-(whole|cluster|system)(?:-([a-z_]+))?$/.exec(win.location.hash);
+    try{const next=match?{kind:match[1],key:match[2]||'whole'}:{kind:'whole',key:'whole'};mapSelection(model,next.kind,next.key);selected=next;}catch{selected={kind:'whole',key:'whole'};}
+    transient=null;aggregate=null;show();
+    if(match)(selected.kind==='whole'?root:panel).scrollIntoView({block:'start',behavior:'instant'});
+  };
+  const choose=(kind,key)=>{
+    mapSelection(model,kind,key);selected={kind,key};transient=null;aggregate=null;
+    const url=new URL(win.location.href);url.hash=kind==='whole'?'capabilities':`map-${kind}-${key}`;
+    if(url.href!==win.location.href)win.history.pushState(null,'',url);show();
+  };
+  on(root,'click',event=>{
+    const c=event.target.closest('[data-map-kind]');
+    if(c&&!event.metaKey&&!event.ctrlKey&&!event.shiftKey&&!event.altKey){
+      event.preventDefault();choose(c.dataset.mapKind,c.dataset.mapKey);
+      if(c.closest('.system-map-context')){const heading=panel.querySelector('[data-map-panel]:not([hidden]) h3');heading.tabIndex=-1;heading.focus({preventScroll:true});}
+      if(win.matchMedia('(max-width: 1200px)').matches)panel.scrollIntoView({block:'start',behavior:'instant'});
+      else {
+        const heading=panel.querySelector('[data-map-panel]:not([hidden]) h3').getBoundingClientRect();
+        const navBottom=doc.querySelector('.masthead')?.getBoundingClientRect().bottom||0;
+        if(heading.top<navBottom||heading.bottom>win.innerHeight)win.scrollBy({top:heading.top-navBottom-20,behavior:'instant'});
+      }
+    }
+    const b=event.target.closest('[data-map-aggregate]');if(b){aggregate=b.dataset.mapAggregate;transient=null;show();}
+    if(event.target.closest('[data-map-all-relations]')){aggregate=null;show();root.querySelector('.system-map-relations>summary').focus();}
+  });
+  on(root,'pointerover',event=>{if(event.pointerType==='touch')return;const c=event.target.closest('[data-map-kind]');if(c){transient={kind:c.dataset.mapKind,key:c.dataset.mapKey};highlight();}});
+  on(root,'pointerleave',()=>{transient=null;highlight();});
+  on(root,'pointerout',event=>{if(event.target.closest('[data-map-kind]')&&!event.relatedTarget?.closest('[data-map-kind]')){transient=null;highlight();}});
+  on(root,'focusin',event=>{const c=event.target.closest('[data-map-kind]');if(c){transient={kind:c.dataset.mapKind,key:c.dataset.mapKey};highlight();}});
+  on(root,'focusout',event=>{if(!root.contains(event.relatedTarget)){transient=null;highlight();}});
+  on(root,'keydown',event=>{
+    const c=event.target.closest('[data-map-kind]');
+    if(event.key===' '&&c){event.preventDefault();c.click();}
+    if(event.key==='Escape'){event.preventDefault();choose('whole','whole');controls.find(c=>c.dataset.mapKind==='whole').focus();}
+  });
+  // Locale reflow only recomputes geometry. It must not act like navigation.
+  const resizeMap=()=>schedule();
+  on(win,'popstate',fromHash);on(win,'hashchange',fromHash);on(win,'resize',resizeMap);
+  const observer=typeof win.ResizeObserver==='function'?new win.ResizeObserver(schedule):null;
+  observer?.observe(canvas);areas.forEach(a=>observer?.observe(a));
+  on(win,'pageshow',schedule);
+  const close=()=>{if(closed)return;closed=true;listeners.forEach(off=>off());observer?.disconnect();if(frame)win.cancelAnimationFrame(frame);root.dataset.mapClosed='true';};
+  on(win,'pagehide',event=>{if(!event.persisted)close();});
+  root.dataset.mapReady='true';fromHash();schedule();return close;
+}
+
 function bindHeroAnimation(doc){
   const box=doc.querySelector('[data-hero-animation]');if(!box)return ()=>{};
   const win=doc.defaultView,video=box.querySelector('video'),button=box.querySelector('[data-animation-toggle]');
@@ -259,6 +378,7 @@ function bindHomeComposition(doc){
   const updateHeight=()=>{if(nav)doc.documentElement.style.setProperty('--nav-height',Math.ceil(nav.getBoundingClientRect().height)+'px');};
   const resize=typeof win.ResizeObserver==='function'?new win.ResizeObserver(updateHeight):null;
   if(nav)resize?.observe(nav);updateHeight();win.addEventListener('resize',updateHeight);
+  bindSystemMap(doc);
   const scene=doc.querySelector('[data-signal-explorer]');
   if(scene){
     const select=key=>selectSignal(scene,key);
@@ -305,7 +425,7 @@ if(typeof document!=='undefined'){
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>bindHomeComposition(document),{once:true});
   else bindHomeComposition(document);
 }
-if(typeof module!=='undefined')module.exports={selectSignal,bindHomeComposition,bindHeroAnimation};
+if(typeof module!=='undefined')module.exports={selectSignal,bindHomeComposition,bindHeroAnimation,mapSelection,bindSystemMap};
 </script>
 <!-- PORTFOLIO_SEO_START -->
 <meta name="portfolio-static-language" content="en">
