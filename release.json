@@ -25,7 +25,7 @@
   },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "7b9119032747160dc7eb8b6c5b39946a280c5added90da7b18d66f091d636d07",
+    "source_sha256": "2dea7de5fbf6e6683c2eea5d382f33ebe27a052efc537aeedd1ad5d7c7d78326",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
@@ -111,7 +111,7 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "1e3b0c870ba0af07026f9734fc266cf901cc734d81b34bffd9ebaf749565c638",
-    "index.html": "fc120cbf028abd09cebb502859d65be1cab827cab67488e92a42d484fe52f0ed",
+    "index.html": "6e02bddc779b18b1bbebfd880f8159ae2bc8e5ce823a49f92aa0c2ca9da4c77c",
     "mytwobrain/workspace.html": "2c630aaf5fd860e32320f133daf9e05eec347e2897256d60c33218c9c6eb42fd",
     "mytwobrain/workspace.js": "0e89b08d81af4896cb23a835dcaae940a63dbec54dc34b881c20dfff81817269",
     "examples/data-pipeline.html": "affd694b75afa8028afecce2c91e9ec16c7027ff28871b3222d474053439de15",
@@ -127,7 +127,7 @@
     "overview.html": "afba21fb01cd406eb75f312c4d011a04ea411be616d609e2b8f8f57bdde19127",
     "examples/dori.html": "8e0645d55224d1a17ed66bb94411f29afc2b572027f2ab9dc4a577c127d017f9",
     "favicon.svg": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
-    "en/index.html": "5e94a7977b2e2ae3bf53553c57a91d58bfa2aef24f2dc3c83065c5acffb68136",
+    "en/index.html": "6a172a1c0a678899ee1c4d5c4fbc848e32b27d45ea31ddda51f5701284dea842",
     "en/mytwobrain/index.html": "a7290884e7d48d1e25cb85946b4de38e356ff6903c1b96b66e2e3ec14fcb87ea",
     "en/cv/index.html": "7ff1907ed84937e6fc4921a0812cd013655bc3308a5b960e8455765f378fabb8",
     "en/fact-to-decision/index.html": "20811db6fcb2e2b6fdf7a71330e5d4ed925ee8609998e682eefe2222da744c0f",
