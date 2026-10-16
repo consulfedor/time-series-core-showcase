@@ -10,13 +10,17 @@
       "ru",
       "en"
     ],
-    "html_sha256": "7672aaa88acc0352c792f9724eb8bff6ec1d42350c47c423e4fb38504f999641",
+    "html_sha256": "1e3b0c870ba0af07026f9734fc266cf901cc734d81b34bffd9ebaf749565c638",
     "attachment_identical_to_web": true,
     "authoring_sha256": {
       "Fedor_Gorbunov_CV_BASE_TEMPLATE_RU_2026-08-16.md": "de7e14ed8b5a66cd6ec3a73d185820935494a1063ab5573a349dee5db1e530b9",
       "Fedor_Gorbunov_CV_BASE_TEMPLATE_EN_2026-08-16.md": "4dcdf567059c18b144605961000542629b92896ee76c17a44efa590740396403",
       "SYS_SIGNAL_MANUAL_DIRECTIONAL_EXTREME_VOLUME_PARAMETER_AUDIT_P60_JAN_JUN_READER.html": "f5396f0d054b78b4de54901e4d52aaf10dba947140f23eb957f3f624b47db19e",
-      "fedor_cv_photo_from_akkuyu.png": "142c28b51b39a9a2b0e92729ba2c669a9b2bf67e332a1595adbdeba311a7401e"
+      "fedor_cv_photo_from_akkuyu.png": "142c28b51b39a9a2b0e92729ba2c669a9b2bf67e332a1595adbdeba311a7401e",
+      "portfolio_brand.py": "7bfbca6813ab377e7778fecb03932b971578b5c982728473083431b0d5481889",
+      "Футуристическая эмблема золотой спирали с кристаллом.png": "3c5054ba49945fdd79dd4a46ff64a5170bd426165f1698785a72aa4404c10ad5",
+      "brand-logo.b64": "a2d82145246cd462878a8dd2164ecf863c41236238cb73fe5b20718977a4324d",
+      "brand-logo-manifest.json": "237695b86c9c4dae763320d563913f879890a44ed31893e61ca3b47fe1f49524"
     }
   },
   "home": {
@@ -25,15 +29,39 @@
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
-      "portfolio_h00.py": "4a6be880ea39acff4a5f64bfc626a2ddfd3a88a2a0fb2e91f4e57ddc1a663125",
+      "portfolio_h00.py": "ff8fc1d35304eb713bd632998f922b223041db95cf70ea4c06dea12d40c6e25a",
       "_maintenance/h00.md": "7320b46f61d71d7594e00b77532dbfe11698bca74a857c58bb365a841aeb0dec",
-      "_maintenance/h00.css": "d705dd4c4e1490927ee3e5dc16f408c33622e723c51e2dc155c3ec196bc3f0ca",
-      "_maintenance/h00-responsive.js": "d4d8ad9d9feb1f31cc5f4e2f3b3be8e308d54834fe01f46718778f8debc31c9d"
+      "_maintenance/h00.css": "eead6a1d70154a419736b38046505ba56fc6c13a1b40d4bac44235bb8b37739a",
+      "_maintenance/h00-responsive.js": "ae69b9fd67d1559d748450ba2a957b82900c3a76173a938846a8171fe7032746",
+      "_maintenance/system-map.css": "30c69f40d8d81268ecb263050ade2ea9f7b524fc15d17db3b15e09e7abaa9d46",
+      "_maintenance/system-map.js": "30d7e59535f68425e140d467cef43727f5f8241c13fa754a8546c104012dc375"
     },
     "commercial_kpi_claimed": false
   },
   "page_identity": {
-    "favicon_sha256": "eaeeeab21d4bd3064fcbf39c84063f2d30d9d190ee9210e2374557ba34f18a92",
+    "favicon_sha256": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
+    "brand": {
+      "schema": "portfolio_brand_derivative_v1",
+      "source": "mytwobrain_visual/LOGO/Футуристическая эмблема золотой спирали с кристаллом.png",
+      "source_sha256": "3c5054ba49945fdd79dd4a46ff64a5170bd426165f1698785a72aa4404c10ad5",
+      "source_bytes": 1696083,
+      "source_size": [
+        1254,
+        1254
+      ],
+      "source_mode": "RGB",
+      "operation": "resize_full_image_lanczos",
+      "derivative": "_maintenance/brand-logo.b64",
+      "derivative_sha256": "5182ff5938b282094d3c43b2ec2f208d4db9a025e574ac9d7f17194e8d5307a3",
+      "derivative_bytes": 39521,
+      "derivative_size": [
+        192,
+        192
+      ],
+      "cropped": false,
+      "animated": false,
+      "generator": "portfolio_brand.py --build-derivative"
+    },
     "standalone_projection": "icon; C1_return_link_adapter; source_bound_C1_DORI_locale_adapters; calculations_unchanged"
   },
   "dori": {
@@ -65,7 +93,7 @@
     "translation_sha256": "a2cd5d6b6fc33faa6a998ed148abe6cfd6635d7c7ece65f2f75fc475851fad78",
     "version": "1.5",
     "kind": "construction_concept",
-    "html_sha256": "9d01475e19f4f559fc0c77542f277397c14bdf0b9c5516072ce8528da198b00a",
+    "html_sha256": "3778af67566c0acbb453dd3fa7f2b9c8a2618d1ec309d07c9870ef504c6c2b31",
     "markdown_sha256": "edd8422ad2b5d865f14500e46687079f271c66d5819a7be59ad4faa74379f7ae"
   },
   "derived": {
@@ -82,31 +110,32 @@
     "vendor/mermaid.LICENSE": "ec9fb67dcb25eccc416ed56e1aab819222c805a2a4bfe4cb19e7556bf2ffde80",
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
-    "cv/index.html": "7672aaa88acc0352c792f9724eb8bff6ec1d42350c47c423e4fb38504f999641",
-    "index.html": "cdc0c5a66a1470b22bd6fc0fa3bffc08aa6d8388d9762eb90bd9a301daf6d597",
-    "mytwobrain/workspace.html": "d1a2bae767f045ee9622738594fb5584a1001083ceb377fdb1cecc9a3edab734",
+    "cv/index.html": "1e3b0c870ba0af07026f9734fc266cf901cc734d81b34bffd9ebaf749565c638",
+    "index.html": "fc120cbf028abd09cebb502859d65be1cab827cab67488e92a42d484fe52f0ed",
+    "mytwobrain/workspace.html": "2c630aaf5fd860e32320f133daf9e05eec347e2897256d60c33218c9c6eb42fd",
     "mytwobrain/workspace.js": "0e89b08d81af4896cb23a835dcaae940a63dbec54dc34b881c20dfff81817269",
-    "examples/data-pipeline.html": "e3503c7b232df2b5ae6da62d927719f9ee0011c52f14f66dd878cb36f99aa9ed",
+    "examples/data-pipeline.html": "affd694b75afa8028afecce2c91e9ec16c7027ff28871b3222d474053439de15",
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
-    "fact-to-decision/index.html": "9d01475e19f4f559fc0c77542f277397c14bdf0b9c5516072ce8528da198b00a",
+    "fact-to-decision/index.html": "3778af67566c0acbb453dd3fa7f2b9c8a2618d1ec309d07c9870ef504c6c2b31",
     "mytwobrain/README.md": "825fd29889bdd20c2ddd603ef456c6a7ace67618db56312c572face46ddf12b7",
-    "mytwobrain/index.html": "a0c9b1023254bb763b63eb32da4dd6f9df60949c175fa71a5ed0c0f0d7c5c0d9",
+    "mytwobrain/index.html": "d7ac5dd231caae3fe5bada13a7f65da14f11d939e6f967a5e0355d117289a656",
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
-    "examples/analytics.html": "4fbaf271a450fb749a25329e229d93f343c542a34861b25f2865f4be33e6f2db",
+    "examples/analytics.html": "b76f10c228d4146fb88283d4f258ec9377d26ff8d181e6c0322c990519c38cd8",
     "examples/analytics.md": "f305dbd006e769be8cb6cab4d679dcfec857e3c565c46a09a3273c762ec4acc3",
-    "overview.html": "9af10500f774da58eda5c15e2690016af260d4cf57b569a076240ceb7fe40204",
-    "examples/dori.html": "80223ac31c93aba2b1b7558d39766009af92594a686318a7bc75d2f6bb7d87c4",
-    "en/index.html": "5147fa81f50d99c58faea9bf93a84b616c1dadf14fb4b9137e7c8272359d3f88",
-    "en/mytwobrain/index.html": "93dd6d0e4a2cef6d11dcc58197181f784380749db4e1848c8b09599e6407a04c",
-    "en/cv/index.html": "20941af5c87adb837055f3544db4e7eccb2130d74ccaad4f9fef867b4044690b",
-    "en/fact-to-decision/index.html": "20d2748dd94f630810b963d9af8a9f79ca692877ab553ddc2ab775d09feed822",
-    "en/mytwobrain/workspace.html": "4c704d82ebae2f64921b82ab55e615e0ed0c805dd4024dd2484a85f3786b6de6",
-    "en/examples/data-pipeline.html": "3690ea3af8642aa60be0f7703ea82cbaca3f1e24acde48efc1c607cb7a7fcc48",
-    "en/examples/analytics.html": "38865358fd3a6f4cbc720c108adb0a1569cb2f38290a5a9d0dc0a02cab7eb5a4",
-    "en/examples/dori.html": "63702e1f2c034b3e792fb3d7ca7ef92728341de0fa10ad044c7c1178cbdf413b",
-    "en/overview.html": "00fe643271155b7b92f144a9fd394918d117951b774300ba87213aea731d53c9",
+    "overview.html": "afba21fb01cd406eb75f312c4d011a04ea411be616d609e2b8f8f57bdde19127",
+    "examples/dori.html": "8e0645d55224d1a17ed66bb94411f29afc2b572027f2ab9dc4a577c127d017f9",
+    "favicon.svg": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
+    "en/index.html": "5e94a7977b2e2ae3bf53553c57a91d58bfa2aef24f2dc3c83065c5acffb68136",
+    "en/mytwobrain/index.html": "a7290884e7d48d1e25cb85946b4de38e356ff6903c1b96b66e2e3ec14fcb87ea",
+    "en/cv/index.html": "7ff1907ed84937e6fc4921a0812cd013655bc3308a5b960e8455765f378fabb8",
+    "en/fact-to-decision/index.html": "20811db6fcb2e2b6fdf7a71330e5d4ed925ee8609998e682eefe2222da744c0f",
+    "en/mytwobrain/workspace.html": "3c644582c911940ae32eeacf45d8953b011895ff637b55cbbe813709477ab2c0",
+    "en/examples/data-pipeline.html": "d1ab375ba2df8a4d6a746da7161832171d7db2804fbdeb4664322c8f4336145a",
+    "en/examples/analytics.html": "9a03ae087953a35c2e66e279e01b5b9dbbd6c3d4ac3859a530baadd02300f2f6",
+    "en/examples/dori.html": "97bbcc5355602183e981167edb579eac491354cad1756001d9e28e99219c0a06",
+    "en/overview.html": "d7be841aae021572fcc58f60eb1290ad2e5c3b46b6ba8d06b2c9c9ce9be8ea2d",
     "sitemap.xml": "6e929db3a9a27ffe04faaa53086309ebe66962af2bea28b0121c569e75147f64"
   }
 }
