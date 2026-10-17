@@ -4,13 +4,28 @@
     "MyTwoBrain",
     "Fact to Decision C1"
   ],
+  "page_loads": {
+    "enabled": true,
+    "enabled_at": "2026-10-16T23:05:33Z",
+    "categories": [
+      "home.ru",
+      "home.en",
+      "mytwobrain.ru",
+      "mytwobrain.en",
+      "cv.ru",
+      "cv.en"
+    ],
+    "client_sha256": "1094b98ea33e9e34fdb9ecacb0941389eea0a9d8e2f9413964288e45946890ab",
+    "backend_settings": "unknown; unchanged by this release",
+    "private_dashboard_count_observed": false
+  },
   "cv": {
     "kind": "bilingual_projection_of_canonical_cv",
     "languages": [
       "ru",
       "en"
     ],
-    "html_sha256": "1e3b0c870ba0af07026f9734fc266cf901cc734d81b34bffd9ebaf749565c638",
+    "html_sha256": "41bacee9fda58cca1546a338b5797d922172c5f6acfd76f75fb8b2ef87981b22",
     "attachment_identical_to_web": true,
     "authoring_sha256": {
       "Fedor_Gorbunov_CV_BASE_TEMPLATE_RU_2026-08-16.md": "de7e14ed8b5a66cd6ec3a73d185820935494a1063ab5573a349dee5db1e530b9",
@@ -20,18 +35,21 @@
       "portfolio_brand.py": "7bfbca6813ab377e7778fecb03932b971578b5c982728473083431b0d5481889",
       "Футуристическая эмблема золотой спирали с кристаллом.png": "3c5054ba49945fdd79dd4a46ff64a5170bd426165f1698785a72aa4404c10ad5",
       "brand-logo.b64": "a2d82145246cd462878a8dd2164ecf863c41236238cb73fe5b20718977a4324d",
-      "brand-logo-manifest.json": "237695b86c9c4dae763320d563913f879890a44ed31893e61ca3b47fe1f49524"
+      "brand-logo-manifest.json": "237695b86c9c4dae763320d563913f879890a44ed31893e61ca3b47fe1f49524",
+      "portfolio_telemetry.py": "b7c8ed8fd14ac00792c679cdb918bf5c7be237f8280570ef84dc66f7b77e02c1",
+      "portfolio-page-loads.cjs": "1094b98ea33e9e34fdb9ecacb0941389eea0a9d8e2f9413964288e45946890ab",
+      "portfolio-page-loads.json": "95b2f899952dc94166df882d5d5738ee8460bd1aa134ab64ec9f30daf1ed7f97"
     }
   },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "d432dfd120514ab69f4219e1c9f7a8775caee830000fb6b3b12d4a1fd41bc8c6",
+    "source_sha256": "e754b13e7d427849e89300d08f339ca585a688fe7cfecdd7f3d894d91ff7a2e1",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
       "portfolio_h00.py": "b03153fc2081ba227fc05724298dcd5cf0d0f995da6bc0d58f4e7ebb435c4629",
       "_maintenance/h00.md": "7320b46f61d71d7594e00b77532dbfe11698bca74a857c58bb365a841aeb0dec",
-      "_maintenance/h00.css": "8394558321878f72ce770d5ef4f39cd0c3b0b9cd24c818b9b17aaed34b29757e",
+      "_maintenance/h00.css": "bf1bd72c873712c58adbedebac5e7932852ebad5e449c9dab3e29f5ab438afda",
       "_maintenance/h00-responsive.js": "ae69b9fd67d1559d748450ba2a957b82900c3a76173a938846a8171fe7032746",
       "_maintenance/system-map.css": "30c69f40d8d81268ecb263050ade2ea9f7b524fc15d17db3b15e09e7abaa9d46",
       "_maintenance/system-map.js": "30d7e59535f68425e140d467cef43727f5f8241c13fa754a8546c104012dc375"
@@ -110,8 +128,8 @@
     "vendor/mermaid.LICENSE": "ec9fb67dcb25eccc416ed56e1aab819222c805a2a4bfe4cb19e7556bf2ffde80",
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
-    "cv/index.html": "1e3b0c870ba0af07026f9734fc266cf901cc734d81b34bffd9ebaf749565c638",
-    "index.html": "c9a076e325f2857e40cc4ac85b0c41b1db7622e1548a38cc7a6fbda2b336aa91",
+    "cv/index.html": "41bacee9fda58cca1546a338b5797d922172c5f6acfd76f75fb8b2ef87981b22",
+    "index.html": "d0814370c55d2e4fc9d6158ba2bfc953ef9ea96405656f05972dba8d3a84a8a9",
     "mytwobrain/workspace.html": "2c630aaf5fd860e32320f133daf9e05eec347e2897256d60c33218c9c6eb42fd",
     "mytwobrain/workspace.js": "0e89b08d81af4896cb23a835dcaae940a63dbec54dc34b881c20dfff81817269",
     "examples/data-pipeline.html": "affd694b75afa8028afecce2c91e9ec16c7027ff28871b3222d474053439de15",
@@ -119,7 +137,7 @@
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
     "fact-to-decision/index.html": "3778af67566c0acbb453dd3fa7f2b9c8a2618d1ec309d07c9870ef504c6c2b31",
     "mytwobrain/README.md": "825fd29889bdd20c2ddd603ef456c6a7ace67618db56312c572face46ddf12b7",
-    "mytwobrain/index.html": "d7ac5dd231caae3fe5bada13a7f65da14f11d939e6f967a5e0355d117289a656",
+    "mytwobrain/index.html": "3ed7dd8851ca1a39d75ce2361ed6fde2c3cc71aa87024f465a0afa5730a5f671",
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
     "examples/analytics.html": "b76f10c228d4146fb88283d4f258ec9377d26ff8d181e6c0322c990519c38cd8",
@@ -127,9 +145,9 @@
     "overview.html": "afba21fb01cd406eb75f312c4d011a04ea411be616d609e2b8f8f57bdde19127",
     "examples/dori.html": "4a061f3ddffbf2845951a916a2ae42b09fc94e3ab894f758bf753e5cfb4bc7e0",
     "favicon.svg": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
-    "en/index.html": "c8f59fb3e19df2d051ba032fb613c4f416de43d38e852547c83621c6829ae212",
-    "en/mytwobrain/index.html": "a7290884e7d48d1e25cb85946b4de38e356ff6903c1b96b66e2e3ec14fcb87ea",
-    "en/cv/index.html": "7ff1907ed84937e6fc4921a0812cd013655bc3308a5b960e8455765f378fabb8",
+    "en/index.html": "a5550fbb58e855081fb8d271d34b03a7db78b7d2a0a52943537d6571bf108a7e",
+    "en/mytwobrain/index.html": "ff03eb3beee24ad680f698e9cb41d333011b4785489f5dfbe87f41c7f547b86f",
+    "en/cv/index.html": "bc34af393c5eba31290ee427508fc9b7c6026e9ff8c8b693a8862b94096bb1a5",
     "en/fact-to-decision/index.html": "20811db6fcb2e2b6fdf7a71330e5d4ed925ee8609998e682eefe2222da744c0f",
     "en/mytwobrain/workspace.html": "3c644582c911940ae32eeacf45d8953b011895ff637b55cbbe813709477ab2c0",
     "en/examples/data-pipeline.html": "d1ab375ba2df8a4d6a746da7161832171d7db2804fbdeb4664322c8f4336145a",

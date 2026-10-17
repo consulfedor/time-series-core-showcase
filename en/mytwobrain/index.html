@@ -1,4 +1,81 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><script data-portfolio-page-loads>
+/* Owning page-load client. No external loader or browser-persistent identity. */
+(function (root, factory) {
+  'use strict';
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else if (!root.PortfolioPageLoads) Object.defineProperty(root, 'PortfolioPageLoads', {value: api});
+})(typeof window === 'object' ? window : globalThis, function () {
+  'use strict';
+  const ORIGIN = 'https://consulfedor.github.io';
+  const BASE = '/time-series-core-showcase';
+  const INGEST = 'https://consulfedor.goatcounter.com/count';
+  const SENT = Symbol.for('portfolio.private-page-load.requested.v1');
+  const CATEGORIES = Object.freeze(['home.ru', 'home.en', 'mytwobrain.ru', 'mytwobrain.en', 'cv.ru', 'cv.en']);
+  const ROUTES = Object.freeze(Object.fromEntries(
+    ['ru', 'en'].flatMap(locale => ['home', 'mytwobrain', 'cv'].flatMap(page => {
+      const prefix = BASE + (locale === 'en' ? '/en' : '');
+      const path = prefix + (page === 'home' ? '/' : '/' + page + '/');
+      return [[path, page + '.' + locale], [path + 'index.html', page + '.' + locale]];
+    }))
+  ));
+
+  function normalize(href) {
+    try {
+      const url = new URL(href);
+      if (url.origin !== ORIGIN || url.protocol !== 'https:' || url.username || url.password) return null;
+      return Object.hasOwn(ROUTES, url.pathname) ? ROUTES[url.pathname] : null;
+    } catch (_) { return null; }
+  }
+
+  function validateConfig(config, now) {
+    if (!config || config.enabled !== true) return false;
+    if (config.production_origin !== ORIGIN || config.production_base !== BASE) return false;
+    if (config.site_code !== 'consulfedor' || config.collector?.ingest !== INGEST) return false;
+    if (!Array.isArray(config.categories) || config.categories.length !== 6 ||
+        !CATEGORIES.every((key, i) => config.categories[i] === key)) return false;
+    // Existing provider flags are unknown and unchanged; local desired flags
+    // cannot prove or veto the hosted site's actual configuration.
+    if (typeof config.enabled_at !== 'string' || !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{3})?Z$/.test(config.enabled_at)) return false;
+    const activated = Date.parse(config.enabled_at);
+    return Number.isFinite(activated) && activated <= now;
+  }
+
+  function start(config, win, now = Date.now()) {
+    let timer;
+    try {
+      if (!win || win.__PORTFOLIO_TELEMETRY_DISABLED__ === true || !validateConfig(config, now)) return false;
+      if (!win.document || win.document.prerendering || win.navigator?.webdriver === true) return false;
+      if (win.top !== win.self || win[SENT]) return false;
+      const category = normalize(win.location.href);
+      if (!category || typeof win.fetch !== 'function' || typeof win.AbortController !== 'function' ||
+          typeof win.setTimeout !== 'function' || typeof win.clearTimeout !== 'function') return false;
+      const url = new URL(INGEST);
+      url.search = new URLSearchParams({p: category, t: '', r: ''}).toString();
+      const controller = new win.AbortController();
+      // Document-local dedupe only. No retries, history hooks or browser store.
+      Object.defineProperty(win, SENT, {value: true});
+      timer = win.setTimeout(() => controller.abort(), 5000);
+      Promise.resolve(win.fetch(url.href, {
+        method: 'GET', mode: 'no-cors', credentials: 'omit', cache: 'no-store',
+        // Fetch forbids no-cors with redirect:error before any network call.
+        // Use its required follow mode; credentials/referrer remain omitted.
+        referrerPolicy: 'no-referrer', redirect: 'follow', keepalive: true,
+        signal: controller.signal,
+      })).then(() => win.clearTimeout(timer), () => win.clearTimeout(timer));
+      return true;
+    } catch (_) {
+      if (timer !== undefined) win.clearTimeout(timer);
+      return false;
+    }
+  }
+
+  return Object.freeze({normalize, validateConfig, start});
+});
+
+PortfolioPageLoads.start({"enabled":true,"enabled_at":"2026-10-16T23:05:33Z","site_code":"consulfedor","production_origin":"https://consulfedor.github.io","production_base":"/time-series-core-showcase","categories":["home.ru","home.en","mytwobrain.ru","mytwobrain.en","cv.ru","cv.en"],"collector":{"ingest":"https://consulfedor.goatcounter.com/count"}}, window);
+</script>
+<style>.portfolio-language{display:flex;align-items:center;gap:4px;flex:none;font:inherit}
 .portfolio-language button,.portfolio-language summary{font:inherit;font-size:12px;color:inherit;background:transparent;border:1px solid #d0aa5470;border-radius:6px;padding:5px 8px;cursor:pointer}
 .portfolio-language button[aria-pressed=true]{background:#d0aa54;color:#141414;font-weight:700}
 .portfolio-language button:focus-visible,.portfolio-language summary:focus-visible{outline:2px solid #d0aa54;outline-offset:3px}
