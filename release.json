@@ -95,15 +95,15 @@
   "mytwobrain": {
     "kind": "bottom_up_structure_v1",
     "stage": "E1_composition",
-    "source_sha256": "a84e843629dd613bf0637403d9b42aaea7aa9aed257ddd2a8e9d76db1e834cca",
-    "structure_sha256": "9975e028ce20786d8473193be513f9146476de16e4972fec4ad3d2a0b67a7ee5",
+    "source_sha256": "e934461f64a12367c55c0b5e525318421faebbe467275765768386a9624977cb",
+    "structure_sha256": "3a1ea3910fdbdd833947537094c7253e1853eb5264cfcdce764ed418d9fd8255",
     "counts": {
       "systems": 14,
       "subsystems": 38,
       "components": 137
     },
     "legacy_public_reader": "deprecated_and_disconnected",
-    "public_markdown_sha256": "aabe04a16ee430ea741b1509d4cc18426b187df8a7d6ba97f84354827e81095f"
+    "public_markdown_sha256": "deb4a24c622ba5bf50c3a69a525aec59a0d3169674869ae295eab31d23355a59"
   },
   "c1": {
     "languages": [
@@ -138,8 +138,8 @@
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
     "fact-to-decision/index.html": "f651f5a579cfbff49513722878fe5a1e332e297cb34ffde2a08754db4bf137df",
-    "mytwobrain/README.md": "aabe04a16ee430ea741b1509d4cc18426b187df8a7d6ba97f84354827e81095f",
-    "mytwobrain/index.html": "9be74ae8ba72adc005a65dffbe17a3f88f5e5bf095ef9d6529f48c313114966d",
+    "mytwobrain/README.md": "deb4a24c622ba5bf50c3a69a525aec59a0d3169674869ae295eab31d23355a59",
+    "mytwobrain/index.html": "56fce585d3ff68c7eeb4f726da6340fccf8ba4cdc3a733bb28a40d5ee1d55618",
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
     "examples/analytics.html": "d6bf29c1210c6d6ee42319a6d28f987a35f61f6ab08379f0101681b2f5063e93",
@@ -149,7 +149,7 @@
     "examples/dori.html": "c38b6b3e215738c5edf82a7a3c01b8acc6c3b0c9c165f76444ce6b6c0132f745",
     "favicon.svg": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
     "en/index.html": "4be50edc1e2cc3915fc13ff482f2cfe9b4a77f2a2d3c60d5a5f475b9feee4151",
-    "en/mytwobrain/index.html": "0c8517749a017560d2d1d8a95649eb650fb0c69094d99d92b31351693c768d9a",
+    "en/mytwobrain/index.html": "be73f9c6ec2b3aeb7043b2ef56a97e722042599af07378921bf2edde55fda5df",
     "en/cv/index.html": "e6e1f4faefc516700e8489ee8bab2f866d53f81052fdd92c827791a48e6867cf",
     "en/fact-to-decision/index.html": "ca806d0010643093af76223484f964b5e043cb014377dd7f8de0a6407b87e7b3",
     "en/mytwobrain/workspace.html": "62a598db0e42d86540ed5f6488e3c45708c62ee2d356d2d5f097eae03b55701b",
