@@ -7,6 +7,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>MyTwoBrain · Workspace demo</title>
+  <link id="sessionFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Ccircle%20cx='24'%20cy='32'%20r='20'%20fill='%2347d7ac'/%3E%3Ccircle%20cx='40'%20cy='32'%20r='20'%20fill='%235b8def'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../vendor/oz_markdown.css">
   <link rel="stylesheet" href="workspace-demo.css">
 </head>
@@ -23,7 +24,7 @@
       <div class="conversation-column">
         <section class="dialog-pane panel" aria-labelledby="dialog-title">
           <header class="header viewer-header session-header" id="session-header">
-            <div class="viewer-title-row session-title"><h1 id="dialog-title">D001 · Рабочий пример</h1><span class="session-zone" data-i18n="readingZone">1 · Чтение диалога</span></div>
+            <div class="viewer-title-row session-title"><div class="session-title-line"><span id="session-favicon-preview" class="session-favicon-preview" data-help="faviconIdentity" tabindex="0"></span><h1 id="dialog-title">D001 · Рабочий пример</h1></div><span class="session-zone" data-i18n="readingZone">1 · Чтение диалога</span></div>
             <div class="viewer-actions viewer-actions-row session-header-actions" aria-label="Действия сессии" data-label="sessionActions">
               <button type="button" id="btnDialogSurface" data-demo-action="dialog-view" data-help="dialogView" data-label="dialogView" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-7l-5 4v-4H5a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1Z"/><path d="M8 8.5h8M8 12h6"/></svg></button>
               <button type="button" id="btnTerminalV2Surface" data-demo-action="terminal-view" data-help="terminalView" data-label="terminalView" aria-pressed="false"><i class="terminal-presence" aria-hidden="true"></i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="m7 8 3 3-3 3M12 15h5"/></svg></button>
@@ -42,28 +43,30 @@
         <section class="runtime-composer-card composer-pane panel" aria-labelledby="composer-title">
           <header class="panel-header composer-heading">
             <div class="panel-title"><span class="zone-badge">2</span><h2 id="composer-title" data-i18n="composer">Задача и состояние</h2></div>
-            <button type="button" class="runtime-composer-presence-pill status-pill" data-demo-action="status" data-help="status"><i aria-hidden="true"></i><span data-i18n="ready">Готов к примеру</span></button>
           </header>
           <p class="zone-intro" data-i18n="zone2">Задайте цель, добавьте материал, уточните способ работы.</p>
           <form id="composer-form" class="runtime-composer">
+            <div id="composer-presence" class="runtime-composer-presence"></div>
             <label class="visually-hidden" for="composer-input" data-i18n="promptLabel">Текст задачи</label>
-            <textarea id="composer-input" data-source-id="runtimeComposerText" rows="3" data-placeholder="promptPlaceholder" placeholder="Например: преврати обсуждение в план из трёх шагов…" data-help="composerInput"></textarea>
+            <textarea id="composer-input" data-source-id="runtimeComposerText" rows="5" spellcheck="true" lang="ru" autocapitalize="sentences" autocorrect="on" autocomplete="off" inputmode="text" data-placeholder="promptPlaceholder" placeholder="Поле для отправки сообщения в диалог текущей сессии" data-help="composerInput"></textarea>
             <div id="attachment-list" class="attachment-list"></div>
             <footer class="runtime-composer-actions composer-footer">
               <div class="runtime-composer-actions-left toolbar">
-                <button type="button" class="mini ghost" data-source-id="runtimeComposerHistoryToggle" data-demo-action="buff" data-help="buff" data-i18n="buff">🗃 Buff</button>
-                <button type="button" class="mini ghost runtime-composer-btn-danger" data-source-id="runtimeComposerClear" data-demo-action="clear-draft" data-help="clearDraft" aria-label="Очистить поле">⌫</button>
-                <button type="button" class="mini ghost" data-source-id="runtimeComposerAttach" data-demo-action="attach" data-help="attach" aria-label="Добавить материал">📎</button>
-                <button type="button" data-demo-action="voice" data-help="voice" data-i18n="voice">Голос</button>
+                <button type="button" class="mini ghost composer-icon-button" data-source-id="runtimeComposerHistoryToggle" data-demo-action="buff" data-help="buff" data-label="buff"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4ZM3 3h18v4H3Zm6 9h6"/></svg></button>
+                <button type="button" class="mini ghost composer-icon-button runtime-composer-btn-danger" data-source-id="runtimeComposerClear" data-demo-action="clear-draft" data-help="clearDraft" data-label="clearDraft"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5h12v14H9l-7-7Zm3 4 6 6m0-6-6 6"/></svg></button>
+                <button type="button" class="mini ghost composer-icon-button" data-source-id="runtimeComposerAttach" data-demo-action="attach" data-help="attach" data-label="attach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 12 7-7a4 4 0 0 1 6 6L10 22a6 6 0 0 1-8-8L13 3m-6 12 9-9a1.6 1.6 0 0 1 2 2l-9 9a2 2 0 0 1-3-3"/></svg></button>
               </div>
               <div class="runtime-composer-actions-right toolbar">
                 <button type="button" class="mini ghost" data-source-id="runtimeComposerContinueCurrentGoal" data-demo-action="continue" data-help="continue" data-i18n="continue">Continue</button>
+                <button type="button" class="mini ghost" data-source-id="runtimeComposerSideBtn" data-demo-action="composer-note" data-help="composerNote">Note</button>
+                <button type="button" class="mini ghost" data-source-id="runtimeComposerGoalBtn" data-demo-action="composer-goal" data-help="composerGoal">Goal</button>
                 <button type="button" class="mini ghost" data-source-id="runtimeComposerQueue" data-demo-action="queue" data-help="queue" data-i18n="queue">⇥ Tab</button>
-                <button type="submit" class="mini primary" data-source-id="runtimeComposerSend" data-demo-action="send" data-help="send" data-i18n="send">↵ Send</button>
+                <button type="submit" class="mini primary composer-send" data-source-id="runtimeComposerSend" data-demo-action="send" data-help="send"><span data-i18n="send">↵ Send</span><i class="composer-send-indicator" aria-hidden="true"></i></button>
               </div>
             </footer>
           </form>
-          <span class="composer-footnote" data-i18n="localReply">Ответ показывает подготовленный сценарий работы.</span>
+          <div id="composer-feedback" class="composer-feedback" role="status" aria-live="polite" hidden></div>
+          <span class="composer-footnote" data-i18n="composerFootnote">Ctrl / Cmd + Enter — Send · Tab — следующий ход · Enter — новая строка</span>
         </section>
       </div>
       <aside class="session-side-switch workspace-pane panel" aria-labelledby="workspace-title">
