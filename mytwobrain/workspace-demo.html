@@ -22,17 +22,22 @@
     <main class="session-layout" id="session-layout">
       <div class="conversation-column">
         <section class="dialog-pane panel" aria-labelledby="dialog-title">
-          <header class="header viewer-header panel-header">
-            <div class="viewer-title-row panel-title"><span class="zone-badge">1</span><h1 id="dialog-title" data-i18n="dialog">Чтение диалога</h1><span class="subtle session-name" data-i18n="sessionName">План проекта</span></div>
-            <div class="viewer-actions viewer-actions-row toolbar compact">
-              <button type="button" data-demo-action="sessions" data-help="sessions" data-i18n="sessions">Сессии</button>
-              <button type="button" data-demo-action="new-session" data-help="newSession" data-i18n="newSession">＋ Новая</button>
-              <button type="button" data-demo-action="export-dialog" data-help="exportDialog" aria-label="Экспорт диалога"><span aria-hidden="true">↗</span></button>
-              <button type="button" data-demo-action="expand-dialog" data-help="expandDialog" aria-label="Развернуть диалог"><span aria-hidden="true">⛶</span></button>
+          <header class="header viewer-header session-header" id="session-header">
+            <div class="viewer-title-row session-title"><h1 id="dialog-title">D001 · Рабочий пример</h1><span class="session-zone" data-i18n="readingZone">1 · Чтение диалога</span></div>
+            <div class="viewer-actions viewer-actions-row session-header-actions" aria-label="Действия сессии" data-label="sessionActions">
+              <button type="button" id="btnDialogSurface" data-demo-action="dialog-view" data-help="dialogView" data-label="dialogView" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-7l-5 4v-4H5a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1Z"/><path d="M8 8.5h8M8 12h6"/></svg></button>
+              <button type="button" id="btnTerminalV2Surface" data-demo-action="terminal-view" data-help="terminalView" data-label="terminalView" aria-pressed="false"><i class="terminal-presence" aria-hidden="true"></i><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="m7 8 3 3-3 3M12 15h5"/></svg></button>
+              <button type="button" id="btnSessionMetaEdit" data-demo-action="profile" data-help="sessionProfile" data-label="sessionProfile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 3v3m6-3v3M9 18v3m6-3v3M3 9h3m-3 6h3m12-6h3m-3 6h3"/></svg></button>
+              <button type="button" id="btnBookmarks" class="session-pin" data-demo-action="session-bookmark" data-help="sessionBookmarks" data-label="sessionBookmarks"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 3 7 7-3 1-4 4-1 4-3-3-6 6 5-7-3-3 4-1 4-4Z"/></svg></button>
+              <button type="button" id="btnPrevUser" data-demo-action="previous-message" data-help="previousUser" data-label="previousUser">↑ 1</button>
+              <button type="button" id="btnNextUser" data-demo-action="next-message" data-help="nextUser" data-label="nextUser">↓ 1</button>
+              <button type="button" id="btnDialogLiveNotice" class="dialog-live-notice" data-demo-action="new-messages" data-help="newMessages" data-label="newMessages">New</button>
+              <button type="button" id="sessionActionsToggle" data-demo-action="session-more" data-help="sessionMore" data-label="sessionMore" aria-haspopup="dialog">…</button>
             </div>
           </header>
-          <p class="zone-intro" data-i18n="zone1">Чтение: обсуждение, решения и оформленный результат в одной ленте.</p>
+          <div id="dialog-queue-rail" class="dialog-queue-rail"></div>
           <div class="chat-stream" id="chat-stream" tabindex="0" aria-label="Диалог с примерами"></div>
+          <section id="terminal-view" class="terminal-v2-view" aria-label="Терминал с примерами" hidden></section>
         </section>
         <section class="runtime-composer-card composer-pane panel" aria-labelledby="composer-title">
           <header class="panel-header composer-heading">
@@ -49,7 +54,6 @@
                 <button type="button" class="mini ghost" data-source-id="runtimeComposerHistoryToggle" data-demo-action="buff" data-help="buff" data-i18n="buff">🗃 Buff</button>
                 <button type="button" class="mini ghost runtime-composer-btn-danger" data-source-id="runtimeComposerClear" data-demo-action="clear-draft" data-help="clearDraft" aria-label="Очистить поле">⌫</button>
                 <button type="button" class="mini ghost" data-source-id="runtimeComposerAttach" data-demo-action="attach" data-help="attach" aria-label="Добавить материал">📎</button>
-                <button type="button" data-demo-action="settings" data-help="settings" data-i18n="settings">⚙ Режим</button>
                 <button type="button" data-demo-action="voice" data-help="voice" data-i18n="voice">Голос</button>
               </div>
               <div class="runtime-composer-actions-right toolbar">
@@ -83,6 +87,7 @@
     </main>
     <div class="sr-status visually-hidden" id="sr-status" aria-live="polite"></div>
   </div>
+  <div id="selection-toolbar" class="dialog-selection-menu" role="toolbar" aria-label="Действия с выделением" data-label="selectionActions" hidden></div>
   <div class="business-tooltip" id="business-tooltip" role="tooltip" hidden></div>
   <dialog id="demo-dialog" class="bm-modal" aria-labelledby="modal-title">
     <header class="modal-header"><h2 id="modal-title"></h2><button type="button" data-demo-action="close-modal" data-help="close" aria-label="Закрыть">×</button></header>
