@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>MyTwoBrain · Workspace demo</title>
+  <link rel="stylesheet" href="../vendor/oz_markdown.css">
+  <link rel="stylesheet" href="workspace-demo.css">
+</head>
+<body>
+  <div class="container session-view demo-shell" id="demo-shell">
+    <header class="demo-notice">
+      <span><i aria-hidden="true"></i><strong data-i18n="demoLabel">Демонстрация · примеры данных</strong></span>
+      <div class="notice-actions">
+        <button type="button" data-demo-action="guide" data-help="guide" data-i18n="guide">Как пользоваться</button>
+        <button type="button" data-demo-action="reset" data-help="reset" data-i18n="reset">Сначала</button>
+      </div>
+    </header>
+    <main class="session-layout" id="session-layout">
+      <div class="conversation-column">
+        <section class="dialog-pane panel" aria-labelledby="dialog-title">
+          <header class="header viewer-header panel-header">
+            <div class="viewer-title-row panel-title"><span class="zone-badge">1</span><h1 id="dialog-title" data-i18n="dialog">Чтение диалога</h1><span class="subtle session-name" data-i18n="sessionName">План проекта</span></div>
+            <div class="viewer-actions viewer-actions-row toolbar compact">
+              <button type="button" data-demo-action="sessions" data-help="sessions" data-i18n="sessions">Сессии</button>
+              <button type="button" data-demo-action="new-session" data-help="newSession" data-i18n="newSession">＋ Новая</button>
+              <button type="button" data-demo-action="export-dialog" data-help="exportDialog" aria-label="Экспорт диалога"><span aria-hidden="true">↗</span></button>
+              <button type="button" data-demo-action="expand-dialog" data-help="expandDialog" aria-label="Развернуть диалог"><span aria-hidden="true">⛶</span></button>
+            </div>
+          </header>
+          <p class="zone-intro" data-i18n="zone1">Чтение: обсуждение, решения и оформленный результат в одной ленте.</p>
+          <div class="chat-stream" id="chat-stream" tabindex="0" aria-label="Диалог с примерами"></div>
+        </section>
+        <section class="runtime-composer-card composer-pane panel" aria-labelledby="composer-title">
+          <header class="panel-header composer-heading">
+            <div class="panel-title"><span class="zone-badge">2</span><h2 id="composer-title" data-i18n="composer">Задача и состояние</h2></div>
+            <button type="button" class="runtime-composer-presence-pill status-pill" data-demo-action="status" data-help="status"><i aria-hidden="true"></i><span data-i18n="ready">Готов к примеру</span></button>
+          </header>
+          <p class="zone-intro" data-i18n="zone2">Задайте цель, добавьте материал, уточните способ работы.</p>
+          <form id="composer-form" class="runtime-composer">
+            <label class="visually-hidden" for="composer-input" data-i18n="promptLabel">Текст задачи</label>
+            <textarea id="composer-input" data-source-id="runtimeComposerText" rows="3" data-placeholder="promptPlaceholder" placeholder="Например: преврати обсуждение в план из трёх шагов…" data-help="composerInput"></textarea>
+            <div id="attachment-list" class="attachment-list"></div>
+            <footer class="runtime-composer-actions composer-footer">
+              <div class="runtime-composer-actions-left toolbar">
+                <button type="button" class="mini ghost" data-source-id="runtimeComposerHistoryToggle" data-demo-action="buff" data-help="buff" data-i18n="buff">🗃 Buff</button>
+                <button type="button" class="mini ghost runtime-composer-btn-danger" data-source-id="runtimeComposerClear" data-demo-action="clear-draft" data-help="clearDraft" aria-label="Очистить поле">⌫</button>
+                <button type="button" class="mini ghost" data-source-id="runtimeComposerAttach" data-demo-action="attach" data-help="attach" aria-label="Добавить материал">📎</button>
+                <button type="button" data-demo-action="settings" data-help="settings" data-i18n="settings">⚙ Режим</button>
+                <button type="button" data-demo-action="voice" data-help="voice" data-i18n="voice">Голос</button>
+              </div>
+              <div class="runtime-composer-actions-right toolbar">
+                <button type="button" class="mini ghost" data-source-id="runtimeComposerContinueCurrentGoal" data-demo-action="continue" data-help="continue" data-i18n="continue">Continue</button>
+                <button type="button" class="mini ghost" data-source-id="runtimeComposerQueue" data-demo-action="queue" data-help="queue" data-i18n="queue">⇥ Tab</button>
+                <button type="submit" class="mini primary" data-source-id="runtimeComposerSend" data-demo-action="send" data-help="send" data-i18n="send">↵ Send</button>
+              </div>
+            </footer>
+          </form>
+          <span class="composer-footnote" data-i18n="localReply">Ответ показывает подготовленный сценарий работы.</span>
+        </section>
+      </div>
+      <aside class="session-side-switch workspace-pane panel" aria-labelledby="workspace-title">
+        <header class="session-side-switch-head panel-header">
+          <div class="panel-title"><span class="zone-badge">3</span><h2 id="workspace-title" data-i18n="workspace">Рабочее пространство</h2></div>
+          <button type="button" data-demo-action="workspace-help" data-help="workspaceHelp" aria-label="О рабочем пространстве">?</button>
+        </header>
+        <p class="zone-intro" data-i18n="zone3">Материалы, план и контекст доступны рядом с диалогом.</p>
+        <nav class="session-side-tabs workspace-tabs" id="workspace-tabs" role="tablist" aria-label="Рабочее пространство">
+          <button type="button" class="session-side-tab" role="tab" data-tab="bookmarks" data-demo-action="tab" data-help="tabBookmarks" id="tab-bookmarks" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabBookmarks">Закладки</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="agents" data-demo-action="tab" data-help="tabAgents" id="tab-agents" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabAgents">Агенты</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="plan" data-demo-action="tab" data-help="tabPlan" id="tab-plan" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabPlan">План</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="docs" data-demo-action="tab" data-help="tabDocs" id="tab-docs" aria-controls="workspace-panel" aria-selected="true" data-i18n="tabDocs">Документы</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="context" data-demo-action="tab" data-help="tabContext" id="tab-context" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabContext">Контекст</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="focus" data-demo-action="tab" data-help="tabFocus" id="tab-focus" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabFocus">Фокус</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="translation" data-demo-action="tab" data-help="tabTranslation" id="tab-translation" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabTranslation">Перевод</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="board" data-demo-action="tab" data-help="tabBoard" id="tab-board" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabBoard">Доска</button>
+        </nav>
+        <div class="session-side-pane workspace-panel" id="workspace-panel" role="tabpanel" aria-labelledby="tab-docs" tabindex="0"></div>
+      </aside>
+    </main>
+    <div class="sr-status visually-hidden" id="sr-status" aria-live="polite"></div>
+  </div>
+  <div class="business-tooltip" id="business-tooltip" role="tooltip" hidden></div>
+  <dialog id="demo-dialog" class="bm-modal" aria-labelledby="modal-title">
+    <header class="modal-header"><h2 id="modal-title"></h2><button type="button" data-demo-action="close-modal" data-help="close" aria-label="Закрыть">×</button></header>
+    <div id="modal-body" class="modal-body"></div>
+    <footer class="modal-footer"><span data-i18n="exampleData">Пример данных</span><button type="button" class="primary" data-demo-action="close-modal" data-help="close" data-i18n="close">Закрыть</button></footer>
+  </dialog>
+  <script src="../vendor/mermaid.min.js"></script>
+  <script src="../vendor/oz_markdown_diagrams.js"></script>
+  <script src="../vendor/oz_markdown.js"></script>
+  <script src="workspace-demo-content.js"></script>
+  <script src="workspace-demo.js"></script>
+</body>
+</html>
