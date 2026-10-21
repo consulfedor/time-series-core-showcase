@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="robots" content="noindex,nofollow">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; frame-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>MyTwoBrain · Workspace demo</title>
   <link id="sessionFavicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Ccircle%20cx='24'%20cy='32'%20r='20'%20fill='%2347d7ac'/%3E%3Ccircle%20cx='40'%20cy='32'%20r='20'%20fill='%235b8def'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="../vendor/oz_markdown.css">
   <link rel="stylesheet" href="workspace-demo.css">
+  <link rel="stylesheet" href="workspace-demo-right.css">
 </head>
 <body>
   <div class="container session-view demo-shell" id="demo-shell">
@@ -83,9 +84,10 @@
           <button type="button" class="session-side-tab" role="tab" data-tab="context" data-demo-action="tab" data-help="tabContext" id="tab-context" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabContext">Контекст</button>
           <button type="button" class="session-side-tab" role="tab" data-tab="focus" data-demo-action="tab" data-help="tabFocus" id="tab-focus" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabFocus">Фокус</button>
           <button type="button" class="session-side-tab" role="tab" data-tab="translation" data-demo-action="tab" data-help="tabTranslation" id="tab-translation" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabTranslation">Перевод</button>
-          <button type="button" class="session-side-tab" role="tab" data-tab="board" data-demo-action="tab" data-help="tabBoard" id="tab-board" aria-controls="workspace-panel" aria-selected="false" data-i18n="tabBoard">Доска</button>
+          <button type="button" class="session-side-tab" role="tab" data-tab="board" data-demo-action="tab" data-help="tabBoard" id="tab-board" aria-controls="workspace-board-container" aria-selected="false" data-i18n="tabBoard">Доска</button>
         </nav>
         <div class="session-side-pane workspace-panel" id="workspace-panel" role="tabpanel" aria-labelledby="tab-docs" tabindex="0"></div>
+        <div id="workspace-board-container" class="workspace-board-container" role="tabpanel" aria-labelledby="tab-board" tabindex="0" hidden></div>
       </aside>
     </main>
     <div class="sr-status visually-hidden" id="sr-status" aria-live="polite"></div>
@@ -101,6 +103,7 @@
   <script src="../vendor/oz_markdown_diagrams.js"></script>
   <script src="../vendor/oz_markdown.js"></script>
   <script src="workspace-demo-content.js"></script>
+  <script src="workspace-demo-right.js"></script>
   <script src="workspace-demo.js"></script>
 </body>
 </html>
