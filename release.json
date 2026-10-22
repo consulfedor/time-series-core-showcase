@@ -510,8 +510,8 @@
     "mytwobrain/workspace-board/fonts/Xiaolai/Xiaolai-Regular-f6032fc06eb20480f096199713f70885.woff2": "937b4d5222bb42c0e190a3f40a1aa9f984edcaa9e8d275e9d4bf1d88ef74754c",
     "mytwobrain/workspace-board/fonts/Xiaolai/Xiaolai-Regular-f8ee5d36068a42b51d0e4a1116cfcec1.woff2": "ae083037bfb691cf96205e109a287255f87a45a90848fe2a63cb0b3e7af3e904",
     "mytwobrain/workspace-board/workspace-board.html": "0b5e64b49b77c94568fe2eb1b5c2b6f82e5db201e376e567536209cc3481378b",
-    "dome-house/index.html": "68e67f3f6b476ef4d7127ca09cdf639e93a88c3a18483188cbeb7b5a37d48b80",
-    "dome-house/useful.html": "f3351c2fb6180e63b2158d4530b32f56ae5beae55a228b61b3062a1c94f62993",
+    "dome-house/index.html": "2f5eecf16a91be280455dbc8090648bf04b9767fbb050e30017797120510d782",
+    "dome-house/useful.html": "875dd380f46a7ccaf462b3c5f27aa61b29f9dc6ffe0dd9fd6d71f6aed4e5a410",
     "examples/data-pipeline.html": "44d741405a5aecb981d35448cce1719ee9b81a38951357cadd6f4fc957b560f3",
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
@@ -536,6 +536,53 @@
     "en/examples/research-foundations.html": "958716cf87d0dc174d405228981a087d97695f32419fdde68b5acd7bfb9cbf5f",
     "en/examples/dori.html": "a9e8358b2a1b54adad6a1dda7c3c58b8d4b12ddf26993da61bc87089ed5e56fd",
     "en/overview.html": "040537dec0c0dfd20ddded533f6f8779d164a7711e9520e9b48bc7d07b7b0ef0",
-    "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a"
+    "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a",
+    "dome-house/Конструкция_13м.dwg": "24e5df5d23996a7605509819ea622ece642786bc150dc9bfc5008fc44cca04b6",
+    "dome-house/Конструкция_13м.dxf": "d4f9a7f73b9e495710c8c695884974a0d948466b76ee5437047e2348debfceff",
+    "dome-house/Конструкция_13м.svg": "908b08fcbbd60610dcff9fac9875fda17c1d7818fb05601ded617d7f0d608d34"
+  },
+  "dome_house": {
+    "schema": "dome_bilingual_delivery_v1",
+    "published_source_utc": "2026-10-22T14:57:15.237800+00:00",
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "model_options": [
+      "roof",
+      "umbrella"
+    ],
+    "double_height_options": [
+      "heart",
+      "three",
+      "none"
+    ],
+    "drawings_correspond_to": "umbrella",
+    "authoring_sha256": {
+      "Просмотр_13м.html": "1a2219cf8d3cec05907e9471616a2dd2902772978c41d0b575285bbbd4fd4198",
+      "Useful.html": "5a164e31ec40597df36a7cbbbcae7fb7318eb29cce8afd95dcb240f0e500c080"
+    },
+    "outputs": {
+      "dome-house/index.html": {
+        "bytes": 11628092,
+        "sha256": "2f5eecf16a91be280455dbc8090648bf04b9767fbb050e30017797120510d782"
+      },
+      "dome-house/useful.html": {
+        "bytes": 187941,
+        "sha256": "875dd380f46a7ccaf462b3c5f27aa61b29f9dc6ffe0dd9fd6d71f6aed4e5a410"
+      },
+      "dome-house/Конструкция_13м.dwg": {
+        "bytes": 6832352,
+        "sha256": "24e5df5d23996a7605509819ea622ece642786bc150dc9bfc5008fc44cca04b6"
+      },
+      "dome-house/Конструкция_13м.dxf": {
+        "bytes": 14638979,
+        "sha256": "d4f9a7f73b9e495710c8c695884974a0d948466b76ee5437047e2348debfceff"
+      },
+      "dome-house/Конструкция_13м.svg": {
+        "bytes": 2764100,
+        "sha256": "908b08fcbbd60610dcff9fac9875fda17c1d7818fb05601ded617d7f0d608d34"
+      }
+    }
   }
 }
