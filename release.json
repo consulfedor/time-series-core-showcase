@@ -511,7 +511,7 @@
     "mytwobrain/workspace-board/fonts/Xiaolai/Xiaolai-Regular-f8ee5d36068a42b51d0e4a1116cfcec1.woff2": "ae083037bfb691cf96205e109a287255f87a45a90848fe2a63cb0b3e7af3e904",
     "mytwobrain/workspace-board/workspace-board.html": "0b5e64b49b77c94568fe2eb1b5c2b6f82e5db201e376e567536209cc3481378b",
     "dome-house/index.html": "2f5eecf16a91be280455dbc8090648bf04b9767fbb050e30017797120510d782",
-    "dome-house/useful.html": "875dd380f46a7ccaf462b3c5f27aa61b29f9dc6ffe0dd9fd6d71f6aed4e5a410",
+    "dome-house/useful.html": "945758ef314e9cf02e22406c902ae025d70b498a452386a2466a5da5752a545f",
     "examples/data-pipeline.html": "44d741405a5aecb981d35448cce1719ee9b81a38951357cadd6f4fc957b560f3",
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
@@ -543,7 +543,7 @@
   },
   "dome_house": {
     "schema": "dome_bilingual_delivery_v1",
-    "published_source_utc": "2026-10-22T14:57:15.237800+00:00",
+    "published_source_utc": "2026-10-22T16:46:14.881440+00:00",
     "languages": [
       "ru",
       "en"
@@ -560,7 +560,7 @@
     "drawings_correspond_to": "umbrella",
     "authoring_sha256": {
       "Просмотр_13м.html": "1a2219cf8d3cec05907e9471616a2dd2902772978c41d0b575285bbbd4fd4198",
-      "Useful.html": "5a164e31ec40597df36a7cbbbcae7fb7318eb29cce8afd95dcb240f0e500c080"
+      "Useful.html": "d043a565b70c1595e4be6a396c86c6296de6ae5b68ea4ee04a5499a247ef2a73"
     },
     "outputs": {
       "dome-house/index.html": {
@@ -568,8 +568,8 @@
         "sha256": "2f5eecf16a91be280455dbc8090648bf04b9767fbb050e30017797120510d782"
       },
       "dome-house/useful.html": {
-        "bytes": 187941,
-        "sha256": "875dd380f46a7ccaf462b3c5f27aa61b29f9dc6ffe0dd9fd6d71f6aed4e5a410"
+        "bytes": 198112,
+        "sha256": "945758ef314e9cf02e22406c902ae025d70b498a452386a2466a5da5752a545f"
       },
       "dome-house/Конструкция_13м.dwg": {
         "bytes": 6832352,
