@@ -330,6 +330,10 @@
       syncBoardLanguage();
     }
     if(state.tab==='docs'&&state.paneRef?.path===C.files.find(f=>f.id===state.doc)?.path){const ref=document.createElement('p');ref.id='doc-source-reference';ref.className='doc-source-reference';ref.textContent=t('dialogFileOrigin')+' '+state.paneRef.path+(state.paneRef.line?':'+state.paneRef.line+(state.paneRef.column?':'+state.paneRef.column:''):'');$('.document-address',p)?.insertAdjacentElement('afterend',ref);}
+    // Keep the outer Knowledge chooser in sync with the real inner workspace view.
+    if(parentOrigin&&window.parent!==window&&(state.tab==='board'||state.tab==='context')){
+      window.parent.postMessage({type:'portfolio-workspace-inner-view',view:state.tab==='board'?'board':state.context},parentOrigin);
+    }
   }
   function docs(){
     const keys=['viewer','edit','explorer','pane','original','translation'];
@@ -369,7 +373,22 @@
   function saveDraft(){const editor=$('#doc-editor');if(editor)state.edits[`${docLang()}:${state.doc}`]=editor.value;state.draft=$('#composer-input').value;const ti=$('#terminal-input');if(ti)state.terminalDraft=ti.value;if(state.surface==='dialog')state.dialogScroll=$('#chat-stream').scrollTop;}
   function setTab(tab,focusTab=false){if(!validTabs.includes(tab))return;saveDraft();state.tab=tab;renderWorkspace();if(focusTab)$(`#tab-${tab}`).focus();}
   function renderAll(){translateStatic();renderDialog();renderQueue();renderSessionHeader();if(state.surface==='terminal')renderTerminal();renderWorkspace();renderAttachments();renderComposer();$('#composer-input').value=state.draft;}
-  function setLanguage(lang){if(!['ru','en'].includes(lang)||lang===state.lang)return;saveDraft();state.lang=lang;hideTooltip();if($('#demo-dialog').open)closeModal();renderAll();syncBoardLanguage();}
+  function setLanguage(lang){
+    if(!['ru','en'].includes(lang)||lang===state.lang)return;
+    const soundDraft=state.scene==='alerts'&&$('#demo-dialog').open&&$('#bmMiniDoneSoundEnabled')
+      ?{enabled:$('#bmMiniDoneSoundEnabled').checked,name:$('#bmMiniDoneSoundSelect').value}:null;
+    saveDraft();state.lang=lang;hideTooltip();if($('#demo-dialog').open)closeModal();renderAll();syncBoardLanguage();
+    if(soundDraft){openSound();$('#bmMiniDoneSoundEnabled').checked=soundDraft.enabled;$('#bmMiniDoneSoundSelect').value=soundDraft.name;}
+    const tab=$(`#tab-${state.tab}`),tabs=$('#workspace-tabs');
+    if(tab&&tabs){
+      const box=tab.getBoundingClientRect(),rail=tabs.getBoundingClientRect();
+      if(box.left<rail.left)tabs.scrollLeft-=rail.left-box.left;
+      else if(box.right>rail.right)tabs.scrollLeft+=box.right-rail.right;
+    }
+    if(state.scene==='composer'&&state.surface==='dialog'){
+      const input=$('#composer-input');input.scrollIntoView({block:'start',behavior:'instant'});input.focus({preventScroll:true});
+    }
+  }
   function composerPending(){return state.profile.model!==state.runtimeProfile.model||state.profile.reasoning!==state.runtimeProfile.reasoning;}
   function composerModelLabel(value){return t(value==='deep'?'profileDeep':'profileBalanced');}
   function composerFeedback(key,error=false){state.composerFeedback={key,error};renderComposerFeedback();announce(t(key));}
@@ -552,9 +571,37 @@
   });
   $('#demo-dialog').addEventListener('cancel',e=>{e.preventDefault();closeModal();});$('#demo-dialog').addEventListener('click',e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeModal();}});
   let parentOrigin=null;try{parentOrigin=new URL(document.referrer).origin;}catch{/* An absent or invalid referrer keeps parent messages disabled. */}
-  window.addEventListener('message',event=>{if(event.source!==window.parent||!parentOrigin||event.origin!==parentOrigin||!event.data||typeof event.data!=='object')return;const data=event.data;if(data.type==='portfolio-demo-viewport'){applyVisibleViewport(data.top,data.height);return;}if(data.type==='portfolio-language'&&['ru','en'].includes(data.language)){setLanguage(data.language);return;}if(data.type!=='portfolio-demo-scene'||!['dialog','docs','memory','voice','ontology','terms','board'].includes(data.scene))return;saveDraft();state.scene=data.scene;document.body.dataset.scene=data.scene;switch(data.scene){case 'dialog':state.tab='docs';state.view='viewer';break;case 'docs':state.tab='docs';state.view='explorer';break;case 'memory':case 'ontology':case 'terms':state.tab='context';state.context=data.scene;break;case 'board':state.tab='board';break;case 'voice':state.tab='translation';state.doc='transcript';state.translated=false;break;}$('#demo-shell').classList.remove('dialog-only');renderWorkspace();});
+  window.addEventListener('message',event=>{
+    if(event.source!==window.parent||!parentOrigin||event.origin!==parentOrigin||!event.data||typeof event.data!=='object')return;
+    const data=event.data;
+    if(data.type==='portfolio-demo-viewport'){applyVisibleViewport(data.top,data.height);return;}
+    if(data.type==='portfolio-language'&&['ru','en'].includes(data.language)){setLanguage(data.language);return;}
+    if(data.type!=='portfolio-demo-scene'||!['dialog','composer','docs','agents','plan','memory','voice','ontology','terms','board','translation','alerts'].includes(data.scene))return;
+    saveDraft();closeModal();state.scene=data.scene;document.body.dataset.scene=data.scene;
+    if(['dialog','composer'].includes(data.scene))setSurface('dialog');
+    switch(data.scene){
+      case 'docs':state.tab='docs';state.view='explorer';break;
+      case 'agents':case 'plan':case 'board':state.tab=data.scene;break;
+      case 'memory':case 'ontology':case 'terms':state.tab='context';state.context=data.scene;break;
+      case 'translation':state.tab='translation';break;
+      case 'voice':state.tab='translation';state.doc='transcript';state.translated=false;break;
+      // Dialog, composer and attention work beside the current material.
+      // Navigating to them never replaces the selected file or local draft.
+    }
+    $('#demo-shell').classList.remove('dialog-only');renderWorkspace();
+    if(data.reveal)requestAnimationFrame(()=>{
+      if(state.scene!==data.scene)return;
+      const target=data.scene==='dialog'?$('.dialog-pane'):data.scene==='composer'?$('#composer-input')
+        :data.scene==='alerts'?$('.conversation-column'):$('#workspace-tabs');
+      target?.scrollIntoView({block:'start',behavior:'instant'});
+      if(target?.id==='workspace-tabs')$(`#tab-${state.tab}`)?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+      if(data.scene==='composer')target?.focus({preventScroll:true});
+      if(data.scene==='alerts')openSound();
+    });
+  });
   window.addEventListener('message',event=>{const child=$('#workspace-board-frame');if(!child||event.source!==child.contentWindow||!['null',location.origin].includes(event.origin)||event.data?.source!=='portfolio-board')return;if(event.data.type==='ready'){boardReady=true;syncBoardLanguage();}});
   right=window.WorkspaceDemoRight.create({state,C,t,help,esc,button,mdBox,docLang,docText,saveDraft,renderWorkspace,renderMarkdown,refreshHelp,openModal,closeModal,modalMarkdown,announce,chooseDoc});
   if(window.mermaid?.initialize)window.mermaid.initialize({startOnLoad:false,securityLevel:'strict',theme:'dark',themeVariables:{primaryColor:'#344727',primaryBorderColor:'#859768',primaryTextColor:'#e8e3ca',lineColor:'#b8ab78',secondaryColor:'#26351c',tertiaryColor:'#192614',background:'#182313',fontFamily:'system-ui'},flowchart:{htmlLabels:false,useMaxWidth:true}});
   document.body.dataset.scene=state.scene;renderAll();document.body.dataset.ready='true';requestVisibleViewport();
 })();
+

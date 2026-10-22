@@ -6,11 +6,12 @@
   const frame = $('#workspace-demo');
   const scenes = Object.freeze({
     dialog: 'dialog', docs: 'docs', memory: 'memory', voice: 'voice',
-    agents: 'dialog', plan: 'dialog', checks: 'dialog', history: 'dialog',
-    context: 'memory', translation: 'docs', board: 'memory',
+    agents: 'dialog', plan: 'dialog', composer: 'dialog', alerts: 'dialog',
+    checks: 'dialog', history: 'dialog', context: 'memory',
+    ontology: 'memory', terms: 'memory', translation: 'docs', board: 'memory',
   });
   const hasScene = name => Object.hasOwn(scenes, name);
-  let active = 'dialog', demoScene = 'dialog', lastHeight = 0;
+  let active = 'dialog', demoScene = 'dialog', demoReveal = false, lastHeight = 0;
   let language = document.documentElement.lang;
   const embedded = new URLSearchParams(location.search).get('embed') === '1';
 
@@ -27,13 +28,13 @@
   }
   function syncDemo() {
     postDemo('portfolio-language', {language: document.documentElement.lang});
-    postDemo('portfolio-demo-scene', {scene: demoScene});
+    postDemo('portfolio-demo-scene', {scene: demoScene, reveal: demoReveal});
     syncDemoViewport();
   }
-  function selectDemo(scene) {
-    if (demoScene === scene) return;
+  function selectDemo(scene, reveal = false) {
     demoScene = scene;
-    postDemo('portfolio-demo-scene', {scene});
+    demoReveal = reveal;
+    postDemo('portfolio-demo-scene', {scene, reveal});
   }
   frame?.addEventListener('load', syncDemo);
   window.addEventListener('scroll', syncDemoViewport, {passive: true});
@@ -51,18 +52,23 @@
     });
   }
 
-  function knowledgeView(name) {
-    if (!['ontology', 'terms', 'board'].includes(name)) return;
+  function reflectKnowledgeView(name) {
+    if (!['memory', 'ontology', 'terms', 'board'].includes(name)) return;
     document.querySelectorAll('[data-view]').forEach(button => {
       button.setAttribute('aria-pressed', String(button.dataset.view === name));
     });
     document.querySelectorAll('.knowledge-screen').forEach(figure => {
       figure.hidden = figure.id !== `screen-${name}`;
     });
-    selectDemo(name);
   }
 
-  function showScene(scene, focus = false) {
+  function knowledgeView(name, reveal = false) {
+    if (!['memory', 'ontology', 'terms', 'board'].includes(name)) return;
+    reflectKnowledgeView(name);
+    selectDemo(name, reveal);
+  }
+
+  function showScene(scene, focus = false, reveal = false) {
     if (!hasScene(scene)) return;
     active = scenes[scene];
     tabs.forEach(button => {
@@ -72,11 +78,17 @@
     });
     panels.forEach(panel => { panel.hidden = panel.id !== `panel-${active}`; });
     if (active === 'memory') {
-      const selected = scene === 'board' ? 'board'
-        : $('[data-view][aria-pressed="true"]')?.dataset.view || 'ontology';
-      knowledgeView(selected);
-    } else selectDemo(active);
+      const selected = ['ontology', 'terms', 'board'].includes(scene) ? scene : 'memory';
+      knowledgeView(selected, reveal);
+    } else selectDemo(['checks', 'history'].includes(scene) ? 'dialog' : scene, reveal);
     if (focus) $(`#tab-${active}`).focus();
+  }
+
+  // The Knowledge tab resumes its last view; an explicit URL selects exactly
+  // the named view. This keeps #memory distinct from #ontology and #board.
+  function tabRoute(name) {
+    return name === 'memory'
+      ? $('[data-view][aria-pressed="true"]')?.dataset.view || 'memory' : name;
   }
 
   function resolveRoute(name) {
@@ -99,7 +111,11 @@
   function navigate(name, {push = false, focus = false, scroll = false} = {}) {
     const route = resolveRoute(name);
     if (!route) return false;
-    showScene(route.scene);
+    const reveal = !route.target && Boolean(push || location.hash ||
+      new URLSearchParams(location.search).get('tab'));
+    // Preserve named inner scenes (for example #board) under the Knowledge tab.
+    // Normalizing to route.scene would silently reset the selected view to memory.
+    showScene(route.target ? route.scene : name, false, reveal);
     if (route.target) {
       const knowledge = route.target.closest('.knowledge-screen');
       if (knowledge) knowledgeView(knowledge.id.replace(/^screen-/, ''));
@@ -117,8 +133,9 @@
         }
         target.focus({preventScroll: true});
       }
-    } else if (focus) {
-      $(`#tab-${active}`).focus();
+    } else {
+      if (scroll) frame?.scrollIntoView({block: 'start'});
+      if (focus) $(`#tab-${active}`).focus({preventScroll: true});
     }
     if (push && location.protocol !== 'file:') {
       const url = new URL(location.href);
@@ -131,8 +148,8 @@
 
   document.addEventListener('click', event => {
     const button = event.target.closest('button');
-    if (button?.dataset.tab) navigate(button.dataset.tab, {push: true});
-    if (button?.dataset.view) knowledgeView(button.dataset.view);
+    if (button?.dataset.tab) navigate(tabRoute(button.dataset.tab), {push: true});
+    if (button?.dataset.view) navigate(button.dataset.view, {push: true});
     const link = event.target.closest('a[href]');
     if (link && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && event.button === 0) {
       const href = link.getAttribute('href');
@@ -162,17 +179,22 @@
       ArrowLeft: (index + tabs.length - 1) % tabs.length, Home: 0, End: tabs.length - 1}[event.key];
     if (next === undefined) return;
     event.preventDefault();
-    navigate(tabs[next].dataset.tab, {push: true, focus: true});
+    navigate(tabRoute(tabs[next].dataset.tab), {push: true, focus: true});
   }));
   const restoreRoute = () => navigate(locationRoute(), {scroll: Boolean(location.hash)});
   window.addEventListener('hashchange', restoreRoute);
   window.addEventListener('popstate', restoreRoute);
   window.addEventListener('message', event => {
     if (event.source === frame?.contentWindow &&
-        ['null', location.origin].includes(event.origin) &&
-        event.data?.type === 'portfolio-demo-viewport-request') {
-      syncDemoViewport();
-      return;
+        ['null', location.origin].includes(event.origin)) {
+      if (event.data?.type === 'portfolio-demo-viewport-request') {
+        syncDemoViewport();
+        return;
+      }
+      if (event.data?.type === 'portfolio-workspace-inner-view') {
+        reflectKnowledgeView(event.data.view);
+        return;
+      }
     }
     if (window === parent || event.source !== parent || event.origin !== location.origin ||
         event.data?.type !== 'portfolio-workspace-scene' || !hasScene(event.data.scene)) return;
@@ -213,4 +235,5 @@
   observe();
   syncDemo();
 })();
+
 
