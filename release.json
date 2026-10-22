@@ -43,7 +43,7 @@
   },
   "home": {
     "kind": "causal_product_map",
-    "source_sha256": "424c81c5db7bf769f56be82c3e0805137c22beefce293d487fe19a146f52b1fb",
+    "source_sha256": "306651be5ee39eec04c79797ac7d7887fa2dd3c0bbc692ac1478868e99f29257",
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
@@ -132,7 +132,7 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "dc5b8fa14da7530b78067617f3819b2ae534d1b587ef5d272c6f124f666348f7",
-    "index.html": "c7179638fe1193765dade1c8c6eef6d34459b753cb78ca94c856a189f9a06174",
+    "index.html": "ae521dfd860f8db4a7995d01968b4521cad8cd219788d75c352024dc91b2251d",
     "mytwobrain/workspace.html": "b657c0786a386fa8da35b94c7191c123e4230dde241fe6073a0e34ed9ad20b49",
     "mytwobrain/workspace.js": "51516088b5d81fb232847aec8f7b4d4de2c30d5a1621c6b79f593a914df6b64e",
     "mytwobrain/workspace-demo.html": "7b47c273ced996a71eed160fc1a04108aefc788e0503141765a664f9cd5a566b",
@@ -529,7 +529,7 @@
     "overview.html": "ae531a835deaefd4e873e9103e26ffdb266b71444b7776c727166cc970484423",
     "examples/dori.html": "c38b6b3e215738c5edf82a7a3c01b8acc6c3b0c9c165f76444ce6b6c0132f745",
     "favicon.svg": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
-    "en/index.html": "4a65d5b4fee258d0dc8c44b29f07818a82bc3f33e406917e60ac7a1e917b4c24",
+    "en/index.html": "642d62df5743fc08b5eda3a3d69ab5684d2f03b44d8a3108a9fe5c1c368a73da",
     "en/mytwobrain/index.html": "4b55e9ba80623b6fe6d6deecb64d79b917d23565a6c7d8648d1bdadd788d127c",
     "en/cv/index.html": "52d11d6ece7a491ab681e9aeb7c5385e8f313ec0528adbed67d8cadeac2ff65e",
     "en/fact-to-decision/index.html": "ca806d0010643093af76223484f964b5e043cb014377dd7f8de0a6407b87e7b3",
