@@ -591,11 +591,9 @@
     $('#demo-shell').classList.remove('dialog-only');renderWorkspace();
     if(data.reveal)requestAnimationFrame(()=>{
       if(state.scene!==data.scene)return;
-      const target=data.scene==='dialog'?$('.dialog-pane'):data.scene==='composer'?$('#composer-input')
-        :data.scene==='alerts'?$('.conversation-column'):$('#workspace-tabs');
-      target?.scrollIntoView({block:'start',behavior:'instant'});
-      if(target?.id==='workspace-tabs')$(`#tab-${state.tab}`)?.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
-      if(data.scene==='composer')target?.focus({preventScroll:true});
+      // Scrolling an element in a sandboxed iframe also moves the portfolio
+      // page. The parent owns global navigation; the demo owns only its panes.
+      if(data.scene==='composer')$('#composer-input')?.focus({preventScroll:true});
       if(data.scene==='alerts')openSound();
     });
   });

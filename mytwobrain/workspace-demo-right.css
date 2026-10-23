@@ -101,3 +101,35 @@
   .r47-agent-table td:first-child{position:static}
   .r47-agent-table th:first-child{left:auto}
 }
+
+/* The demo is a single viewport, not a separately scrolling page. Only
+   content panes (dialogue, file list, preview) own vertical scrolling. */
+html,body{height:100%;min-height:0;overflow:hidden}
+.demo-shell{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.demo-notice{flex:0 0 auto}
+.session-layout{flex:1 1 auto;min-height:0;overflow:hidden}
+.conversation-column{min-height:0;overflow:hidden}
+.dialog-pane{flex:1 1 auto;min-height:0}
+.dialog-pane .chat-stream{height:auto;min-height:0;flex:1 1 auto;overflow-y:auto}
+.composer-pane{flex:0 0 auto}
+.workspace-pane{height:100%;min-height:0;display:flex;flex-direction:column}
+.workspace-panel{flex:1 1 auto;min-height:0;overflow:hidden}
+.r47-explorer{min-height:0}
+.r47-explorer-layout,.r47-explorer-layout.pane-open{min-height:0;max-height:none;flex:1 1 auto;overflow:hidden}
+.r47-file-list,.r47-preview-body{min-height:0;overscroll-behavior:contain}
+.workspace-board-container,#workspace-board-frame{min-height:0;height:100%}
+@media(max-width:1100px){
+  .session-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1.1fr) minmax(0,1fr)}
+  .workspace-pane{height:auto;min-height:0}
+}
+@media(max-width:760px){
+  .session-layout{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1.1fr) minmax(0,1fr)}
+  .workspace-pane{height:auto;min-height:0}
+  .pane-content{min-height:0;max-height:none;overflow:auto}
+  .r47-explorer-layout,.r47-explorer-layout.pane-open{min-height:0;max-height:none}
+}
+@media(max-width:520px){
+  .r47-explorer-layout.pane-open{grid-template-rows:minmax(0,1fr) minmax(0,1.1fr);overflow:hidden}
+  .r47-preview-pane{min-height:0}
+  .r47-file-list,.r47-preview-body{max-height:none}
+}
