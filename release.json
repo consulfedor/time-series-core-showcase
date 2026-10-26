@@ -42,8 +42,13 @@
     }
   },
   "home": {
-    "kind": "causal_product_map",
-    "source_sha256": "bcabdd4297fa5d09fb9dd3513a6473eb87e27d6ed9637bb69afa9c3f12410553",
+    "kind": "accepted_symbiotic_home",
+    "source_sha256": "212e8efd367be2c64bf750ccebc9806fb2b073e0074e6f55a20b4f691a92e79a",
+    "authoring": "_maintenance/home-current/template.html",
+    "languages": [
+      "ru",
+      "en"
+    ],
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
@@ -132,7 +137,10 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "dc5b8fa14da7530b78067617f3819b2ae534d1b587ef5d272c6f124f666348f7",
-    "index.html": "e26903a60ade60b5d633d96065c0348f6cdae357b38e802a01de9e73ac022d29",
+    "index.html": "9de55ea1307b0c10b26e6a91c7dbb65fe1c7558f5855cbe21be3b8290116cf13",
+    "en/index.html": "f47871597df764595d1fd9570b5178fc2c967d963c0bb0ccfc4d83cbf0168447",
+    "home-v2.css": "62cd352c102996e7f18ccded284c834a37a9cac492df4523a2bcbba79789a779",
+    "home-v2.js": "2cf9ce33607ac5e0ddddcea7622aaeee72af5154d4c4faa193ad5f6af3ff93ad",
     "mytwobrain/workspace.html": "acb34b40be51203a77515d383a2c5d6d7de02238691b39db7592d272bf1d9e7e",
     "mytwobrain/workspace.js": "27bac9e46d154aa110624ce48dedef674cc5ac6440fb329ca19519866ae8c90b",
     "mytwobrain/workspace-demo.html": "8c206988dd52047f5a2c374640c1f432ebc625cdd9a38c9454099a4db13d6bff",
@@ -512,9 +520,6 @@
     "mytwobrain/workspace-board/workspace-board.html": "0b5e64b49b77c94568fe2eb1b5c2b6f82e5db201e376e567536209cc3481378b",
     "dome-house/index.html": "2f5eecf16a91be280455dbc8090648bf04b9767fbb050e30017797120510d782",
     "dome-house/useful.html": "945758ef314e9cf02e22406c902ae025d70b498a452386a2466a5da5752a545f",
-    "dome-house/Конструкция_13м.dwg": "24e5df5d23996a7605509819ea622ece642786bc150dc9bfc5008fc44cca04b6",
-    "dome-house/Конструкция_13м.dxf": "d4f9a7f73b9e495710c8c695884974a0d948466b76ee5437047e2348debfceff",
-    "dome-house/Конструкция_13м.svg": "908b08fcbbd60610dcff9fac9875fda17c1d7818fb05601ded617d7f0d608d34",
     "examples/data-pipeline.html": "44d741405a5aecb981d35448cce1719ee9b81a38951357cadd6f4fc957b560f3",
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
@@ -529,7 +534,6 @@
     "overview.html": "ae531a835deaefd4e873e9103e26ffdb266b71444b7776c727166cc970484423",
     "examples/dori.html": "c38b6b3e215738c5edf82a7a3c01b8acc6c3b0c9c165f76444ce6b6c0132f745",
     "favicon.svg": "f472a41ed7cca6458e9757f55364e1e0ead7493c5db364785120e8a1f0591ea4",
-    "en/index.html": "785a95e1028d37f607a2cf172a64593aca9b9909f5ac2c6fc0e9014b4aec3ba2",
     "en/mytwobrain/index.html": "4b55e9ba80623b6fe6d6deecb64d79b917d23565a6c7d8648d1bdadd788d127c",
     "en/cv/index.html": "52d11d6ece7a491ab681e9aeb7c5385e8f313ec0528adbed67d8cadeac2ff65e",
     "en/fact-to-decision/index.html": "ca806d0010643093af76223484f964b5e043cb014377dd7f8de0a6407b87e7b3",
@@ -540,5 +544,12 @@
     "en/examples/dori.html": "a9e8358b2a1b54adad6a1dda7c3c58b8d4b12ddf26993da61bc87089ed5e56fd",
     "en/overview.html": "040537dec0c0dfd20ddded533f6f8779d164a7711e9520e9b48bc7d07b7b0ef0",
     "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a"
+  },
+  "publication_scope": "approved_home_r27_only",
+  "retained_unpublished": {
+    "mytwobrain/workspace-demo.css": "4c9352e5237609ece756932ec5a2b83dd284f8d300f4897f7486f6e22dd4fdd4",
+    "mytwobrain/workspace-demo.js": "01baa9c89e10505f661e6c61f9144ca5efdd8b14bb413693be9f1a88115a0056",
+    "examples/research-foundations.html": "e5e88dfb0118358dc7986f26ff97fb9293f0d60afc52bac98ef13185932ffd7a",
+    "en/examples/research-foundations.html": "958716cf87d0dc174d405228981a087d97695f32419fdde68b5acd7bfb9cbf5f"
   }
 }
