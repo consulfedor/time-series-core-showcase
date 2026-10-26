@@ -379,12 +379,6 @@
       ?{enabled:$('#bmMiniDoneSoundEnabled').checked,name:$('#bmMiniDoneSoundSelect').value}:null;
     saveDraft();state.lang=lang;hideTooltip();if($('#demo-dialog').open)closeModal();renderAll();syncBoardLanguage();
     if(soundDraft){openSound();$('#bmMiniDoneSoundEnabled').checked=soundDraft.enabled;$('#bmMiniDoneSoundSelect').value=soundDraft.name;}
-    const tab=$(`#tab-${state.tab}`),tabs=$('#workspace-tabs');
-    if(tab&&tabs){
-      const box=tab.getBoundingClientRect(),rail=tabs.getBoundingClientRect();
-      if(box.left<rail.left)tabs.scrollLeft-=rail.left-box.left;
-      else if(box.right>rail.right)tabs.scrollLeft+=box.right-rail.right;
-    }
     if(state.scene==='composer'&&state.surface==='dialog'){
       const input=$('#composer-input');input.scrollIntoView({block:'start',behavior:'instant'});input.focus({preventScroll:true});
     }

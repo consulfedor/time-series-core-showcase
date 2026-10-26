@@ -144,8 +144,8 @@
     "mytwobrain/workspace.html": "acb34b40be51203a77515d383a2c5d6d7de02238691b39db7592d272bf1d9e7e",
     "mytwobrain/workspace.js": "27bac9e46d154aa110624ce48dedef674cc5ac6440fb329ca19519866ae8c90b",
     "mytwobrain/workspace-demo.html": "8c206988dd52047f5a2c374640c1f432ebc625cdd9a38c9454099a4db13d6bff",
-    "mytwobrain/workspace-demo.css": "4c9352e5237609ece756932ec5a2b83dd284f8d300f4897f7486f6e22dd4fdd4",
-    "mytwobrain/workspace-demo.js": "01baa9c89e10505f661e6c61f9144ca5efdd8b14bb413693be9f1a88115a0056",
+    "mytwobrain/workspace-demo.css": "e771da77db5efd2b73a0866af2da6fa2fc0444dc73e7a253995e55183e65a238",
+    "mytwobrain/workspace-demo.js": "28cb7f320d0a9f36b18c81f38e2d28faa12bbfcb10c910bf2c3319241c1fefb9",
     "mytwobrain/workspace-demo-content.js": "b681506e1631003ad4bb24152bc255592d536f263144e2a2ec499ac1e213d86d",
     "mytwobrain/workspace-demo-right.js": "061fb55ed4a2fcc33eaebbb5afbbb3f21af5f40142208a2b53303efc88db50e5",
     "mytwobrain/workspace-demo-right.css": "88a6e861fbc97356f142bf45b1f0e94d582d1136986853d6dce6eda11d6c3557",
@@ -537,7 +537,7 @@
     "en/mytwobrain/index.html": "4b55e9ba80623b6fe6d6deecb64d79b917d23565a6c7d8648d1bdadd788d127c",
     "en/cv/index.html": "52d11d6ece7a491ab681e9aeb7c5385e8f313ec0528adbed67d8cadeac2ff65e",
     "en/fact-to-decision/index.html": "ca806d0010643093af76223484f964b5e043cb014377dd7f8de0a6407b87e7b3",
-    "en/mytwobrain/workspace.html": "9fcda17808636d5b7918ea95b517edb8dd0acaa1ec2a2b9c428f16a862a8325c",
+    "en/mytwobrain/workspace.html": "57a1d89685a5ea20bf9d6aed742dead372f7f6dd9f7325ddf2c85dff5f0da1bf",
     "en/examples/data-pipeline.html": "34fd89311c1e65b740de5cf6e6aeedbc31290f7a6e7a00d54364b5af0ce5f9be",
     "en/examples/analytics.html": "ff3af202bbf3f59c804fabee81e659efe18f6edfbb15e0b255e6468a59ae202d",
     "en/examples/research-foundations.html": "557ae1d1a9ede06839b2e0d369dffceba2dade37f52628024cc33e78c344b1fe",
@@ -545,9 +545,6 @@
     "en/overview.html": "040537dec0c0dfd20ddded533f6f8779d164a7711e9520e9b48bc7d07b7b0ef0",
     "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a"
   },
-  "publication_scope": "approved_wiki_roster_29_people_6_groups_only",
-  "retained_unpublished": {
-    "mytwobrain/workspace-demo.css": "4c9352e5237609ece756932ec5a2b83dd284f8d300f4897f7486f6e22dd4fdd4",
-    "mytwobrain/workspace-demo.js": "01baa9c89e10505f661e6c61f9144ca5efdd8b14bb413693be9f1a88115a0056"
-  }
+  "publication_scope": "approved_workspace_tabs_w07_only",
+  "retained_unpublished": {}
 }
