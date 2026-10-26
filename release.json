@@ -517,9 +517,9 @@
     "mytwobrain/workspace-board/fonts/Xiaolai/Xiaolai-Regular-f5d079153c99a25b9be5b8583c4cc8a7.woff2": "b8ec5b4516ddc269a99f306b9d63ff0bdecd37a800736cd0eab28f254291b15e",
     "mytwobrain/workspace-board/fonts/Xiaolai/Xiaolai-Regular-f6032fc06eb20480f096199713f70885.woff2": "937b4d5222bb42c0e190a3f40a1aa9f984edcaa9e8d275e9d4bf1d88ef74754c",
     "mytwobrain/workspace-board/fonts/Xiaolai/Xiaolai-Regular-f8ee5d36068a42b51d0e4a1116cfcec1.woff2": "ae083037bfb691cf96205e109a287255f87a45a90848fe2a63cb0b3e7af3e904",
-    "mytwobrain/workspace-board/workspace-board.html": "0b5e64b49b77c94568fe2eb1b5c2b6f82e5db201e376e567536209cc3481378b",
-    "dome-house/index.html": "2f5eecf16a91be280455dbc8090648bf04b9767fbb050e30017797120510d782",
-    "dome-house/useful.html": "945758ef314e9cf02e22406c902ae025d70b498a452386a2466a5da5752a545f",
+    "mytwobrain/workspace-board/workspace-board.html": "79a13ee3e1b4e82c3c511c15d17cda911c65ff173df9e9a3ba8c33160d4915f4",
+    "dome-house/index.html": "743571f582b54ad8856c50aeb82e889ffd7e593dc05a056f6c54050c67556633",
+    "dome-house/useful.html": "545113f36b03342b51f625e940abcaecfbf994b16350162cc186822b2b1d6e56",
     "examples/data-pipeline.html": "44d741405a5aecb981d35448cce1719ee9b81a38951357cadd6f4fc957b560f3",
     "portfolio-value.css": "a25a7de3bed647613864d1fecd4f1364514c735622602eb7b14bdbc0d9868051",
     "portfolio-value.js": "1b827c677af79ae039d77b543481c01535b1352564c003326ed080632becce29",
@@ -545,6 +545,6 @@
     "en/overview.html": "040537dec0c0dfd20ddded533f6f8779d164a7711e9520e9b48bc7d07b7b0ef0",
     "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a"
   },
-  "publication_scope": "approved_workspace_tabs_w07_only",
+  "publication_scope": "approved_portfolio_identity_u04_only",
   "retained_unpublished": {}
 }
