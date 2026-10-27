@@ -43,7 +43,7 @@
   },
   "home": {
     "kind": "accepted_symbiotic_home",
-    "source_sha256": "212e8efd367be2c64bf750ccebc9806fb2b073e0074e6f55a20b4f691a92e79a",
+    "source_sha256": "b59241b2829cc2be31a0969f2ed7977676bee9162cb41849139bad18eac128de",
     "authoring": "_maintenance/home-current/template.html",
     "languages": [
       "ru",
@@ -100,7 +100,7 @@
   "mytwobrain": {
     "kind": "bottom_up_structure_v1",
     "stage": "E1_composition",
-    "source_sha256": "e934461f64a12367c55c0b5e525318421faebbe467275765768386a9624977cb",
+    "source_sha256": "1bb3af9e102d21d235c705a4e3dc997e867ae10fbae09e1aef8aa5e185f516d3",
     "structure_sha256": "cf8b5efd6de29fd81776f83f5dbd376d70d3817bdfcbb36cdbdaa35fee9ebd75",
     "counts": {
       "systems": 14,
@@ -137,10 +137,10 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "dc5b8fa14da7530b78067617f3819b2ae534d1b587ef5d272c6f124f666348f7",
-    "index.html": "eaf3c969e9cef30495caaae02de8f40787fe07e940e211efdea3b5cac5f24916",
-    "en/index.html": "14bda809383b113a6822053c251d5507eadb39b7a4cf6f90df2c04807605b792",
-    "home-v2.css": "62cd352c102996e7f18ccded284c834a37a9cac492df4523a2bcbba79789a779",
-    "home-v2.js": "2cf9ce33607ac5e0ddddcea7622aaeee72af5154d4c4faa193ad5f6af3ff93ad",
+    "index.html": "e9789a41e63eda510925e9a7e4a82e7d40b1f44a1473722367eebc1b8711e832",
+    "en/index.html": "cedc52eba2709c8b13f7d9caeebfc4842f4db993ceea097f772f8d2c628fb2d5",
+    "home-v2.css": "09cf599c669e2d5011c72c71e6ffc9562e9d6787726faf5dca5ebe0b22db8485",
+    "home-v2.js": "06f810f6ebad0da92e60063c0e03d179b3d99c805d6fca74d60d90c3ec6d9771",
     "mytwobrain/workspace.html": "acb34b40be51203a77515d383a2c5d6d7de02238691b39db7592d272bf1d9e7e",
     "mytwobrain/workspace.js": "27bac9e46d154aa110624ce48dedef674cc5ac6440fb329ca19519866ae8c90b",
     "mytwobrain/workspace-demo.html": "8c206988dd52047f5a2c374640c1f432ebc625cdd9a38c9454099a4db13d6bff",
@@ -545,6 +545,6 @@
     "en/overview.html": "040537dec0c0dfd20ddded533f6f8779d164a7711e9520e9b48bc7d07b7b0ef0",
     "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a"
   },
-  "publication_scope": "approved_memory_uq10_semantics_only",
+  "publication_scope": "approved_home_r29_only",
   "retained_unpublished": {}
 }

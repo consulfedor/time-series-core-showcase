@@ -25,6 +25,103 @@
       }
     });
   }
+  const attention = document.querySelector('[data-attention-model]');
+  if (attention) {
+    const choices = [...attention.querySelectorAll('[data-attention-item]')];
+    const readout = attention.querySelector('[data-attention-readout]');
+    const reset = attention.querySelector('[data-attention-reset]');
+    const core = attention.querySelector('[data-attention-core]');
+    const labels = lang === "ru" ? {
+      intention: 'Намерение задаёт направление: какое целое хотим получить и ради чего.',
+      experience: 'Опыт возвращает проверенное: что уже получилось и какой урок применим сейчас.',
+      knowledge: 'Знания дают основания: понятия, связи и способы разобраться в вопросе.',
+      questions: 'Вопросы обнаруживают недостающее: что узнать или проверить перед следующим шагом.',
+      whole: 'Важное — то, что приближает к желаемому целому. Сопоставляем намерение, опыт, знания и вопросы, чтобы выбрать следующий осмысленный шаг.'
+    } : {
+      intention: 'Intention sets the direction: what whole do we want to create, and why?',
+      experience: 'Experience brings back tested results: what worked and what we can apply now.',
+      knowledge: 'Knowledge provides foundations: concepts, relationships and ways to understand the question.',
+      questions: 'Questions reveal what is missing: what needs to be learned or checked before the next step.',
+      whole: 'What matters brings us closer to the desired whole. We compare intention, experience, knowledge and questions to choose a meaningful next step.'
+    };
+    const initial = readout.textContent;
+    let selected = '';
+    const select = id => {
+      selected = selected === id ? '' : id;
+      attention.dataset.attentionSelected = selected;
+      for (const choice of choices) {
+        choice.setAttribute('aria-pressed', String(choice.dataset.attentionItem === selected));
+      }
+      core?.setAttribute('aria-pressed',String(selected === 'whole'));
+      readout.textContent = selected ? labels[selected] : initial;
+      reset.hidden = !selected;
+    };
+    if(core){
+      const activate=()=>{
+        select('whole');
+        core.classList.remove('is-pulsing');
+        void core.offsetWidth;
+        core.classList.add('is-pulsing');
+      };
+      core.addEventListener('click',activate);
+      core.addEventListener('keydown',event=>{
+        if(event.key==='Enter'||event.key===' '){event.preventDefault();activate();}
+      });
+      core.addEventListener('animationend',()=>core.classList.remove('is-pulsing'));
+    }
+    choices.forEach((choice, i) => {
+      choice.addEventListener('click', () => select(choice.dataset.attentionItem));
+      choice.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault(); select(choice.dataset.attentionItem);
+        } else if (['ArrowRight', 'ArrowDown', 'ArrowLeft', 'ArrowUp'].includes(event.key)) {
+          event.preventDefault();
+          const step = ['ArrowRight', 'ArrowDown'].includes(event.key) ? 1 : -1;
+          choices[(i + step + choices.length) % choices.length].focus({preventScroll:true});
+        } else if (event.key === 'Escape') {
+          event.preventDefault(); selected = ''; select('');
+        }
+      });
+    });
+    reset.addEventListener('click', () => {
+      const prior = selected==='whole'?core:choices.find(choice => choice.dataset.attentionItem === selected);
+      selected = ''; select(''); prior?.focus({preventScroll:true});
+    });
+    attention.addEventListener('keydown', event => {
+      if(event.key === 'Escape' && selected){selected='';select('');}
+    });
+  }
+  const methodDialog=document.getElementById('series-gpc-dialog');
+  if(methodDialog){
+    let opener=null;
+    const show=(origin)=>{
+      if(methodDialog.open)return;
+      opener=origin||document.activeElement;
+      methodDialog.showModal();
+      document.body.classList.add('mtb-method-dialog-open');
+      methodDialog.querySelector('[data-gpc-close]')?.focus({preventScroll:true});
+    };
+    document.querySelectorAll('[data-gpc-open]').forEach(link=>link.addEventListener('click',event=>{
+      event.preventDefault();show(link);
+    }));
+    const hide=()=>{
+      methodDialog.close();
+      // Unlock synchronously, not only in the browser's deferred close event.
+      document.body.classList.remove('mtb-method-dialog-open');
+    };
+    methodDialog.querySelector('[data-gpc-close]')?.addEventListener('click',hide);
+    methodDialog.addEventListener('cancel',event=>{event.preventDefault();hide();});
+    methodDialog.addEventListener('click',event=>{
+      if(event.target!==methodDialog)return;
+      const rect=methodDialog.getBoundingClientRect();
+      if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)hide();
+    });
+    methodDialog.addEventListener('close',()=>{
+      document.body.classList.remove('mtb-method-dialog-open');
+      if(opener?.isConnected)opener.focus({preventScroll:true});
+    });
+    window.MTBHomeDialogs={open:(dialog,origin)=>{if(dialog===methodDialog)show(origin);}};
+  }
   const graph = document.getElementById("graph");
   const info = {
     human: {
@@ -269,21 +366,6 @@
       anchor.href = target.pathname + target.search + target.hash;
     });
   });
-  if (current.searchParams.get("review") === "changes") {
-    document.body.classList.add("review-changes");
-    const toolbar = document.createElement("aside");
-    toolbar.className = "editorial-diff";
-    toolbar.setAttribute("aria-label",lang === "en" ? "What changed" : "Что изменилось");
-    const title = document.createElement("strong");
-    title.textContent = lang === "en" ? "Revision · what changed" : "Редакция · что изменилось";
-    const text = document.createElement("p");
-    text.textContent = lang === "en"
-      ? "The accepted edition remains available as history. The new Home follows one Symbiotic Self process, selects what is relevant and then best suited to the goal, and links to Semantic islands in the existing memory system. It also shows a grounded workspace example and evidence-led work."
-      : "Прежняя редакция доступна в истории. Новая Главная показывает единый процесс Симбиотического Я, выбор из доступного релевантного и лучшего для цели, Семантические острова внутри существующей системы памяти, рабочий пример и результаты с основаниями.";
-    const a = document.createElement("a");
-    a.href = (lang === "en" ? "/en/" : "/") + "?review=baseline";
-    a.textContent = lang === "en" ? "Historical baseline ↗" : "Историческая основа ↗";
-    toolbar.append(title,text,a);
-    document.body.append(toolbar);
-  }
+  // ?review=changes is owned by the private review server's evidence-backed
+  // comparison UI. Never invent a generic second 'what changed' notice here.
 })();
