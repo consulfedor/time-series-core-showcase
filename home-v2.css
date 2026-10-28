@@ -147,7 +147,7 @@
 .meaning-footnote strong{color:#f5d59d;font-weight:700;white-space:nowrap}
 .focus-core>span{font-size:9px;max-width:165px;line-height:1.3}
 .focus-core small{max-width:175px}
-[data-attention-model].meaning-visual{min-height:600px}
+[data-attention-model].meaning-visual{min-height:600px;-webkit-tap-highlight-color:transparent}
 [data-attention-model] .focus-orbit{cursor:pointer;transition:background .18s,border-color .18s,box-shadow .18s,transform .18s;outline-offset:4px;user-select:none}
 [data-attention-model] .focus-orbit:hover,[data-attention-model] .focus-orbit:focus-visible{border-color:#e6ca91;box-shadow:0 0 22px #c8a25665;transform:translateY(-3px)}
 [data-attention-model] .focus-orbit[aria-pressed=true]{background:#5b452b;border-color:#f0cf8c;box-shadow:0 0 30px #d8b56b65;color:#fff0ce}
