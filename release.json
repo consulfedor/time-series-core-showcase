@@ -43,12 +43,20 @@
   },
   "home": {
     "kind": "accepted_symbiotic_home",
-    "source_sha256": "b59241b2829cc2be31a0969f2ed7977676bee9162cb41849139bad18eac128de",
+    "source_sha256": "022819784c2bcd362871bc6f20d4438fa60e8e108123d17a2e30fb7c0ee33e50",
     "authoring": "_maintenance/home-current/template.html",
     "languages": [
       "ru",
       "en"
     ],
+    "typography": {
+      "family": "Golos Text",
+      "grammar": "Rhythm; role-specific headings, text and model surfaces",
+      "font_sha256": "17bb58fb69aec2dfb047a2ebf52534023e9b688c97a6b7ac795b0a72912c2063",
+      "license_sha256": "ff532f9e8789f09a9fdffc3c0954eedfb0a48be77b2e2eb90f5f82e4f347f50c",
+      "delivery": "unmodified font embedded in immutable CSS with OFL license",
+      "external_font_requests": false
+    },
     "model_owner": "PORTFOLIO_REQUIREMENTS_RU.md#full-harness-graph",
     "semantic_graph_sha256": "ed50c19b5163b5fe701ec97e41ec499b4e0df70e82fd77740518a180002b1c93",
     "h00_authoring_sha256": {
@@ -137,9 +145,9 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "dc5b8fa14da7530b78067617f3819b2ae534d1b587ef5d272c6f124f666348f7",
-    "index.html": "e9789a41e63eda510925e9a7e4a82e7d40b1f44a1473722367eebc1b8711e832",
-    "en/index.html": "cedc52eba2709c8b13f7d9caeebfc4842f4db993ceea097f772f8d2c628fb2d5",
-    "home-v2.css": "d8ff9fd1a9438d0c0d8ac08a6c01720d4ad58d80dcb98fdfabf36039a163a87f",
+    "index.html": "c7ef29f7a5fb8d41e79fad22583647470f72b8f44bf9acfbbde456c1b7b819f8",
+    "en/index.html": "444218107d235426087bb66877167098025464533dc3888ed4d80780abfd6b8c",
+    "home-v2.css": "d0e7227f4c375c654e3958cd07303a9099b689b0bf8f9e75cf1c8126d9422b0c",
     "home-v2.js": "06f810f6ebad0da92e60063c0e03d179b3d99c805d6fca74d60d90c3ec6d9771",
     "mytwobrain/workspace.html": "acb34b40be51203a77515d383a2c5d6d7de02238691b39db7592d272bf1d9e7e",
     "mytwobrain/workspace.js": "27bac9e46d154aa110624ce48dedef674cc5ac6440fb329ca19519866ae8c90b",
@@ -545,6 +553,9 @@
     "en/overview.html": "040537dec0c0dfd20ddded533f6f8779d164a7711e9520e9b48bc7d07b7b0ef0",
     "sitemap.xml": "d9f192a15a024486acd30c399308e520e837d78f87b206dff7c46d3f0e2ea10a"
   },
-  "publication_scope": "approved_home_r29_only",
-  "retained_unpublished": {}
+  "publication_scope": "approved_home_r33_only",
+  "retained_unpublished": {
+    "examples/research-foundations.html": "595ce519bfba57b169ea75a7cb98f17b610a6d0d2784293ce5c27cfb6c8561c4",
+    "en/examples/research-foundations.html": "557ae1d1a9ede06839b2e0d369dffceba2dade37f52628024cc33e78c344b1fe"
+  }
 }
