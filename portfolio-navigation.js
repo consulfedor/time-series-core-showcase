@@ -10,7 +10,7 @@
  const isDome=header.dataset.route.startsWith('dome-house/');
  if(isDome&&params.get('lang')==='en'){
   header.querySelectorAll('[data-portfolio-language]').forEach(a=>{if(a.dataset.portfolioLanguage==='en')a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-  header.querySelector('.portfolio-nav-brand span').textContent='Fedor';
+  header.querySelector('.portfolio-nav-brand span').textContent='MyTwoBrain';
   const paths=['','mytwobrain/','examples/research-foundations.html','cv/'];
   const labels=['Home','Systems','People','CV'];
   header.querySelectorAll('[data-portfolio-destination]').forEach((a,i)=>{a.textContent=labels[i];a.href=header.dataset.base+'en/'+paths[i];});
