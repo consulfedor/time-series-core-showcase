@@ -38,5 +38,12 @@ html[data-portfolio-embedded=true] .portfolio-nav{display:none!important}
 html[data-portfolio-embedded=true] body{padding-top:0!important}
 @media(max-width:740px){:root{--portfolio-nav-height:104px}.portfolio-nav-inner{gap:6px 10px;min-height:104px;padding:7px 12px;flex-wrap:wrap}.portfolio-nav-brand img{width:27px;height:27px}.portfolio-nav .portfolio-nav-brand{font-size:13px}.portfolio-nav nav{order:3;width:100%;justify-content:space-between;gap:8px;font-size:13px}.portfolio-nav-tools{gap:7px;padding-left:9px;font-size:12px}.portfolio-nav summary{width:28px;height:36px;padding:0}.portfolio-nav a{min-height:34px}.portfolio-nav .portfolio-section-menu a{min-height:46px}}
 @media(pointer:coarse){.portfolio-section-action{opacity:1}}
+@media(max-width:740px){
+ .portfolio-nav-inner{padding-inline:max(18px,env(safe-area-inset-left)) max(18px,env(safe-area-inset-right))}
+ .portfolio-nav nav{min-width:0;gap:4px}
+ .portfolio-nav-entry>a{min-width:44px;min-height:44px;justify-content:center}
+ .portfolio-nav summary{width:44px;height:44px}
+ .portfolio-nav details>div.portfolio-section-menu,.portfolio-nav-entry[data-menu-align=end] .portfolio-section-menu{position:fixed;left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right));top:var(--portfolio-nav-height);width:auto;max-width:none;max-height:min(65dvh,480px)}
+}
 @media(prefers-reduced-motion:reduce){.portfolio-nav summary svg,.portfolio-section-action{transition:none}}
 @media print{.portfolio-nav{display:none!important}body:has(>[data-portfolio-nav]){padding-top:0!important}}

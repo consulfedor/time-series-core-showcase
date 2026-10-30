@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><!-- portfolio-navigation-r34:start --><link rel="stylesheet" href="/time-series-core-showcase/portfolio-navigation.css?v=portfolio-navigation-r34-sections-3"><script defer src="/time-series-core-showcase/portfolio-navigation.js?v=portfolio-navigation-r34-sections-3"></script><!-- portfolio-navigation-r34:end --><meta charset="utf-8"><script data-portfolio-page-loads>
+<html lang="en"><head><!-- portfolio-navigation-r34:start --><link rel="stylesheet" href="/time-series-core-showcase/portfolio-navigation.css?v=portfolio-navigation-r36-mobile-1"><script defer src="/time-series-core-showcase/portfolio-navigation.js?v=portfolio-navigation-r36-mobile-1"></script><!-- portfolio-navigation-r34:end --><meta charset="utf-8"><script data-portfolio-page-loads>
 /* Owning page-load client. No external loader or browser-persistent identity. */
 (function (root, factory) {
   'use strict';
@@ -236,7 +236,7 @@ PortfolioPageLoads.start({"enabled":true,"enabled_at":"2026-10-16T23:05:33Z","si
     :root {--cv-bar-height:70px}
     html {scroll-padding-top:calc(var(--cv-bar-height) + 16px)}
     .topbar-inner {flex-wrap:wrap;gap:10px;padding:10px 0}
-    .reader-tools {flex-wrap:wrap;margin:0;gap:8px}
+    .reader-tools {flex-wrap:wrap;margin:0;gap:8px;min-width:0;max-width:100%}
     .search {width:230px;max-width:100%;min-width:0}
     .topbar .source-link {margin:0}
     .toc {top:var(--cv-bar-height)}
@@ -247,7 +247,20 @@ PortfolioPageLoads.start({"enabled":true,"enabled_at":"2026-10-16T23:05:33Z","si
     .help p {position:absolute;right:0;width:min(550px,calc(100vw - 32px));
     max-height:50dvh;overflow:auto;padding:16px;border:1px solid var(--line);
     border-radius:9px;background:var(--surface);box-shadow:0 10px 32px #0008}
-    @media(max-width:650px){.markdown .header{grid-template-columns:minmax(0,1fr)}
+    @media(max-width:650px){
+    .topbar-inner,.reader {width:auto;margin-inline:max(18px,env(safe-area-inset-left)) max(18px,env(safe-area-inset-right))}
+    .reader-tools {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;align-items:stretch}
+    .reader-tools .action,.reader-tools .source-link,.reader-tools .search {min-height:44px;min-width:0;max-width:100%;white-space:normal;display:flex;align-items:center;justify-content:center;text-align:center}
+    .reader-tools .search {grid-column:1 / -1;width:100%;text-align:left;font-size:16px}
+    .language-tools {display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+    .reader-tools .help {grid-column:1 / -1;min-width:0}
+    .help summary {min-height:44px;display:flex;align-items:center}
+    .help p {position:static;width:100%;max-width:100%;margin:4px 0 0;overflow-wrap:anywhere}
+    .document {padding:20px 18px}
+    .toc {width:min(360px,calc(100% - 24px))}
+    .toc-close {width:44px;height:44px;flex:none}
+    .toc a {min-height:44px;display:flex;align-items:center}
+    .markdown .header{grid-template-columns:minmax(0,1fr)}
     .markdown .header>*{grid-column:1}.markdown .header>.photo{grid-row:auto}}
     @media print{.document-bar,.help,.skip{display:none!important}.markdown a{color:#111}
     .markdown .focus{color:#444}.markdown{font-size:10pt}.markdown h2{break-after:avoid}
@@ -815,7 +828,7 @@ window.cvLanguage = key => {
         const key = location.hash.slice(1);
         if (key === 'en' || key === 'ru') activate(key, false);
       });
-      const initial = new URL(location.href).searchParams.get('lang') || location.hash.slice(1) || document.documentElement.lang;
+      const initial = new URL(location.href).searchParams.get('lang') || (/^#(?:ru|en)$/.test(location.hash) ? location.hash.slice(1) : document.documentElement.lang);
       activate(initial === 'en' ? 'en' : 'ru', false);
     })();
   </script>
