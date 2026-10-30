@@ -1,0 +1,27 @@
+/* Public header only. The private workbench and its assets are not shipped. */
+:root{--portfolio-nav-height:64px}
+.portfolio-nav{position:fixed!important;inset:0 0 auto!important;z-index:900!important;margin:0!important;width:auto!important;max-width:none!important;border:0!important;border-bottom:1px solid #3c505966!important;background:#0c141af5!important;color:#e8efeb!important;backdrop-filter:blur(12px);font:14px/1.4 'Golos Text',system-ui,sans-serif!important;padding:0!important}
+.portfolio-nav *{box-sizing:border-box}
+.portfolio-nav-inner{width:min(1500px,100%);min-height:64px;display:flex;align-items:center;gap:24px;margin:auto;padding:10px 22px}
+.portfolio-nav a{color:#bdcbc8;text-decoration:none!important;white-space:nowrap;display:inline-flex;align-items:center;min-height:32px;border:0;border-radius:4px}
+.portfolio-nav a:hover,.portfolio-nav a[aria-current=page]{color:#f0d093}
+.portfolio-nav .portfolio-nav-brand{gap:10px;color:#e9edeb;font-weight:650;margin-right:auto}
+.portfolio-nav-brand img{width:30px;height:30px;object-fit:contain;max-width:none;display:block}
+.portfolio-nav nav,.portfolio-nav-tools{display:flex;align-items:center;gap:20px}
+.portfolio-nav-tools{gap:10px;border-left:1px solid #46534d;padding-left:18px}
+.portfolio-nav :focus-visible{outline:2px solid #f5d59b;outline-offset:4px}
+.portfolio-nav details{position:relative;margin:0;padding:0;border:0;font:inherit;background:transparent}
+.portfolio-nav summary{cursor:pointer;padding:6px 8px;color:#d3b575;font-size:12px;white-space:nowrap}
+.portfolio-nav details>div{position:absolute;right:0;top:calc(100% + 6px);min-width:210px;max-width:calc(100vw - 24px);display:grid;gap:5px;padding:12px;border:1px solid #75674b;border-radius:10px;background:#142127;box-shadow:0 12px 40px #0008}
+.portfolio-nav details>div a{padding:5px 8px;font-size:13px;white-space:normal}
+.portfolio-nav [hidden]{display:none!important}
+body:has(>[data-portfolio-nav]){padding-top:var(--portfolio-nav-height)!important}
+html:has([data-portfolio-nav]){scroll-padding-top:calc(var(--portfolio-nav-height) + 18px)}
+body:has([data-portfolio-nav]) [id]{scroll-margin-top:calc(var(--portfolio-nav-height) + 18px)}
+body:has(>[data-portfolio-nav])>header.site-header,body:has(>[data-portfolio-nav])>header.masthead,body:has(>[data-portfolio-nav])>header.essay-nav{display:none!important}
+html:not([data-portfolio-embedded=true]) body:has(>[data-portfolio-nav])>.portfolio-brand-bar,html:not([data-portfolio-embedded=true]) body:has(>[data-portfolio-nav])>.portfolio-language{display:none!important}
+body:has(>[data-portfolio-nav])>header.topbar,body:has(>[data-portfolio-nav])>header.standalone{position:relative!important;top:auto!important;z-index:1!important}
+html[data-portfolio-embedded=true] .portfolio-nav{display:none!important}
+html[data-portfolio-embedded=true] body{padding-top:0!important}
+@media(max-width:740px){:root{--portfolio-nav-height:104px}.portfolio-nav-inner{gap:6px 10px;min-height:104px;padding:7px 12px;flex-wrap:wrap}.portfolio-nav-brand img{width:27px;height:27px}.portfolio-nav .portfolio-nav-brand{font-size:13px}.portfolio-nav nav{order:3;width:100%;justify-content:space-between;gap:12px;font-size:13px}.portfolio-nav-tools{gap:7px;padding-left:9px;font-size:12px}.portfolio-nav summary{font-size:11px;padding:5px 4px}.portfolio-nav a{min-height:34px}}
+@media print{.portfolio-nav{display:none!important}body:has(>[data-portfolio-nav]){padding-top:0!important}}
