@@ -43,7 +43,7 @@
   },
   "home": {
     "kind": "accepted_symbiotic_home",
-    "source_sha256": "f8ecc6142ae803a29d53b0eece12dc7ae01f5ad526fb2a0391faf30042c02a17",
+    "source_sha256": "12124418f04cabc4c7f3061a73015e535b4f3f71b2f5334f8c8033e99d446798",
     "authoring": "_maintenance/home-current/template.html",
     "languages": [
       "ru",
@@ -156,8 +156,8 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "e30da36f7f25b84e7ea37ad980fdfc9b8cbe9557b66e20fa56fe7031b19b973a",
-    "index.html": "f3662bc834fb94babebd61f19f14414753cc0ac239830e0be5cb0aeb16054b50",
-    "en/index.html": "3a2c10ac1b81b8d062875e7c2f0024dd440a64a937fe9ea3c06342770fdc3a5a",
+    "index.html": "4054bddd7996bca4a5c1a7067d34d792d3c064be7618871fd903e553fde0f575",
+    "en/index.html": "f858e3e2183fdcdffa89c53afcfd0d37526004d9c164ac4daad52e2c8c451d54",
     "home-v2.css": "d0e7227f4c375c654e3958cd07303a9099b689b0bf8f9e75cf1c8126d9422b0c",
     "home-v2.js": "06f810f6ebad0da92e60063c0e03d179b3d99c805d6fca74d60d90c3ec6d9771",
     "assets/mytwobrain-share-ru-r36.png": "eaea8443f0df38b35c03c76d718931cae574e62ea496efa849a5e2f27ee29db7",
@@ -566,46 +566,36 @@
     "en/examples/research-foundations.html": "336e12457b66da793ae110d3b24709b0e3ea2d53734374691c2925215d4f9056",
     "en/examples/dori.html": "81b397d3b80e101fa70f8c0a3aeffd994473886e6b6df223fd62f568569c77ec",
     "en/overview.html": "87758714f237e1f436464962e7d1455c51520c8826da6d4eceae90ca2a5b37d1",
-    "sitemap.xml": "ad812505ea5594c83542d45690194e9e675a820d49cf506fdacc1209aba35426",
+    "sitemap.xml": "e7d2b19b5be19ef5cef4627eda2dae4473ff9c40ec4cdf876c851ea7343513e1",
+    "english/assets/little.webp": "f384f85c3da0b79061db9368c42af9863442fd00c0eb9da53460072f46f8f701",
+    "english/assets/understand.webp": "f45287a1d395f5c526db862b23d386b207d9bc7d68db644b2d0914d11d401481",
+    "english/lesson.html": "b41fb0e25240e6f0d676a7312959b1ffe93e12a637ca7f84621ec2aeacd7fbd9",
+    "english/lessons/demo/audio.mp3": "f1145b5fbd23760cebb8658f2139c26cde4bdfb06919556e9f1c3d310f4f13ee",
+    "english/lessons/demo/lesson.json": "be1dde75c0c872fe3544cc5dcfc6104e47692ec2d2c6d1e5988919396ae5fba6",
+    "english/player.css": "ca7e890b8928d054edf0cd9732cd60fcef51fc0740024e56a83b041ceb93fa94",
+    "english/player.js": "2ccd1335c8a662737cc11e9666ba25012e2b9af46e95353ee57e2e3ca331082e",
     "portfolio-navigation.css": "7ce17b2860b7f7cf51f3339c0f5f9193dbd9f82612638032e420c3021eadd8d4",
     "portfolio-navigation.js": "1120c2fc0aac8c702d13b2a3cadbbe0b4ec85fb4c7757f846db116a8259a80bc"
   },
-  "publication_scope": "approved_r36_people_mobile_cv_navigation_share",
-  "retained_unpublished": {},
-  "navigation": {
-    "version": "portfolio-navigation-r36-mobile-1",
-    "routes": [
-      "cv/index.html",
-      "dome-house/index.html",
-      "dome-house/useful.html",
-      "en/cv/index.html",
-      "en/examples/analytics.html",
-      "en/examples/data-pipeline.html",
-      "en/examples/dori.html",
-      "en/examples/inner-world-and-reality.html",
-      "en/examples/research-foundations.html",
-      "en/fact-to-decision/index.html",
-      "en/index.html",
-      "en/mytwobrain/index.html",
-      "en/mytwobrain/workspace.html",
-      "en/overview.html",
-      "examples/analytics.html",
-      "examples/data-pipeline.html",
-      "examples/dori.html",
-      "examples/inner-world-and-reality.html",
-      "examples/research-foundations.html",
-      "fact-to-decision/index.html",
-      "index.html",
-      "mytwobrain/index.html",
-      "mytwobrain/workspace-board/workspace-board.html",
-      "mytwobrain/workspace-demo.html",
-      "mytwobrain/workspace.html",
-      "overview.html"
+  "english_example": {
+    "kind": "frozen_excerpt",
+    "route": "english/lesson.html",
+    "files": [
+      "english/assets/little.webp",
+      "english/assets/understand.webp",
+      "english/lesson.html",
+      "english/lessons/demo/audio.mp3",
+      "english/lessons/demo/lesson.json",
+      "english/player.css",
+      "english/player.js"
     ],
-    "private_workbench_published": false,
-    "assets": {
-      "portfolio-navigation.css": "7ce17b2860b7f7cf51f3339c0f5f9193dbd9f82612638032e420c3021eadd8d4",
-      "portfolio-navigation.js": "1120c2fc0aac8c702d13b2a3cadbbe0b4ec85fb4c7757f846db116a8259a80bc"
-    }
-  }
+    "manifest_sha256": "917a3153b44a9d65b299fc88a16cee76ca80de9773f93599982dad1e78757527",
+    "full_course_published": false,
+    "runtime_api": false,
+    "progress": "browser_local_storage",
+    "original_interface_prompt_count": 3,
+    "prompt_count_source": "operator_statement"
+  },
+  "publication_scope": "approved_english_example_20261101",
+  "retained_unpublished": {}
 }

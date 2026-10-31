@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "id": "english-portfolio-demo-20261101",
+  "revision": "english-portfolio-demo-v1",
+  "title": "Первое знакомство",
+  "subtitle": "Короткий пример: слушать, повторять и возвращаться к фразам.",
+  "course": "Английский · демо",
+  "duration": 29.074286,
+  "media": {
+    "audio": "./audio.mp3"
+  },
+  "blocks": [
+    {
+      "id": "b1",
+      "title": "Начало разговора",
+      "start": 0.0,
+      "end": 9.917,
+      "phraseIds": [
+        "p1",
+        "p2"
+      ]
+    },
+    {
+      "id": "b2",
+      "title": "Короткий ответ",
+      "start": 9.917,
+      "end": 19.633,
+      "phraseIds": [
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "b3",
+      "title": "Знакомство",
+      "start": 19.633,
+      "end": 29.074286,
+      "phraseIds": [
+        "p5",
+        "p6"
+      ]
+    }
+  ],
+  "phrases": [
+    {
+      "id": "p1",
+      "blockId": "b1",
+      "start": 0.12,
+      "end": 0.967,
+      "text": "Excuse me.",
+      "language": "en",
+      "kind": "dialogue",
+      "words": [
+        {
+          "text": "Excuse",
+          "start": 0.12,
+          "end": 0.69
+        },
+        {
+          "text": "me.",
+          "start": 0.695,
+          "end": 0.967
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "blockId": "b1",
+      "start": 4.707,
+      "end": 6.297,
+      "text": "Do you understand English?",
+      "language": "en",
+      "kind": "dialogue",
+      "words": [
+        {
+          "text": "Do",
+          "start": 4.707,
+          "end": 4.879
+        },
+        {
+          "text": "you",
+          "start": 4.879,
+          "end": 5.08
+        },
+        {
+          "text": "understand",
+          "start": 5.08,
+          "end": 5.759
+        },
+        {
+          "text": "English?",
+          "start": 5.759,
+          "end": 6.297
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "blockId": "b2",
+      "start": 10.037,
+      "end": 10.783,
+      "text": "No, sir.",
+      "language": "en",
+      "kind": "dialogue",
+      "words": [
+        {
+          "text": "No,",
+          "start": 10.037,
+          "end": 10.37
+        },
+        {
+          "text": "sir.",
+          "start": 10.37,
+          "end": 10.783
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "blockId": "b2",
+      "start": 14.523,
+      "end": 16.013,
+      "text": "I understand a little.",
+      "language": "en",
+      "kind": "dialogue",
+      "words": [
+        {
+          "text": "I",
+          "start": 14.523,
+          "end": 14.795
+        },
+        {
+          "text": "understand",
+          "start": 14.795,
+          "end": 15.555
+        },
+        {
+          "text": "a",
+          "start": 15.555,
+          "end": 15.636
+        },
+        {
+          "text": "little.",
+          "start": 15.636,
+          "end": 16.013
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "blockId": "b3",
+      "start": 19.753,
+      "end": 20.733,
+      "text": "Are you Russian?",
+      "language": "en",
+      "kind": "dialogue",
+      "words": [
+        {
+          "text": "Are",
+          "start": 19.753,
+          "end": 20.015
+        },
+        {
+          "text": "you",
+          "start": 20.02,
+          "end": 20.255
+        },
+        {
+          "text": "Russian?",
+          "start": 20.255,
+          "end": 20.733
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "blockId": "b3",
+      "start": 24.473,
+      "end": 25.423,
+      "text": "Yes, miss.",
+      "language": "en",
+      "kind": "dialogue",
+      "words": [
+        {
+          "text": "Yes,",
+          "start": 24.473,
+          "end": 24.926
+        },
+        {
+          "text": "miss.",
+          "start": 24.926,
+          "end": 25.423
+        }
+      ]
+    }
+  ],
+  "mnemonicScenes": [
+    {
+      "id": "understand-puzzle",
+      "term": "understand",
+      "meaning": "понимать",
+      "method": "Образ значения",
+      "description": "Детали сходятся — становится понятно.",
+      "asset": "../../assets/understand.webp",
+      "animation": "understand",
+      "cues": [
+        {
+          "start": 4.707,
+          "end": 9.297,
+          "displayUntil": 9.297,
+          "phraseId": "p2"
+        }
+      ]
+    },
+    {
+      "id": "little-drop",
+      "term": "a little",
+      "meaning": "немного",
+      "method": "Образ значения",
+      "description": "Из большого кувшина — только одна капля.",
+      "asset": "../../assets/little.webp",
+      "animation": "little",
+      "cues": [
+        {
+          "start": 14.523,
+          "end": 19.013,
+          "displayUntil": 19.013,
+          "phraseId": "p4"
+        }
+      ]
+    }
+  ],
+  "sourceAttribution": "Короткий аудиофрагмент курса Пимслера для демонстрации интерфейса.",
+  "quality": {
+    "alignmentStatus": "source_word_times_rebased",
+    "humanListeningVerified": false
+  }
+}
