@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru" data-theme="graphite">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#17191c">
+  <title>Английский — Пимслер и мнемотехника</title>
+  <meta name="description" content="Английский с аудио, картой урока, повторением фраз и мнемотехникой. Доступен первый урок; прогресс сохраняется в этом браузере.">
+  <link rel="canonical" href="https://consulfedor.github.io/time-series-core-showcase/english/index.html">
+  <link rel="stylesheet" href="./player.css">
+  <link rel="stylesheet" href="./home.css">
+  <script src="./home.js" defer></script>
+</head>
+<body class="home-page">
+  <svg class="home-icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="home-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="home-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"/></symbol>
+    <symbol id="home-restart" viewBox="0 0 24 24"><path d="M4 5v5h5M4.6 10a8 8 0 1 1 .8 6"/></symbol>
+    <symbol id="home-spark" viewBox="0 0 24 24"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6z"/></symbol>
+    <symbol id="home-translate" viewBox="0 0 24 24"><path d="M3 5h12M9 3v2m-3 0c0 5 3 8 7 10M13 5c0 5-4 9-9 11m10 5 4-11 4 11m-6.5-4h5"/></symbol>
+    <symbol id="home-book" viewBox="0 0 24 24"><path d="M12 5c-3-2-7-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-1-9 1zm0 0v15"/></symbol>
+    <symbol id="home-theme" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18zm0 0a9 9 0 1 1 0 18" /><path d="M12 3v18"/></symbol>
+    <symbol id="home-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="home-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></symbol>
+  </svg>
+
+  <header class="home-header">
+    <a class="home-brand" href="./index.html" aria-label="Английский — главная">
+      <span class="home-brand-mark" aria-hidden="true">A</span>
+      <span>Английский</span>
+    </a>
+    <nav class="home-tools" aria-label="Навигация портфолио">
+      <a href="../index.html#results"><span>В портфолио</span></a>
+    </nav>
+    <button class="home-theme-button" id="home-theme-toggle" type="button" aria-label="Включить светлую тему" title="Сменить тему">
+      <svg class="icon" aria-hidden="true"><use href="#home-theme"/></svg>
+    </button>
+  </header>
+
+  <main class="course-main">
+    <div class="course-heading">
+      <h1>Пимслер <span>и мнемотехника</span></h1>
+      <p class="course-size"><strong>90</strong> уроков <span aria-hidden="true">·</span> 3 уровня</p>
+    </div>
+
+    <section class="resume-card" aria-labelledby="lesson-title">
+      <div class="resume-number" aria-hidden="true"><small>Урок</small><span>01</span></div>
+      <div class="resume-copy">
+        <div class="resume-meta"><span>Уровень I</span><span class="resume-duration"><svg class="icon" aria-hidden="true"><use href="#home-clock"/></svg>29:32</span><span class="completion-badge" id="completion-badge" hidden><svg class="icon" aria-hidden="true"><use href="#home-check"/></svg>Изучен</span></div>
+        <h2 id="lesson-title">Первое знакомство</h2>
+        <p class="resume-note" id="available-lesson-note">Доступен первый урок; остальные готовятся.</p>
+        <div class="resume-progress-row" id="resume-progress-row" hidden>
+          <div class="resume-progress" id="home-progress" role="progressbar" aria-label="Позиция в уроке" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="home-progress-fill"></span></div>
+          <p id="resume-note" class="resume-note" hidden></p>
+        </div>
+      </div>
+      <div class="resume-actions">
+        <a class="home-primary-button" id="continue-link" href="./lesson.html"><svg class="icon play-icon" aria-hidden="true"><use href="#home-play"/></svg><span id="continue-label">Начать урок</span><svg class="icon action-arrow" aria-hidden="true"><use href="#home-arrow"/></svg></a>
+        <a class="home-restart-link" id="restart-link" href="./lesson.html?start=1" hidden><svg class="icon" aria-hidden="true"><use href="#home-restart"/></svg>Сначала</a>
+      </div>
+    </section>
+    <p class="home-storage-notice" id="storage-status" role="status" hidden></p>
+
+    <section class="course-map" aria-labelledby="course-map-title">
+      <div class="course-map-header">
+        <h2 id="course-map-title">Карта курса</h2>
+        <div class="level-tabs" role="tablist" aria-label="Уровень Пимслера">
+          <button id="level-tab-1" type="button" role="tab" aria-selected="true" aria-controls="level-map-panel" data-level="1"><span>Уровень</span><strong>I</strong></button>
+          <button id="level-tab-2" type="button" role="tab" aria-selected="false" aria-controls="level-map-panel" data-level="2" tabindex="-1"><span>Уровень</span><strong>II</strong></button>
+          <button id="level-tab-3" type="button" role="tab" aria-selected="false" aria-controls="level-map-panel" data-level="3" tabindex="-1"><span>Уровень</span><strong>III</strong></button>
+        </div>
+        <ul class="map-legend" aria-label="Обозначения карты">
+          <li><span class="legend-dot is-available" aria-hidden="true"></span>Доступен</li>
+          <li id="studied-legend" hidden><svg class="icon" aria-hidden="true"><use href="#home-check"/></svg>Изучен</li>
+          <li><span class="legend-dot" aria-hidden="true"></span>Готовится</li>
+        </ul>
+      </div>
+      <div id="level-map-panel" class="level-map-panel" role="tabpanel" aria-labelledby="level-tab-1">
+        <div class="lesson-graph" id="lesson-graph">
+          <svg class="lesson-connections" id="lesson-connections" aria-hidden="true" focusable="false"><path id="lesson-path"/></svg>
+          <ol class="lesson-nodes" id="lesson-nodes" aria-label="Уроки уровня I"></ol>
+        </div>
+      </div>
+      <noscript><p class="home-noscript">Карта курса использует JavaScript. <a href="./lesson.html">Открыть урок 1</a>.</p></noscript>
+    </section>
+  </main>
+</body>
+</html>

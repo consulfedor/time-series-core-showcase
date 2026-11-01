@@ -4,150 +4,122 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#181a1c">
-  <title>Урок английского — пример работы Федора</title>
-  <link rel="stylesheet" href="./player.css">
-  <script src="./player.js" defer></script>
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <meta name="theme-color" content="#17191c">
+  <title>Урок 1 — Английский</title>
   <link rel="canonical" href="https://consulfedor.github.io/time-series-core-showcase/english/lesson.html">
-  <meta name="description" content="Учебный интерфейс за 3 промпта: аудио, синхронный текст, карта урока, повторение и сохранение прогресса. Короткий интерактивный пример работы Федора.">
-  <meta property="og:title" content="Урок английского — пример работы Федора">
-  <meta property="og:description" content="Аудио, синхронный текст, карта урока и повторение фраз. Откройте и попробуйте.">
-  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="./player.css">
+  <link rel="stylesheet" href="./lesson.css">
+  <script src="./player.js" defer></script>
 </head>
-<body class="player-page">
-  <header class="site-header player-header">
-    <a class="brand" href="../index.html#results" aria-label="Вернуться в портфолио">
-      <span class="brand-mark" aria-hidden="true">A</span>
-      <span>Английский</span>
-    </a>
-    <div class="header-course"><span id="course-label">Английский · демо</span><span class="header-divider">/</span><span id="header-lesson-title">Первое знакомство</span></div>
-    <a class="header-home" href="../index.html#results"><span aria-hidden="true">←</span> К портфолио</a>
+<body class="lesson-page">
+  <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="m10 5-7 7 7 7M3 12h18"/></symbol>
+    <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M12 3a9 9 0 0 1 0 18z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M4 4v12h5m-5-8h5m7-4h4v8h-4zM9 4h4v8H9zm0 12h4v4H9zm7 0h4v4h-4z"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m14 5-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m10 5 7 7-7 7"/></symbol>
+    <symbol id="i-block-left" viewBox="0 0 24 24"><path d="M5 5v14m14-14-8 7 8 7"/></symbol>
+    <symbol id="i-block-right" viewBox="0 0 24 24"><path d="M19 5v14M5 5l8 7-8 7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+    <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 3 4 4-4 4M3 11V9a2 2 0 0 1 2-2h16M7 21l-4-4 4-4m14 0v2a2 2 0 0 1-2 2H3"/></symbol>
+    <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 4v6h6M4.5 10a8 8 0 1 1 .5 6"/></symbol>
+    <symbol id="i-bookmark" viewBox="0 0 24 24"><path d="M6 4h12v17l-6-4-6 4z"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5zm4 4a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="i-return" viewBox="0 0 24 24"><path d="m8 5-5 5 5 5m-5-5h12a6 6 0 0 1 0 12"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="m7 9 5-5 5 5m-10 6 5 5 5-5"/></symbol>
+    <symbol id="i-collapse" viewBox="0 0 24 24"><path d="m7 4 5 5 5-5M7 20l5-5 5 5"/></symbol>
+  </svg>
+
+  <header class="lesson-header">
+    <div class="header-navigation">
+      <a class="back-link" href="./index.html" aria-label="К урокам"><svg class="icon" aria-hidden="true"><use href="#i-back"/></svg><span>К урокам</span></a>
+      <button class="icon-button map-toggle" id="open-drawer" type="button" aria-label="Открыть карту урока" aria-expanded="false" aria-controls="lesson-nav" title="Карта урока"><svg class="icon" aria-hidden="true"><use href="#i-map"/></svg></button>
+    </div>
+    <div class="lesson-identity">
+      <p id="course-label">Пимслер · Уровень I</p>
+      <h1><span id="lesson-heading">Урок 1</span><span class="identity-divider" aria-hidden="true">/</span><span id="lesson-description">Первое знакомство</span></h1>
+    </div>
+    <div class="header-settings" aria-label="Настройки занятия">
+      <div class="type-controls" role="group" aria-label="Размер текста">
+        <button id="text-smaller" type="button" aria-label="Уменьшить текст" title="Уменьшить текст">A<span aria-hidden="true">−</span></button>
+        <button id="text-larger" type="button" aria-label="Увеличить текст" title="Увеличить текст">A<span aria-hidden="true">+</span></button>
+      </div>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Включить светлую тему" title="Сменить тему"><svg class="icon" aria-hidden="true"><use href="#i-theme"/></svg></button>
+      <button class="completion-button" id="completion-toggle" type="button" aria-pressed="false" title="Отметить урок как изученный"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><span>Изучил</span></button>
+    </div>
   </header>
 
-  <main class="player-shell">
-    <button class="drawer-scrim" id="drawer-scrim" type="button" aria-label="Закрыть карту урока" hidden></button>
+  <div class="lesson-shell">
+    <div class="drawer-scrim" id="drawer-scrim" hidden></div>
     <aside class="lesson-nav" id="lesson-nav" aria-label="Карта урока">
-      <div class="nav-heading">
-        <div>
-          <p class="eyebrow">Карта урока</p>
-          <h2 id="nav-lesson-title">Первое знакомство</h2>
+      <div class="nav-head">
+        <div class="nav-title-row"><h2>Карта урока</h2><button class="icon-button drawer-close" id="close-drawer" type="button" aria-label="Закрыть карту урока"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div>
+        <div class="nav-progress-row"><div class="nav-progress"><span id="nav-progress-fill"></span></div><span id="nav-progress-label">0%</span></div>
+        <div class="tree-actions">
+          <button id="expand-all" type="button"><svg class="icon" aria-hidden="true"><use href="#i-expand"/></svg>Раскрыть</button>
+          <button id="collapse-all" type="button"><svg class="icon" aria-hidden="true"><use href="#i-collapse"/></svg>Свернуть</button>
         </div>
-        <button class="icon-button nav-close" id="close-drawer" type="button" aria-label="Закрыть карту урока">×</button>
       </div>
-      <div class="nav-progress" aria-label="Ход урока">
-        <div class="nav-progress-track"><span id="nav-progress-fill"></span></div>
-        <span id="nav-progress-label">0%</span>
-      </div>
-      <div class="tree-actions">
-        <button class="text-button" id="expand-all" type="button">Раскрыть блоки</button>
-        <button class="text-button" id="collapse-all" type="button">Свернуть блоки</button>
-      </div>
-      <nav class="lesson-tree" id="lesson-tree" aria-label="Блоки и фразы">
-        <p class="loading-inline">Загружаем структуру урока…</p>
-      </nav>
-        <div class="nav-footer"><span class="status-dot" id="nav-storage-dot" aria-hidden="true"></span><span id="nav-storage-status">Проверяем сохранение…</span></div>
+      <div class="lesson-tree" id="lesson-tree"></div>
     </aside>
 
-    <section class="player-main" aria-label="Аудиоплеер урока">
-      <div class="player-topline">
-        <button class="mobile-map-button" id="open-drawer" type="button" aria-expanded="false" aria-controls="lesson-nav"><span aria-hidden="true">☷</span> Карта урока</button>
-        <div class="breadcrumb"><span id="lesson-course">Английский · демо</span><span aria-hidden="true">›</span><span id="lesson-subtitle">Первое знакомство</span></div>
-        <div class="view-tools" aria-label="Настройки отображения">
-          <button class="tool-button" id="theme-toggle" type="button" aria-label="Переключить цветовую тему" title="Переключить тему"><span aria-hidden="true">◐</span><span>Тема</span></button>
-          <div class="text-size-tools" aria-label="Размер текста">
-            <button class="tool-button compact-tool" id="text-smaller" type="button" aria-label="Уменьшить текст" title="Уменьшить текст">A−</button>
-            <button class="tool-button compact-tool" id="text-larger" type="button" aria-label="Увеличить текст" title="Увеличить текст">A+</button>
+    <main class="player-main" aria-label="Занятие">
+      <p class="player-notice" id="player-notice" role="status" hidden></p>
+      <p class="player-notice storage-notice" id="storage-notice" role="status" hidden></p>
+      <section class="learning-stage" id="learning-stage" aria-label="Караоке и образ для запоминания">
+        <div class="focus-panel">
+          <div class="karaoke-wrap"><div id="karaoke-text" class="karaoke-text" aria-live="off">Загружаем урок…</div></div>
+        </div>
+        <section class="scene-card" id="scene-card" aria-label="Образ для запоминания" hidden>
+          <div class="scene-copy">
+            <h2 id="scene-term"></h2>
+            <p class="scene-meaning" id="scene-meaning"></p>
+            <p class="scene-description" id="scene-description"></p>
           </div>
-        </div>
-      </div>
-
-      <div class="lesson-heading">
-        <div>
-          <p class="eyebrow" id="lesson-course-eyebrow">Английский · демо</p>
-          <h1 id="lesson-heading">Загружаем урок…</h1>
-          <p class="lesson-subheading" id="lesson-description"></p>
-        </div>
-        <button class="completion-button" id="completion-toggle" type="button" aria-pressed="false" disabled>Изучил</button>
-      </div>
-
-      <div class="notice" id="player-notice" role="status" aria-live="polite" hidden></div>
-
-      <div class="learning-stage">
-      <section class="focus-panel" aria-label="Текущая фраза">
-        <div class="focus-panel-head">
-          <div class="focus-label"><span class="live-dot" aria-hidden="true"></span><span id="focus-state">Готово к прослушиванию</span></div>
-          <button class="reveal-button" id="reveal-current" type="button" disabled><span aria-hidden="true">◎</span> К текущей фразе</button>
-        </div>
-        <div class="karaoke-wrap" aria-live="off">
-          <p class="karaoke-text" id="karaoke-text">Нажмите «Play», чтобы начать занятие.</p>
-        </div>
-        <div class="focus-meta">
-          <span class="phrase-kind" id="phrase-kind"></span>
-          <button class="difficult-button" id="difficult-toggle" type="button" disabled aria-pressed="false">☆ Сложная фраза</button>
-        </div>
+          <div class="scene-window">
+            <div class="scene-art" id="scene-art" data-animation="" data-step="0">
+              <img class="scene-image" id="scene-image" src="" alt="" hidden>
+              <span class="scene-drop" id="scene-drop" aria-hidden="true" hidden></span>
+              <img class="scene-piece piece-left" id="scene-piece-left" src="" alt="" aria-hidden="true" hidden>
+              <img class="scene-piece piece-right" id="scene-piece-right" src="" alt="" aria-hidden="true" hidden>
+              <img class="scene-piece piece-base" id="scene-piece-base" src="" alt="" aria-hidden="true" hidden>
+            </div>
+          </div>
+        </section>
       </section>
 
-      <section class="scene-card" id="scene-card" aria-label="Мнемосцена" hidden>
-        <div class="scene-copy">
-          <p class="eyebrow">Образ для запоминания</p>
-          <h2 id="scene-term"></h2>
-          <p class="scene-meaning" id="scene-meaning"></p>
-          <p class="scene-description" id="scene-description"></p>
-          <p class="scene-method" id="scene-method"></p>
+      <section class="transport" aria-label="Управление воспроизведением">
+        <div class="timeline-row">
+          <span class="time-value" id="current-time">0:00</span>
+          <input id="seek-range" type="range" min="0" max="1" step="0.01" value="0" aria-label="Позиция в уроке" disabled>
+          <span class="time-value" id="duration-time">29:32</span>
         </div>
-        <div class="scene-art" id="scene-art" data-animation="none" data-step="0" aria-hidden="true" hidden>
-          <img class="scene-image" id="scene-image" alt="" hidden>
-          <span class="scene-drop" id="scene-drop" hidden></span>
-          <img class="scene-piece scene-piece-left" id="scene-piece-left" alt="" hidden>
-          <img class="scene-piece scene-piece-right" id="scene-piece-right" alt="" hidden>
-          <img class="scene-piece scene-piece-base" id="scene-piece-base" alt="" hidden>
+        <div class="transport-main">
+          <div class="repeat-controls" role="group" aria-label="Повтор">
+            <button class="control-button" id="repeat-phrase" type="button" aria-label="Повторить текущую фразу" title="Повторить текущую фразу" disabled><svg class="icon" aria-hidden="true"><use href="#i-replay"/></svg><span>Фраза</span></button>
+            <button class="control-button" id="repeat-block" type="button" aria-label="Повторить текущий блок" title="Повторить текущий блок" disabled><svg class="icon" aria-hidden="true"><use href="#i-replay"/></svg><span>Блок</span></button>
+          </div>
+          <div class="navigation-controls" role="group" aria-label="Переходы">
+            <button class="step-button" id="previous-block" type="button" aria-label="Предыдущий блок" title="Предыдущий блок" disabled><svg class="icon" aria-hidden="true"><use href="#i-block-left"/></svg><span>Блок</span></button>
+            <button class="step-button" id="previous-phrase" type="button" aria-label="Предыдущая фраза" title="Предыдущая фраза" disabled><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg><span>Фраза</span></button>
+            <button class="play-button" id="play-toggle" type="button" aria-label="Воспроизвести" data-state="paused" disabled><svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg><svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg></button>
+            <button class="step-button" id="next-phrase" type="button" aria-label="Следующая фраза" title="Следующая фраза" disabled><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg><span>Фраза</span></button>
+            <button class="step-button" id="next-block" type="button" aria-label="Следующий блок" title="Следующий блок" disabled><svg class="icon" aria-hidden="true"><use href="#i-block-right"/></svg><span>Блок</span></button>
+          </div>
+          <button class="control-button return-button" id="return-position" type="button" disabled title="Вернуться к позиции до последнего перехода"><svg class="icon" aria-hidden="true"><use href="#i-return"/></svg><span>К месту</span></button>
         </div>
+        <div class="transport-options">
+          <label class="loop-control" title="Повторять текущий смысловой блок по кругу"><input id="loop-block" type="checkbox" disabled><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg><span>Блок по кругу</span></label>
+          <button class="control-button bookmark-button" id="difficult-toggle" type="button" disabled aria-pressed="false" title="Отметить фразу для повторения — закладка появится в карте урока"><svg class="icon" aria-hidden="true"><use href="#i-bookmark"/></svg><span>На повтор</span></button>
+          <label class="speed-control"><span>Скорость</span><select id="playback-rate" aria-label="Скорость воспроизведения" disabled><option value="0.75">0.75×</option><option value="0.9">0.9×</option><option value="1" selected>1×</option><option value="1.1">1.1×</option><option value="1.25">1.25×</option></select></label>
+          <label class="volume-control"><svg class="icon" aria-hidden="true"><use href="#i-volume"/></svg><input id="volume-range" type="range" min="0" max="1" step="0.01" value="1" aria-label="Громкость" disabled></label>
+        </div>
+        <audio id="lesson-audio" preload="metadata"></audio>
       </section>
-      <p class="scene-empty" id="scene-empty" hidden></p>
-
-      </div>
-      <section class="transport-panel" aria-label="Управление аудио">
-        <div class="seek-row">
-          <span class="time-readout" id="current-time">0:00</span>
-          <label class="sr-only" for="seek-range">Позиция воспроизведения</label>
-          <input id="seek-range" class="range-control seek-range" type="range" min="0" max="1" step="0.1" value="0" disabled>
-          <span class="time-readout" id="duration-time">0:00</span>
-        </div>
-        <div class="transport-controls">
-          <div class="transport-group transport-group-left">
-            <button class="transport-button" id="previous-block" type="button" aria-label="Предыдущий блок" disabled><span aria-hidden="true">◂|</span><span>Блок</span></button>
-            <button class="transport-button" id="previous-phrase" type="button" aria-label="Предыдущая фраза" disabled><span aria-hidden="true">|‹</span><span>Фраза</span></button>
-          </div>
-          <div class="transport-center">
-            <button class="round-button" id="play-toggle" type="button" aria-label="Воспроизвести" disabled><span id="play-icon" aria-hidden="true">▶</span></button>
-            <button class="return-button" id="return-position" type="button" disabled><span aria-hidden="true">↶</span> Вернуться к месту</button>
-          </div>
-          <div class="transport-group transport-group-right">
-            <button class="transport-button" id="repeat-phrase" type="button" disabled><span aria-hidden="true">↺</span><span>Повторить фразу</span></button>
-            <button class="transport-button repeat-block-button" id="repeat-block" type="button" disabled aria-label="Повторить блок"><span aria-hidden="true">↻</span><span>Повторить блок</span></button>
-            <button class="transport-button" id="next-phrase" type="button" aria-label="Следующая фраза" disabled><span aria-hidden="true">Фраза</span><span aria-hidden="true">›|</span></button>
-            <button class="transport-button" id="next-block" type="button" aria-label="Следующий блок" disabled><span aria-hidden="true">Блок</span><span aria-hidden="true">|▸</span></button>
-          </div>
-        </div>
-        <div class="secondary-controls">
-          <div class="secondary-left">
-            <label class="loop-toggle"><input id="loop-block" type="checkbox" disabled><span class="toggle-mark" aria-hidden="true"></span><span>Повторять блок</span></label>
-            <label class="control-select-label" for="playback-rate">Скорость</label>
-            <select class="control-select" id="playback-rate" disabled aria-label="Скорость воспроизведения">
-              <option value="0.75">0,75×</option><option value="0.9">0,9×</option><option value="1" selected>1×</option><option value="1.1">1,1×</option><option value="1.25">1,25×</option>
-            </select>
-          </div>
-          <div class="volume-control">
-            <label for="volume-range" aria-label="Громкость">🔊</label>
-            <input id="volume-range" class="range-control volume-range" type="range" min="0" max="1" step="0.01" value="1" disabled>
-          </div>
-        </div>
-        <audio id="lesson-audio" preload="auto"></audio>
-      </section>
-      <p class="demo-credit">Демонстрация интерфейса · 6 фраз. Аудиофрагмент: метод Пимслера.</p>
-      <footer class="player-footer"><span id="player-storage-status">Проверяем локальное сохранение…</span><a href="../index.html#results">Вернуться в портфолио</a></footer>
-    </section>
-  </main>
+    </main>
+  </div>
 </body>
 </html>

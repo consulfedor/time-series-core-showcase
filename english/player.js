@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const LESSON_URL = './lessons/demo/lesson.json';
-  const lessonId = 'english-portfolio-demo-20261101';
+  const LESSON_URL = './lessons/pimsleur-i-01/lesson.json';
+  const lessonId = 'pimsleur-i-01';
   const progressKey = `english-practice:v1:${lessonId}`;
   const playbackRates = [0.75, 0.9, 1, 1.1, 1.25];
   const $ = (id) => document.getElementById(id);
@@ -14,25 +14,16 @@
     treeProgressLabel: $('nav-progress-label'),
     heading: $('lesson-heading'),
     description: $('lesson-description'),
-    course: $('lesson-course'),
     courseTop: $('course-label'),
-    courseEyebrow: $('lesson-course-eyebrow'),
-    subtitleTop: $('lesson-subtitle'),
-    titleTop: $('header-lesson-title'),
-    navTitle: $('nav-lesson-title'),
     notice: $('player-notice'),
-    focusState: $('focus-state'),
-    focusLabel: document.querySelector('.focus-label'),
     karaoke: $('karaoke-text'),
-    phraseKind: $('phrase-kind'),
     difficult: $('difficult-toggle'),
-    reveal: $('reveal-current'),
+    stage: $('learning-stage'),
+    storageNotice: $('storage-notice'),
     sceneCard: $('scene-card'),
-    sceneEmpty: $('scene-empty'),
     sceneTerm: $('scene-term'),
     sceneMeaning: $('scene-meaning'),
     sceneDescription: $('scene-description'),
-    sceneMethod: $('scene-method'),
     sceneArt: $('scene-art'),
     sceneImage: $('scene-image'),
     sceneDrop: $('scene-drop'),
@@ -41,7 +32,6 @@
     currentTime: $('current-time'),
     durationTime: $('duration-time'),
     play: $('play-toggle'),
-    playIcon: $('play-icon'),
     return: $('return-position'),
     previousBlock: $('previous-block'),
     previousPhrase: $('previous-phrase'),
@@ -59,9 +49,6 @@
     drawerOpen: $('open-drawer'),
     drawerClose: $('close-drawer'),
     drawerScrim: $('drawer-scrim'),
-    navStorageStatus: $('nav-storage-status'),
-    navStorageDot: $('nav-storage-dot'),
-    playerStorageStatus: $('player-storage-status'),
     nav: $('lesson-nav'),
     expandAll: $('expand-all'),
     collapseAll: $('collapse-all'),
@@ -114,18 +101,8 @@
 
   function setStorageStatus(available) {
     storageAvailable = available;
-    const message = available
-      ? 'Прогресс сохраняется в браузере на этом устройстве'
-      : 'Локальное сохранение недоступно — позиция не сохраняется';
-    if (els.navStorageStatus) {
-      els.navStorageStatus.textContent = message;
-      els.navStorageStatus.classList.toggle('storage-unavailable', !available);
-    }
-    if (els.playerStorageStatus) {
-      els.playerStorageStatus.textContent = message;
-      els.playerStorageStatus.classList.toggle('storage-unavailable', !available);
-    }
-    if (els.navStorageDot) els.navStorageDot.classList.toggle('is-warning', !available);
+    els.storageNotice.hidden = available;
+    els.storageNotice.textContent = available ? '' : 'Браузер не разрешил сохранение. Позиция сохранится только до закрытия страницы.';
   }
 
   function probeStorage() {
@@ -272,7 +249,7 @@
       description: safeString(scene.description),
       asset: safeResourceUrl(scene.asset),
       animation: ['little', 'understand', 'none'].includes(scene.animation) ? scene.animation : 'none',
-      cues: Array.isArray(scene.cues) ? scene.cues.filter((cue) => cue && finite(cue.start) && finite(cue.end) && cue.end >= cue.start && phraseIds.has(cue.phraseId)).map((cue) => ({ start: clamp(cue.start, 0, duration), end: clamp(cue.end, 0, duration), displayUntil: clamp(finite(cue.displayUntil) ? Math.max(cue.end, cue.displayUntil) : cue.end, 0, duration), phraseId: cue.phraseId })).sort((a, b) => a.start - b.start) : [],
+      cues: Array.isArray(scene.cues) ? scene.cues.filter((cue) => cue && finite(cue.start) && finite(cue.end) && cue.end >= cue.start && phraseIds.has(cue.phraseId)).map((cue) => ({ start: clamp(cue.start, 0, duration), end: clamp(cue.end, 0, duration), displayUntil: clamp(finite(cue.displayUntil) ? Math.max(cue.end, cue.displayUntil) : cue.end, 0, duration), loop: cue.loop === true, phraseId: cue.phraseId })).sort((a, b) => a.start - b.start) : [],
     })) : [];
     return {
       id: lessonId,
@@ -344,6 +321,20 @@
     return cached;
   }
 
+  function fitSingleWord() {
+    const container = els.karaoke;
+    container.style.removeProperty('font-size');
+    if (container.dataset.singleWord !== 'true') return;
+    const word = container.querySelector('.karaoke-word');
+    if (!word) return;
+    const style = getComputedStyle(container);
+    const available = container.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - 2;
+    const width = word.getBoundingClientRect().width;
+    if (available > 0 && width > available) {
+      container.style.fontSize = (Math.floor(parseFloat(style.fontSize) * available / width * 100) / 100) + 'px';
+    }
+  }
+
   function appendPhraseText(container, phrase, time, highlightWords) {
     const cached = getPhraseDom(phrase);
     const phraseId = phrase ? phrase.id : null;
@@ -353,6 +344,10 @@
         previousCache.wordNodes[displayedWordIndex].classList.remove('is-active');
       }
       container.replaceChildren(...cached.nodes);
+      const length = phrase ? phrase.text.length : 0;
+      container.dataset.length = length > 110 ? 'long' : length > 50 ? 'medium' : 'short';
+      container.dataset.singleWord = String(!!phrase && !/\s/.test(phrase.text.trim()));
+      fitSingleWord();
       container.scrollTop = 0;
       displayedPhraseId = phraseId;
       displayedWordIndex = -1;
@@ -436,6 +431,8 @@
         button.type = 'button';
         button.className = 'tree-phrase';
         button.dataset.phraseId = phrase.id;
+        button.classList.toggle('is-marked', progress.difficultPhraseIds.includes(phrase.id));
+        if (progress.difficultPhraseIds.includes(phrase.id)) button.title = 'Отмечено на повтор';
         const initialTime = finite(pendingSeek) ? pendingSeek : 0;
         const hiddenAnswer = hidesFutureText(phrase) && phrase.start > initialTime && phrase.id !== treeDisclosedPhraseId;
         button.setAttribute('aria-label', hiddenAnswer
@@ -515,34 +512,33 @@
 
   function showPhrase(time, active, displayPhrase) {
     appendPhraseText(els.karaoke, displayPhrase, time, !!active && displayPhrase && active.id === displayPhrase.id && !els.audio.paused);
-    const prev = displayPhrase || null;
-    const nextIndex = prev ? phraseIndex(prev) + 1 : 0;
-    const next = lesson.phrases[nextIndex] || null;
-    const inResponseGap = !active && !!prev && prev.kind === 'prompt' && time >= prev.end && (!next || time < next.start);
-    els.focusState.textContent = els.audio.ended ? 'Запись закончилась' : active ? (els.audio.paused ? 'На паузе' : 'Сейчас звучит') : (inResponseGap ? 'Пауза для ответа' : displayPhrase ? 'Текущая фраза' : els.audio.paused ? 'Готово к прослушиванию' : 'Начало урока');
-    els.focusLabel.classList.toggle('is-speaking', !!active && !els.audio.paused);
-    els.phraseKind.textContent = displayPhrase ? (kindLabels[displayPhrase.kind] || 'Фраза') : '';
+    const marked = !!displayPhrase && progress.difficultPhraseIds.includes(displayPhrase.id);
     els.difficult.disabled = !displayPhrase;
-    els.difficult.setAttribute('aria-pressed', String(!!displayPhrase && progress.difficultPhraseIds.includes(displayPhrase.id)));
-    els.difficult.textContent = displayPhrase && progress.difficultPhraseIds.includes(displayPhrase.id) ? '★ Сложная фраза' : '☆ Сложная фраза';
+    els.difficult.setAttribute('aria-pressed', String(marked));
+    els.difficult.querySelector('span').textContent = marked ? 'На повторе' : 'На повтор';
+    els.difficult.title = marked ? 'Убрать отметку повторения с этой фразы' : 'Отметить фразу для повторения — закладка появится в карте урока';
   }
 
   function renderScene(time) {
     const entry = lesson.scenes.map((scene) => ({ scene, cue: scene.cues.reduce((latest, cue) => cue.start <= time && time < cue.displayUntil ? cue : latest, null) })).find((item) => item.cue);
     if (!entry) {
       els.sceneCard.hidden = true;
-      els.sceneEmpty.hidden = true;
+      els.stage.classList.remove('has-scene');
       return;
     }
     const { scene, cue } = entry;
-    els.sceneEmpty.hidden = true;
+    els.stage.classList.add('has-scene');
     els.sceneCard.hidden = false;
     els.sceneTerm.textContent = scene.term;
     els.sceneMeaning.textContent = scene.meaning;
     els.sceneDescription.textContent = scene.description;
-    els.sceneMethod.textContent = scene.method ? `Приём: ${scene.method}` : '';
+
+    els.sceneImage.alt = scene.description || scene.term;
     els.sceneArt.dataset.animation = scene.animation;
-    const phase = cue.end > cue.start ? clamp((time - cue.start) / (cue.end - cue.start), 0, 1) : 0;
+    const duration = cue.end - cue.start;
+    const elapsed = Math.max(0, time - cue.start);
+    // Audio is the only clock: pause freezes a cycle; seeking restores its phase.
+    const phase = duration > 0 ? (cue.loop ? (elapsed % duration) / duration : clamp(elapsed / duration, 0, 1)) : 0;
     els.sceneArt.style.setProperty('--scene-progress', String(phase));
     const hasArt = !!scene.asset;
     const puzzle = hasArt && scene.animation === 'understand';
@@ -584,10 +580,10 @@
     els.treeProgress.style.width = `${progressPercent}%`;
     els.treeProgressLabel.textContent = `${Math.floor(progressPercent)}%`;
     els.return.disabled = returnTime === null;
-    els.playIcon.textContent = els.audio.paused ? '▶' : 'Ⅱ';
+    els.play.dataset.state = els.audio.paused ? 'paused' : 'playing';
     els.play.setAttribute('aria-label', els.audio.paused ? 'Воспроизвести' : 'Пауза');
-    showPhrase(time, active, displayPhrase);
     renderScene(time);
+    showPhrase(time, active, displayPhrase);
     renderTree(active, time);
     const index = phraseIndex(displayPhrase);
     els.previousPhrase.disabled = index <= 0;
@@ -596,7 +592,6 @@
     els.previousBlock.disabled = bIndex <= 0;
     els.repeatBlock.disabled = bIndex < 0;
     els.nextBlock.disabled = bIndex < 0 || bIndex >= lesson.blocks.length - 1;
-    els.reveal.disabled = !displayPhrase;
     if (!selectedPhraseId && displayPhrase) selectedPhraseId = displayPhrase.id;
     maybeSavePosition(time);
   }
@@ -612,7 +607,6 @@
   function enableControls() {
     [els.seek, els.play, els.previousBlock, els.previousPhrase, els.repeatPhrase, els.repeatBlock, els.nextPhrase, els.nextBlock, els.loop, els.rate, els.volume, els.completion].forEach((el) => { el.disabled = false; });
     els.difficult.disabled = false;
-    els.reveal.disabled = false;
   }
 
   function setInternalTime(time) {
@@ -672,16 +666,6 @@
     els.drawerClose.focus();
   }
 
-  function revealCurrentPhrase() {
-    const phrase = phraseAt(els.audio.currentTime || 0);
-    if (!phrase) return;
-    selectedPhraseId = phrase.id;
-    const block = blockById(phrase.blockId);
-    if (block && blockNodes.has(block.id)) blockNodes.get(block.id).open = true;
-    renderTime();
-    const node = phraseNodes.get(phrase.id);
-    if (node) node.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-  }
 
   function movePhrase(delta, repeat = false) {
     const current = phraseAt(els.audio.currentTime || 0);
@@ -709,6 +693,11 @@
     const ids = new Set(progress.difficultPhraseIds);
     if (ids.has(phrase.id)) ids.delete(phrase.id); else ids.add(phrase.id);
     progress.difficultPhraseIds = [...ids];
+    const node = phraseNodes.get(phrase.id);
+    if (node) {
+      node.classList.toggle('is-marked', ids.has(phrase.id));
+      node.title = ids.has(phrase.id) ? 'Отмечено на повтор' : '';
+    }
     renderTime();
     safeWriteProgress();
   }
@@ -722,12 +711,11 @@
     els.theme.setAttribute('aria-label', themeName === 'graphite' ? 'Переключить на светлую тему' : 'Переключить на тёмную тему');
     els.audio.volume = progress.volume;
     els.volume.value = String(progress.volume);
-    // Loading a new media source resets playbackRate to defaultPlaybackRate.
     els.audio.defaultPlaybackRate = progress.playbackRate;
     els.audio.playbackRate = progress.playbackRate;
     els.rate.value = String(progress.playbackRate);
     els.completion.setAttribute('aria-pressed', String(progress.completed));
-    els.completion.textContent = progress.completed ? '✓ Изучил · Снять отметку' : 'Изучил';
+    els.completion.title = progress.completed ? 'Снять отметку «Изучил»' : 'Отметить урок как изученный';
     const params = new URLSearchParams(location.search);
     pendingSeek = params.get('start') === '1' ? 0 : progress.resumeTime;
     lastSavedSecond = Math.floor(pendingSeek);
@@ -748,12 +736,7 @@
     enableControls();
     els.heading.textContent = lesson.title;
     els.description.textContent = lesson.subtitle;
-    els.navTitle.textContent = lesson.title;
-    els.course.textContent = lesson.course;
     els.courseTop.textContent = lesson.course;
-    els.courseEyebrow.textContent = lesson.course;
-    els.titleTop.textContent = lesson.title;
-    els.subtitleTop.textContent = lesson.subtitle || lesson.title;
     document.title = `${lesson.title} — Английский`;
     renderTime();
   }
@@ -787,7 +770,6 @@
     } catch (error) {
       els.heading.textContent = 'Урок пока недоступен';
       els.description.textContent = 'Проверьте, что данные урока и аудиофайл находятся на месте.';
-      els.navTitle.textContent = 'Демонстрация';
       els.tree.replaceChildren();
       const message = error && typeof error.message === 'string' ? error.message : 'Не удалось открыть урок.';
       showNotice(message, true);
@@ -881,11 +863,10 @@
   els.completion.addEventListener('click', () => {
     progress.completed = !progress.completed;
     els.completion.setAttribute('aria-pressed', String(progress.completed));
-    els.completion.textContent = progress.completed ? '✓ Изучил · Снять отметку' : 'Изучил';
+    els.completion.title = progress.completed ? 'Снять отметку «Изучил»' : 'Отметить урок как изученный';
     safeWriteProgress();
   });
   els.difficult.addEventListener('click', toggleDifficult);
-  els.reveal.addEventListener('click', revealCurrentPhrase);
   els.expandAll.addEventListener('click', () => blockNodes.forEach((node) => { node.open = true; }));
   els.collapseAll.addEventListener('click', () => blockNodes.forEach((node) => { node.open = false; }));
   els.drawerOpen.addEventListener('click', openDrawer);
@@ -903,14 +884,18 @@
     textScale = clamp(Math.round((textScale - 0.1) * 10) / 10, 0.8, 1.3);
     document.documentElement.style.setProperty('--text-scale', String(textScale));
     if (progress) progress.textScale = textScale;
+    fitSingleWord();
     safeWriteProgress();
   });
   els.larger.addEventListener('click', () => {
     textScale = clamp(Math.round((textScale + 0.1) * 10) / 10, 0.8, 1.3);
     document.documentElement.style.setProperty('--text-scale', String(textScale));
     if (progress) progress.textScale = textScale;
+    fitSingleWord();
     safeWriteProgress();
   });
+  window.addEventListener('resize', fitSingleWord);
+  if (document.fonts) document.fonts.ready.then(fitSingleWord);
   window.addEventListener('pagehide', safeWriteProgress);
   window.addEventListener('pagehide', (event) => {
     if (!event.persisted && audioObjectUrl) URL.revokeObjectURL(audioObjectUrl);
