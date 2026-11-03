@@ -156,8 +156,8 @@
     "vendor/oz_markdown_diagrams.js": "29a6d2cb96b2007c01913a156d69c6c9ecfb20b86b14dd3e51ea1480c85303b8",
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "e30da36f7f25b84e7ea37ad980fdfc9b8cbe9557b66e20fa56fe7031b19b973a",
-    "index.html": "e8840b4faca0c2d4a1ed919cfd01ee22cdc152717c418f43f7200c58bdaf3858",
-    "en/index.html": "23633f414dc1203837b99c525bf9564ffed8f1d0aebcae3adc4a8784c075e60e",
+    "index.html": "0aefe7b00c39a7719a5d13d6b37c69a87b27f734f790ee6e893fef5b150f5291",
+    "en/index.html": "70482108346d43da46b9dbcbffe76387c7c3d673fd2a7c59d5558a99311f977c",
     "home-v2.css": "d0e7227f4c375c654e3958cd07303a9099b689b0bf8f9e75cf1c8126d9422b0c",
     "home-v2.js": "06f810f6ebad0da92e60063c0e03d179b3d99c805d6fca74d60d90c3ec6d9771",
     "assets/mytwobrain-share-ru-r36.png": "eaea8443f0df38b35c03c76d718931cae574e62ea496efa849a5e2f27ee29db7",
@@ -566,7 +566,7 @@
     "en/examples/research-foundations.html": "336e12457b66da793ae110d3b24709b0e3ea2d53734374691c2925215d4f9056",
     "en/examples/dori.html": "81b397d3b80e101fa70f8c0a3aeffd994473886e6b6df223fd62f568569c77ec",
     "en/overview.html": "87758714f237e1f436464962e7d1455c51520c8826da6d4eceae90ca2a5b37d1",
-    "sitemap.xml": "8c1d6fcfc15c5ec8002f2632c12c88084bbfdc2c1f666833d52eb58bcf3b6f96",
+    "sitemap.xml": "fabaa8cb6bc661e0c1ef67b791af7fb6716afa991a2b7a9e0f698917c5d5bf70",
     "english/assets/fonts/OFL.txt": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
     "english/assets/fonts/nunito-cyrillic.woff2": "e512f2d7c9fe062b1acf8f6ea64d4bfd89a77d26728150977627e445c7b6e937",
     "english/assets/fonts/nunito-latin.woff2": "6d1626aac658786e37e78e0adce3ffffddbd75abc923d72e45a7168bd80053da",
@@ -574,15 +574,20 @@
     "english/assets/understand.webp": "f45287a1d395f5c526db862b23d386b207d9bc7d68db644b2d0914d11d401481",
     "english/home.css": "76c3e2e1c2bcfb9629619ebaf1d10488bb6972f27159acb7803b91a58085c5be",
     "english/home.js": "67aca356eec8274dbffee8df681835014e935c41226913d3f377a1c577ac3d7f",
-    "english/index.html": "1cadb32499745c9d30dd1fae0880af4d3e194adb2e0faa98f6b1e3dd2707ebd5",
+    "english/index.html": "3ce6755d64bb2399e4a501d1e8ad55502554ae290f1ba5d85f5e86e3134300b6",
     "english/lesson.css": "3b9804938209cee63c074363076ec1fc4dd0b888032139bf30f4215e787f0b7b",
-    "english/lesson.html": "16d9045f7819c84d3cc5f6424ca668fa60eb8c6af19054a9c34aa926fa8feb46",
+    "english/lesson.html": "3008ef8329911f9d6c22f99b3712879a29bf7d44aa05a6b1b904c69f091ed0c3",
     "english/lessons/pimsleur-i-01/audio.mp3": "6c5a74812fa0944ff332c07df9d599522ba07cff091fc4c6825bae7270077ce8",
     "english/lessons/pimsleur-i-01/lesson.json": "190ea61ca2ddc2bc737eb4d41f6bf9ec0541fca784ec6e03ce48dc61c8179b1b",
     "english/player.css": "b1a2ac4f42164c99ea45b8508969d61d6be0758affd9ce99001d00374b0cf6e1",
     "english/player.js": "dfd5740cef745c5c614d2f42f02e5c0ba84f7c3c468ef76e7528e96b9c2659a5",
     "portfolio-navigation.css": "7ce17b2860b7f7cf51f3339c0f5f9193dbd9f82612638032e420c3021eadd8d4",
-    "portfolio-navigation.js": "1120c2fc0aac8c702d13b2a3cadbbe0b4ec85fb4c7757f846db116a8259a80bc"
+    "portfolio-navigation.js": "1120c2fc0aac8c702d13b2a3cadbbe0b4ec85fb4c7757f846db116a8259a80bc",
+    "examples/mnemonics.html": "1a776594f29f2cb4043dbd12e19b2f74b40f6696ff9842ee0da70962d0c4c849",
+    "en/examples/mnemonics.html": "96e6af60fa4366992eacb8580a43fb709d57ff114435f0c9bbe1f38f501fd3d8",
+    "mnemonics.css": "0c715f82f7e067bccca2bfcaee5ed8f8d2635fa76de1622ee65bb27f9cfb257a",
+    "mnemonics.js": "c6f38d74a0bf92f4d7eb565243c6ccf5a5f8b08f1273e2c88f4d87e58d1dcabf",
+    "assets/mnemonics-butter.png": "bcff83c436624611a85e22ab0133a790075f00a307645cd423388d531a701775"
   },
   "english_example": {
     "kind": "frozen_project",
@@ -604,7 +609,7 @@
       "english/player.css",
       "english/player.js"
     ],
-    "manifest_sha256": "c8f1d3dba81fa77efcc9e3c8e97d55c997c057fed4b8e3cc704e9bf75ff08022",
+    "manifest_sha256": "3db370e392e3dfce69183e524d29e8e3e11fb3926cbdb183b8130c19fe29e607",
     "source_release_id": "english-pilot-v1-2fc35388b12f",
     "source_revision": "sha256:2fc35388b12fefd99d5e7156bcb7619de3b0f5c07b8f2ef5854c4cdb3869a3c7",
     "source_release_manifest_sha256": "6310afa5a046dd3fb73043ff986e3f3d22e6c6b95a043cc2c989ea11cc116abf",
@@ -629,6 +634,21 @@
     "prompt_count_source": "operator_statement",
     "prompt_count_scope": "initial_interface_only"
   },
-  "publication_scope": "approved_english_project_20261101",
-  "retained_unpublished": {}
+  "publication_scope": "mnemonics_note_article_ru_en_only_and_english_head_only",
+  "retained_unpublished": {},
+  "mnemonics": {
+    "route": "examples/mnemonics.html",
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "scene_count": 5,
+    "name_count": 6,
+    "content_basis": "operator_personal_practice_and_dudin_story",
+    "story_author": "Konstantin Dudin",
+    "editorial_revision": "R8",
+    "image_route": "assets/mnemonics-butter.png",
+    "repetition_basis": "lab_workbook_2019_with_explicit_first_session_origin",
+    "operator_acceptance": false
+  }
 }
