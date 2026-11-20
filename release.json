@@ -73,7 +73,13 @@
     "wording_sha256": "b39fd2320b14127a0ff019e23c9bb067781f1d5ad13c90786f67a7eea9ed53a3",
     "projection_sources": {
       "ru": "3475cef076eefdbf42edb183169a82efd6ec117042e636d2b65cb0f417a72ece",
-      "en": "f385dd781072debca7faf744908e576142b3df0a9b62e99d48488e5264d90e85"
+      "en": "a594d41ecc2f02ff6a425cc0960977cc7d386bf268f80df6340034add157dc25"
+    },
+    "bilingual_essay_link": {
+      "source": "_maintenance/previews/LIVE_REVIEW_20261023/home_v2/template.html",
+      "source_sha256": "b342f38ec3188a7fa4690c149b5f2d3502663ee39fe479abeaeb5786e30f5475",
+      "ru": "/examples/emergent-thinking.html",
+      "en": "/en/examples/emergent-thinking.html"
     }
   },
   "page_identity": {
@@ -164,7 +170,7 @@
     "vendor/oz_markdown.css": "aaed6c03410e2901cb0657c61e0098be956f2b0b96336f34b299119c7ecf0a3a",
     "cv/index.html": "e30da36f7f25b84e7ea37ad980fdfc9b8cbe9557b66e20fa56fe7031b19b973a",
     "index.html": "3475cef076eefdbf42edb183169a82efd6ec117042e636d2b65cb0f417a72ece",
-    "en/index.html": "f385dd781072debca7faf744908e576142b3df0a9b62e99d48488e5264d90e85",
+    "en/index.html": "a594d41ecc2f02ff6a425cc0960977cc7d386bf268f80df6340034add157dc25",
     "home-v2.css": "d0e7227f4c375c654e3958cd07303a9099b689b0bf8f9e75cf1c8126d9422b0c",
     "home-v2.js": "06f810f6ebad0da92e60063c0e03d179b3d99c805d6fca74d60d90c3ec6d9771",
     "assets/mytwobrain-share-ru-r36.png": "eaea8443f0df38b35c03c76d718931cae574e62ea496efa849a5e2f27ee29db7",
@@ -573,7 +579,7 @@
     "en/examples/research-foundations.html": "336e12457b66da793ae110d3b24709b0e3ea2d53734374691c2925215d4f9056",
     "en/examples/dori.html": "81b397d3b80e101fa70f8c0a3aeffd994473886e6b6df223fd62f568569c77ec",
     "en/overview.html": "87758714f237e1f436464962e7d1455c51520c8826da6d4eceae90ca2a5b37d1",
-    "sitemap.xml": "fabaa8cb6bc661e0c1ef67b791af7fb6716afa991a2b7a9e0f698917c5d5bf70",
+    "sitemap.xml": "143d92d3b05153cb7f1c0b48800a408c2864df924b80f42030d96fcde38771b1",
     "english/assets/fonts/OFL.txt": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
     "english/assets/fonts/nunito-cyrillic.woff2": "e512f2d7c9fe062b1acf8f6ea64d4bfd89a77d26728150977627e445c7b6e937",
     "english/assets/fonts/nunito-latin.woff2": "6d1626aac658786e37e78e0adce3ffffddbd75abc923d72e45a7168bd80053da",
@@ -599,7 +605,8 @@
     "english/lessons/pimsleur-i-02/audio.mp3": "4e2c5b39ab5082e7ed0305ea10060a6b06f813472d2a0f6e02c184b18d5e1f98",
     "english/lessons/pimsleur-i-02/lesson.json": "c06a2755416301ee7b77d29bcb4c1feefb11180f5ab792a0ad67764f32fbc530",
     "english/release.json": "b05d1ddb7eb4fb4fb7c9360e4cf95dfbac4433c194321f0b6bb321ec6d91a561",
-    "examples/emergent-thinking.html": "e808fab5c2aaed99badcbb657e8d067aeeb083fb4f38909f663dcad4b93d797b"
+    "examples/emergent-thinking.html": "d76cf6a2c0f351752d71292662326c240ab1b307dd694e5b2b3e797276218dbc",
+    "en/examples/emergent-thinking.html": "f7e857b3c2ec7ce8f33acbe4a56dcd98138cde1851925b58f715016c5fd4f8e1"
   },
   "english_example": {
     "kind": "frozen_project",
@@ -691,7 +698,7 @@
     "planned_lesson_count": 90,
     "alignment": "machine_aligned"
   },
-  "publication_scope": "approved_home_essay_r4_and_english_two_lessons",
+  "publication_scope": "approved_emergent_r4_bilingual_correction",
   "retained_unpublished": {},
   "mnemonics": {
     "route": "examples/mnemonics.html",
@@ -708,14 +715,28 @@
     "repetition_basis": "lab_workbook_2019_with_explicit_first_session_origin",
     "operator_acceptance": false
   },
-  "release_id": "portfolio-r4-two-lessons-20261120",
+  "release_id": "portfolio-emergent-r4-bilingual-20261121",
   "emergent_thinking": {
     "route": "examples/emergent-thinking.html",
+    "routes": {
+      "ru": "examples/emergent-thinking.html",
+      "en": "en/examples/emergent-thinking.html"
+    },
+    "languages": [
+      "ru",
+      "en"
+    ],
     "editorial_revision": "R4",
     "section_count": 9,
     "primary_source_count": 5,
-    "source_sha256": "16f976329d912792f7fb93f1741d4cbc927e176a3c98b398309009a107643ff3",
+    "authoring_sha256": {
+      "ru": "9dbf0949689a9d2adfc33949784a910c8275315631991c84e08f17760f45cf9a",
+      "en": "c8b75bce5fd771d34d750221295373856037956fbfd7893c058205f60431a895"
+    },
+    "renderer_sha256": "76219b56e539e56686f5692e0cd2894aafa9c693304f3c2415402f5e177f97af",
+    "translation_review_sha256": "ccf21f761799fc68195b07e5e49bb8091c9ca4ae365d322d11ad0645a4ad6f7d",
     "public_navigation_adapted": true,
-    "body_rewritten": false
+    "russian_body_rewritten": false,
+    "language_switch_preserves_review_and_section": true
   }
 }
