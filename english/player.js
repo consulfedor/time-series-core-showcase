@@ -1,8 +1,9 @@
 (() => {
   'use strict';
 
-  const LESSON_URL = './lessons/pimsleur-i-01/lesson.json';
-  const lessonId = 'pimsleur-i-01';
+  const CATALOG_URL = './catalog.json';
+  const LAST_LESSON_KEY = 'english-practice:last-lesson';
+  const lessonId = new URLSearchParams(location.search).get('lesson') ?? 'pimsleur-i-01';
   const progressKey = `english-practice:v1:${lessonId}`;
   const playbackRates = [0.75, 0.9, 1, 1.1, 1.25];
   const $ = (id) => document.getElementById(id);
@@ -85,6 +86,13 @@
   const safeString = (value, fallback = '') => typeof value === 'string' ? value : fallback;
   const finite = (value) => typeof value === 'number' && Number.isFinite(value);
   const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  const timelineTime = (time) => {
+    // Lesson boundaries have millisecond precision. Chromium may report a
+    // seek one microsecond below its target; reconcile only that tiny error.
+    // The original audio clock and persisted position remain untouched.
+    const rounded = Math.round(time * 1000) / 1000;
+    return Math.abs(time - rounded) <= 0.000005 ? rounded : time;
+  };
   const clock = (seconds) => {
     const value = Math.max(0, Math.floor(Number.isFinite(seconds) ? seconds : 0));
     const hours = Math.floor(value / 3600);
@@ -193,7 +201,7 @@
 
   function normalizeLesson(raw) {
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) throw new Error('Файл урока имеет неверный формат.');
-    if (raw.id && raw.id !== lessonId) throw new Error('Этот файл относится к другому уроку.');
+    if (raw.id !== lessonId) throw new Error('Этот файл относится к другому уроку.');
     const duration = finite(raw.duration) && raw.duration > 0 ? raw.duration : 0;
     if (!duration) throw new Error('В файле урока не указана длительность.');
     const blockRows = Array.isArray(raw.blocks) ? raw.blocks : [];
@@ -255,7 +263,7 @@
       id: lessonId,
       revision: safeString(raw.revision, 'unversioned'),
       progressCompatibleRevisions: Array.isArray(raw.progressCompatibleRevisions) ? raw.progressCompatibleRevisions.filter((value) => typeof value === 'string') : [],
-      title: safeString(raw.title, 'Урок 1'),
+      title: safeString(raw.title, 'Урок'),
       subtitle: safeString(raw.subtitle),
       course: safeString(raw.course, 'Пимслер · Уровень I'),
       duration,
@@ -270,6 +278,7 @@
   function blockById(id) { return lesson && lesson.blocks.find((block) => block.id === id) || null; }
 
   function phraseAt(time) {
+    time = timelineTime(time);
     const active = lesson.phrases.find((phrase) => phrase.start <= time && time < phrase.end);
     if (active) return active;
     let previous = null;
@@ -281,10 +290,12 @@
   }
 
   function activePhraseAt(time) {
+    time = timelineTime(time);
     return lesson.phrases.find((phrase) => phrase.start <= time && time < phrase.end) || null;
   }
 
   function blockAt(time) {
+    time = timelineTime(time);
     const active = lesson.blocks.find((block) => block.start <= time && time < block.end);
     if (active) return active;
     let previous = null;
@@ -565,7 +576,7 @@
 
   function renderTime() {
     if (!lesson) return;
-    const time = clamp(Number.isFinite(els.audio.currentTime) ? els.audio.currentTime : 0, 0, lesson.duration);
+    const time = timelineTime(clamp(Number.isFinite(els.audio.currentTime) ? els.audio.currentTime : 0, 0, lesson.duration));
     lastClock = time;
     const active = activePhraseAt(time);
     const displayPhrase = active || phraseAt(time);
@@ -604,9 +615,9 @@
     }
   }
 
-  function enableControls() {
-    [els.seek, els.play, els.previousBlock, els.previousPhrase, els.repeatPhrase, els.repeatBlock, els.nextPhrase, els.nextBlock, els.loop, els.rate, els.volume, els.completion].forEach((el) => { el.disabled = false; });
-    els.difficult.disabled = false;
+  function enableControls(enabled = true) {
+    [els.seek, els.play, els.previousBlock, els.previousPhrase, els.repeatPhrase, els.repeatBlock, els.nextPhrase, els.nextBlock, els.loop, els.rate, els.volume, els.completion].forEach((el) => { el.disabled = !enabled; });
+    els.difficult.disabled = !enabled;
   }
 
   function setInternalTime(time) {
@@ -759,15 +770,35 @@
   async function loadLesson() {
     probeStorage();
     try {
-      lessonUrl = new URL(LESSON_URL, location.href);
-      if (lessonUrl.origin !== location.origin) throw new Error('Файл урока должен открываться с этого сайта.');
+      els.heading.textContent = 'Загружаем урок…';
+      els.description.textContent = '';
+      els.courseTop.textContent = '';
+      if (!/^pimsleur-(?:i|ii|iii)-[0-9]{2}$/.test(lessonId)) throw new Error('Такого урока пока нет в каталоге.');
+      const catalogResponse = await fetch(CATALOG_URL, { credentials: 'same-origin', cache: 'no-cache' });
+      if (!catalogResponse.ok) throw new Error('Не удалось открыть каталог уроков.');
+      const catalog = await catalogResponse.json();
+      if (!catalog || catalog.schemaVersion !== 1 || !Array.isArray(catalog.lessons)) throw new Error('Каталог уроков имеет неверный формат.');
+      const entries = catalog.lessons.filter((entry) => entry && entry.id === lessonId);
+      if (entries.length !== 1) throw new Error('Этот урок ещё не подготовлен.');
+      const entry = entries[0];
+      if (typeof entry.revision !== 'string' || !entry.revision || typeof entry.dataUrl !== 'string') throw new Error('Каталог уроков имеет неверный формат.');
+      lessonUrl = new URL(entry.dataUrl, location.href);
+      const expectedUrl = new URL('./lessons/' + lessonId + '/lesson.json', location.href);
+      if (lessonUrl.href !== expectedUrl.href) throw new Error('Неверный адрес данных урока.');
       const response = await fetch(lessonUrl.href, { credentials: 'same-origin', cache: 'no-cache' });
       if (!response.ok) throw new Error('Не удалось загрузить данные урока.');
       const raw = await response.json();
+      if (raw.revision !== entry.revision) throw new Error('Данные урока обновляются. Обновите страницу.');
       lesson = normalizeLesson(raw);
+      els.heading.textContent = lesson.title;
+      els.description.textContent = lesson.subtitle;
+      els.courseTop.textContent = lesson.course;
       lesson.scenes.forEach((scene) => { if (scene.asset) { const preload = new Image(); preload.decoding = "async"; preload.src = scene.asset; } });
       await applyInitialState(safeReadProgress());
     } catch (error) {
+      enableControls(false);
+      lesson = null;
+      progress = null;
       els.heading.textContent = 'Урок пока недоступен';
       els.description.textContent = 'Проверьте, что данные урока и аудиофайл находятся на месте.';
       els.tree.replaceChildren();
@@ -804,6 +835,10 @@
       setInternalTime(target);
     }
     audioReady = true;
+    if (lesson && storageAvailable) {
+      try { window.localStorage.setItem(LAST_LESSON_KEY, lessonId); }
+      catch (_) { setStorageStatus(false); }
+    }
     renderTime();
     safeWriteProgress();
   });
@@ -861,6 +896,7 @@
   els.rate.addEventListener('change', () => { els.audio.playbackRate = Number(els.rate.value); safeWriteProgress(); });
   els.volume.addEventListener('input', () => { els.audio.volume = Number(els.volume.value); safeWriteProgress(); });
   els.completion.addEventListener('click', () => {
+    if (!lesson || !progress) return;
     progress.completed = !progress.completed;
     els.completion.setAttribute('aria-pressed', String(progress.completed));
     els.completion.title = progress.completed ? 'Снять отметку «Изучил»' : 'Отметить урок как изученный';

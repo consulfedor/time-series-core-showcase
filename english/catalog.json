@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "defaultLessonId": "pimsleur-i-01",
+  "lessons": [
+    {
+      "id": "pimsleur-i-01",
+      "title": "Урок 1",
+      "subtitle": "Первое знакомство",
+      "course": "Пимслер · Уровень I",
+      "duration": 1772.205,
+      "revision": "pimsleur-i-01-v1-3154bd9e80ed",
+      "level": 1,
+      "number": 1,
+      "progressCompatibleRevisions": [
+        "pimsleur-i-01-v1-1989115db813",
+        "pimsleur-i-01-v1-ec8c7781a890"
+      ],
+      "dataUrl": "./lessons/pimsleur-i-01/lesson.json"
+    },
+    {
+      "id": "pimsleur-i-02",
+      "title": "Урок 2",
+      "subtitle": "Приветствие и разговор",
+      "course": "Пимслер · Уровень I",
+      "duration": 1775.183,
+      "revision": "pimsleur-i-02-v1-26c78350e61d",
+      "level": 1,
+      "number": 2,
+      "progressCompatibleRevisions": [
+        "pimsleur-i-02-v1-be97a7a4300e"
+      ],
+      "dataUrl": "./lessons/pimsleur-i-02/lesson.json"
+    }
+  ]
+}

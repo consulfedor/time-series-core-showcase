@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#17191c">
-  <title>Английский: Пимслер и мнемотехника — MyTwoBrain</title>
-  <meta name="description" content="Слушайте английскую речь, повторяйте фразы и связывайте слова с образами. Первый урок Пимслера с картой занятия и сохранением прогресса.">
+  <title>Английский: два урока Пимслера и мнемотехника — MyTwoBrain</title>
+  <meta name="description" content="Два первых урока Пимслера: слушайте английскую речь, повторяйте фразы и возвращайтесь к трудным местам по карте занятия. Прогресс сохраняется в вашем браузере.">
   <link rel="canonical" href="https://consulfedor.github.io/time-series-core-showcase/english/index.html">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MyTwoBrain">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Английский: Пимслер и мнемотехника — MyTwoBrain">
-  <meta property="og:description" content="Слушайте английскую речь, повторяйте фразы и связывайте слова с образами. Первый урок Пимслера с картой занятия и сохранением прогресса.">
+  <meta property="og:title" content="Английский: два урока Пимслера и мнемотехника — MyTwoBrain">
+  <meta property="og:description" content="Два первых урока Пимслера: слушайте английскую речь, повторяйте фразы и возвращайтесь к трудным местам по карте занятия. Прогресс сохраняется в вашем браузере.">
   <meta property="og:url" content="https://consulfedor.github.io/time-series-core-showcase/english/index.html">
   <meta property="og:image" content="https://consulfedor.github.io/time-series-core-showcase/assets/mytwobrain-share-ru-r36.png">
   <meta property="og:image:type" content="image/png">
@@ -21,8 +21,8 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Обложка MyTwoBrain: ИИ-агенты и временные ряды">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Английский: Пимслер и мнемотехника — MyTwoBrain">
-  <meta name="twitter:description" content="Слушайте английскую речь, повторяйте фразы и связывайте слова с образами. Первый урок Пимслера с картой занятия и сохранением прогресса.">
+  <meta name="twitter:title" content="Английский: два урока Пимслера и мнемотехника — MyTwoBrain">
+  <meta name="twitter:description" content="Два первых урока Пимслера: слушайте английскую речь, повторяйте фразы и возвращайтесь к трудным местам по карте занятия. Прогресс сохраняется в вашем браузере.">
   <meta name="twitter:image" content="https://consulfedor.github.io/time-series-core-showcase/assets/mytwobrain-share-ru-r36.png">
   <meta name="twitter:image:alt" content="Обложка MyTwoBrain: ИИ-агенты и временные ряды">
   <link rel="stylesheet" href="./player.css">
@@ -61,12 +61,13 @@
       <p class="course-size"><strong>90</strong> уроков <span aria-hidden="true">·</span> 3 уровня</p>
     </div>
 
-    <section class="resume-card" aria-labelledby="lesson-title">
-      <div class="resume-number" aria-hidden="true"><small>Урок</small><span>01</span></div>
+    <p class="resume-note" id="available-lesson-note">Доступны <a href="./lesson.html">урок 1</a> и <a href="./lesson.html?lesson=pimsleur-i-02">урок 2</a>. Остальные уроки готовятся.</p>
+
+    <section class="resume-card" id="resume-card" aria-labelledby="lesson-title" hidden>
+      <div class="resume-number" aria-hidden="true"><small>Урок</small><span id="resume-number">01</span></div>
       <div class="resume-copy">
-        <div class="resume-meta"><span>Уровень I</span><span class="resume-duration"><svg class="icon" aria-hidden="true"><use href="#home-clock"/></svg>29:32</span><span class="completion-badge" id="completion-badge" hidden><svg class="icon" aria-hidden="true"><use href="#home-check"/></svg>Изучен</span></div>
+        <div class="resume-meta"><span id="resume-level">Уровень I</span><span class="resume-duration"><svg class="icon" aria-hidden="true"><use href="#home-clock"/></svg><span id="resume-duration">29:32</span></span><span class="completion-badge" id="completion-badge" hidden><svg class="icon" aria-hidden="true"><use href="#home-check"/></svg>Изучен</span></div>
         <h2 id="lesson-title">Первое знакомство</h2>
-        <p class="resume-note" id="available-lesson-note">Доступен первый урок; остальные готовятся.</p>
         <div class="resume-progress-row" id="resume-progress-row" hidden>
           <div class="resume-progress" id="home-progress" role="progressbar" aria-label="Позиция в уроке" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="home-progress-fill"></span></div>
           <p id="resume-note" class="resume-note" hidden></p>
@@ -77,6 +78,7 @@
         <a class="home-restart-link" id="restart-link" href="./lesson.html?start=1" hidden><svg class="icon" aria-hidden="true"><use href="#home-restart"/></svg>Сначала</a>
       </div>
     </section>
+    <p class="home-storage-notice" id="catalog-status" role="status" hidden></p>
     <p class="home-storage-notice" id="storage-status" role="status" hidden></p>
 
     <section class="course-map" aria-labelledby="course-map-title">

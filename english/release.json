@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "project": "english_practice",
+  "releaseId": "english-portfolio-public-3ba363312bdc",
+  "sourceRevision": "sha256:ac05d0c78459f775a2b0e9165ff8c6cb7c77e5195f86eaa98856f67bff802214",
+  "sourceReleaseId": "english-pilot-v1-ac05d0c78459",
+  "projectionRevision": "sha256:3ba363312bdcd2fc38f3b09e786574a2a0a7ab50164fdd3cb7392282b7452ab4",
+  "lessonRevision": "pimsleur-i-01-v1-3154bd9e80ed",
+  "lessonRevisions": {
+    "pimsleur-i-01": "pimsleur-i-01-v1-3154bd9e80ed",
+    "pimsleur-i-02": "pimsleur-i-02-v1-26c78350e61d"
+  },
+  "scope": "public Portfolio static projection; browser-local progress",
+  "files": [
+    {
+      "path": "assets/fonts/OFL.txt",
+      "bytes": 4385,
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
+    },
+    {
+      "path": "assets/fonts/nunito-cyrillic.woff2",
+      "bytes": 8392,
+      "sha256": "e512f2d7c9fe062b1acf8f6ea64d4bfd89a77d26728150977627e445c7b6e937"
+    },
+    {
+      "path": "assets/fonts/nunito-latin.woff2",
+      "bytes": 16476,
+      "sha256": "6d1626aac658786e37e78e0adce3ffffddbd75abc923d72e45a7168bd80053da"
+    },
+    {
+      "path": "assets/little.webp",
+      "bytes": 179044,
+      "sha256": "f384f85c3da0b79061db9368c42af9863442fd00c0eb9da53460072f46f8f701"
+    },
+    {
+      "path": "assets/understand.webp",
+      "bytes": 154022,
+      "sha256": "f45287a1d395f5c526db862b23d386b207d9bc7d68db644b2d0914d11d401481"
+    },
+    {
+      "path": "catalog.json",
+      "bytes": 1010,
+      "sha256": "b3861e4e1526f12df3ab6b05b205511a13bac40c984a21c2e85ad413b284a3be"
+    },
+    {
+      "path": "home.css",
+      "bytes": 16703,
+      "sha256": "76c3e2e1c2bcfb9629619ebaf1d10488bb6972f27159acb7803b91a58085c5be"
+    },
+    {
+      "path": "home.js",
+      "bytes": 13714,
+      "sha256": "e1cdbe7c2a846baac8e65335c924a7650198222ebd2e5978856e76631d89d81d"
+    },
+    {
+      "path": "index.html",
+      "bytes": 8934,
+      "sha256": "f9b75c7685b1fd16a1de364740c5288573c455786074fe52c891f6d232a170a0"
+    },
+    {
+      "path": "lesson.css",
+      "bytes": 23912,
+      "sha256": "3b9804938209cee63c074363076ec1fc4dd0b888032139bf30f4215e787f0b7b"
+    },
+    {
+      "path": "lesson.html",
+      "bytes": 13623,
+      "sha256": "17d760a17f46d3532a77807bd608178f9cf6599962d0ccd867b0b5e99032100e"
+    },
+    {
+      "path": "lessons/pimsleur-i-01/audio.mp3",
+      "bytes": 7089844,
+      "sha256": "6c5a74812fa0944ff332c07df9d599522ba07cff091fc4c6825bae7270077ce8"
+    },
+    {
+      "path": "lessons/pimsleur-i-01/lesson.json",
+      "bytes": 378075,
+      "sha256": "190ea61ca2ddc2bc737eb4d41f6bf9ec0541fca784ec6e03ce48dc61c8179b1b"
+    },
+    {
+      "path": "lessons/pimsleur-i-02/audio.mp3",
+      "bytes": 7101756,
+      "sha256": "4e2c5b39ab5082e7ed0305ea10060a6b06f813472d2a0f6e02c184b18d5e1f98"
+    },
+    {
+      "path": "lessons/pimsleur-i-02/lesson.json",
+      "bytes": 355531,
+      "sha256": "c06a2755416301ee7b77d29bcb4c1feefb11180f5ab792a0ad67764f32fbc530"
+    },
+    {
+      "path": "player.css",
+      "bytes": 2038,
+      "sha256": "b1a2ac4f42164c99ea45b8508969d61d6be0758affd9ce99001d00374b0cf6e1"
+    },
+    {
+      "path": "player.js",
+      "bytes": 44512,
+      "sha256": "1d6bcaaf0dccc5c5b741bb64ab648b14aebbea6a912d49f8a8ae3d5904017188"
+    }
+  ],
+  "humanListeningVerified": false,
+  "sourceOperatorAcceptance": false,
+  "publicationAuthority": "owning Portfolio release approval receipt"
+}
