@@ -13,6 +13,15 @@
   let demoScene = 'dialog', demoReveal = false, lastHeight = 0;
   let language = document.documentElement.lang;
   const embedded = new URLSearchParams(location.search).get('embed') === '1';
+  const anchorInterruptions = ['wheel', 'touchstart', 'pointerdown', 'keydown', 'hashchange', 'popstate', 'pagehide'];
+  let anchorInterrupted = false, cancelInitialAnchor = null;
+  const releaseAnchorGuard = () => anchorInterruptions.forEach(type => window.removeEventListener(type, interruptInitialAnchor, true));
+  function interruptInitialAnchor() {
+    anchorInterrupted = true;
+    cancelInitialAnchor?.();
+    releaseAnchorGuard();
+  }
+  if (!embedded) anchorInterruptions.forEach(type => window.addEventListener(type, interruptInitialAnchor, {capture: true, passive: true}));
 
   // One sandboxed frontend keeps its local examples. Explanations stay visible.
   function postDemo(type, value) {
@@ -155,6 +164,41 @@
     }
   });
   const restoreRoute = () => navigate(locationRoute(), {scroll: Boolean(location.hash)});
+  function revealCoveredInitialAnchor(event) {
+    if (embedded || anchorInterrupted || !location.hash || event.persisted ||
+        performance.getEntriesByType('navigation')[0]?.type === 'back_forward') {
+      releaseAnchorGuard();
+      return;
+    }
+    const hash = location.hash;
+    const deadline = performance.now() + 1500;
+    let stopped = false, timer;
+    const stop = () => {
+      stopped = true;
+      clearTimeout(timer);
+      cancelInitialAnchor = null;
+      releaseAnchorGuard();
+    };
+    const check = () => {
+      if (stopped) return;
+      if (performance.now() >= deadline) { stop(); return; }
+      if (location.hash !== hash) { stop(); return; }
+      if (frame && document.activeElement === frame) { stop(); return; }
+      const header = document.querySelector('[data-portfolio-nav]');
+      const target = resolveRoute(locationRoute())?.target;
+      if (!header || !target) { stop(); return; }
+      const rect = target.getBoundingClientRect(), bottom = header.getBoundingClientRect().bottom;
+      if (bottom > 0 && rect.height > 0 && rect.top < bottom + 8 && rect.bottom > bottom) {
+        restoreRoute();
+      }
+    };
+    cancelInitialAnchor = stop;
+    timer = setTimeout(stop, 1500);
+    // Reconcile native history restoration after pageshow, then any font layout.
+    // Two finite checks; user interaction or navigation cancels both.
+    requestAnimationFrame(() => requestAnimationFrame(check));
+    document.fonts?.ready?.then(() => requestAnimationFrame(check));
+  }
   window.addEventListener('hashchange', restoreRoute);
   window.addEventListener('popstate', restoreRoute);
   window.addEventListener('message', event => {
@@ -196,7 +240,7 @@
     languageObserver.disconnect();
     sizeObserver?.disconnect();
   });
-  window.addEventListener('pageshow', () => { lastHeight = 0; observe(); });
+  window.addEventListener('pageshow', event => { lastHeight = 0; observe(); revealCoveredInitialAnchor(event); });
   if (embedded) {
     document.body.classList.add('embedded');
     document.querySelectorAll('[data-component-ref],.system-return').forEach(link => {

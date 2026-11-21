@@ -11,15 +11,19 @@
  if(isDome&&params.get('lang')==='en'){
   header.querySelectorAll('[data-portfolio-language]').forEach(a=>{if(a.dataset.portfolioLanguage==='en')a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   header.querySelector('.portfolio-nav-brand span').textContent='MyTwoBrain';
-  const paths=['','mytwobrain/','examples/research-foundations.html','cv/'];
-  const labels=['Home','Systems','People','CV'];
-  header.querySelectorAll('[data-portfolio-destination]').forEach((a,i)=>{a.textContent=labels[i];a.href=header.dataset.base+'en/'+paths[i];});
+  const destinations={home:['','Home'],workspace:['mytwobrain/workspace.html#zone-workbench','Workspace'],systems:['mytwobrain/','Systems'],people:['examples/research-foundations.html','People'],cv:['cv/','CV']};
+  header.querySelectorAll('[data-portfolio-destination]').forEach(a=>{const [path,label]=destinations[a.dataset.portfolioDestination];a.textContent=label;a.href=header.dataset.base+'en/'+path;});
   header.querySelector('nav').setAttribute('aria-label','Site navigation');
+  header.querySelector('.portfolio-nav-tools').setAttribute('aria-label','Site language');
   header.querySelector('.portfolio-nav-brand').href=header.dataset.base+'en/';
   const summary=header.querySelector('[data-portfolio-contents] summary');summary.setAttribute('aria-label','Home sections');summary.title='Home sections';
  }
- const synchronize=()=>header.querySelectorAll('[data-portfolio-language]').forEach(a=>{const u=new URL(a.href);u.hash=location.hash;a.href=u.href;});
- synchronize();window.addEventListener('hashchange',synchronize);
+ const synchronize=()=>{
+  const current=new URL(location.href);
+  header.querySelectorAll('[data-portfolio-language]').forEach(a=>{const u=new URL(a.href);u.search=current.search;if(isDome)u.searchParams.set('lang',a.dataset.portfolioLanguage);u.hash=current.hash;a.href=u.href;});
+  header.querySelectorAll('[data-portfolio-destination],.portfolio-nav-brand').forEach(a=>{const u=new URL(a.href);const review=current.searchParams.get('review');if(['baseline','changes','candidate'].includes(review))u.searchParams.set('review',review);else u.searchParams.delete('review');a.href=u.href;});
+ };
+ synchronize();window.addEventListener('hashchange',synchronize);window.addEventListener('popstate',synchronize);
  header.querySelectorAll('[data-portfolio-language]').forEach(a=>a.addEventListener('click',synchronize));
  const contents=header.querySelector('[data-portfolio-contents]');
  const entry=contents.closest('[data-portfolio-entry]'),home=entry.querySelector('[data-portfolio-destination=home]');
