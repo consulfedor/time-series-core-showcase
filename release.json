@@ -562,7 +562,7 @@
     "harness-map.css": "1000c0236b8100ab3fc2c610a59a8db56fbf14fd2bd5124ecf52cb594b14c888",
     "harness-map.js": "f2da3e886cff64887984e5df00eca24bd442f6cd48b50436906620a5e3664bcd",
     "examples/analytics.html": "489845496fb55a0edbc8b58724e93e925430a3dbc1715eb11ec42acf4e1f9dd3",
-    "examples/research-foundations.html": "285cd267484aa528a88b35fdf13e0bb6621c4d92decf1f9b4783eef90c566d2d",
+    "examples/research-foundations.html": "6641a017bb223e7938e068020757732bd344bc3dd17476b0de5795548f5baa5b",
     "examples/analytics.md": "fd3324e87da9ab86138c10e32ff249fa7f1f01d198f18712393556734348061e",
     "overview.html": "0652505814ba61b7517ed70ed59bf98bd10f8a10c7dd499842b6428f13b0cad3",
     "examples/dori.html": "f97829e3db9700cff27de5812b597f079244787ff50b365a842353160114d014",
@@ -576,7 +576,7 @@
     "en/mytwobrain/workspace.html": "79253ffb3b63577c91371f0f70f73f6932c45a218e2385291d345d78a1cf7787",
     "en/examples/data-pipeline.html": "8f5a66e484c0f3d0c582070693a91f4c240f88c9e000d5529798a939fbf4cf9b",
     "en/examples/analytics.html": "5cdcebc4876b8c9767dd0165826534acec9cc0075c56f07a330c8e925361c75e",
-    "en/examples/research-foundations.html": "751aaa90d85a76b1359bcef4fcb4709e0153131382ebb116db422f67fbc751c7",
+    "en/examples/research-foundations.html": "cb831246c14067ca68862dfc4427c5510caa0a6d94883f75914d5293c789728f",
     "en/examples/dori.html": "48e69a04dd774849980b9fc5fa5ca168f0c2a7acaa99f5f3e672d111507d5587",
     "en/overview.html": "1d96af96b940e2aa27c11d1c695c37b29f2e3650f9d33af6407663abd48037de",
     "sitemap.xml": "143d92d3b05153cb7f1c0b48800a408c2864df924b80f42030d96fcde38771b1",
@@ -698,7 +698,7 @@
     "planned_lesson_count": 90,
     "alignment": "machine_aligned"
   },
-  "publication_scope": "approved_consistent_portfolio_navigation_20261121_r3",
+  "publication_scope": "approved_wiki_roster_78_people_9_groups_only",
   "retained_unpublished": {},
   "mnemonics": {
     "route": "examples/mnemonics.html",
@@ -797,5 +797,26 @@
       "mytwobrain/workspace.html"
     ],
     "html_preservation": "28 stripped-nav byte-exact; two Workspace pages byte-exact after reversing the exact script cache token as well"
+  },
+  "research_foundations": {
+    "kind": "published_wiki_roster_ru_en",
+    "source_sha256": "e3f3391cc8d8aef8d37b8ee80bba7e2f999f82a27e836287bf6f3d8b23531dc3",
+    "translation_sha256": "2d267b2b9a6f06a975e4c1345ddffa9a0c4618dab7ca650ae38378658ad74cdf",
+    "handoff_sha256": "6ea9d3191b0005c3aeef9ad601cbe57006ae6ef50033edff1b84baf237d74a0e",
+    "people": 78,
+    "groups": 9,
+    "reading_sources": 5,
+    "languages": [
+      "ru",
+      "en"
+    ],
+    "routes": [
+      "examples/research-foundations.html",
+      "en/examples/research-foundations.html"
+    ],
+    "baseline_revision": "ac266304f7acffe663e89df37fb4538cc09cf90d9b421b38eeb2ac67d7eca93b",
+    "baseline_inventory_sha256": "5f611e59764a9c4168e622924d129634a6e42696ed4e5c925c77e7799898e38c",
+    "baseline_file_count": 475,
+    "unrelated_accepted_files_unchanged": true
   }
 }
